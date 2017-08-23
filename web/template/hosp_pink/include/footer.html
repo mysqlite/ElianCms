@@ -1,0 +1,10 @@
+${content!''}
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/cookie.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/front.js"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${resCms}",${siteId}, location.href, document.referrer);
+	Cms.siteFlowCount("${resCms}",${siteId},"siteFlowCount");
+});
+</script>

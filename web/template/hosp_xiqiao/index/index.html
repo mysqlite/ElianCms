@@ -1,0 +1,320 @@
+<#include '../includes/index_header.html'/>
+<#import '../includes/global.html' as global/>
+<#macro ppt mapKey>
+    <#if dataMap[mapKey]??>
+    <#if (dataMap[mapKey].imgContentList)??>
+        <#local data=dataMap[mapKey].imgContentList/>
+        <#if data??>
+            <#list data as item>
+               <li><a href="${item.path}"><img src="${item.imgPath!''}" width="270" height="330"/>${(item.title)!''}</a></li>
+            </#list>
+        </#if>
+    </#if>
+    </#if>
+</#macro>
+<#macro bigPpt mapKey>
+    <#if dataMap[mapKey]??>
+    <#if (dataMap[mapKey].imgContentList)??>
+        <#local data=dataMap[mapKey].imgContentList/>
+        <#if data??>
+            <#list data as item>
+                <img src="${item.imgPath}" width="996" height="332" />
+            </#list>
+        </#if>
+    </#if>
+    </#if>
+</#macro>
+<#macro information mapKey>
+    <#if dataMap[mapKey]??>
+        <#local data=dataMap[mapKey]/>
+        <div class="hd">
+            <h3>${(data.channelName)!''}</h3>
+            <a class="more" href="${(data.parentPath)!'#'}">更多</a>
+        </div>
+        <#if data.contentList??&&(data.contentList?size>=2)>
+            <div class="hot_news">
+            <#list 0..1 as i>
+                <h2 class="tit"><a href="${(data.contentList[i].path)!''}">${(data.contentList[i].title)!''}</a></h2>
+                <p class="txt"><@global.showTitle title=(data.contentList[i].detial)!'' titleNum=62/></p>
+                <div class="dot_line"></div>
+            </#list>
+            </div>
+            <div class="wrap_list">
+                <ul class="list">
+                    <#if (data.contentList?size>2)>
+                        <#list 2..data.contentList?size-1 as i>
+                            <li><a href="${(data.contentList[i].path)!''}">${(data.contentList[i].title)!''}</a></li>
+                        </#list>
+                    </#if>
+                </ul>
+            </div>
+        </#if>
+    </#if>
+</#macro>
+
+<#macro infoSidebar mapKey num>
+    <#if dataMap[mapKey]??>
+    <#local data=dataMap[mapKey]/>
+    <div class="mod_box">
+        <div class="ui_hd">
+            <h3 class="ui_tit ui_tit0${num}">${(data.parentChannelName)!''}</h3>
+            <a class="more" href="${(data.parentPath)!''}">更多</a>
+            <b class="hd_left"></b><b class="hd_right"></b>
+        </div>
+        <div class="bd">
+            <#if data.imgContentList??>
+              <a class="pic" href="${(data.imgContentList[0].path)!''}" title="${(data.imgContentList[0].title)!''}"><img src="${(data.imgContentList[0].imgPath)!''}"/></a>
+            </#if>
+            <ul class="list">
+            <#list data.contentList as item>
+                <li>
+                    <div class="txt"><a href="${(item.path)!''}"><@global.showTitle title=item.title titleNum=14/></a></div>
+                    <span class="date">${item.time}</span>
+                </li>
+            </#list>
+            </ul>   
+        </div>
+    </div>
+    </#if>
+</#macro>
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<#--区域1，大图幻灯片begin-->
+<div id="wrapper">
+    <div class="wrapper">
+        <div id="carousel">
+        <@bigPpt mapKey="1"/>
+        </div>
+        <div id="pager"></div>
+    </div>
+</div>
+<#--区域1，大图幻灯片end-->
+
+<#--第二大区域begin-->
+<div class="section">
+    <div class="w690">
+        <#--区域2begin-->
+        <div class="wrap_focus">
+            <div class="focus" id="index_Focus" style="visibility:hidden">
+                <div class="loading"><span>载入中,请稍候...</span></div><ul class="pic"><@ppt mapKey="2"/></ul>
+            </div>
+        </div>
+        <#--区域2end-->
+        <#--区域3begin-->
+        <div class="w410 hos_news">
+            <div class="wrap"><@information mapKey="3"/></div>
+        </div>
+        <#--区域3end-->
+    </div>
+    <div class="sidebar">
+        <#--预约挂号部分begin--><#include '../other/reg.html'/><#--预约挂号部分end-->
+        <#--就医指南begin-->
+        <div class="aside guide_line">
+            <#if dataMap['4']??>
+            <div class="aside_hd"><h3 class="ui_tit">${(dataMap['4'].channelName)!''}</h3></div>
+            <ul class="guide_line_bd">
+                <#if dataMap['4'].contentList??>
+                <#list 0..dataMap['4'].contentList?size-1 as i>
+                <li><b class="ico ico0${i+1}"></b><a href="${(dataMap['4'].contentList[i].path)!'#'}"><@global.showTitle title=(dataMap['4'].contentList[i].title)!'' titleNum=5/></a></li>
+                </#list>
+                </#if>
+            </ul>
+            </#if>
+        </div>
+        <#--就医指南end-->
+    </div>
+</div>
+<#--第二大区域end-->
+
+<#--第三大区域begin-->
+<div class="section msg_grounp_section">
+    <div class="main_section">
+        <#--学术动态begin-->
+        <@infoSidebar mapKey="5" num="1"/>
+        <#--学术动态end-->
+        <#--健康教育begin-->
+        <@infoSidebar mapKey="6" num="2"/>
+        <#--健康教育end-->
+        <#--护理天地begin-->
+        <@infoSidebar mapKey="7" num="3"/>
+        <#--护理天地end-->
+    </div>
+    <div class="sidebar">
+    	<#--未分类begin-->
+        <div class="aside rapid_guide">
+            <a href="http://www.nh4y.com/378/yyzx/yyxw/41580.shtml">
+            	<img alt="" src="http://style.elian.cc/hosp/webbuild/xqyy/bg/ddqzlx.png">
+            </a>
+        </div>
+        <#--未分类end-->
+        
+         <#--未分类begin-->
+        <div class="aside rapid_guide">
+            <ul class="list">
+            <#if dataMap["8"].contentList??>
+                <#list 0..dataMap["8"].contentList?size-2 as i>
+                <li><a class="guide0${i+1}" href="${(dataMap["8"].contentList[i].path)!'#'}">${(dataMap["8"].contentList[i].title)!''}</a></li>
+                </#list>
+            </#if>   
+            </ul>
+        </div>
+        <#--未分类end-->
+        
+        <#--医院介绍部分begin-->
+        <#if dataMap["9"]??>
+        <#if dataMap["9"].contentList[0]??>
+        <div class="aside hos_intro">
+            <div class="aside_hd">
+                <h3 class="ui_tit">医院介绍</h3>
+            </div>
+            <div class="aside_bd">
+                <a class="wrap_pic" href="${(dataMap["9"].contentList[0].path)!'#'}">
+                    <img src="${resImg}${(hosp.hospImg)!''}"/>
+                </a>
+                <p class="txt">
+                <@global.showTitle title=(hosp.shortDesc)!'' titleNum=98/>
+                <a class="more" href="${(dataMap["9"].contentList[0].path)!'#'}">[详细]</a>
+                </p>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <#--医院介绍部分end-->
+        <#--留言板部分begin--><#include '../other/leave.html'/><#--留言板部分end-->
+    </div>
+</div>
+<#--第三大区域end-->
+
+<#--第四大区域,特色专科begin-->
+<div class="section department_intro">
+    <#--八大特色专科begin-->
+    <#if dataMap["10"]??>
+    <div class="main_section">
+        <div class="ui_hd">${(dataMap["10"].channelName)!''}</div>
+        <div class="bd">
+            <ul class="department_intro_list">
+            <#if dataMap["10"].imgContentList??>
+                <#list dataMap["10"].imgContentList as item>
+                <li>
+                    <div class="ui_hd_list"><h3 class="tit">${(item.title)!''}</h3><b class="ico"></b></div>
+                    <div class="list_bd">
+                        <a class="pic" href="${(item.path)!'#'}"><img src="${(item.imgPath)!'${resImg}/design/hosp/comm/no_pic.jpg'}"/></a>
+                        <a class="more" href="${(item.path)!'#'}">了解详情</a>
+                    </div>
+                </li>
+                </#list>
+            </#if>
+            </ul>
+        </div>
+        <div class="ui_ft"></div>
+    </div>
+    </#if>
+    <#--八大特色专科end-->
+    
+    <#--科室介绍begin-->
+    <div class="sidebar">
+        <#if dataMap['11']??>
+        <div class="aside intro_depeartment_detail">
+            <div class="aside_hd" style="color: ">
+                <h3 class="ui_tit" style="padding-top:5px;">${(dataMap['11']['1'].parentChannelName)!''}</h3>
+            </div>
+            <div class="aside_bd">
+                <div class="tab2_hd" id="tab2_hd">
+                    <#list 1..dataMap["11"]?size as i>
+                        <h4 <#if i==1> class="cur"</#if>><a href="${(dataMap['11']['${i}'].path)!'#'}">${(dataMap['11']['${i}'].channelName)!''}</a></h4>       
+                    </#list>
+                </div>
+                <div class="dot_line"></div>
+                <div class="tab2_bd" id="tab2_bd">
+                    <#list 1..dataMap['11']?size as i>
+                    <div class="tab_con" <#if i==1>style="display: block"</#if>>
+                        <a class="pic" href="#"><img src="${(dataMap['11']['${i}'].contentList[0].imgPath)!'${resImg}/design/hosp/comm/no_pic.jpg'}"/></a>
+                        <p class="txt">    
+                        <@global.showTitle title=(dataMap['11']['${i}'].contentList[0].entity.shortDesc)!'' titleNum=266/>
+                        <a class="more" href="${(dataMap['11']['${i}'].contentList[0].path)!'#'}">[详细]</a></p>
+                    </div>
+                    </#list>
+                </div>
+            </div>
+        </div>
+        </#if>
+    </div>
+    <#--科室介绍end-->
+</div>
+<#--第四大区域,特色专科end-->
+
+<#--第五大区域,名医荟萃begin-->
+<div class="section">
+    <#if dataMap['12']??>
+    <div class="intro_doc">
+        <div class="ui_hd">
+            <h3 class="ui_tit">${(dataMap['12']['1']['1'].parentChannelName)!''}</h3>
+            <a class="more" href="${(dataMap['12']['1']['1'].parentPath)!'#'}">&gt;&gt;更多</a>
+        </div>
+        <div class="mod_bd clearfix">
+            <div class="section_details">
+                <div class="tab3_hd" id="tab3_hd">
+                <#list 1..(dataMap['12']?size) as i>
+                <#if dataMap['12']['${i}']??>
+                   <#list 1..dataMap['12']['${i}']?size as m> 
+                    <h4 <#if m==1>class="cur"</#if>>
+                    	<!-- <a href="${(dataMap['12']['${i}']['${m}'].path)!'#'}"> -->
+                        <span href="${(dataMap['12']['${i}']['${m}'].path)!'#'}">${(dataMap['12']['${i}']['${m}'].channelName)!'#'}</span>
+                    </h4>
+                   </#list>
+                 </#if>
+                 </#list>
+                </div>
+                <div class="tab3_bd" id="tab3_bd">
+                    <#if dataMap['12']??>
+                    <#list 1..(dataMap['12']?size) as i>
+                     <#if dataMap['12']['${i}']??>
+                     <#list 1..dataMap['12']['${i}']?size as m> 
+                     <div class="tab_con" <#if m==1>id="tab_con" style="display: block;z-index: 999"</#if>>
+                        <ul class="pt01 iframe_intro_doc clearfix">
+                          <#if dataMap['12']['${i}']['${m}'].imgContentList??>
+                          <#list dataMap['12']['${i}']['${m}'].imgContentList as item>
+                            <li>
+                                <div class="item-wrap">
+                                    <!-- <a class="pic" href="${item.path!'#'}" > -->
+                                    <span class="pic">
+                                        <img src="${item.imgPath!'${resImg}/design/hosp/comm/no_pic.jpg'}" alt="${item.title!''}" />
+                                    </span>
+                                    <h5 class="tit">${item.title}</h5>
+                                    <span class="txt">职称:<@global.showTitle title=(item.entity.jobTitle)!'' titleNum=5 dian=false/></span>
+                                    <span class="txt">专业:<@global.showTitle title=(item.entity.speciality)!'' titleNum=5 dian=false/></span>
+                                    <span class="txt txt2">介绍:<@global.showTitle title=(item.entity.dutyName)!'' titleNum=5 dian=false/></span>
+                                    <!-- <a href="${item.path!'#'}" class="link_btn">查看详细&gt;&gt;</a -->
+                                </div>
+                            </li>
+                            </#list>
+                            </#if>
+                        </ul>
+                    </div>
+                    </#list>
+                    </#if> 
+                   </#list>
+                   </#if>
+                </div>
+            </div>
+        </div>
+    </div>
+    </#if>
+</div>
+<#--第五大区域,名医荟萃end-->
+
+<#--友情链接begin-->
+<@global.frendLink data=dataMap['13']/>
+<#--友情链接end-->
+
+<#--浮动窗口begin-->
+<#if dataMap['14']??>
+<div id=ad_drift_01 style="Z-INDEX: 1001;width:475px;height:235px">
+<#if dataMap['14'].contentList??>
+<A href="${(dataMap['14'].path)!'#'}"><IMG src="${(dataMap['14'].contentList[0].imgPath)!'#'}" border=0 width="475" height="235"></A>
+</#if>
+</div>
+</#if>
+<#--浮动窗口end-->
+<!--#include virtual="${footUrl}"-->
+<#include '../includes/index_footer.html'/>

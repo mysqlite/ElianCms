@@ -1,0 +1,180 @@
+﻿<#include "../includes/header.html"/>
+<#import '../includes/global.html' as global/>
+<link rel="stylesheet" href="${resStyle}/v2/blue/gouwu.css" type="text/css" media="screen" />
+<div class="section">
+   <div class="main_con clearfix">
+        <div class="wrap_product_details">
+            <div class="product_buy_bd">
+                <h2 class="tit">${instr.cnName}</h2>
+                <@global.showProductImg data=(instr.frontImgs)![] title=(instr.cnName)!''></@global.showProductImg> 
+                <div class="wrap_buy_area">
+                    <div class="i">
+                        <span class="tit">器械名称:</span>
+                        <span class="txt"><em>${(instr.cnName)!''}</em><em>${(instr.enName)!''}</em></span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">通用名:</span>
+                        <span class="txt">${(instr.alias)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">批准文号:</span>
+                        <span class="txt">${(instr.approvalNumber)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">产品规格:</span>
+                        <span class="txt">${(instr.specifications)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">本店售价:</span>
+                        <span class="txt">
+                            <em class="price">￥
+                             <#if (instr.pricePany>0)>
+                                    ${(instr.pricePany?string("###########.##"))!''}元
+                             <#elseif (instr.discountedPrice)>
+                                ${(instr.discountedPricePany?string("###########.##"))!''}元
+                             <#else>
+                                    面议
+                             </#if>
+                            </em>
+                        </span>
+                    </div>
+                    <div class="i last_i">
+                        <span class="tit">服　　务:</span>
+                        <span class="txt">本商品由<em>${(instr.company.name)!''}</em>提供,并负责配送</span>
+                    </div>
+                    <div class="buy_area">
+                        <div class="buy_num">
+                            <span class="tit">购买数量：</span>
+                            <div class="num">
+                                <a href="javascript:void(0)" class="ico minus_num" id="minus_num">-</a>
+                                <input id="prd_nums" value="1" type="text" class="ipt" maxlength="3" />
+                                <a href="javascript:void(0)" class="ico add_num" id="add_num">+</a>
+                            </div>
+                        </div>
+                        <a class="ui_btn cart_now_btn" onclick="addShoppingCart('${instr.id}','${product_type}','${contentId?string("##############")}')" href="javascript:void(0);">放入购物车</a>
+                        <div id="shop_${contentId?string("##############")}"></div>
+                        <a class="link_btn" href="#">添加到收藏夹</a>
+                    </div>
+                </div>
+            </div>
+            <#--<div class="sns_link">
+                <div class="bd">
+                    <span class="tit">分享到：</span>
+                    <a class="ico ico1" href="#">分享至新浪微博</a>
+                    <a class="ico ico2" href="#">分享至人人网</a>
+                    <a class="ico ico3" href="#">分享至腾讯微博</a>
+                    <a class="ico ico4" href="#">分享至开心网</a>
+                </div>
+            </div>-->
+            <div class="product_details_bd">
+                <div class="tab_hd" id="tab1_hd">
+                    <h3 class="cur">商品介绍</h3>
+                    <h3>商品参数</h3>
+                    <#--<h3>商品评论</h3>-->
+                </div>
+                <div class="tab_bd" id="tab1_bd">
+                    <div class="tab_con" style="display: block;">
+                        <h3>概要</h3>
+                        <p>${(instr.summary)!''}</p>
+                        <h3>商品介绍</h3>
+                        <p>${(instr.frontDesc)!''}</p>
+                    </div>
+                    <div class="tab_con">
+                        <table class="prd_details_tbl" cellSpacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td class="tit">药品类型</td>
+                                    <td class="txt">${(instr.type.typeName)!''}</td>
+                                    <td class="tit">所属科种</td>
+                                    <td class="txt">${(instr.departmentType.typeName)!''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tit">用途</td>
+                                    <td class="txt">${(instr.instrUse)!''}</td>
+                                    <td class="tit">产品用法</td>
+                                    <td class="txt">${(instr.usage)!''}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tit">批准时间</td>
+                                    <td class="txt">
+                                    <#if instr.approvalTime??>
+                                        ${instr.approvalTime?string("yyyy-MM-dd")}
+                                    </#if>
+                                    </td>
+                                    <td class="tit">到期时间</td>
+                                    <td class="txt">
+                                    <#if instr.effectiveTime??>
+                                        ${instr.effectiveTime?string("yyyy-MM-dd")}
+                                    </#if>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tit">产品包装</td>
+                                    <td class="txt">${(instr.packaging)!''}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <#--<div class="tab_con">
+                        <div class="reply_content">
+                            <ul class="list">
+                                <li>
+                                    <div class="hd">
+                                        <span class="usr_name">admin</span>
+                                        <span class="date">
+                                            2012-03-12 16:34 [<a href="#">回复此评论</a>]
+                                        </span>
+                                    </div>
+                                    <div class="bd">送货也及时。很好！</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="reply_gutter">
+                            <a href="#">查看所有评论&gt;&gt;</a>
+                        </div>
+                        <div class="reply_area">
+                            <div class="hd">发表评论</div>
+                            <div class="bd">
+                                <div class="i">
+                                    <span class="tit">评论内容：</span>
+                                    <textarea class="txt_area"></textarea>
+                                </div>
+                                <div class="i">
+                                    <span class="tit">联系方式：</span>
+                                    <input class="ipt" type="text" value="" />
+                                </div>
+                                <div class="i">
+                                    <span class="tit">验证码：</span>
+                                    <input class="ipt vcode_ipt" type="text" maxlength="4" />
+                                    <img src="images/vcode.gif" class="vcode" />
+                                    <input class="ips" type="submit" value="提交评论" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="gutter"></div>
+        <div class="aside comfile">
+        <#include "../includes/side_1.html"/>
+        </div>
+        <div class="gutter"></div>
+        <div class="aside com_intro">
+        <#include "../includes/side_2.html"/>
+        </div>
+        <div class="gutter">
+        </div>
+    </div>
+</div>
+<div class="wrap_footer">
+    <!--#include virtual="${footUrl}"-->
+</div>
+<script src="${resScript}/v2/tab.js"></script>
+<#include "../includes/com_footer.html"/>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<div id="info_list_div" class="main_con" style="display:none">
+	<div class="mod_main_hd">
+	    <div id="pathUrl_info_list_div" class="location"></div>
+    </div>
+    <div class="mod_main_bd" id="table"></div>
+    <input type="hidden" id="tableUrl" value=""/>
+    <div id="pages"></div>
+</div>
+<#if subContentList??>
+   <#if subContentList?size!=0>
+    <#list 0..(subContentList?size-1) as i>
+        <div id="${subContentList[i].contentId?string}" class="main_con" <#if i!=0> style="display:none" </#if>  >
+         	 <div class="mod_main_bd article">
+         	 	<div class="mod_main_hd">
+		       		<div class="location"><span id="pathUrl_${subContentList[i].contentId?string}"></span></div>
+			    </div>
+			    <div class="mod_main_bd">
+					<div class="article_hd">
+					    <h1>${(subContentList[i].title)!''}</h1>
+				    </div>
+				    <div class="line"></div>
+				    <div class="article_bd">
+					    <div class="article_ft">
+					    	${(subContentList[i].content)!''}
+						</div>   
+					</div>
+				</div>
+		    </div>
+	    </div>
+   </#list>
+ </#if>
+</#if>

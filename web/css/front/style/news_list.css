@@ -1,0 +1,135 @@
+﻿/*==========新闻资讯新闻列表页结构==========*/
+.section_m_650{ width: 650px;margin-right: 30px;}
+.section_m_670{ width: 670px;margin-right: 10px;}
+.section_m_650,.section_m_670,.sidebar{ float: left;overflow: hidden;}
+.sidebar{ width: 300px;}
+.sidebar .aside{ border: 1px solid #cccccc;}
+/*文章页结构*/
+.article{ border: 1px solid #cccccc;border-top: 0 none;}
+.ui_artLine{ border-top: 3px solid #ff6000;}/*文章页头部边线*/
+
+/*==========新闻资讯新闻列表页结构==========*/
+/*面包屑开始*/
+.breadcrumbs{ margin-bottom: 10px;position: relative;}
+.ui_topLine{ height: 5px;background: #ff6000 url('bg/topline.png') no-repeat right 0;overflow: hidden;}
+.breadcrumbs .position{ background-position: -120px -60px;border-bottom: 1px solid #FFD9BF;height: 35px;line-height: 35px;padding-left: 45px;overflow: hidden;}
+.breadcrumbs .position a{ color: #ff6000;}
+.breadcrumbs .position a:hover{ color: #ff6000;text-decoration: underline;}
+/*文章页的面包屑*/
+.breadcrumbs .article_position{ background-position: -110px -110px;border-bottom: 0 none;height: 25px;line-height: 25px;}
+.artCrumbs{ margin-bottom: 0;}
+/*新闻列表内容开始*/
+.section_m_670 .bd{ padding-left: 15px;}
+.section_m_670 .list01_lico{ font-size: 14px;margin-bottom: 20px;}
+.section_m_670 .list01_lico li{ background-position: -130px -33px;height: 25px;line-height: 25px;}
+.section_m_670 .list01_lico .txt{ width: 450px;float: left;margin-right: 50px;}
+.section_m_670 .list01_lico .date{ float: left;font-size: 12px;}
+
+/*侧边栏*/
+#tab2{ border: 0 none;}
+#tab2 .hd{ height: 26px;line-height: 26px;background: #ececec;margin-bottom: -1px;border: 1px solid #cccccc;border-bottom: medium none;}
+/*_overflow: hidden;for标准浏览器-否则会消失底边*/
+#tab2 h4{ border-bottom: 0px solid #cccccc;border-left: 1px solid #cccccc;border-right: 1px solid #ececec;float: left;font-size: 16px;width: 92px;text-align: center;height: 25px;line-height: 25px;margin-left: -1px;position: relative;}
+/*position: relative; for ie6*/
+#tab2 h4.cur{ background-color: #ffffff;border-bottom: 0 none ;border-left: 1px solid #cccccc;border-right: 1px solid #cccccc;cursor: pointer;height: 26px;}
+/*高度和hd高度一致即可，解决像素差问题*/
+#tab2 .list01_lico{ display: none;border: 1px solid #cccccc;padding: 10px;;_overflow: hidden;}
+#tab2 .list01_lico li{ background-position: -130px -14px;}
+.focus{ margin-bottom: 10px;}
+
+/*新闻内容*/
+.article{ padding: 0 39px;margin-bottom: 10px;}
+.article_hd{ text-align: center;padding-top: 30px;}
+.article_hd h1{ font-size: 26px;line-height: 30px;font-weight: bold;margin-bottom: 8px;}
+.article_hd .titBar{ margin-bottom: 20px;}
+.article_hd .pubTime{ color: #666666;margin-right: 5px;}
+.article_hd .artComm a{ color: #006699;}
+.article_hd .artComm a .num{ color: #ff6000;}
+.article_hd .artComm a .num:hover{ color: #ff6000;}
+.article_hd .tag{ border: 1px solid #E1EDED;margin-bottom: 25px;text-align: left;}
+.article_hd .item{ height: 30px;line-height: 30px;background: #F6F9F9;text-indent: 20px;}
+.article_hd .item a{ color: #006699;text-decoration: underline;margin-right: 8px;}
+.article_hd .tag .tit{ margin-right: 10px;}
+.article_hd .ggTag{ border-top: 1px solid #E1EDED;text-align: center;background: #ffffff;}
+.article_bd{ font-size: 14px;color: #000000;padding-bottom: 30px;}
+.article_bd p{ margin-top: 20px;}
+.article_ft{ font-size: 14px;text-align: center;padding: 20px 0 30px;}
+.article_ft a{ margin-right: 20px;}
+.article_ft em{ color: #ff6000;}
+/*新闻内容-评论部分*/
+.article_comm .hd .tit,.article_comm .imgBtn,.article_digg .item,.progressBar{ background: url('bg/comm_spirits.png') no-repeat 0 -100%;}/*背景重复*/
+.article_comm{}
+.article_comm .hd{ background-position: 0 -131px;background-repeat: repeat-x;height: 26px;line-height: 26px;color: #FF6600;border: 1px solid #e6e6e6;}
+.article_comm .hd .tit{ float: left;padding-left: 15px;background-position: -168px 7px;font-size: 14px;font-weight: bold;text-indent:10px}
+.article_comm .hd .more{ float: right;margin-right: 10px;}
+.article_comm .bd{ padding: 10px 0 0 25px;}
+.article_comm .bd .item{ clear: both;margin-bottom: 8px;}
+.article_comm .loginArea{}
+.article_comm .imgBtn{ text-indent: -1024px;overflow: hidden;margin-right: 5px;}
+.article_comm .loginArea .imgBtn{ width: 40px;height: 25px;float: left;border: 0 none;}
+.article_comm .loginArea .loginBtn{ background-position: 0 0;}
+.article_comm .loginArea .regBtn{ background-position: -42px 0;}
+.article_comm .comm_submit .subBtn{ width: 100px;height: 25px;background-position: 0 -27px;border: 0 none;}
+.article_comm .item .tit{}
+.article_comm .lb,.article_comm .ipt{ float: left;}
+.article_comm .loginArea .lb{ height:26px;line-height:26px}
+.article_comm .loginArea .ipt{ width: 120px;padding: 3px;height: 18px;line-height: 18px;border: 1px solid #d1d1d1;}
+.article_comm .icb{ vertical-align:-2px}
+.article_comm .comm_faces .tit{ *zoom:1}/*图标跟标题居中对齐*/
+.article_comm .comm_faces img{ margin-right: 10px;}
+.article_comm .item textarea{ border: 1px solid #d1d1d1;width: 580px;height: 200px;padding: 8px;}
+.article_comm .comm_submit span{ margin-right: 10px;float: left;height:25px;line-height:25px}
+.article_comm .comm_submit em{ color: #ff0000;}
+.article_vote{ background: #eaeaea;height: 120px;padding-left: 25px;margin-bottom: 10px;}
+
+.article_vote .tit{ font-size: 14px;line-height: 25px;}
+
+.article_vote .list{ margin-top: 5px;}
+
+.article_vote .list li{ float: left;width:30px;margin-right: 45px;text-align: center;}
+.article_digg{ padding-left: 160px;}
+.article_digg .item{ width: 188px;height: 48px;float: left;margin-right: 20px;}
+.article_digg .progressBar_bd{ border: 1px solid #669933;height: 5px;width: 54px;position: relative;top: 30px;left: 10px;overflow: hidden;}
+.article_digg .num{ position: relative;top: 15px;left: 75px;}
+.article_digg .down .progressBar_bd{ border: 1px solid #cccccc;}
+.progressBar{ display: block;height: 100%;}
+.article_digg .up{ background-position: 0 -54px;}
+.article_digg .down{ background-position: 0 -103px;}
+.article_digg .up .progressBar{ background-position: -105px -41px;}
+.article_digg .down .progressBar{ background-position: -105px -46px;}
+
+/*20110615 add*/
+.aside_ui_bd,.tit_aside{border: 1px solid #cccccc;}
+.sidebar .aside{border: 0 none;margin-bottom: 10px;}
+.tit_aside a,.num_ico,.mod_hd_aside,.list_num_ico{ background: url('bg/aside_news_spirit.png') no-repeat -100% 0;}
+
+.tit_aside{ background: url('bg/aside_tit_repeat.png') repeat-x 0 0;text-indent: 22px;font-size: 14px;height: 30px;line-height: 30px;font-weight: bold;border-bottom: 0 none;}
+.tit_aside a{ background-position: -145px -303px;padding-left: 14px;color: #ffffff;}
+
+.aside_ui_bd{ padding: 0 10px 8px;height: 100%;}/*haslayout for ie6 .mod_hd_aside margin bug*/
+.mod_hd_aside{ background-position: 76px -262px;font-size: 14px;color: #81511C;margin: 5px 0;}
+.mod_hd_aside h4.tit{ float: left;font-weight: bold;}
+.mod_hd_aside .more{ float: right;}
+.mod_hd_aside .more a{ color: #81511C;}
+.list_num_ico{ background-position: 0 5px;padding-left: 19px;}
+.list_num_ico li{ height: 25px;line-height: 25px;overflow: hidden;}
+/*通用分页控件引用样式--*/
+
+
+/*页码2011-11-10-翻页无图片背景*/
+/*页码2012-02-29 修改*/
+.pagination{ font-size: 12px;font-family: Verdana;text-align: center;margin: 0 auto;padding: 25px 0 35px;overflow: hidden;}
+.pagination li{ float: left;margin-right: 5px;}
+.pagination li a{ float: left;height: 18px;width: auto;padding: 0 5px;line-height: 18px;border-radius: 3px;-webkit-transition: all 0.1s ease-out 0s;}
+.pagination .cur{ font-weight: bold;cursor: default;height: 20px;line-height: 19px;width: auto;padding: 0 5px;border-radius: 3px;}
+.pagination .page_jump a{ height: 18px;width: auto;padding: 0 10px;line-height: 19px;text-decoration:none;overflow: hidden;}/*2*/
+/*模块分页颜色*/
+.pagination li a{ color: #ff6000;}
+.pagination li a,.pagination a:hover,.pagination .page_jump a:hover,.ipage{ border: 1px solid #cccccc;}
+.pagination .cur,.pagination a:hover,.pagination .page_jump a:hover,ipage{ color:#ffffff;background-color: #ff6000;text-decoration:none;}
+.pagination .no_click a,.pagination .no_click a:hover{ color: #ffffff;border-color: #ffffff;cursor: default;outline: none;}
+.pagination .no_click a:hover{ background-color:#ffffff;}
+/*页码跳转框*/
+#pagination-digg .ipage{width:25px;text-align:right;}
+#pagination-digg .itotal{border:none;text-align:left;}
+

@@ -1,0 +1,87 @@
+<#macro child data item i>
+    <#local index=i/>
+   <#list data as items>
+     <#if items.parentId==item.id>
+       <#if index==0>
+        <#if items.type=='list'>
+           <script type="text/javascript">
+             setTimeout(function(){showDiv("info_list_div","w750",'${items.tableUrl}','${items.pathUrl}',true);},300);
+           </script>
+         <#elseif items.type=='single'>
+           <script type="text/javascript">
+             setTimeout(function(){getPageLevelHtml('pathUrl_${items.contentId}','${items.pathUrl}','>>',false);},300);
+           </script>
+         </#if>
+       </#if>
+       <#if items.type=='single'&&items.contentId??>
+         <li><a onclick="showDiv(${items.contentId},'w750','','${items.pathUrl}',false);" target="_self">${items.channelName}</a></li>
+       </#if>
+       <#if items.type=='list'>
+         <li><a onclick="showDiv('info_list_div','w750','${items.tableUrl}','${items.pathUrl}',true);" target="_self">${items.channelName}</a></li>
+       </#if>
+     </#if>
+     <#local index=i+1/>
+   </#list>
+</#macro>
+
+<#macro recursionChannel data parentChannel>
+    <#if data??>
+        <#if data?size!=0>
+            <#local i=0/>
+            <#list data as item>
+                <#if item.type=="parent">
+                  <li class="lv0">
+                      <div class="hd">
+                         <b class="hitarea"></b>
+                         <span class="tit"><em>${item.channelName}</em></span>
+                      </div>
+                      <ul class="list">
+                        <@child data=data item=item i=i></@child>
+                      </ul>
+                  </li>
+                </#if>
+                <#--如果单页或者列表页-->
+                
+                <#if item.parentId==parentChannel.id>
+                    <#if (item.type=="single"&&item.contentId??)||(item.type=="list")>
+                      <@generalChannel items=item i=i></@generalChannel>
+                    </#if>
+                </#if>
+                <#local i=(i+1)/>
+            </#list>
+        </#if>
+    </#if>
+</#macro>
+<#macro generalChannel items i>
+<li class="lv0">
+  <div class="hd">
+   <b class="hitarea"></b>
+   <span class="tit">    
+   <#if i==0>  
+    <#if items.type=='list'>
+       <script type="text/javascript">
+         setTimeout(function(){showDiv("info_list_div","w750",'${items.tableUrl}','${items.pathUrl}',true);},300);
+       </script>
+    <#elseif items.type=='single'>
+       <script type="text/javascript">
+         setTimeout(function(){getPageLevelHtml('pathUrl_${items.contentId}','${items.pathUrl}','>>',false);},300);
+       </script>
+     </#if>
+   </#if>
+   <#if items.type=='single'>
+     <a onclick="showDiv(${items.contentId?string},'w750','','${items.pathUrl}',false);" target="_self">${items.channelName}</a>
+   </#if>
+   <#if items.type=='list'>
+     <a onclick="showDiv('info_list_div','w750','${items.tableUrl}','${items.pathUrl}',true);" target="_self">${items.channelName}</a>
+   </#if>
+   </span>
+  </div>
+</li>
+</#macro>
+<div class="ui_sub_nav_hd">
+    <h3>${(parentChannel.channelName)!''}</h3>
+</div>
+<ul class="treeview clearfix" id="treeview"><@recursionChannel data=subChannelList parentChannel=parentChannel></@recursionChannel></ul>
+<div class="ui_sub_nav_ft"></div>
+
+

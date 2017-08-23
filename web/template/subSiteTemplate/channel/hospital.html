@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/yydq/index.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+	</head>
+	<body>	
+<!--#macro-->
+	<#import '../include/global.html' as global/>	
+	<#--macro1 tab选项卡-->
+	<#macro macro1 mapKey isHead>
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if isHead>
+				<#list 1..data?size	as index>					
+					<h3 <#if index==1> class="cur" </#if>
+						onmouseover="overTab(2,${index},'h3','div')" onmouseout="outTab()">
+						<a href="${data['${index}'].path!'#'}">${data['${index}'].channelName!''}</a></h3>
+				</#list>	
+			</#if>
+			<#if !isHead>
+				<#list 1..data?size	as index>	
+					<#local subData=data['${index}']/>
+					<div class="tab_con" <#if 1==index> style="display: block;"</#if>>
+						<#if (subData.contentList)??>
+							<@global.showList3 ulClass='list01 clearfix' liClass='' data=subData.contentList;item>
+								<em style="color:red">[荐]</em> 
+								<em class="hos_category_tit">[${item.param1!'人民医院'}]</em>
+								<a target="_blank" href="${item.path!'#'}">${item.title!''}</a> 
+							</@global.showList3>
+						</#if>
+					</div>
+				</#list>
+			</#if>
+		</#if>
+	</#macro>
+	<#--macro2 网友好评医院-->
+	<#macro macro2 mapKey>
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<div class="mod_side_hd">
+		      <h3 class="tit">${data.channelName!''}</h3>
+		    </div>
+		    <div class="mod_side_bd">
+		      <#if data.imgContentList??>
+			      <@global.showList3 ulClass='pt03' liClass='' data=data.imgContentList;item>
+			      	  <a class="pic" target="_blank" href="${item.path!'#'}">
+			      	  <img width="70" height="60" src="${item.imgPath!'#'}" alt="${item.title!''}"></a>
+			          <h4>${item.title!''}</h4>
+			          <p class="txt">${item.param1!''} </p>
+			          <p>电话：${item.param2!''}</p>
+			      </@global.showList3>
+			  </#if>
+			 </div>
+		</#if>
+	</#macro>
+	<#--macro3推荐医院-->
+	<#macro macro3 mapKey>
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<div class="mod_box_hd clearfix">
+	          <h3 class="tit tit03">${data.channelName!''}</h3>
+	          <b class="mod_hd_left"></b><b class="mod_hd_right"></b>
+	        </div>
+	        <div class="mod_box_bd clearfix">
+	        	<#if data.imgContentList??>
+			      <@global.showList3 ulClass='pt03' liClass='' data=data.imgContentList;item>
+		            <a class="pic" target="_blank" href="${item.path!'#'}">
+		            	<img width="100" height="90" src="${item.imgPath!'#'}" alt="${item.title!''}"></a>
+		            <div class="hd">
+		              <h4 class="name"><a target="_blank" href="${item.path!'#'}" class="more">
+		              <em class="tit">${item.title!''}</em> [详细]</a></h4>
+		            </div>
+		            <ul class="txt">
+		              <li><span class="mess_tit">电话：</span>${item.param2!''}</li>
+		              <li><span class="mess_tit">地址：</span>${item.param3!''}</li>
+		              <li><span class="mess_tit">简介：</span><@global.showTitle title=item.detial titleNum=100/></li>
+		            </ul>
+			      </@global.showList3>
+			    </#if>
+		    </div>
+		</#if>
+	</#macro>	
+	
+	<#--macro4三甲医院排名-->
+	<#macro macro4 mapKey>
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			  <div class="mod_side_hd">
+		        <h3 class="tit">${data.channelName!''}</h3>
+		      </div>
+		      <div class="mod_side_bd">
+		      	<#if data.contentList??>
+			      <@global.showNumList ulClass='list01 rank_list' liClass='' begin=0 end=data.contentList?size-1 data=data.contentList;index,item>
+			      	<b>${index+1}</b><a target="_blank" href="${item.path!'#'}">${item.title!''}</a>
+			      </@global.showNumList>
+			    </#if>
+		      </div>
+		</#if>
+	</#macro>			
+<!--#macro-->
+<!--#include virtual="${headUrl}"-->
+<div class="section">
+  <div class="w540">
+    <div class="wrap_focus">
+    	<div class="focus" id="index_Focus" style="visibility:hidden">
+			<div class="loading"><span>载入中,请稍候...</span></div>
+			<ul class="pic">
+               <li style="width: 540px; height: 215px;"><a href="#"><img src="${resImg}/design/main/yydq/p1.jpg" alt=""></a></li>
+              <li style="width: 540px; height: 215px;"><a href="#"><img src="${resImg}/design/main/yydq/p2.jpg" alt=""></a></li>
+              <li style="width: 540px; height: 215px;"><a href="#"><img src="${resImg}/design/main/yydq/p3.jpg" alt=""></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mod_box">
+      <div class="mod_box_hd clearfix">
+        <h3 class="tit tit01">医联免费预约挂号</h3>
+        <!--
+        	<a href="#" class="more">[全部可挂号医院]</a> <b class="mod_hd_left"></b><b class="mod_hd_right"></b> 
+     	 -->
+      </div>
+      <div class="mod_box_bd rapid_yy clearfix">
+      	<!--#--><!--#2-->
+      	<#if (dataMap['2'].contentList)??>
+	      	<@global.showList3 ulClass='list' liClass='' data=dataMap['2'].contentList;item>	
+	      		<div class="i"><em class="name">${item.title!''}</em></div>
+	            <div class="i"><em class="name">级别:</em>${item.param1!''}</div>
+	            <div class="i"><em class="name">地方:</em>${item.param3!'全国'}</div>
+	            <div class="i"><a href="http://www.191580.com/reg/regDoctor!searchByDept.action?hospId=${item.id}" class="link_btn" target="_bank">马上预约</a></div>
+	      	</@global.showList3>
+      	</#if><!--#-->
+      </div>
+    </div>
+  </div>
+  <div class="w430 hos_category">
+  	<!--#--><!--#3-->
+    <div class="tab2_hd clearfix" id="tab2_hd">
+      <@macro1 mapKey='3' isHead=true/>      
+    </div>
+    <div class="tab2_bd" id="tab2_bd">
+      <@macro1 mapKey='3' isHead=false/>
+    </div><!--#-->    
+  </div>
+</div>
+<div class="section">
+  <div class="w730">
+    <div class="mod_box area_hos">
+      <div class="mod_box_hd clearfix">
+        <h3 class="tit tit02">按地区找医院</h3>
+        <b class="mod_hd_left"></b><b class="mod_hd_right"></b> </div>
+      <div class="mod_box_bd clearfix">
+        <ul class="list">
+          <li><em class="area_tit">华东地区：</em> 
+          	<a href="javascript:void(0)" onclick="searchaa(this)">上海</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">南京</a> 
+          	<a href="javascript:void(0)" onclick="searchaa(this)">天津</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">杭州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">苏州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">合肥</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">福州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">厦门</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">南昌</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">景德镇</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">济南</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">青岛</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">烟台</a>
+          </li>
+          <li><em class="area_tit">华南地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">广州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">佛山</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">深圳</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">南宁</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">桂林</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">柳州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">海口</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">三亚</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">文昌</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">五指山</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">昌江</a> </li>
+          <li><em class="area_tit">华中地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">郑州</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">洛阳</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">开封</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">武汉</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">宜昌</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">黄石</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">信阳</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">商丘</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">平顶山</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">许昌</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">天门</a>
+          	<a href="javascript:void(0)" onclick="searchaa(this)">黄冈</a> </li>
+          <li><em class="area_tit">华北地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">北京</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">石家庄</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">保定</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">唐山</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">太原</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">大同</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">呼和浩特</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">包头</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">邢台</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">阳泉</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">临汾</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">通辽</a> </li>
+          <li><em class="area_tit">东北地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">沈阳</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">大连</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">鞍山</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">营口</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">长春</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">吉林</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">辽源</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">哈尔宾</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">伊春</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">大庆</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">齐齐哈尔</a> </li>
+          <li><em class="area_tit">西南地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">成都</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">贵阳</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">昆明</a>
+	          <a href="javascript:void(0)" onclick="searchaa(this)">拉萨</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">绵阳</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">遵义</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">曲靖</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">大理</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">六盘水</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">乐山</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">内江</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">西昌</a> </li>
+          <li><em class="area_tit">西北地区：</em> <a href="javascript:void(0)" onclick="searchaa(this)">西安</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">兰州</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">西宁</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">银川</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">乌鲁木齐</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">咸阳</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">金昌</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">海东</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">宝鸡</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">延安</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">酒泉</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">庆阳</a> 
+	          <a href="javascript:void(0)" onclick="searchaa(this)">海北</a> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <form id="searchForm" method="post" action="http://cms.elian.cc/front/searchHospital!search.action" style="display: none" >
+  	<input id="valuePar2" name="keyword" value=""/>
+  	<input name="type" value="address"/>
+  </form>
+  <script type="text/javascript">
+ 		function searchaa(obj){
+ 			document.getElementById("valuePar2").value=obj.innerHTML;
+ 			document.getElementById("searchForm").submit();
+ 		} 
+  </script>
+  <div class="sidebar rank_hos">
+    <#--macro3网友好评医院-->
+  	<!--#--><!--#4--><@macro2 mapKey='4'/><!--#-->
+  </div>
+</div>
+<div class="section"> <a href="http://www.elian.cc/hospital/index.html#"><img src="${resImg}/design/main/yydq/index980ad01.jpg" width="980" height="90"></a> </div>
+<div class="section">
+  <div class="w730">
+    <div class="mod_box recomm_hos">
+    <#--macro3推荐医院-->
+	<!--#--><!--#5--><@macro3 mapKey='5'/><!--#-->
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="aside">
+    <#--macro4三甲医院排名-->
+     <!--#--><!--#6--><@macro4 mapKey='6'/><!--#-->
+    </div>
+    <div class="aside"> <img src="${resImg}/design/main/yydq/pic240x70.jpg" width="240" height="70"> </div>
+    <div class="sidebar rank_hos">
+      <!--#--><!--#4--><@macro2 mapKey='7'/><!--#-->
+    </div>
+  </div>
+</div>
+<!--#include virtual="${footUrl}"-->
+<script src="${resScript}/base0530.js"></script> 
+<script src="${resScript}/base.js"></script> 
+<script src="${resScript}/myfocus-1.2.4.full.js"></script> 
+<script src="${resScript}/mF_tb.js"></script> 
+<script>
+myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:540,height:215,txtHeight:'default',duration:350,direction:'left',easing:'easeOut',wrap:false});
+</script>
+</body>
+</html>

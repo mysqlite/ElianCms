@@ -1,0 +1,67 @@
+﻿/*
+---------------------------------------------------
+Site: 佛山市医网天下科技有限公司            
+Author: yiwang      
+Updated: 20110516
+Updated by: air
+---------------------------------------------------
+*/
+   
+/*
+-----------------
+@global全局
+-----------------
+*/  
+body{color:#666666;font:12px/1.6 "\5b8b\4f53","Tahoma",arial;background-color: #ffffff; }
+a{color:#666666;text-decoration:none;}/*主链接颜色*/
+a:hover{color:#FF6600;text-decoration:underline;}
+.header,.section,.footer{ width: 960px;margin: 0 auto;}
+.section{ margin: 30px auto 40px;}
+.searchBar .ui_iptBar,.searchBar h3.cur,.ui_iptBar .btn,.setHome{ background: url("../images/searchBar_bg.png") no-repeat 0 -100%;}
+/*
+-----------------
+@header头部
+-----------------
+*/ 
+.topbar_wrap{ border: 1px solid #e4e4e4;background: #fafafa;padding: 3px 0;}
+.topbar_wrap .bd{ width: 800px;margin: 0 auto;overflow: hidden;}
+.topbar_wrap a,.loginArea .lb{  color: #FF6600;}
+.topbar_wrap .link_btn{ float:right;margin-right: 10px;}
+.loginArea,.loginArea .lb,.loginArea .ipt,.loginArea .sl,.loginArea .btn,.loginArea.linkBtn{ float: left;margin-right: 5px;}
+.loginArea{ float: right}
+.login_btn{border: 1px solid #cccccc;padding: 2px 8px;cursor: pointer;}
+.loginArea .ipt{ width: 76px;border: #e3e3e3 1px solid;height: 18px;line-height: 18px;}
+.topLink a{ background: url('../images/ico/i_top.gif') no-repeat 0 3px;padding-left: 12px;}
+
+
+
+.setHome{ background-position: -313px -45px;padding-left: 15px;float: left;}
+.header .hd a,.item a{ padding: 2px 3px;}
+.header .hd a,.topbar .link_btn{ margin: 0 5px;}
+.logo{ }
+.header h1{ width: 117px;height: 138px;margin: 70px auto 30px;overflow: hidden;}
+.searchBar,.item{ margin: 0 auto;}
+.item{ margin-bottom: 10px;}
+.searchBar{ width: 460px;}
+.item{ width: 500px;}
+.searchBar .hd{ margin-bottom: 5px;padding-left: 0.5em;}
+.ui_iptBar .ipt,.ui_iptBar .btn,.ui_iptBar a{ float: left;}
+.searchBar h3{ float: left;cursor: pointer;width: 43px;height: 26px;line-height: 22px;text-align: center;margin-right: 3px;}
+.searchBar h3.cur{ color: #ff6000;background-position: -64px -33px;}
+.searchBar .search_ip{}
+.search_ip .lb{ vertical-align: 2px;}
+.searchBar .ui_iptBar{ background-position: 0 0;height: 30px;position: relative;}
+.ui_iptBar .ipt{ width: 360px;padding: 4px 5px 0;border: 0 none;margin: 6px 15px 0 5px;line-height: 1em;font-size: 14px;color: #666666;}
+.ui_iptBar .btn{ background-position: 1px -33px;width: 60px;height: 27px;border: 0 none;text-indent: -1024px;cursor: pointer;margin-right: 5px;}
+
+.item{}
+.i1{ padding: 10px 0px 0 50px;}
+.item,.item a{ color: #FF6600;}
+.item a:hover{ background: #FF6600;color: #ffffff;text-decoration: none;}
+/*
+-----------------
+@footer脚部
+-----------------
+*/ 
+.footer p{ text-align: center;color: #a9a9a9;line-height: 25px;}
+.footer p a{color: #a9a9a9;}

@@ -1,0 +1,20 @@
+﻿ <div class="nav">
+	 <div class="hd clearfix" id="tab1_hd">
+	 	<#if navList?size != 0>
+	       <#list navList as nav>
+	       		<#if nav.channelType??>
+	       			<#if nav.channelType=='out'>
+	       				<h3><a href="${nav.path}" target="_blank">${nav.channelName}</a><b class="n_line"></b></h3>
+	       				<#else>
+				       		<h3><a href="${nav.path}" target="_self">${nav.channelName}</a><b class="n_line"></b></h3>
+	       			</#if>
+	       			<#else>
+				       	<h3><a href="${nav.path}" target="_self">${nav.channelName}</a><b class="n_line"></b></h3>
+	       		</#if>
+	       </#list>
+	   </#if>
+	   <b class="nav_lbg"></b> <b class="nav_rbg"></b> </div>
+	 <div class="bd" id="tab1_bd">
+	   <div class="nav_list" style="display: block"></div>
+	 </div>
+ </div>

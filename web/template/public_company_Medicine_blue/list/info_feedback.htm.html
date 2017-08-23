@@ -1,0 +1,43 @@
+<#include "../includes/header.html"/>
+<div class="index_banner_grid sub_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat;">
+				<a href="#">
+					<div class="index_banner_itempic_in"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gutter"></div>
+<#--顶部第一栏begin-->
+<div class="section">
+    <div class="main_con clearfix">
+	    <div class="mod_main_hd">
+		    <div class="location">
+			     <span id="pathUrl">
+                     <script type="text/javascript">
+                         getPageLevelHtml('pathUrl','${pathUrl}','/',true);
+                     </script>
+                 </span>
+                 /<span class="cur">正文</span>
+		    </div>
+	    </div>
+        <div class="mod_main_bd mod_feed_back">
+            <form action="#" method="post">
+            	<input id="siteId" type="hidden" name="siteId" value="${siteId}"/>
+             <div class="reply_area" id="leaveForm">
+                 <div class="item">
+                     <span class="tit">客户称呼：</span>
+                    	<input id="realName" class="ipt" type="text" name="leaveWord.realName">
+                    	<span id="realNameError"></span>
+                 </div>
+                 <div class="item">
+                     <span class="tit">标　　题：</span>
+                     <input id="title" class="ipt" type="text" name="leaveWord.title">
+                		<span id="titleError"></span>
+                 </div>
+                 <div class="item">
+                     <span class="tit">内　　容：</span>
+                     <textarea id="content" class="txtArea" name="leaveWord.content">

@@ -1,0 +1,20 @@
+<a href="#" id="closeDialog" onclick="closeDialog()" style="display: none"></a>
+<script src="http://192.168.0.113:8080/ElianCms/plugin/jqueryUI/js/jquery-ui-1.10.0.custom.js"></script>
+<script src="http://192.168.0.113:8080/ElianCms/plugin/jqueryUI/js/jquery-ui-main.js"></script>
+<script src="http://192.168.0.113:8080/ElianCms/plugin/jqueryUI/js/jquery-ui-list.js"></script>
+<script src="http://script.elian.cc/public/login_company.js"></script>
+<script type='text/javascript' src='http://192.168.0.113:8080/ElianCms/plugin/jqueryUI/js/xd.js'></script>
+<script type='text/javascript'>
+	var callback = function(data) {
+		closeDialogDiv();
+		if (data.type == 'login')
+			closeDialog(data);
+		$("#j_top_shop_cart").find(".top_shop_cart_list").html("");
+		//在用户登录成功后将cookie中购物车信息添加到数据库
+		login();
+	};
+	XD.receiveMessage(callback);
+	
+	//在页面刷新的时候加载头部的购物车下拉列表
+	listCart();
+</script>

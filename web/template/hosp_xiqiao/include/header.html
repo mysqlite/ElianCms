@@ -1,0 +1,21 @@
+${content!''}
+<#if (content?? && content=='')>
+<div class="wrap_topbar">
+    <div class="topbar">
+        <div class="login_area">
+            <a href="#">登录</a>/&nbsp;&nbsp;<a href="#">注册</a>/&nbsp;&nbsp;<a href="#">忘记密码</a>
+        </div>
+        <div class="top_link">
+            <a href="javascript:void(0);" onclick="SetHome(this,window.location)">设为首页</a> |  <a href="javascript:void(0);" onclick="AddFavorite(window.location,document.title)">加入收藏</a>
+        </div>
+    </div>
+</div>
+<div class="wrap_header">
+    <div class="header">
+        <h1><a href="#"><img src="${resImg}/design/hosp/webbuild/xqyy/images/logo.jpg" width="242" height="49" alt="广东医学院-西樵医院 |  佛山市南海区第四人民医院"/>广东医学院-西樵医院 |  佛山市南海区第四人民医院</a>
+        </h1>
+        <div class="sub_tit">团结，爱院，创新，奉献，提供一流服务水平</div>
+        <div class="tel">客服电话：0757-88712222，急诊电话：0757-88381212</div>
+    </div>
+</div>
+</#if>

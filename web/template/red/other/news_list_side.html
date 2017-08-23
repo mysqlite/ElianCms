@@ -1,0 +1,81 @@
+<div class="sidebar">
+	<div class="aside" id="tab2">
+		<div class="hd clearfix" id="tab2_hd">
+			<#if dataMap['1']??>
+				<#list dataMap['1']?keys as prop>
+					<#if prop_has_next>
+						<h4 class="cur" onmouseover="overTab(2,1,'h4','ul')"
+							onmouseout="outTab()">
+							${prop}
+						</h4>
+						<#else>
+						<h4 onmouseover="overTab(2,2,'h4','ul')" onmouseout="outTab()">
+							${prop}
+						</h4>
+					</#if>
+				</#list>
+			</#if>
+		</div>
+		<div id="tab2_bd">
+			<#if dataMap['1']??>
+				<#list dataMap['1']?keys as prop>
+					<#if prop_has_next>
+						<ul class="list01_lico" style="display: block;">
+							<#if dataMap['1'][prop]?size != 0>
+	       						<#list dataMap['1'][prop] as c>
+									<li>
+										<a href="${c.path}" target="_blank">${c.title}</a>
+									</li>
+								</#list>
+   							</#if>
+						</ul>
+						<#else>
+						<ul class="list01_lico">
+							<#if dataMap['1'][prop]?size != 0>
+	       						<#list dataMap['1'][prop] as c>
+									<li>
+										<a href="${c.path}" target="_blank">${c.title}</a>
+									</li>
+								</#list>
+   							</#if>
+						</ul>
+					</#if>
+				</#list>
+			</#if>
+		</div>
+	</div>
+	
+	<#macro showList dataList channelName="" path="#">
+		<div class="mod_hd_aside clearfix">
+			<h4 class="tit">${channelName}</h4>
+			<span class="more">
+				<a href="${path}" target="_blank">更多</a>
+			</span>
+		</div>
+		<ul class="list_num_ico">
+			<#if dataList?size != 0>
+	       		<#list dataList as c>
+					<li>
+						<a href="${c.path}"  target="_blank">${c.title}</a>
+					</li>
+				</#list>
+   			</#if>
+		</ul>
+	</#macro>
+	<div class="aside">
+		<#if dataMap['2']??>			
+			<h3 class="tit_aside">
+				<a href="${dataMap['2'].path}" target="_blank">${dataMap['2'].title}</a>
+			</h3>
+			<div class="aside_ui_bd">
+				<#if dataMap['3']??>
+					<#if dataMap['3']?size != 0>
+	       				<#list dataMap['3'] as c>
+							<@showList dataList=c.contentList channelName=c.channelName path=c.path/>
+						</#list>
+		   			</#if>
+				</#if>	
+			</div>
+   		</#if>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="aside rapid_reg">
+    <div class="aside_hd">
+        <h3 class="ui_tit">预约挂号</h3>
+        <input id="reg_hosp_id" value="${compId}" type="hidden"/>
+    </div>
+    <div class="aside_bd">
+        <div class="details-select">
+            <div class="i">
+                <span class="tit">挂号日期：</span>
+                <select name="searchHospId" id="regHospital_select" class="sel" onchange="changeRegHosp(this)">
+                    <option value="">--选择挂号医院--</option>
+                 </select>
+            </div>
+            <div class="i">
+                <span class="tit">挂号医院：</span>
+                <select class="sel" name="regType">
+                    <option value="">--不限--</option>
+                    <option value="1">--普通门诊--</option>
+                    <option value="2">--专家门诊--</option>
+                    <option value="3">--特需门诊--</option>
+                    <option value="4">--专科门诊--</option>
+                    <option value="5">--会诊中心--</option>
+                    <option value="6">--夜间门诊--</option>
+                </select>
+            </div>
+            <div class="i">
+                <span class="tit">挂号号源：</span>
+                 <select id="regDeptType_select" class="sel" name="searchDeptId">
+                     <option value="">--选择挂号科室--</option>
+                 </select>
+            </div>
+            <div class="i">
+                <span class="tit">挂号科室：</span>
+                 <select id="regDeptType_select" class="sel" name="searchDeptId">
+                     <option value="">--选择挂号科室--</option>
+                 </select>
+            </div>
+            <div class="i search_area">
+                <span class="tit">挂号医生：</span>
+                <input class="ipt" type="text" value="" name="doctorName"/>
+                <input class="ips search_btn" type="submit" value="搜索"/>
+            </div>
+        </div>
+    </div>
+</div>

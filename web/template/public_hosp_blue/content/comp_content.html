@@ -1,0 +1,65 @@
+﻿<#include "../includes/index_header.html"/>
+<#--顶部第一栏begin-->
+<div class="section">
+   <div class="w700">
+        <div class="mod_box">
+            <div class="mod_box_hd"><h3><a href="javascript:void(0);">公司简介</a></h3>
+            </div>
+            <div class="mod_box_bd article_about_us clearfix">
+                <p style="float: left;margin: 0 15px 10px 0;">
+                    <img width="250px" height="200px" src="${comp.companyImg!''}">
+                </p>
+                <div class="txt">
+					${comp.introduce!''}
+             	</div>
+            </div>
+        </div>
+        <div class="mod_box">
+            <div class="mod_box_hd"><h3><a href="javascript:void(0);">详细信息</a></h3>
+            </div>
+            <div class="mod_box_bd article_about_us clearfix">
+                <table cellspacing="0" class="tbl">
+                    <tbody><tr>
+                       <td class="td1">企业名称：</td>
+                       <td class="td2">${comp.name!''}</td>
+                       <td class="td1">法定代表：</td>
+                       <td class="td2">${comp.legalRepresentative!''}</td>
+                    </tr>
+                   <tr>
+                    <td class="td1">注册资本：</td>
+                    <td class="td2">${comp.registeredCapital!''}</td>
+                    <td class="td1">公司地址：</td>
+                    <td class="td2">${comp.address!''}</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">成立时间：</td>
+                       <td class="td2">${comp.foundedTime!''}</td>
+                       <td class="td1">联系人：</td>
+                       <td class="td2"></td>
+                   </tr>
+                   <tr>
+                       <td class="td1">联系电话：</td>
+                       <td class="td2">${comp.phone!''}</td>
+                       <td class="td1">电子邮箱：</td>
+                        <td class="td2">${comp.email!''}</td>
+                   </tr>
+                   <tr>
+                       <td class="d3">公司主页：</td>
+                       <td class="d4">${comp.siteUrl!''}</td>
+                       <td class="d3"></td>
+                       <td class="d4"></td>
+                   </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>  
+    <div class="sidebar">
+        <!--侧边 -->
+		<#include "../includes/all_side.html"/>
+    </div>
+</div>
+<div class="footer" style="border-top: 5px solid #007DCA;padding-top: 5px;">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

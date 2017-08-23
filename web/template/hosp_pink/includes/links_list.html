@@ -1,0 +1,16 @@
+
+<#if dataMap['3']??>
+<div class="section wrap_ulink" id="linksDiv">
+     <div class="mod_hd ui_hd_01 ">
+        <h3>${dataMap['3']['channelName']!''}</h3>
+        <span class="more"></span>
+    </div>
+    <div class="mod_bd friend_link">
+        <#if dataMap['3']['contentList']??>
+            <#list dataMap['3']['contentList'] as links>
+               <a href="${links.path!'#'}">${links.title!''}</a> 
+            </#list>
+        </#if>
+    </div>
+</div>
+</#if>

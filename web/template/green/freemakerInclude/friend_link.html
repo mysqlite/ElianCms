@@ -1,0 +1,14 @@
+<!--友情链接begin-->
+<div class="section ulink" id="linksDiv">
+	 <div class="mod_hd mod_hd03">
+        <h3>${(dataMap['20']['channelName'])!''}</h3>
+    </div>
+    <div class="mod_bd mod_bd03">
+        <#if (dataMap['20']['contentList'])??>
+            <#list dataMap['20']['contentList'] as links>
+               <a href="${links.path!'#'}" target="_blank">${links.title!''}</a>
+               <#if links_has_next>|</#if>
+            </#list>
+        </#if>
+    </div>
+</div>

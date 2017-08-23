@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="com.elian.cms" />
+    
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:service.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/com/elian/cms/publ/hbm</value>
+			</list>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.elian.cms.publ.model.User</value>
+			</list>
+		</property>
+		-->
+		<property name="packagesToScan">
+			<list>
+				<value>com.elian.cms.admin.model</value>
+				<value>com.elian.cms.reg.model</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					<!-- oracle配置 org.hibernate.dialect.Oracle9iDialect -->
+					<!--org.hibernate.dialect.SQLServerDialect-->
+					com.elian.cms.syst.converter.SqlServerDialectConverter
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+		        <prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.provider_configuration_file_resource_path">classpath:spring/ehcache.xml</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 以下配置用作通知 begin -->
+    <!-- 定义通知 
+    <bean id="logsAction" class="com.elian.cms.syst.filter.LogAdvice"></bean>-->
+    <bean id="logs" class="com.elian.cms.syst.filter.LogAdvice"></bean>
+    <aop:config>
+        <aop:pointcut id="bussinessDaos" expression="execution(public * com.elian.cms.admin.dao.impl.*.*(..))" />
+        <aop:advisor pointcut-ref="bussinessDaos" advice-ref="logs" />
+    </aop:config>
+    <!--
+    <aop:config>
+        <aop:pointcut id="bussinessAction" expression="execution(public * com.elian.cms.*.action.*.*(..))" />
+        <aop:advisor pointcut-ref="bussinessAction" advice-ref="logsAction" />
+    </aop:config>
+    -->
+    <!-- 以上配置用作通知 end -->
+    
+    <!-- 定义日志切面-->
+    <bean id="log" class="com.elian.cms.syst.filter.LogAspect"></bean>
+    <aop:config>
+        <aop:pointcut id="bussinessDao" expression="execution(public * com.elian.cms.syst.dao.Dao.*(..))" />
+        <aop:advisor pointcut-ref="bussinessDao" advice-ref="log" />
+    </aop:config>
+	
+	<bean id="mailSender"
+        class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>${mail.host}</value>
+        </property>
+        <property name="port">
+            <value>${mail.port}</value>
+        </property>
+        <property name="username">
+            <value>${mail.username}</value>
+        </property>
+        <property name="password">
+            <value>${mail.password}</value>
+        </property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.defaultFrom">
+                    ${mail.defaultFrom}
+                </prop>
+                <prop key="mail.smtp.auth">
+                    ${mail.smtp.auth}
+                </prop>
+                <prop key="mail.smtp.timeout">
+                    ${mail.smtp.timeout}
+                </prop>
+                <prop key="mail.smtp.starttls.enable">
+                    ${mail.smtp.starttls.enable}
+                </prop>
+                <prop key="mail.smtp.socketFactory.class">
+                    ${mail.smtp.socketFactory.class}
+                </prop>
+                <prop key="mail.smtp.socketFactory.fallback">
+                    ${mail.smtp.socketFactory.fallback}
+                </prop>
+            </props>
+        </property>
+    </bean>
+	
+    <bean id="staticPageListenerList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="informationStaticPageListener"/>
+                <ref bean="invitationStaticPageListener"/>
+                <ref bean="biddingStaticPageListener"/>
+                <ref bean="jobStaticPageListener"/>
+                <ref bean="departmentStaticPageListener"/>
+                <ref bean="doctorStaticPageListener"/>
+                <ref bean="linksStaticPageListener"/>
+                <ref bean="companyStaticPageListener"/>
+                <ref bean="purchaseStaticPageListener"/>
+                <ref bean="medicineStaticPageListener"/>
+                <ref bean="instrumentStaticPageListener"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="indexListenerList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="informationIndexListener"/>
+                <ref bean="medicineIndexListener"/>
+                <ref bean="instrumentIndexListener"/>
+            </list>
+        </constructor-arg>
+    </bean>
+  
+	<!--缓存-->	
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+        <property name="configLocation">    
+            <value>classpath:spring/ehcache.xml</value>    
+        </property>   
+    </bean>  
+	
+    <!--站点流量缓存-->
+	<bean id="SiteFlowCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.elian.cms.CmsSiteFlow</value>
+		</property>
+	</bean>
+ </beans>

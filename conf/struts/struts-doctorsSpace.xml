@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="doctorsSpace" extends="struts-default" namespace="/doctorsSpace">
+		<interceptors>
+            <interceptor name="trimInterceptor" class="com.elian.cms.syst.filter.TrimInterceptor"/>
+            <interceptor-stack name="baseStack">
+                <!-- 去除两端空格拦截器 -->
+                <interceptor-ref name="trimInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <!-- 配置默认拦截器栈 -->
+        <default-interceptor-ref name="baseStack" />
+		
+		 <action name="toDoctorsSpace" class="doctorsSpaceAction" >
+            <result name="success">/WEB-INF/page/doctorsSpaceUser.jsp</result>              
+        </action>
+        
+	</package>
+</struts>

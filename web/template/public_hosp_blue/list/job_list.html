@@ -1,0 +1,32 @@
+﻿<#include "../includes/index_header.html"/>
+<#--顶部第一栏begin-->
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<div class="section">
+   <div class="w700">
+        <div class="mod_box">
+            <div class="mod_box_hd">
+           		<h3>
+	            	 <span id="pathUrl">
+	                     <script type="text/javascript">
+	                         getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+	                     </script>
+	                 </span>
+				</h3>
+            </div>
+            <div class="mod_box_bd mod_news_list" id="table"></div>
+            <input type="hidden" id="tableUrl" value="${tableUrl}"/>
+            <script type="text/javascript">
+            	getTableHtml('table','${tableUrl}');
+            </script>   
+        </div>
+    </div>
+    <div class="sidebar">
+        <!--侧边 -->
+		<#include "../includes/all_side.html"/>
+    </div>
+</div>
+<div class="footer" style="border-top: 5px solid #007DCA;padding-top: 5px;">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

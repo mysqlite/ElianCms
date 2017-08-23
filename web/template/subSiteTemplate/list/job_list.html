@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" />
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/hainan/public.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/pager.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/jobs/sub/job_search.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.2011-0805-人才.com/favicon.ico" />
+		<script src="${resScript}/jquery-1.4.2.min.js"></script>
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script language="javascript" type="text/javascript" src="${resScript}/list.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#include virtual="${headUrl}"-->
+		<div class="section">
+			<div class="w970 search_result" id="search_result">
+				<div class="hd">
+					<div class="item1">
+	                    <span>职位列表</span>
+	                </div>
+					<div class="item2">
+						<span class="txt">显示风格选择：</span>
+						<span class="style_btn" id="style_btn">
+							<b class="cur" id="style_btn_list">列表</b>
+						</span>
+					</div>
+				</div>
+				<input type="hidden" id="tableUrl" value="${tableUrl}" />
+				<div class="bd" id="table">
+					<script type="text/javascript">
+						getTableHtml('table');
+					</script>
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+		<script src="${resScript}/base.js"></script>
+		<script src="${resScript}/jq.sub.js"></script>
+	</body>
+</html>

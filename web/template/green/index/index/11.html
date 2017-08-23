@@ -1,0 +1,137 @@
+﻿
+<#import '../../freemakerInclude/global.html' as global/>
+<#macro main mapKey isNav>
+	<#if isNav>
+		<#local size=dataMap[mapKey]?size/>
+		<#local m=dataMap[mapKey]/>
+		<#list 1..size as index>
+			<#if 1==index>
+				<h3 class="cur" onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+					<a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!''}</a> </h3>
+			<#else>
+				<h3 onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+					<a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!''}</a> </h3>
+			</#if>
+		</#list>
+	</#if>
+	<#if !isNav>	
+		<#local size=dataMap[mapKey]?size/>		
+		<#list 1..size as index>						
+			<#local subMain=dataMap[mapKey]['${index}']/>
+			<div class="tab_con" style="display:<#if index==1>block<#else>none</#if>;">				
+			  <#if subMain.contentList??>
+		  	 	<#if subMain.contentList[0]??>	
+				 	 <h2> <a href="${subMain.contentList[0].path}" target="_blank">
+				 	  <@global.showTitle title=subMain.contentList[0].title titleNum=50 hasDot=true/>
+				 	 </a> </h2>
+		         	 <p class="details">
+		         	 <@global.showTitle title=subMain.contentList[0].detial titleNum=55 hasDot=true/>
+		         	  </p>				         	 
+	         	 </#if>
+		  		 <#if (subMain.contentList?size>1)>	
+		  		 	<@global.showNumList ulClass='list03 clearfix' liClass='' begin=1 end=subMain.contentList?size-1 data=subMain.contentList;i,item>
+		  		 		<span class="txt">
+							<a href="${item.path!''}">${item.title!''}</a>
+							</span>
+						<span class="date">${item.time!''}</span>	
+		  		 	</@global.showNumList>
+		  		 </#if>			  		 
+			  </#if>		          
+	        </div>
+		</#list>	        
+	</#if>		        
+</#macro>
+
+<#macro sideBar mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<div class="mod_aside_hd">
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</div>
+		<div class="mod_aside_bd">
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</div>
+	</#if>
+</#macro>
+
+<#macro sideBar2 mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+			<div class="mod_aside_hd">
+				<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+				<a class="more" href="${data.path!'#'}">更多</a>
+			</div>
+			 <div class="mod_aside_bd">
+			 	<#if data.contentList??>
+			 		<ul class="list01_lico no-bg">
+				 	<#list data.contentList as item>
+				 		<li><a href="${item.path!'#'}">${item.title!''}</a></li>
+				 	</#list>
+				 	</ul>
+			 	</#if>
+            </div>
+	</#if>
+</#macro>
+            
+<#macro middle4 mapKey isNav>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<#local size=dataMap[mapKey]?size/>
+		<#if isNav>
+			<#list 1..size as i>				
+				<h4 <#if 1==i> class="cur" </#if> onmouseover="overTab(8,${i},'h4','ul')" onmouseout="outTab()"> 
+					<a href="${(data['${i}'].path)!'#'}" target="_blank">${(data['${i}'].channelName)!''}</a> 
+				</h4>	
+			</#list>		
+		</#if>
+		<#if !isNav>
+			<#list 1..size as i>
+				 <div class="section_details">
+	                <div class="tab3_bd" id="tab8_bd">
+	                	<ul class="tab_con" <#if 1==i> style="display: block;" </#if>>
+	                		<#if data['${i}'].contentList??>
+	                			<#if data['${i}'].contentList[0]??>
+			                		<li>			                			
+			                           <h5 class="tit"><a href="${data['${i}'].contentList[0].path}">${data['${i}'].contentList[0].title}</a></h5>
+			                           <p class="txt"><@global.showTitle title=(data['${i}'].contentList[0].detial)!'' titleNum=55 hasDot=true/>
+			                           <a class="more" href="${data['${i}'].contentList[0].path}">【详细】</a></p>
+			                        </li>
+			                    </#if>
+			                    <#if (data['${i}'].contentList?size>1)>
+				                    <li>
+			                           <div class="health_news_hd">
+			                               <h6>最新资讯</h6><a target="_blank" href="${(data['${i}'].path)!'#'}" class="more">>>更多</a>
+			                           </div>
+			                           <div class="health_news_bd">
+			                           	   <#if data['${i}'].contentList??>
+			                           	   	   <dl class="list01_lico clearfix">
+				                           	   <#list 1..data['${i}'].contentList?size-1 as index>
+				                           	   		 <li><a href="${data['${i}'].contentList[index].path}">${data['${i}'].contentList[index].title}</a></li>
+				                           	   </#list>
+				                           	   </dl>
+			                           	   </#if>	                               
+			                            </div>
+				                     </li>
+				                 </#if>
+			                </#if>
+	                	</ul>
+	                </div>
+		         </div>				
+			</#list>
+		</#if>
+	</#if>
+</#macro>
+<@sideBar mapKey="11"/>

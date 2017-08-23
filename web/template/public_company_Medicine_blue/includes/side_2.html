@@ -1,0 +1,14 @@
+<#import '../includes/global.html' as global/>
+<c:if dataMap['4']??>
+	<div class="aside_hd">
+		<h3 class="tit">${dataMap['4'].channelName!'公司介绍'}</h3>
+	</div>
+	<div class="aside_bd">
+		<a href="#" class="pic"><img src="${(dataMap['4'].contentList[0].imgPath)!'#'}" width="230" /></a>
+		<h4 class="tit"><a href="${(dataMap['4'].contentList[0].path)!'#'}">
+			${(dataMap['4'].contentList[0].entity.name)!'公司名称'}</a></h4>
+		<p class="txt">
+			<@global.showTitle title=dataMap['4'].contentList[0].entity.shortIntroduce!'' titleNum=65></@global.showTitle>
+		</p>
+	</div>
+</c:if>

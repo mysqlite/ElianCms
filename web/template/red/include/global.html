@@ -1,0 +1,151 @@
+<#--可以使用-->
+<#macro showList ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.imgPath item.title item.detial/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showList2 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.title item.detial item.time/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+
+<#--可以使用-->
+<#macro showList3 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#macro showList33 ulClass liClass data> 
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list data as item>
+              <li class="${liClass}"> 
+                <#nested item/>             
+              </li>
+            </#list>
+            <li>
+                  <a class="pic" target="_blank" href="http://hqyy.com.cn/">
+                  <img width="70" height="60" src="${resImg}/other/huangqi.png" alt="佛山市南海区第六人民医院（黄岐医院）"></a>
+                  <h4>佛山市南海区第六人民医院（黄岐医院）</h4>
+                  <p class="txt">二级甲等</p>
+                  <p>电话：0757-85930991</p>
+            </li>
+             <li>
+                  <a class="pic" target="_blank" href="http://nhdjyy.com/">
+                  <img width="70" height="60" src="${resImg}/other/jiujiang.png" alt="佛山市南海区第九人民医院（九江医院）"></a>
+                  <h4>佛山市南海区第九人民医院（九江医院）</h4>
+                  <p class="txt">二级甲等 </p>
+                  <p>电话：0757-86583261</p>
+            </li>
+             <li>
+                  <a class="pic" target="_blank" href="http://www.gmzyy.com.cn/">
+                  <img width="70" height="60" src="${resImg}/other/gaoming.png" alt="佛山市高明区中医院"></a>
+                  <h4>佛山市高明区中医院</h4>
+                  <p class="txt">二级甲等</p>
+                  <p>电话：0757-88881120</p>
+            </li>
+          </ul>
+     </#if>    
+</#macro>
+
+<#macro showList43 ulClass liClass data> 
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list data as item>
+              <li class="${liClass}"> 
+                <#nested item/>             
+              </li>
+            </#list>    
+            <li> 
+           <a class="pic" target="_blank" href="http://hqyy.com.cn/"><img src="${resImg}/other/huangqi.png" alt="佛山市南海区第六人民医院（黄岐医院）" height="75px" width="100px"></a>
+           <p class="txt"> <span><a target="_blank" href="http://hqyy.com.cn">佛山市南海区第六人民医院（黄岐医院）</a></span><span>二级甲等</span><span class="ico-tel">0757-85930991</span></p>
+          </li>
+          <li> 
+           <a class="pic" target="_blank" href="http://nhdjyy.com/"><img src="${resImg}/other/jiujiang.png" alt="佛山市南海区第九人民医院（九江医院）" height="75px" width="100px"></a>
+           <p class="txt"> <span><a target="_blank" href="http://nhdjyy.com/">佛山市南海区第九人民医院（九江医院）</a></span><span>二级甲等</span><span class="ico-tel">0757-86583261</span></p>
+          </li>
+          <li> 
+           <a class="pic" target="_blank" href="http://www.gmzyy.com.cn/"><img src="${resImg}/other/gaoming.png" alt="佛山市高明区中医院" height="75px" width="100px"></a>
+           <p class="txt"> <span><a target="_blank" href="http://www.gmzyy.com.cn/">佛山市高明区中医院</a></span><span>二级甲等</span><span class="ico-tel">0757-88881120</span></p>
+          </li>
+          </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showNumList ulClass liClass begin end data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list begin..end as i>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested i data[i]/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showTitle title titleNum>
+	<#if showTitle??>
+		<#if (title?length>titleNum)>
+			${title[0..titleNum]}...
+		<#else>
+			${title}
+		</#if>
+	</#if>
+</#macro>
+
+<#--换灯片-->
+<#macro PowerPoint ulClass liClass>
+	<#if (dataMap['powerPoint'].imgContentList)??>
+		<#local data=dataMap['powerPoint'].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	</#if>
+</#macro>
+<#--换灯片-->
+<#macro PowerPoint mapKey ulClass liClass>
+	<#if (dataMap[mapKey].imgContentList)??>
+		<#local data=dataMap[mapKey].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	</#if>
+</#macro>

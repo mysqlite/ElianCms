@@ -1,0 +1,24 @@
+<#import '../includes/global.html' as global/>
+<div class="mod_aside_hd">
+<h3 class="tit"><a href="#">院刊</a></h3></div>
+<#if dataMap['side1'].imgContentList??>
+    <div class="mod_aside_bd">              
+        <div class="pt03">
+            <a class="pic" href="${dataMap['side1'].imgContentList[0].path}" target="_blank"> 
+              <img src="${dataMap['side1'].imgContentList[0].imgPath}" alt="${dataMap['side1'].imgContentList[0].title}" width="100" height="70"/>
+            </a>
+            <h4 class="tit">
+                <a href="${dataMap['side1'].imgContentList[0].path}" target="_blank">${dataMap['side1'].imgContentList[0].title}</a>
+            </h4>
+            <p class="txt">
+                ${dataMap['side1'].imgContentList[0].detial}
+            </p>
+        </div>
+    </div>
+</#if>
+<#if dataMap['side1'].contentList??>
+    <@global.showList ulClass='list01_lico' liClass='' data=dataMap['side1'].contentList;path,imgPath,title,detial>
+        <a href="${path}" target="_blank">${title}</a>
+    </@global.showList> 
+</#if>
+</div>

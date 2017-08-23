@@ -1,0 +1,28 @@
+<#macro showTitle title titleNum dian=true>
+    <#if showTitle??>
+        <#if (title?length>titleNum)&&dian>
+            ${title[0..titleNum]}
+        <#elseif (title?length>titleNum)&&!dian>
+            ${title[0..titleNum]}
+         <#else>
+            ${title}
+        </#if>
+    </#if>
+</#macro>
+
+<#macro frendLink data>
+    <#if data??>
+    <div class="section footer_nav">
+        <#if data.contentList??>
+        <#local lengths=data.contentList?size/>
+            <#list 0..data.contentList?size-1 as i>
+                <#if (i>=lengths-1)>
+                  <a href="${data.contentList[i].path!'#'}" target="_bank">${data.contentList[i].title!''}</a>
+                <#else>
+                  <a href="${data.contentList[i].path!'#'}" target="_bank">${data.contentList[i].title!''}</a> |
+                </#if>
+            </#list>
+        </#if>
+    </div>
+    </#if>
+</#macro>

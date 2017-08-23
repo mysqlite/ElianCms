@@ -1,0 +1,185 @@
+﻿@charset "utf-8";
+/*结构*/
+.section{ margin-bottom: 8px;}
+.w970{ width: 960px;margin: 0 auto 8px;}
+.section_bd,.search_bar_bd{ overflow: hidden;_zoom:1}/*margin溢出:hack for ie6 margin-bottom;hidden*/
+
+/*精灵图*/
+.section_hd,.search_result_tbl thead .th,.mod_side_hd{ background: url('bg/job_search/job_search_repeat.png') repeat-x 0 -100%;}/*重复背景*/
+.section_hd .tit,.search_bar_bd .ipb,.search_option h3.tit,.search_bar_action h3,.search_bar_action .bgBtn,.search_result_tbl .detail_btn b,.search_bar_bd .option .bgBtn,.search_category_con .tab_hd h3,.mod_side_hd b{ background: url('bg/job_search/job_search_spirit.png') no-repeat -100% 0;}/*常规背景*/
+.ui_section_ft,.ui_search_hd,.ui_search_ft,.ui_option_hd,.ui_option_ft{ background: url('bg/job_search/corner_border_spirit.png') no-repeat -100% 0;}/*圆角边框*/
+.search_bar_bd,.search_category_con .section_bd{ background: url('bg/job_search/searchBar_repeat.png') repeat-x 0 bottom;}
+/*搜索栏的背景*/
+.search_option .item{ background: url('bg/job_search/bottom_dot_repeat.gif') repeat-x 0 bottom;}/*td底部分割线*/
+.style_btn b,.action .bgBtn,.action .bgBtn b,.rapid_appoint_btn{ background: url('bg/job_search/ico_spirit.png') no-repeat -100% 0;}/*简历表格职位表格ico*/
+.search_category_con .list li a,.mod_side_bd .list li{ background: url('bg/li_dot.gif') no-repeat 0 0;}/*列表黑点*/
+
+/*=====背景边框=====*/
+/*主栏底边*/
+.ui_section_ft{ background-position: 0 -27px;height: 10px;overflow: hidden;}
+/*搜索栏上下底边*/
+.ui_search_hd,.ui_search_ft{ height: 5px;overflow: hidden;}
+.ui_search_hd{ background-position: 0 0;}
+.ui_search_ft{ background-position: 0 -5px;}
+/*===职位条件筛选圆角边框*/
+.ui_option_hd,.ui_option_ft{ height:5px;overflow: hidden;}
+.ui_option_hd{ background-position: 0 -14px;}
+.ui_option_ft{ background-position: 0 -19px;}
+/*职位条件筛选圆角边框===*/
+
+/*表单基类*/
+.ipb,.ipc,.bgBtn{ cursor: pointer;}
+.bgBtn{ border: 0 none}
+/*公用颜色*/
+.search_bar_bd .lbl,.search_option .option_tit,.search_bar_action h3,.job_tit a,.resume_name a,.search_result_tbl .com_name a,.search_result_tbl .detail_btn,.search_bar_bd .tit,.hot_search_kw .tit{ color: #FF5E03;}
+
+/*实例化*/
+/*基本*/
+.section_hd{ background-position: 0 0;border-right: 1px solid #cccccc;}
+.section_hd .tit{ background-position: 0 0;width: 147px;height: 35px;line-height: 35px;font-size: 14px;font-weight: bold;color: #ffffff;text-indent: 15px;}
+.section_bd{ border: 1px solid #cccccc;border-top: 0 none;border-bottom: 0 none;padding-top: 8px;}
+
+.search_bar_bd .item{ margin: 8px 0 8px 30px;}
+.search_bar_bd{ border: 1px solid #e7e7e7;border-top: 0 none;border-bottom: 0 none;}
+.search_bar_bd .lbl{ vertical-align: 2px;}
+
+.search_bar_bd .ipb{ background-position: 1px -124px;width: 351px;height: 20px;line-height: 22px;overflow: hidden;border: 0 none;_vertical-align: -2px;margin-right: 15px;}
+.search_bar_bd .sel{ margin-left: -5px;width: 350px;margin-right: 15px;}
+.search_bar_bd .ipc{ vertical-align: -2px;margin-right: 3px;_margin-right: 0px;}
+
+/*==============职位条件设置+关键字搜索区域*/
+.search_bar_action{ background-color: #FFE9DA;border: 1px solid #F49828;width: 540px;height: 60px;}
+.search_bar_action .hd{ margin: 10px 0 0 60px;}
+.search_bar_action h3{ float: left;background-position: -65px -40px;width: 64px;height: 15px;line-height: 17px;text-align: center;margin-right: 3px;overflow: hidden;}
+.search_bar_action h3.cur{ background-position: 0 -40px;color: #ffffff;}
+.search_bar_action .bd{ margin-left: 12px;}
+.search_bar_action .bd .tit,.search_bar_action .bd input{ float: left;}
+.search_bar_action .bd .tit{ line-height: 25px;}
+.search_bar_action .ipt{ width: 360px;height: 19px;line-height: 19px;padding: 2px 3px;border: 1px solid #cecece;margin-right: 10px;}
+.search_bar_action .bgBtn,.search_bar_bd .option .bgBtn{ background-position: 1px -89px;width: 72px;height: 28px;line-height: 30px;overflow: hidden;color: #ffffff;margin-top: -1px;}
+/*职位条件设置+关键字搜索区域==============*/
+
+/*=====================搜索条件筛选设置*/
+.search_option{ border: 1px solid #F49828;border-top: 0 none;border-bottom: 0 none;margin-bottom: -1px;}
+.search_option h3.tit{ background-position: 0 -60px;width: 120px;height:25px;line-height: 25px;text-align: center;color: #ffffff;position: relative;top: -4px;}
+.search_option .item{ background-position: 0 bottom;padding: 8px 0;margin: 0 12px;}/*底部重复点状线*/
+.search_option .option_tit{ font-weight: bold;float: left;}
+.search_option .link_btn{ float: left;height: 18px;line-height: 20px;overflow: hidden;text-decoration: none;padding: 0 3px;margin-right: 15px;}
+.search_option .cur_sel{ background: url('bg/job_search/ico_option_close.gif') no-repeat right 0;border: 1px solid #FF5E03;padding-right: 20px;}
+.search_option a.cur_sel{ text-decoration: none;}
+/*搜索条件筛选设置======================*/
+
+/*============================================搜索表单头部*/
+.search_result .hd{ border-top: 2px solid #F49828;background-color: #FFF1E7;color: #DA7A01;height: 38px;line-height: 38px;}
+.search_result .item1{ text-indent: 15px;}
+.search_result .item1,.search_result .item2 span,.style_btn b{ float: left;}
+.search_result .item2{ float: right;padding-right: 12px;color: #666666;}
+/*显隐详细职位信息按钮*/
+.style_btn b{ background-position: 0 -20px;width: 40px;height: 20px;line-height: 20px;overflow: hidden;cursor: pointer;color: #000000;text-align: center;text-indent: 0;font-weight: normal;margin: 8px 4px 0 0;}
+.style_btn .cur{ background-position: 0 0;color: #ffffff;}
+/*显隐详细职位信息按钮*/
+/*======表格头部的select控件样式*/
+.search_result .hd span,.search_result .hd .sel{ margin-right: 3px;}
+.search_result .hd .sel{ margin-top: 8px;}
+/*表格头部的select控件样式======*/
+/*======搜索表单头部，定义全体表格单元宽度*/
+.th01,.th04,.th05,.th06,.th09{ width: 50px;}
+.th02{ width: 150px;}
+.th03{ width: 250px;}
+.th07,.th08{ width: 90px;}
+/*搜索表单头部，定义全体表格单元宽度======*/
+/*搜索表单头部==========================================*/
+.search_result_tbl thead .th{ background-position: 0 -37px;height: 30px;line-height: 30px;}
+.search_result_tbl thead th{ padding-right: 15px;}
+.search_result_tbl .tr0{ line-height: 40px;}
+.search_result_tbl .th01{ text-indent: 22px;}/*缩进第一列标题*/
+.search_result_tbl .tr0 .ipc{ margin-left: 22px;}/*缩进第一列checkbox*/
+.job_tit,.resume_name{ font-size: 14px;font-weight: bold;}/*职位名字*/
+.job_tit a{ margin-right: 5px;}
+.job_tit img{ vertical-align: middle;}/*职位名称图标垂直居中*/
+/*======点击显示职位描述*/
+.search_result_tbl .detail_btn{ position: relative;}
+.search_result_tbl .detail_btn b{ background-position: -160px -5px;position: absolute;width: 10px;height: 5px;overflow: hidden;top: 15px;left: 50px;}
+.search_result_tbl .detail_btn .show{ background-position: -160px 0px;}
+.search_result_tbl .detail_btn{ cursor: pointer;}
+.search_result_tbl .details_bd{ width: 790px;}/*不定会抖动*/
+.search_result_tbl .tr1{ display: none;}
+.search_result_tbl .tr1 .details{ margin: 8px 25px;}
+/*点击显示职位描述======*/
+/*======隔行换色+分割线*/
+.search_result_tbl .tr2{ height: 1px;background-color: #e5e5e5;}
+.search_result_tbl .even{ background-color: #FFF7F0;}
+/*隔行换色+分割线======*/
+/*快速应聘按钮======*/
+.rapid_appoint_btn{ background-position: -75px 0;display: block;width: 92px;height: 23px;}
+
+/*===========简历列表用户操作区域*/
+.search_result .action .lbl,.action .bgBtn,.action .bgBtn b{ float: left;}
+.action .bgBtn a{ display: block;height: 100%}
+.search_result .action .bgBtn{ background-position: -75px -25px;width: 139px;height: 35px;line-height: 35px;margin-right: 5px;}
+.action .bgBtn b{ position: relative;top: 5px;left: 10px;margin-right: 15px;}
+.action .bgBtn .ico01{ background-position: 0 -45px;width: 28px;height: 21px}
+.action .bgBtn .ico02{ background-position: 0 -70px;width: 27px;height: 22px}
+.action .bgBtn .ico03{ background-position: -36px -40px;width: 32px;height: 31px;top: 3px;}
+.action .lbl{ margin: 7px 15px 0 22px;cursor: pointer;color: #ff0000;}
+.action .lbl input{vertical-align: -2px;margin-right: 3px;}
+/*简历列表用户操作区域===========*/
+
+/*页码2011-5-6-翻页无图片背景*/
+.pagination_area{padding: 25px 0 35px;border-bottom: 1px solid #e5e5e5;margin-bottom: 8px;}
+.pagination_area .pagination{ float: left;}
+.pagination_area .txt{ float: right;color: #666666;padding-right: 208px;}/*找工作页码实例化*/
+.pagination{ font-size: 12px;font-family: Verdana;text-align: center;margin: 0 auto;overflow: hidden;}
+.pagination li{ float: left;margin-right: 5px;}
+.pagination li a{ float: left;color: #ff6000;border: 1px solid #dedede;height: 18px;width: 18px;line-height: 18px;font-size: 12px;}
+.pagination .cur{ font-weight: bold;line-height: 20px;cursor: default;height: 18px;width: 18px;margin-right: 5px;}
+.pagination .page_jump a{ border: 1px solid #dedede;color: #ff6000;height: 18px;width: 62px;line-height: 18px;}
+.pagination a,.page_jump a{color:#ff6000;text-decoration:none;}
+.pagination a:hover,.pagination .page_jump a:hover{color:#EE7831;text-decoration:none;border: 1px solid #ff6000;}
+
+/*=====================搜索简历页面*/
+/*搜索简历页面的单元格宽度*/
+.resume_tbl .th01{ width: 60px;}
+.resume_tbl .th02,.resume_tbl .th04{ width:80px;}
+.resume_tbl .th03,.resume_tbl .th05{ width: 50px;}
+.resume_tbl .th06,.resume_tbl .th07{ width: 198px;}
+.resume_tbl .th08{ width: 60px;}
+.resume_tbl .details_bd{ width: 960px;}/*通栏显示详细简历资料*/
+.resume_tbl .resume_name{ font-weight: normal;}
+.resume_tbl .resume_name_cur{ font-weight: bold;}
+/*搜索栏*/
+.search_bar_bd .tit,.search_bar_bd .option{ float: left;}
+.search_bar_bd .option{ width: 351px;margin-right: 21px;}
+.search_bar_bd .option .ipt{ width: 200px;height: 19px;line-height: 19px;padding: 2px 3px;border: 1px solid #cdcdcd;margin-right:8px}
+/*搜索简历页面=====================*/
+/*=====================按类别搜索职位和人才页面==============*/
+/*按类别搜索职位 头部样式*/
+.search_category_bar{ border: 0 none;border-bottom: 1px solid #cccccc;}
+.search_category_bar .mod_option_bd{ float: left;width: 240px;margin-right: 15px;}
+.search_category_bar .mod_option_bd .ipb{ width: 176px;background-position: -174px -148px;margin-right: 0;}
+.search_category_bar .mod_option_bd .option_bus{ width: 210px}
+.search_category_bar .mod_option_bd  .option_prop{ width: 150px}
+.search_category_bar .mod_option_bd .option_salary{ width: 100px;}
+.hot_search_kw .tit{ font-weight: bold;}/*人们搜索关键字*/
+
+/*按搜索类别容器*/
+.section_720{ width: 720px;float: left;}
+.search_category_con{ border-bottom: 1px solid #cccccc;}
+.search_category_con .section_bd{ padding-bottom: 15px;min-height: 320px;_height:320px}
+.search_category_con .tab_con{ width: 690px;margin: 0 auto;}
+.search_category_con .tab_hd{ border-bottom: 2px solid #EE8120;margin-bottom: 12px;}
+.search_category_con .tab_hd h3{ float: left;background-position: -161px -90px;width: 87px;height: 26px;line-height: 26px;text-align: center;color: #ED7A14;overflow: hidden;cursor: pointer;margin-right: 3px;}
+.search_category_con .tab_hd .cur{ background-position: -161px -60px;color:#ffffff}
+.search_category_con .tab_bd .list{ display: none;}
+.search_category_con .tab_bd .list li{ border: 1px solid #FFD9A2;height: 21px;line-height: 21px;float: left;width: 220px;text-indent: 12px;margin: 0 4px 6px 0;}
+.search_category_con .tab_bd .area li{ width: 160px;}
+.search_category_con .list li a{ background-position: 0 3px;padding-left: 9px;}
+
+/*广告侧边栏*/
+.sidebar{ float: right;width: 250px;}
+.aside{ margin-bottom: 10px;}
+.mod_side_hd{ background-position: 0 -70px;border: 1px solid #FFD9A2;border-bottom: 0 none;}
+.mod_side_hd .tit{ height: 28px;line-height: 28px;font-size: 14px;font-weight: bold;color: #ffffff;border: 1px solid #ffffff;border-bottom: 0 none;}
+.mod_side_hd .tit b{ width: 20px;height: 28px;background-position: -161px -29px;float: left;}
+.mod_side_bd{ border: 1px solid #FFD9A2;border-top: 0 none;padding: 8px 12px}
+.mod_side_bd .list li{ background-position: 0 7px;padding-left: 9px;line-height: 19px;}

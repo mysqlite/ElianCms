@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RESULT>
+    <!--工作_学历-->
+    <select name="education" key="Unlimited" value="不限/其他"></select>
+    <select name="education" key="PrimarySchool" value="小学"></select>
+    <select name="education" key="JuniorHighSchool" value="初中"></select>
+    <select name="education" key="Secondary" value="中专"></select>
+    <select name="education" key="SeniorMiddleSchool" value="高中"></select>
+    <select name="education" key="College" value="大专"></select>
+    <select name="education" key="University" value="本科"></select>
+    <select name="education" key="Master" value="硕士"></select>
+    <select name="education" key="courtAcademician" value="博士"></select>
+    <select name="education" key="Graduate" value="研究生"></select>
+    <select name="education" key="Postdoctoral" value="博士后"></select>
+    <!--工作性质-->
+    <select name="jobnature" key="FullTime" value="全职"></select>
+    <select name="jobnature" key="PartTime" value="兼职"></select>
+    <select name="jobnature" key="fieldwork" value="实习"></select>
+    <select name="jobnature" key="Smalloffice" value="SOHO"></select><!--自由-->
+    <select name="jobnature" key="Unlimited" value="不限"></select>
+    <!--医院类型、性质、等级-->
+    <select name="hospType" key="hosp_nature" value="医院性质"></select>
+    <select name="hospType" key="hosp_type" value="医院类型"></select>
+    <select name="hospType" key="hosp_rank" value="医院等级"></select>
+    <!-- 科室性质 -->
+    <select name="deptNature" key="dept_nature" value="科室性质"></select>
+    <!-- FTP类型 -->
+    <select name="ftpType" key="ftp_type" value="FTP类型"></select>
+    <!-- 招标方式 -->
+    <select name="inviType" key="invi_type" value="招标类型"></select>    
+    <!--药品类型 -->
+    <select name="medicineType" key="medicine_type" value="药品类型"></select>
+    
+    
+    <!-- 内容表action_name字段映射 -->
+    <content name="contentType" key="information" value="information_c"></content>
+    <content name="contentType" key="hospital" value="hospital_c"></content>
+    <content name="contentType" key="invitation" value="invitation_c"></content>
+    <content name="contentType" key="bidding" value="bidding_c"></content>
+    <content name="contentType" key="job" value="job_c"></content>
+    <content name="contentType" key="department" value="department_c"></content>
+    <content name="contentType" key="doctor" value="doctor_c"></content>   
+    <content name="contentType" key="links" value="links_c"></content>  
+    <content name="contentType" key="company" value="company_c"></content>
+    <content name="contentType" key="instrument" value="instrument_c"></content>   
+    <content name="contentType" key="medicine" value="medicine_c"></content>  
+    
+    <!--医生评分-->
+    <select name="score" key="0" value="未评分"></select>
+    <select name="score" key="1" value="很差"></select>  
+    <select name="score" key="2" value="差"></select>  
+    <select name="score" key="3" value="一般"></select>  
+    <select name="score" key="4" value="好"></select>  
+    <select name="score" key="5" value="很好"></select>  
+    
+    <!--药品批准文号字母-->
+    <select name="medicineNO" key="H" value="H-化学药品"></select>
+    <select name="medicineNO" key="S" value="S-生物制品"></select>  
+    <select name="medicineNO" key="J" value="J-进口分装"></select>  
+    <select name="medicineNO" key="T" value="T-体外化学诊断试剂"></select>  
+    <select name="medicineNO" key="F" value="F-药用辅料"></select>  
+    <select name="medicineNO" key="B" value="B-保健药品"></select>
+    <select name="medicineNO" key="Z" value="Z-中药"></select> 
+    
+    <!-- 站点的头部与尾部默认数据 --> 
+    <SiteHeadAndFoot name="mainstation">
+    	<content key="head" value="海南">www.ylmh.cc</content>    	
+    	<content key="head" value="上海">www.ylmh.cc</content>    	
+    	<content key="head" value="天津">www.ylmh.cc</content>    	
+    	<content key="foot" value="foot">本站信息仅供参考不能作为诊断及医疗的依据，如有转载或引用文章涉及版权问题请速与我们联系。</content> 
+    </SiteHeadAndFoot>
+    <SiteHeadAndFoot name="substation">
+    	<content key="head" value="海南">www.ylmh.cc</content>    	
+    	<content key="head" value="上海">www.ylmh.cc</content>    	
+    	<content key="head" value="天津">www.ylmh.cc</content>    	
+    	<content key="foot" value="foot">本站信息仅供参考不能作为诊断及医疗的依据，如有转载或引用文章涉及版权问题请速与我们联系。</content> 
+    </SiteHeadAndFoot>
+    <SiteHeadAndFoot name="hospital">
+    	<content key="foot" value="foot">本站信息仅供参考不能作为诊断及医疗的依据，如有转载或引用文章涉及版权问题请速与我们联系。</content> 
+    </SiteHeadAndFoot>
+    <SiteHeadAndFoot name="company">
+    	<content key="foot" value="foot">本站信息仅供参考不能作为诊断及医疗的依据，如有转载或引用文章涉及版权问题请速与我们联系。</content> 
+    </SiteHeadAndFoot>
+</RESULT>

@@ -1,0 +1,94 @@
+<#--可以使用-->
+<#macro showList ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.imgPath item.title item.detial/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showList2 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.title item.detial item.time/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showList3 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showNumList ulClass liClass begin end data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list begin..end as i>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested i data[i]/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+
+<#--可以使用-->
+<#macro showTitle title titleNum>
+	<#if showTitle??>
+		<#if (title?length>titleNum)>
+			${title[0..titleNum]}...
+		<#else>
+			${title}
+		</#if>
+	</#if>
+</#macro>
+
+<#--换灯片-->
+<#macro PowerPoint ulClass liClass>
+	<#if (dataMap['powerPoint'].imgContentList)??>
+		<#local data=dataMap['powerPoint'].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	</#if>
+</#macro>
+<#--换灯片-->
+<#macro PowerPoint mapKey ulClass liClass>
+	<#if (dataMap[mapKey].imgContentList)??>
+		<#local data=dataMap[mapKey].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	</#if>
+</#macro>

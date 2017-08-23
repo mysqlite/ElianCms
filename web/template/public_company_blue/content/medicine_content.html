@@ -1,0 +1,175 @@
+﻿<#include "../includes/header.html"/>
+<#import '../includes/global.html' as global/>
+<#--顶部第一栏begin-->
+<link rel="stylesheet" href="${resStyle}/v2/blue/gouwu.css" type="text/css" media="screen" />
+<div class="section">
+   <div class="main_con clearfix">
+        <div class="wrap_product_details">
+            <div class="product_buy_bd">
+                <h2 class="tit">${med.cnName}</h2>
+                <@global.showProductImg data=(med.frontImgs)![] title=(med.cnName)!''></@global.showProductImg>
+                <div class="wrap_buy_area">
+                    <div class="i">
+                        <span class="tit">药品名称:</span>
+                        <span class="txt"><em>${(med.cnName)!''}</em><em>${(med.enName)!''}</em></span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">通用名:</span>
+                        <span class="txt">${(med.alias)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">批准文号:</span>
+                        <span class="txt">${(med.approvalNumber)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">包装规格:</span>
+                        <span class="txt">${(med.specification)!''}</span>
+                    </div>
+                    <div class="i">
+                        <span class="tit">本店售价:</span>
+                        <span class="txt">
+	                        <em class="price">￥
+	                         <#if (med.pricePany>0)>
+	                                ${(med.pricePany?string("###########.##"))!''}元
+	                         <#elseif (med.discountedPrice)>
+	                            ${(med.discountedPricePany?string("###########.##"))!''}元
+	                         <#else>
+	                                面议
+	                         </#if>
+	                        </em>
+	                    </span>
+                    </div>
+                    <div class="i last_i">
+                        <span class="tit">服　　务:</span>
+                        <span class="txt">本商品由<em>${(med.company.name)!''}</em>提供,并负责配送</span>
+                    </div>
+                    <div class="buy_area">
+                        <div class="buy_num">
+                            <span class="tit">购买数量：</span>
+                            <div class="num">
+                                <a href="javascript:void(0)" class="ico minus_num" id="minus_num">-</a>
+                                <input id="prd_nums" value="1" type="text" class="ipt" maxlength="3" />
+                                <a href="javascript:void(0)" class="ico add_num" id="add_num">+</a>
+                            </div>
+                        </div>
+                        <a class="ui_btn cart_now_btn" onclick="addShoppingCart('${med.id}','${product_type}','${contentId?string("##############")}')" href="javascript:void(0);">放入购物车</a>
+                        <div id="shop_${contentId?string("##############")}"></div>
+                        <a class="link_btn" href="#">添加到收藏夹</a>
+                    </div>
+                </div>
+            </div>
+            <#--<div class="sns_link">
+                <div class="bd">
+                    <span class="tit">分享到：</span>
+                    <a class="ico ico1" href="#">分享至新浪微博</a>
+                    <a class="ico ico2" href="#">分享至人人网</a>
+                    <a class="ico ico3" href="#">分享至腾讯微博</a>
+                    <a class="ico ico4" href="#">分享至开心网</a>
+                </div>
+            </div>
+            -->
+            <div class="product_details_bd">
+                <div class="tab_hd" id="tab1_hd">
+                    <h3 class="cur">商品介绍</h3>
+                    <h3>商品参数</h3>
+                    <#--<h3>商品评论</h3>-->
+                </div>
+                <div class="tab_bd" id="tab1_bd">
+                    <div class="tab_con" style="display: block;">
+                        <h3>概要</h3>
+                        <p>${(med.summary)!''}</p>
+                        <h3>商品介绍</h3>
+                        <p>${(med.frontDesc)!''}</p>
+                    </div>
+                    <div class="tab_con">
+                        <table class="prd_details_tbl" cellSpacing="0" cellpadding="0">
+	                        <tbody>
+	                            <tr>
+	                                <td class="tit">药品类型</td>
+	                                <td class="txt">${(med.type.typeName)!''}</td>
+	                                <td class="tit">贮藏方法</td>
+	                                <td class="txt">${(med.storageMethod)!''}</td>
+	                            </tr>
+	                            <tr>
+	                                <td class="tit">用法用量</td>
+	                                <td class="txt">${(med.usageDosage)!''}</td>
+	                                <td class="tit">主要成分</td>
+	                                <td class="txt">${(med.composition)!''}</td>
+	                            </tr>
+	                            <tr>
+	                                <td class="tit">不良反应</td>
+	                                <td class="txt">${(med.adverseReaction)!''}</td>
+	                                <td class="tit">功能主治</td>
+	                                <td class="txt">${(med.attendingFunctions)!''}</td>
+	                            </tr>
+	                            <tr>
+	                                <td class="tit">注意事项</td>
+	                                <td class="txt">${(med.attentions)!''}</td>
+	                                <td class="tit">禁忌</td>
+	                                <td class="txt">${(med.contraindication)!''}</td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+                    </div>
+                   <#-- <div class="tab_con">
+                        <div class="reply_content">
+                            <ul class="list">
+                                <li>
+                                    <div class="hd">
+                                        <span class="usr_name">admin</span>
+                                        <span class="date">
+                                            2012-03-12 16:34 [<a href="#">回复此评论</a>]
+                                        </span>
+                                    </div>
+                                    <div class="bd">送货也及时。很好！</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="reply_gutter">
+                            <a href="#">查看所有评论&gt;&gt;</a>
+                        </div>
+                        <div class="reply_area">
+                            <div class="hd">发表评论</div>
+                            <div class="bd">
+                                <div class="i">
+                                    <span class="tit">评论内容：</span>
+                                    <textarea class="txt_area"></textarea>
+                                </div>
+                                <div class="i">
+                                    <span class="tit">联系方式：</span>
+                                    <input class="ipt" type="text" value="" />
+                                </div>
+                                <div class="i">
+                                    <span class="tit">验证码：</span>
+                                    <input class="ipt vcode_ipt" type="text" maxlength="4" />
+                                    <img src="images/vcode.gif" class="vcode" />
+                                    <input class="ips" type="submit" value="提交评论" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="gutter"></div>
+        <div class="aside comfile">
+		<#include "../includes/side_1.html"/>
+		</div>
+		<div class="gutter"></div>
+        <div class="aside com_intro">
+		<#include "../includes/side_2.html"/>
+		</div>
+		<div class="gutter">
+        </div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+<script src="${resScript}/v2/tab.js"></script>
+<#include "../includes/com_footer.html"/>
+</body>
+</html>

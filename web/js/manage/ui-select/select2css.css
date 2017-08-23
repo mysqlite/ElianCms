@@ -1,0 +1,17 @@
+
+.select .select_box{width:210px;height:27px;}/*外盒子*/
+.select div.tag_select,.select div.tag_select_hover,.select div.tag_select_open,/*.select ul.tag_options,.select ul.tag_options li,*/.select ul.tag_options li.open_hover,.select ul.tag_options li.open_selected{ background:transparent url("ui-select-sprite.jpg") no-repeat 0 0;}
+
+.select div.tag_select,.select div.tag_select_hover,.select div.tag_select_open,.select ul.tag_options li{ display:block;color:#79A2BD;width:190px;height:27px;line-height:27px;padding:0 10px;}
+.select ul.tag_options li{ vertical-align: middle;height: 27px;line-height:27px;}
+/*.select div.tag_select_hover{background-position: 0 -24px;} 待做*/
+.select div.tag_select_open{background-position: 0 -28px;}
+.select ul.tag_options li.open_selected,.select ul.tag_options li.open_hover{ background-position: -1px -60px;}
+.select ul.tag_options{position:absolute;/*background-position: right bottom;*/width:208px;padding:0 0 5px;background-color: #ffffff;border: 1px solid #DBE4E9;border-top: 0 none;overflow:hidden}
+.select ul.tag_options li{ /*background:transparent url("ui-select-sprite.jpg") repeat-y -100px 0;*/text-decoration:none;
+border: 0 none;_height:24px;min-height: auto
+}
+
+/*.select ul.tag_options li.open_hover{background-position: 0 -72px;color:#fff}
+.select ul.tag_options li.open_selected{background-position: 0 -96px;color:#fff}*/
+

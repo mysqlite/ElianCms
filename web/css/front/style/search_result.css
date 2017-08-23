@@ -1,0 +1,224 @@
+﻿@charset "utf-8";
+/*==========新闻资讯新闻列表页结构==========*/
+.section_main{ width: 690px;float: left}
+.sidebar{ width: 280px;float:right}
+.wrap_bd,.sidebar .aside{ border: 1px solid #cccccc;}
+.pt02{ padding:5px 0 0 10px;font-size: 12px;overflow: hidden;}
+.pt02 li{ padding: 6px 0 0 0;}
+.pt02 .pic{ float: left;}
+.pt02 .pic img{ padding: 1px;border: 1px solid #e4e4e4;}
+.pt02 .txt{ line-height: 21px;overflow: hidden;}
+.pt02 .txt span{ display: block;}
+
+
+
+
+/*精灵图*/
+
+.wrap_ui_tit{ background: url('bg/search-bg/repeat_sprite.png') repeat-x 0 0 }
+.wrap_ui_tit .ui_tit{ background: url('bg/search-bg/tit.png') no-repeat 0 0}
+/*.wrap_search{ background: url('bg/search-bg/search_repeat.png') repeat-x 0 bottom}*/
+
+/*健康资讯侧边栏精灵图*/
+.guahao_btn,.zixun_btn,.ico_hand,.mod-rank .list b,.mod_recomm_hd .ui_tit,.mod_recomm_bd .pt02 .link_btn{ background: url('bg/sub-ico-sprite.jpg') no-repeat 0 -100%}
+.mod_gray_hd{ background:url('bg/index-repeat-sprite.jpg') repeat-x 0 -100%;}
+.mod_recomm_hd{ background: url('bg/mod_recomm_repeat_hd.gif') repeat-x 0 0}
+
+/*点状线*/
+.mod-rank .list li,.mod_recomm_bd .line,.aside-tab-bd li{ background: url('bg/bottom_dot.gif') repeat-x 0 bottom;}
+
+
+/*搜索框2013-02-01*/
+.search_tab_nav .list li,.search .ips,.search .wrap_ipt,.zone_hd .ico{ background: url('bg/gobal_search_bg.png') no-repeat -100% -100%}
+.key_select .i{ background:url('bg/search_option_dot.gif') repeat-x 0 bottom;}
+
+
+/*公用字体*/
+.high_rank_hos li h3,.mod_recomm_hd .ui_tit,.mod_gray_hd h3{ font-family: \5fae\8f6f\96c5\9ed1,'黑体'}
+
+/*文章页结构*/
+
+/*==========实例化开始==========*/
+.wrap_ui_tit .ui_tit,.wrap_search h3.ico{ font-size: 14px;font-weight: bold;color: #FF7F00}/*公用标题*/
+
+.sidebar .aside{ border: 1px solid #dcdcdc}
+.wrap_ui_tit{ height: 44px;}
+.wrap_ui_tit .ui_tit{ width: 108px;height: 44px;margin-left: 25px;line-height: 47px;text-indent: 32px;overflow: hidden;}
+.wrap_search{ margin: 0 15px;padding: 10px 0;overflow:hidden;*zoom:1;margin-bottom: 0}
+.wrap_search .search .tit{ line-height: 25px}
+.wrap_search h3.ico{ float:left;background-position: -70px 5px;padding-left: 30px;height: 39px;line-height: 39px;margin: 0 30px;_margin-left: 20px}
+.wrap_search .wrap_select_option{ float:left;height: 39px;line-height: 39px}
+.wrap_select_option .tit{ float:left;margin-top: 10px}
+.wrap_select_option .sel{ width: 100px;padding: 3px;margin-right: 30px;_margin-top: 6px}
+.wrap_select_option .sel:hover,.search .wrap_ipt:hover{ border: 1px solid #FE9B00}
+.wrap_search .search{ float:left;margin-top: 5px;overflow: hidden;}
+.search .tit{ float:left;}
+.search .wrap_ipt{ float:left;border: 1px solid #E4A551;height: 33px;line-height: 33px;background-position: -112px -25px;padding-left: 25px}
+.search input{ border: 0 none;}
+.wrap_ipt .ipt{ padding: 3px 6px;_height: 14px;width:400px;color:#999999;font-size:14px;background: none;*height:25px;*line-height:25px}
+.search .ips{ float:left;width: 80px;height: 35px;line-height: 35px;text-align: center;color: #ffffff;background-position: 0 -95px;cursor: pointer;text-indent: -1024px;overflow:hidden}
+.wrap_search_ui_line{ height: 8px;width: 630px;margin: 0 auto}
+.mod_list .list01{ margin: 15px}
+.mod_list .list01 h4{ font-size: 14px;}
+.mod_list .list01 h4 a{ color:#E54D10 }
+.mod_list .list01 .txt{ color: #111111}
+.mod_list .list01 .link,.mod_list .pt03 .link{ color: #008000}
+.mod_list .list01 li{ margin-bottom: 20px}
+
+.sidebar .aside{ margin-bottom: 10px}
+.sidebar .list01{ margin: 8px}
+.sidebar .list01 li{ height: 25px;line-height: 25px;overflow:hidden}
+
+/*条件选择*/
+.wrap_key_select{ background-color: #FAFAFA;padding: 10px;margin-bottom:10px}
+.key_select{ background-color: #ffffff;border: 1px solid #FFDDBB;pad1ding: 12px;padding-bottom: 0;overflow:hidden;*zoom:1;_width: 668px}
+.key_select .i{ padding: 12px;clear: both;min-height: 20px;_height: 20px;float: left;*zoom:1;_overflow: visible;width:100%}
+.key_select .details{ *zoom:1;margin-left: 60px;_margin-left: 57px}
+.key_select a{ float: left;white-space: nowrap;padding:0 8px;text-align: center;margin-right: 5px;border: 1px solid #ffffff;;-webkit-transition: all 0.03s ease-out 0s;transition: all 0.03s ease-out 0s;margin-bottom: 5px}
+.key_select .tit{ float: left;height: 19px;line-height: 19px;}
+.key_select .cur,.key_select a:hover{ background: #DF470C;color: #fff;text-decoration: none;}
+.wrap_key{ padding: 8px;background-color: #f8f8f8;border: 1px solid #e3e3e3;overflow: hidden;height: 44px;clear: both;}
+.wrap_key a{ margin: 0 5px 8px 0;border: 1px solid #F8F8F8;}
+.wrap_key .cur,.wrap_key a:hover{ background: #eeeeee;border-color: #cccccc;color: #000000;}
+.key_select .last{ margin-bottom:10px}
+
+/*搜索框2013-02-01*/
+.search_tab_nav{ overflow:hidden;*zoom:1}
+.search_tab_nav .list{ border-left: 1px solid #d4d4d4;border-bottom: 1px solid #FFC082;height: 40px}
+.search_tab_nav .list li{ background-position: 0 -45px;width: 98px;height: 39px;text-align: center;line-height: 39px;border: 1px solid #d4d4d4;float: left;border-bottom:0 none;margin-left: -1px;font-size: 14px}
+.search_tab_nav li a{ color: #000}
+.search_tab_nav .list .cur{ background-position: 0 0;border: 0 none;width: 100px;height: 40px;line-height: 40px;position:relative}
+.search_tab_nav .cur a{ color: #fff}
+.search_result_tips{ height:35px;height: 25px}
+.search_result_tips .em{ color: #FF6000}
+
+
+
+/*图文列表样式*/
+.pt03{ padding-top:25px}
+.pt03 li{ padding-bottom:5px;margin-bottom:20px;border-bottom: 1px dashed #cccccc;*zoom:1}
+.pt03 .pic{ margin-right:15px;_margin-right:12px}
+.pt03 .pic img{ padding: 1px}
+.pt03 .txt li{ padding: 0;color: #666666;margin-bottom:3px;border: 0 none}
+.pt03 .txt .more a{ color: #0077BB}
+.pt03 h4{ font-size:14px;zoom: 1;overflow:hidden}
+.pt03 h4 a{ color: #EB711B;font-weight: bold}
+.rate_txt{ color: #EB711B}
+.em_key{ color: #03F;font-weight: bold}
+.tit_link{ color:#03F;text-decoration: underline}
+
+.yp_result_list .txt li{ height: 21px;line-height: 21px;overflow:hidden}
+.wrap_zone{ position: relative;width: 90px;float:left;height: 25px;margin-right: 15px}
+.zone_hd,.zone_bd{ border: 1px solid #cccccc;}
+.zone_hd{ width: 90px;float:left;height: 25px;line-height: 25px;text-indent: 10px;position: relative;cursor: pointer}
+.zone_hd .ico{ background-position: -120px 0;width: 16px;height: 16px;position: absolute;right:5px;top:4px}
+.zone_bd{ width: 400px;overflow:hidden;*zoom:1;padding:10px 0px 10px 15px;position:absolute;top: 27px;left:0;background: #fff;display: none;z-index:10}
+.zone_bd a{ float: left;white-space: nowrap;width: 52px;padding: 0 3px;margin-bottom:3px}
+.wrap_zone .cur{ border:1px solid #FF9000;background-color: #FFF6EB;color: #333333;box-shadow: 0 0 3px #FC0}
+
+
+
+/*文章页侧边栏开始*/
+/*灰色盒子ui*/
+.article_sidebar .aside{ border: 0 none}
+.mod_gray_hd,.mod_gray_bd{ ;border:1px solid #dddddd}
+.mod_gray_hd{ background-position: 0 -71px;height: 35px;line-height: 35px}
+.mod_gray_hd h3{ text-indent: 10px}
+.mod_gray_bd{ border-top: 0 none}
+
+.high_rank_hos .rate{ clear:both;display:block;height: 24px;line-height:24px}
+.wrap_star{ display:block;clear: both}
+
+.mod_gray_hd .ico_hand{ background-position: -180px -3px;padding-left: 12px;margin-left: 5px}
+
+/*新闻门排行*/
+.mod-rank .pt03{ padding: 0}
+.mod-rank .pt03 img{ width: 100px;height: 75px}
+.mod-rank .pt03 .txt{ height: 84px;color: #666666;text-indent:2em;overflow: hidden}
+.mod-rank .list .first{ height: auto;background: #FFF8EC;padding: 5px 5px 8px}
+.first .tit a{ color: #FF7F00;font-weight: bold}
+
+.mod-rank .list{ padding: 10px 8px 0;margin-bottom: 0;overflow: hidden;*zoom:1}
+.mod-rank .list li{ height: 30px;line-height: 30px;vertical-align: middle;overflow: hidden;*zoom:1;margin-bottom: -1px;padding-left: 5px}
+.mod-rank .list .tit{}
+.mod-rank .list .hos-name{ float: right;width: auto;margin-right: 0;width:108px}
+.mod-rank .list b{ background-position: -20px -80px;height: 15px;width: 15px;float: left;text-align: center;line-height: 15px;color: #ffffff;margin: 7px 3px 0 0;}
+.mod-rank .list .top-rank{ background-position: 0 -80px;}
+
+/*推荐医生+推荐医院*/
+.mod_recomm_hd{ height: 36px;position:relative;}
+.mod_recomm_hd .more{ float: right;position:relative;right: 8px;height: 36px;line-height: 44px;color: #006BC5;overflow: hidden}
+.mod_recomm_hd .ui_tit{ background-position: -45px -80px;width: 110px;height: 40px;line-height: 40px;position:absolute;left:0;top:0;color: #ffffff;font-size: 16px;text-indent: 10px}
+.mod_recomm_bd{ border: 1px solid #FFB6FF;border-top: 0 none;overflow: hidden;*zoom:1;position: relative}
+.mod_recomm_bd .pt02{ padding-left: 5px;zoom:1;height: 225px}
+.mod_recomm_bd .pt02 li{ float:left;width: 135px;margin-bottom: 15px}
+.mod_recomm_bd .pt02 .txt span{ height:21px;overflow:hidden}
+.mod_recomm_bd .pt02 .pic{ margin-right: 3px;_margin-right:0}
+.mod_recomm_bd .pt02 .tit{ font-weight: bold;}
+.mod_recomm_bd .pt02 .tit a{ color: #FF7F00}
+.mod_recomm_bd .pt02 .link_btn{ background-position: -77px -41px;width: 55px;height: 24px;line-height: 24px;text-align: center;display: block;color: #999999;margin-top:5px}
+.mod_recomm_bd .line{ height: 1px;overflow:hidden;background-position: 0 0;position:absolute;top:49.2%;left: 5px;width: 96%}
+
+.aside_recomm_hos .mod_recomm_bd{ width: 278px;}
+.aside_recomm_hos .pt01{ padding: 10px 0 0px 0px;overflow:hidden;margin-left:8px;height: 255px}
+.aside_recomm_hos .pt01 li{ width: 126px;margin-right: 8px;margin-bottom: 8px}
+.aside_recomm_hos .pt01 .tit{ height: 18px;overflow:hidden}
+.aside_recomm_hos .pic{ width: 126px;height: 96px;overflow:hidden}
+.aside_recomm_hos .pic img{ border: 0 none;margin: 2px 0 0 2px}
+
+/*好评医生*/
+.high_rank_doc{ padding: 10px}
+.high_rank_doc .i{ height: 25px;line-height: 25px}
+.high_rank_doc .pic{ margin-right: 8px;_margin-right: 5px}
+.high_rank_doc .txt .tit{ color: #FF7F00}
+.high_rank_doc .txt span{ display: inline}
+
+.aside_recomm_zhuanti .pt03{ padding-bottom:0;margin-bottom: -1px;overflow: hidden;*zoom:1}
+.aside_recomm_zhuanti .pt03 li{ margin: 0 10px;padding: 5px 0 12px}
+.aside_recomm_zhuanti .pt03 h3.ico{ background-position: -190px -136px;padding-left: 12px;height: 26px;line-height: 26px;overflow:hidden}
+.aside_recomm_zhuanti .pt03 h3 a{ font-weight: bold;color: #FF7F00}
+.aside_recomm_zhuanti .pt03 .txt{ text-indent: 2em;line-height: 23px}
+.aside_recomm_zhuanti .pt03 .more{ color: #D18D00}
+
+/*咨询+挂号按钮*/
+.guahao_btn,.zixun_btn{ width: 68px;height: 28px;line-height: 28px;text-align: center;color: #fff;float:left;margin-top: 10px;position:relative}
+.guahao_btn:hover,.zixun_btn:hover{ color: #fff}
+.zixun_btn{ background-position: 0 0;margin-right: 10px}
+.guahao_btn{ background-position: -70px 0}
+
+.mod_gray_hd h3{ color: #FF7F00;font-weight: bold;font-size: 15px}
+
+
+
+/*星星评分*/
+.star,.wrap_star {width: 84px;height: 13px;overflow: hidden;display: block;}
+.star,.wrap_star{ background: url("bg/rate/star.png") no-repeat -100% 0;}
+.star,.wrap_star{ width: 84px;height: 13px;overflow: hidden;display: block;}
+.star{ }
+.wrap_star{ background-position: 0 -75px;margin: 2px 5px 3px 0;float:left}
+.star-1{ background-position: 0 0;}
+.star-2{ background-position: 0 -15px;}
+.star-3{ background-position: 0 -30px;}
+.star-4{ background-position: 0 -45px;}
+.star-5{ background-position: 0 -60px;}
+
+
+
+
+/*页码2011-11-10-翻页无图片背景*/
+/*页码2012-02-29 修改*/
+.pagination{ font-size: 12px;font-family: Verdana;text-align: center;margin: 0 auto;padding: 25px 0 35px;overflow: hidden;margin-left: 15px}
+.pagination li{ float: left;margin-right: 5px;}
+.pagination li a{ float: left;height: 18px;width: auto;padding: 0 5px;line-height: 18px;border-radius: 3px;-webkit-transition: all 0.06s ease-out 0s;}
+.pagination .cur{ font-weight: bold;cursor: default;height: 20px;line-height: 19px;width: auto;padding: 0 5px;border-radius: 3px;}
+.pagination .page_jump a{ height: 18px;width: auto;padding: 0 10px;line-height: 19px;text-decoration:none;overflow: hidden;}/*2*/
+/*模块分页颜色*/
+.pagination li a{ color: #ff6000;}
+.pagination li a,.pagination a:hover,.pagination .page_jump a:hover,.ipage{ border: 1px solid #cccccc;}
+.pagination .cur,.pagination a:hover,.pagination .page_jump a:hover,ipage{ color:#ffffff;background-color: #ff6000;text-decoration:none;}
+.pagination .no_click a,.pagination .no_click a:hover{ color: #ffffff;border-color: #ffffff;cursor: default;outline: none;}
+.pagination .no_click a:hover{ background-color:#ffffff;}
+/*页码跳转框*/
+#pagination-digg .ipage{width:25px;text-align:right;}
+#pagination-digg .itotal{border:none;text-align:left;}
+.igo{ cursor: pointer}

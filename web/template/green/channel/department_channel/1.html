@@ -1,0 +1,53 @@
+
+<#--macro6开始-->
+<#macro macro6 mapKey>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<div class="mod_hd mod_hd01">
+            <h3>科室简介</h3>
+        </div>
+        <div class="mod_bd mod_bd01 clearfix">
+        	<#if (data?size>0)>
+        		<#list 1..data?size as i>
+        			<h4 class="tit">${data['${i}'].channelName!''}</h4>
+        			<#if data['${i}'].contentList??>
+	        			<@global.showList3 ulClass='list' liClass='' data=data['${i}'].contentList;item>
+	        				<a href="${item.path!'#'}">${item.title!''}</a></li>
+	        			</@global.showList3>
+        			</#if>
+        		</#list>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro8开始-->
+<#macro macro8 mapKey>	
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<div class="mod_hd hd02">
+            <h3><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt;更多</a>
+        </div>
+        <div class="bd02">
+            <div class="expert_show">
+    			<ul class="marquee" id="marquee-doc">
+    				 <li>
+    				 	<#if (data?size>0)>
+    				 		<#list 1..data?size as i>
+    				 			<#if data['${i}'].imgContentList??>
+				        			<#list data['${i}'].imgContentList as item>
+				        				<div class="con">
+				        					<a class="pic" href="${item.path!'#'}"><img width="70" height="93" src="${item.imgPath!'#'}" alt="${item.title!''}"/></a>
+				        					<span class="name"><a href="${item.path!'#'}">${item.title!''}</a></span>
+				        				</div>
+				        			</#list>
+				        		</#if>
+    				 		</#list>
+    				 	</#if>
+    				 </li>
+    			</ul>
+             </div>
+        </div>
+    </#if>
+</#macro>  
+<@macro8 mapKey='1'></@macro8>

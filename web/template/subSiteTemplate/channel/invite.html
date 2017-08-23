@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">			
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/zb/zb_201112.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>	
+	<#import '../include/global.html' as global/>
+	<#macro invit mapKey>
+	   <div class="mod_list">       
+	   	  <#if dataMap[mapKey]??>
+	          <#local invite=dataMap[mapKey]/>  
+	          <#if invite??>
+	              	<div class="in_mod_hd"> 
+		                <h4> 最新招标 </h4>
+		                <a class="more" href="${invite.path}" target="_blank">更多 &gt;&gt;</a>
+		            </div>
+	                <#if invite.contentList??>
+	                	<@global.showList ulClass='list03b' liClass='' data=invite.contentList;path,imgPath,title,detial>	
+	                		 · <a href="${path}" target="_blank">${title}</a> 
+	                	</@global.showList>
+	                	<#else> <li><div class="txt">暂时无信息。 </div></li>
+	                </#if>
+	          </#if>
+	   	  </#if>     	
+        </div>
+	</#macro>
+	<#macro bidd mapKey>
+	   <div class="mod_list">
+	   	 <div class="in_mod_hd"> 
+            <h4> 中标公告  </h4>
+            <a class="more" href="${(dataMap[mapKey].path)!'#'}" target="_blank">更多 &gt;&gt;</a>
+          </div>
+		   	<#if dataMap[mapKey]??>
+	          <#local bidding=dataMap[mapKey]/>  
+	          <#if bidding??>
+	              <#if bidding.contentList??>
+	            	  <@global.showList ulClass='list03b' liClass='' data=bidding.contentList;path,imgPath,title,detial>	
+	            		 · <a href="${path}" target="_blank">${title}</a> 
+	            	  </@global.showList>
+	            	  <#else> <li><div class="txt">暂时无信息。 </div></li>
+	              </#if>
+	          </#if>  
+	          <#else> <li><div class="txt">暂时无信息。 </div></li>
+	        </#if>
+       </div>
+	</#macro>	
+	
+<!--#include virtual="${headUrl}"-->
+<div class="section clearfix">
+	<div class="w735 clearfix">
+		<div class="gg_banner ">
+			<img width="715" height="80" src="${resImg}/design/main/zb/bgzhaobiao_gg_01.jpg" alt="招标信息" style="margin-left:12px">
+		</div>
+		<div class="w715">
+			<div class="mod_box ">
+		        <div class="ui_hd">
+		          <h3 class="tit01">政府招标</h3>
+		          <b class="nav_l"></b> <b class="nav_r"></b>
+		        </div>
+	       		<div class="ui_line"></div>
+	        	<div class="ui_bd">
+		           <div class="innerBox">
+	          			<@invit mapKey='1'></@invit>
+	          			<@bidd  mapKey='2'></@bidd>
+	       		   </div>
+	       	       <div class="ui_ft"></div>
+	      	   </div>
+	       </div>
+		   <div class="mod_box ">
+		        <div class="ui_hd">
+		          <h3 class="tit02">医院招标</h3>
+		          <b class="nav_l"></b> <b class="nav_r"></b>
+		        </div>
+	       		<div class="ui_line"></div>
+	        	<div class="ui_bd">
+		           <div class="innerBox">
+	          			<@invit mapKey='3'></@invit>
+	          			<@bidd  mapKey='4'></@bidd>
+	       		   </div>
+	       	       <div class="ui_ft"></div>
+	      	   </div>
+	       </div>		
+			<div class="gg_banner">
+				<img src="${resImg}/design/main/zb/pic715x85.jpg">
+			</div>
+						<div class="mod_box ">
+		        <div class="ui_hd">
+		          <h3 class="tit03">企业招标</h3>
+		          <b class="nav_l"></b> <b class="nav_r"></b>
+		        </div>
+	       		<div class="ui_line"></div>
+	        	<div class="ui_bd">
+		           <div class="innerBox">
+	          			<@invit mapKey='5'></@invit>
+	          			<@bidd  mapKey='6'></@bidd>
+	       		   </div>
+	       	       <div class="ui_ft"></div>
+	      	   </div>
+	       </div>
+		   <div class="mod_box ">
+		        <div class="ui_hd">
+		          <h3 class="tit04">科研机构招标</h3>
+		          <b class="nav_l"></b> <b class="nav_r"></b>
+		        </div>
+	       		<div class="ui_line"></div>
+	        	<div class="ui_bd">
+		           <div class="innerBox">
+	          			<@invit mapKey='7'></@invit>
+	          			<@bidd  mapKey='8'></@bidd>
+	       		   </div>
+	       	       <div class="ui_ft"></div>
+	      	   </div>
+	       </div>				
+		</div>
+	</div>
+	<div class="sidebar"> 
+    <!-- 插入省份栏目 开始 -->
+    <#include  "../includes/province.html"/>
+    <!-- 插入省份栏目 结束 -->
+    
+    <div class="aside"> <img src="${resImg}/design/main/zb/pic240x74.jpg"> </div>
+    <!-- 标书类表栏目 开始 -->
+    
+    <div class="aside cate_biaoshu">
+      <div class="ui_hd">
+        <h3>招标</h3>
+      </div>
+      <div class="ui_bd">
+        <ul class="list">
+          <li>·<a href="${dataMap['1'].parh!'#'}" target="_blank">${dataMap['1'].channelName!''}</a></li>
+          <li>·<a href="${dataMap['3'].parh!'#'}" target="_blank">${dataMap['3'].channelName!''}</a></li>
+          <li>·<a href="${dataMap['5'].parh!'#'}" target="_blank">${dataMap['5'].channelName!''}</a></li>
+          <li>·<a href="${dataMap['7'].parh!'#'}" target="_blank">${dataMap['7'].channelName!''}</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- 标书类表栏目 结束 -->
+    
+    <div class="aside"> <img src="${resImg}/design/main/zb/pic240x140.jpg"> </div>
+    <!-- 最新采购栏目 开始 -->
+    
+    <div class="aside newest_pur">
+      <div class="ui_hd">
+        <h3> 最新中标信息 </h3>
+      </div>
+      <div class="ui_bd">
+        <ul class="list">
+          <#if dataMap['1'].contentList[0]??>
+	          <li> · <a href="${dataMap['1'].contentList[0].path!'#'}" target="_blank">${dataMap['1'].contentList[0].title!''}</a> </li>
+          </#if>
+          <#if dataMap['1'].contentList[1]??>
+	          <li> · <a href="${dataMap['1'].contentList[1].path!'#'}" target="_blank">${dataMap['1'].contentList[1].title!''}</a> </li>
+          </#if>
+          <#if dataMap['3'].contentList[0]??>
+	          <li> · <a href="${dataMap['3'].contentList[0].path!'#'}" target="_blank">${dataMap['3'].contentList[0].title!''}</a> </li>
+          </#if>
+          <#if dataMap['3'].contentList[1]??>
+	          <li> · <a href="${dataMap['3'].contentList[1].path!'#'}" target="_blank">${dataMap['3'].contentList[1].title!''}</a> </li>
+          </#if>
+          <#if dataMap['5'].contentList[0]??>
+	          <li> · <a href="${dataMap['5'].contentList[0].path!'#'}" target="_blank">${dataMap['5'].contentList[0].title!''}</a> </li>
+          </#if>
+          <#if dataMap['7'].contentList[0]??>
+	          <li> · <a href="${dataMap['7'].contentList[0].path!'#'}" target="_blank">${dataMap['7'].contentList[0].title!''}</a> </li>
+          </#if>
+        </ul>
+      </div>
+    </div>
+    <!-- 最新采购栏目 结束 -->
+    <div class="aside"> <a href="http://www.elian.cc/news/index.html"><img src="${resImg}/design/main/zb/pic240x70.jpg"></a> </div>
+  </div>
+</div>
+<!--#include virtual="${footUrl}"-->
+<script src="${resScript}/jquery-1.4.2.min.js"></script>
+<script src="${resScript}/base0530.js"></script>
+<script>myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:265,height:370,txtHeight:'default',duration:350,direction:'left',easing:'easeOut',wrap:false});
+</script>
+	</body>
+</html>

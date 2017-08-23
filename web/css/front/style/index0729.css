@@ -1,0 +1,449 @@
+﻿@charset "utf-8";
+/*重置*/
+body, div, dl, dt, dd, ul, ol, li,h1, h2, h3, h4, h5, h6, pre, code,form, fieldset, legend, input, button,textarea, p, blockquote, th, td,select {margin: 0;padding: 0;}
+fieldset, img{border: 0 none;}
+img{vertical-align: top;}
+:focus {outline: 0;}
+address, caption, cite, code, dfn,em,th, var, optgroup {font-style: normal;font-weight: normal;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
+abbr, acronym {border: 0;font-variant: normal;}
+input, button, textarea,select, optgroup, option {font-family: arial;font-size: inherit;font-style: inherit;font-weight: inherit;}
+code, kbd, samp, tt {font-size: 100%;}
+input, button, textarea, select {*font-size: 100%;}
+ol, ul {list-style: none;}
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: collapse;/*ie8底边消失*/
+border-spacing: 0;}
+caption, th {text-align: left;}
+sup, sub {font-size: 100%;vertical-align: baseline;}
+:link, :visited , ins {text-decoration: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+button{cursor: pointer;}
+.clearfix:after,.nav:after,.section:after,.tab_con:after,.pt03:after,.pt04:after,.list06:after,.list01_lico:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.clearfix,.nav,.section,.tab_con,.pt03,.pt04,.list06,.list01_lico{*zoom:1;}
+
+
+
+
+.topbar:after,.header:after,.province:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.topbar,.header,.province{*zoom:1;}
+
+
+/*
+-----------------
+@global全局
+-----------------
+*/  
+body{color:#333333;font:12px/1.6 "\5b8b\4f53","Tahoma",arial;background-color: #ffffff; }
+a{color:#333333;text-decoration:none;}/*主链接颜色*/
+a:hover{color:#FF6600;text-decoration:underline;}
+
+/*基类*/
+/*.pt01 .pic:hover img,.pt02 a.pic:hover img,.pt03 a.pic:hover img,.pt04 a.pic:hover img{ border-color: #FF6600;}图片加边框*/
+.list01{ font-size: 12px;clear: both;}
+.list01 li{ height: 25px;line-height: 25px;overflow: hidden;}
+.list03{ font-size: 12px;overflow: hidden;}
+.list03 li{ height: 22px;line-height: 22px;overflow: hidden;}
+.list03 li .txt{ float: left;margin-right: 86px;}
+.list03 li .date{ float: left;text-align: left;margin-left: -76px;width: 76px;}
+
+.pt01{ padding:0 0 15px 10px;}
+.pt01 li{ float: left;width: 100px;margin-right: 10px;}
+.pt01 .pic{ display: block;line-height: 0;margin-bottom: 5px;}
+.pt01 .pic img{ margin:0 auto;display: block;padding: 1px;border: 1px solid #e4e4e4;}
+.pt01 .tit{ text-align: center;}
+.pt01 .tit,.pt01 .txt{ display: block;font-size: 12px;line-height: 18px;}
+.pt01 .tit em,.pt01 .txt em{ font-weight: bold;font-style: normal;}
+
+
+.pt02{ padding:5px 0 0 10px;font-size: 12px;overflow: hidden;}/
+.pt02 li{ padding: 6px 0 0 0;}
+.pt02 .pic{ float: left;}
+.pt02 .pic img{ padding: 1px;border: 1px solid #e4e4e4;}
+.pt02 .txt{ line-height: 21px;overflow: hidden;}
+.pt02 .txt span{ display: block;}
+
+.pt03{ padding:0 0 10px;font-size: 12px;}
+.pt03 li{ padding: 15px 0;*zoom:1;}/*li的pic结束标签换行后可不要zoom*/
+.pt03 .pic{ float: left;margin-right: 10px;_margin-right: 7px;}/*margin-right不能放img,否则出现多余虚线框*/
+.pt03 .pic img{ border: 1px solid #e3e3e3;padding: 1px;}
+.pt03 .tit{ line-height: 21px;}/*文字容器*/
+.pt03 .tit a:hover{color:#1D95AE;text-decoration:underline;}
+.pt03 .txt{ line-height: 21px;overflow: hidden;*zoom:1}
+
+.pt04{ font-size: 12px;overflow: hidden;}
+.pt04 .pic{ float: left;}/*实例中补充margin-right的ie hack 20110801*/
+.pt04 .pic img{ border: 1px solid #e3e3e3;padding: 1px;}
+.pt04 .list01_lico{ font-size: 12px;}
+.pt04 .list01_lico li{ height: 22px;line-height: 22px;margin-right: 12px;overflow: hidden;}
+.pt04 .tit{ height: 21px;line-height: 21px;text-align: left;overflow: hidden;}
+.pt04 .pic a{ color:#ffffff;text-decoration:none;}
+.pt04 .pic a:hover{color:#333333;text-decoration:underline;}
+
+.list06{ margin-left: 12px;}
+.list06 li{ float:left;height: 22px;line-height: 22px;margin-right: 12px;padding-left: 9px;overflow: hidden;}/*此处只能用inline*/
+.list06 li{ width: 198px;}
+.list06{ font-size: 12px;clear: both;overflow: hidden;}
+
+.list07{ font-size: 14px;clear: both;}
+.list07 li{ overflow: hidden;}
+.list07 li a{ padding-left: 9px;}
+.list01_lico li{ height: 22px;line-height: 22px;padding-left: 9px;overflow: hidden;*vertical-align:middle}
+
+/*结构*/
+.topbar,.header,.nav,.section,.footer{ width: 980px;margin: 0 auto;}
+/*模块结构*/
+.section_m{ width: 750px;float: left;}
+.section_460{ width: 460px;float: left;}
+.section_300{ width: 300px;float: left;}
+/*微软雅黑字体定义*/
+.mod_tab_bd .tit,.quick_links h3.tit{ font-family: \5fae\8f6f\96c5\9ed1,arial;}
+/*隐藏文字*/
+/*.link_btn{ text-indent: -1024px;position: relative;overflow: hidden;}*/
+
+/*公用边框*/
+.ui_border,.quick_links{ border: 1px solid #FC9206;}
+/*公用文字颜色*/
+.mod_side_hd .tit a,.mod_side_bd .tit a{ color: #333333;}
+.mod_tab_hd h3 a:hover,.sidebar .tit a:hover{ color: #ff6600;}
+.mod_tab_bd .tit a,.tab_con .hos_category_tit,.goods_tit{ color: #95C60E;}/*绿色文字标题*/
+
+/*精灵图*/
+.list01_lico li,.tab_con .list03 li,.list06 li{ background: url('../images/li_dot.gif') no-repeat 0 8px;}
+.quick_links_btn li,.quick_links_btn li a{ background: url('../images/ico/index_ico.png') no-repeat -100% 0;}
+.mod_tab_hd,.mod_side_hd{ background: url('../images/tab_hd_bodyBg.png') no-repeat -100% 0;}
+.ui_bottom_line{ background: url('../images/dot_line.gif') repeat-x 0 0;height: 1px;}/*分隔底部边线*/
+/*焦点图*/
+.focus{ margin-bottom: 10px;}
+/*==========================选项卡公用结构*/
+.mod_tab{ clear: both;margin-bottom: 10px;}
+.mod_tab_hd{  background-position: right 0;border-left: 1px solid #FC9206;height: 35px;}
+/*选项卡方式2(163):头部背景包括上左右边线*/
+
+
+
+/*==============实例化内容开始==区域1开始==================*/
+/*====修复双排新闻的容器宽度溢出bug(无需额外添加一层包含层)20110801====*/
+#tab11_bd .list06{ margin-right: -10px}
+#tab7_bd .list06,#tab9_bd .list06{ margin-right: -4px}
+.recomm_hos .list06{ margin-right: -10px}
+#tab8_bd .list06,#tab110_bd .list06{ margin-right: -9px}
+/*====修复双排新闻的容器宽度溢出bug(无需额外添加一层包含层)20110801====*/
+/*==========选项卡定高度*/
+#tab11_bd{ height: 190px;}
+#tab9_bd{ height: 203px}
+/*选项卡定高度==========*/
+/*选项卡1开始*/
+#tab11_bd .list06 li{ margin-right: 14px}
+/*选项卡2开始*/
+/*第一区域-主栏目子标题*/
+
+/*快速链接*/
+.quick_links{ margin-bottom: 10px;}
+.quick_links .item{ float: left;}
+.quick_links h3.tit{ font-size: 16px;text-align: center;}
+.quick_links .list li{ height: 21px;line-height: 21px;}
+.quick_links_list{ width: 110px;}
+.quick_links_list li{ margin: 0 5px;overflow: hidden;}
+.quick_links_btn{ border-left: 1px solid #FDC882;background-color: #FFF3DE;width: 187px;height: 120px;}
+.quick_links_btn li{ float: left;width: 88px;height: 35px;background-position: 0 0;margin: 5px 0 0 4px;_margin-left:2px}
+.quick_links_btn li a{ display: block;height: 35px;line-height: 35px;text-align: center;padding-left: 18px;color: #ffffff;}
+.quick_links_btn li a:hover{ color: #ffffff;}
+.quick_links_btn .ico01{ background-position: 8px -41px;}
+.quick_links_btn .ico02{ background-position: 8px -76px;}
+.quick_links_btn .ico03{ background-position: 8px -111px;}
+.quick_links_btn .ico04{ background-position: 8px -146px;}
+.quick_links_btn .ico05{ background-position: 8px -181px;}
+.quick_links_btn .ico06{ background-position: 8px -216px;}
+/*招标信息*/
+#tab2_bd .list01_lico{ padding: 6px 12px 0px}
+/*右边快速链接下的选项卡盒子*/
+.tab_con .list03{ margin: 0 0 3px 12px;padding-top: 6px;}
+.tab_con .list03 li{ padding-left: 9px;*vertical-align: middle;}
+.tab_con .list03 li .txt{ width: 180px;}
+
+/*区域2实例化开始*/
+.hos_category_tit{ margin-right: 2px;}
+.recomm_hos .list06 li{ width: 210px;margin-right :12px;overflow: hidden;padding-left: 0;background-image: none;height: 25px;line-height: 25px}
+
+#scrollDiv .pt02{ height: 200px;padding-top:0;}/*修复抖动，pt02上不能加padding*/
+
+.recomm_doc h3{ margin-right: 15px}
+.recomm_doc .sub_tit{ float: left;line-height: 31px;color: #FF6600;font-weight: bold}/*推荐医生副标题20110805*/
+/*产品展示*/
+.goods_show{ height: 185px;}
+.goods_show .pt01{ padding: 5px 0 0 15px;;_margin-right: -7px;}
+.goods_show .pt01 .txt{ height: 36px;overflow: hidden;}
+.goods_show .pt01 .price{ display: block;}
+.goods_show .pt01 .tit{ margin: 8px 0 5px;}
+.goods_show .pt01 .tit,.goods_show .pt01 .price{ height: 18px;overflow: hidden;}
+.goods_show .pt01 .price em{ color: #FC9206;font-weight: bold;}
+.goods_show .pt01 .price .nor{ font-weight: normal;}
+
+#tab6_bd .pt01{ padding-left: 10px;}
+#tab6_bd .pt01{ _margin-right: -2px;}
+#tab6_bd .pt01 li{ width: 90px;margin-right: 5px;}
+
+/*选项卡7*/
+.mod_tab_bd .pt04{ padding: 6px 0}
+.mod_tab_bd .pt04 .pic{ margin-left: 12px;margin-right: 15px;_margin-right: 12px}
+.mod_tab_bd .pt04 .tit{ font-size: 16px;margin-right: 16px;}
+
+.mod_tab_bd .ui_bottom_line{ display: block;height: 16px;background-position: 0 50%;overflow: hidden;margin:0 15px}
+/*选项卡8*/
+.section_300 .list06 li{ width: 120px;float: left}
+.section_300 .pt04 .last_list{ margin: 0 0 0 12px}
+/*选项卡9*/
+/*各区域边栏实例化*/
+.mod_side_hd{ height: 31px;background-position: right 0;border-left: 1px solid #FC9206;}
+.mod_side_hd .tit{ height: 31px;line-height: 31px;text-indent: 15px;}
+.new_medicinal{ height: 389px;}
+.mod_side_bd{ background-color: #FFF3DE;}
+.aside .mod_side_bd{ padding-bottom: 10px;}
+.mod_side_bd .tit{ margin: 0 0 0 15px;height: 25px;line-height: 25px;}
+.mod_side_category{ margin: 0 0 0 15px;}
+.mod_side_category a{ float: left;white-space: nowrap;width: 50px;margin-right: 10px;}
+.mod_side_bd .ui_bottom_line{ clear: both;margin: 6px 15px;overflow: hidden;}
+/*企业分类*/
+.mod_side_category .list01_lico{ margin-right:12px}
+.mod_side_category .list01_lico a{ float: none;white-space: normal;width: auto;margin-right: 0px;}
+/*==========各种广告位===============*/
+.aside,.gg_banner_200,.gg_banner_300,.gg_banner_460{ margin-bottom: 10px;}
+.gg_banner_200{ height: 80px}
+.gg_banner_300{ height: 80px}
+.gg_banner_460{ height: 80px;}
+.gg_banner_980{ width: 980px;margin: 0 auto 10px;}
+.gg_banner_980 img{ width: 980px;height: 90px;}
+
+
+/*=======================================焦点图滚动样式=======================================*/
+.wrap_focus{ height: 235px;margin-bottom: 10px;overflow: hidden;}/*高度放这里是防止图片没加载时过高;of放在这里是配合高度一起使用超出隐藏 ie6 bug*/
+.focus{ width: 340px;}/*
+*/
+/*=========焦点图========*/
+.mF_tb .pic{position:absolute;vertical-align: middle;}
+.mF_tb .pic li{position:relative;overflow:hidden;}
+.mF_tb .left li{float:left;}
+.mF_tb .right li{float:right;}
+.mF_tb .txt li{position:absolute;z-index:2;bottom:0px;width:100%;height:38px;line-height:38px;display:none;}/*默认标题高度*/
+.mF_tb .txt li a{position:relative;z-index:1;color:#fff;padding-left:16px;font-size:14px;font-weight:bold;text-decoration:none;}/*标题样式*/
+/*.mF_tb .txt li p{ color: #ffffff;position: relative;z-index: 5;}*/
+.mF_tb .txt li span{display:block;height:100%;position:absolute;top:0;left:0;background:#000;filter:alpha(opacity=50);opacity:0.5;}
+.mF_tb .num{position:absolute;z-index:3;bottom:6px;right:6px;}/*按钮样式*/
+.mF_tb .num li{float:left;}
+.mF_tb .num li a{ background:#ffffff}
+.mF_tb .num li a{float:left;color:#ff6600;width:18px;height:18px;position:relative;line-height:18px;text-align:center;margin-right:3px;cursor:pointer;text-decoration:none;background-position: -23px -3px;border:1px solid #ff6600}
+.mF_tb .num li.current a,.mF_tb .num li.hover a{ background-color: #ff6600;color:#ffffff;font-weight:bold;width: 20px;height:20px;line-height:20px;top:-1px;text-align: center;_overflow: hidden;}
+
+
+/*2012 01-11 add*/
+.quick_links_list h3.tit{ background: url('../images/new_caigou.png');height: 30px;line-height: 30px;text-align: center;font-size: 12px;font-weight: bold;color: #FF6600;}
+.new_medicinal .gg_banner{ margin: 5px 0 0 10px;}
+#tab11_hd .cur{ width: 94px;}
+
+
+
+
+
+
+
+
+
+/*
+-----------------
+@footer脚部
+-----------------
+*/ 
+.footer{ padding-bottom: 30px;}
+.footer p{ text-align: center;}
+.footer .tips{ border: 1px solid #cccccc;background: #eeeeee;color: #ff6000;height: 22px;line-height: 22px;}
+.bottom_nav{ text-align: center;height: 28px;line-height: 28px;margin-top: 5px;}
+
+/*TODO
+@对于基类的一些hack,后期应该从基类分离出来,在实例化时,按需加进去,
+@如图文列表的[ _margin-right:3px ],列表中li的 [ *vertical-align:middle ];都可以分离出来;
+@基类文件为了让使用者明白,可以不删除,但是用到实际项目中的基类,就必须移除到实例化中;
+好处是减少了不必要的重新渲染;*/
+/*框架，模块化的容器不能添加破坏盒子模型的属性。只能加到实例化的元素上面;
+如<div class="mod_tab_bd" id="tab8_bd">
+<ul class="list01_lico clearfix">
+在tab8_bd list01_lico上定义属性，如padding，margin等
+20110801
+*/
+.section_340{ width: 340px;float: left;overflow:hidden}
+.section_400{ width: 400px;float: right;}
+.section_730{ width: 730px;float: left;}
+.sidebar{ width: 240px;float: right;}
+
+/*精灵图*/
+.video-news .list li,.vip-ico,.fast-channel .ui-hd h3,.fast-channel .ui-hd .ico,.find-hos h4.ui-tit,.recomm-doctor .link-btn,.mod-recomm-tab-hd a{ background: url('../images/index-ico-sprite.jpg') no-repeat -100% 0;}
+.mob-tab .mod-tab-hd h3,.mob-tab .mod-tab-hd .cur,.mod-ui-box,.mod-ui-box h3.tit,.sidebar-tab-hd,.mod-recomm-tab-hd h3,.aside-hd{ background: url('../images/index-repeat-sprite.jpg') repeat-x 0 -100%;}
+.mod-ui-box h3.tit{ background: url('../images/index-tit-sprite.jpg') no-repeat -100% 0;}
+
+.topnews2 .list li,.find-hos .list,.line,.blog-news li,.hos-rank .pt02 li,.recomm-hos .wrap-list01{ background: url('../images/bottom_dot.gif') repeat-x 0 bottom;}
+.wrap-doctor-list,.recomm-hos .list01,.wrap-qiye-list{ background: url('../images/vertical-line.gif') no-repeat -100% 0;}
+
+/*公用元素*/
+.video-news,.mob-tab .mod-tab-hd,.mob-tab .mod-tab-hd h3,.mob-tab .mod-tab-bd,.sidebar-tab-hd,.sidebar-tab-bd,.aside-hd,.aside-bd{ border: 1px solid #dddddd;}/*灰色边框*/
+.topnews h1 a,.topnews .txt .more,.topnews .txt .more:hover,.topnews .sub-tit a{ color:#FF6600}
+.gutter10{ height: 10px;overflow: hidden;}
+.line{ height: 1px;margin: 15px;display: block;background-position: 0 0;overflow: hidden;clear: both;}/*横向分割线-背景重新定位,加上overflow，解决ie6*/
+.tri-line{ background: url('../images/tri-line.gif') repeat-x 0 0;height: 3px;*zoom:1;position: relative;top: 20px;font-size:0;display: block;z-index: 1;}/*横向分割线*/
+
+
+/*侧边栏公用选项卡头部*/
+.sidebar-tab-hd{ background-position: 0 -72px;border-bottom: 0 none;margin-bottom: -1px;padding-left: 10px;height: 35px;}
+.sidebar-tab-hd h3{ float: left;padding: 0 10px;overflow: hidden;position: relative;height: 27px;line-height: 31px;top: 5px;font-size: 14px;}
+.sidebar-tab-hd .cur{ border: 1px solid #dddddd;border-bottom: 1px solid #ffffff;border-top: 2px solid #ff8000;background: #ffffff;line-height: 27px;font-weight: bold;}
+
+
+/*盒子高度*/
+#tab2_bd{ height: 198px;}
+#tab3_bd{ height: 122px}
+
+/*实例化开始*/
+.video-news{ padding: 6px 0 6px 9px;overflow: hidden;width:329px;*zoom:1}
+.video-news .wrap{ width: 360px;}
+.video-news .mod-box{ float: left;width: 150px;margin-right: 20px;}
+.video-news .pic{ margin-bottom: 6px;}
+.video-news .list li{ background-position: -160px 4px;padding-left: 19px;height: 21px;overflow: hidden;}
+
+/*热点新闻*/
+.mob-tab{ border-top: 0 none;}
+.mob-tab .mod-tab-hd{ border: 0 none;overflow: hidden;border-left: 1px solid #dddddd;}
+.mob-tab .mod-tab-bd{ border-top: 0 none;padding: 0px 0px;}
+.mob-tab .tab-con{ padding-top: 8px;overflow: hidden;*zoom:1;margin: 0 10px;width: 378px;}
+.tab-con{ display: none;}
+
+.mob-tab .mod-tab-hd h3{ background-position: 0 -36px;height: 35px;line-height: 35px;width: 130px;text-align: center;float: left;border-bottom: 0 none;margin-left: -1px;font-size: 14px;}
+.mob-tab .mod-tab-hd .cur{ background-position: 0 0;width: 136px;font-weight: bold;}
+.mob-tab .mod-tab-hd a:hover{ color: #333333;}
+
+
+
+.topnews{ height: 235px;margin-bottom: 10px;}
+.topnews h1{ font-family: 黑体;font-size: 20px;text-align: center;margin-bottom: 6px;}
+.topnews h1 a{ }
+.topnews .txt{ text-indent: 2em;color:#666666;margin-bottom: 6px;}
+.topnews .txt .more{ color:#FF6600}
+.topnews .sub-tit{ color: #999999;margin-bottom: 6px;display: block;}
+.topnews .list,.topnews2 .list{ margin-right: -10px;}
+.topnews .list li,.topnews2 .list li{ float: left;font-size: 14px;margin-right: 10px;height: 25px;line-height: 25px;width: 182px;overflow: hidden;}
+
+#tab3_bd .tab-con{ overflow: hidden;*zoom:1;}
+.topnews2 .list{ margin-bottom: -1px;float: left;}
+.topnews2 .list li{ font-size: 12px;float: left;height: 28px;line-height: 28px;overflow: hidden;float: left;}
+
+/*头条板块-侧边栏*/
+.top-con .sidebar{ width: 220px;float: right;}
+.top-con .sidebar-tab-hd{ height: 26px;background: #f5f5f5;}
+.top-con .sidebar-tab-hd h3{ height: 22px;line-height: 24px;top: 2px;font-size: 12px;}
+.top-con .sidebar-tab-hd .cur{ line-height: 22px;font-weight: normal;border-top: 1px solid #dddddd;}
+.rapid-link .sidebar-tab-bd{ height: 65px;}
+.sidebar-tab-bd{ }
+.sidebar-tab-bd .tab-con{ padding: 5px 0 0 10px;}
+.sidebar-tab-bd .vip-news{ padding: 13px 0 0 85px;position: relative;*zoom:1}
+.vip-news .i{ display: block;}
+.vip-ico{ background-position: -75px -145px;width: 65px;height: 45px;position: absolute;top: 10px;left: 10px;}
+.elian-zt-news .list li{ height: 19px;line-height: 19px;overflow: hidden;}
+
+/*快速通道*/
+.fast-channel .ui-hd{ background: #f5f5f5;position: relative;height: 40px;border: 1px solid #dddddd;border-top: 2px solid #FA6329;border-bottom: 0 none;}
+.fast-channel .ui-hd h3{ background-position: 0 0;width: 100px;height: 35px;position: absolute;top: 5px;left: 10px;text-indent: -1024px;overflow: hidden;padding: 0;}
+.fast-channel .ui-hd .ico{ background-position: -107px 0;width: 40px;height: 31px;position: absolute;top: 0px;right: 0;}
+.fast-channel h3{ padding: 0 5px;}
+.fast-channel .sidebar-tab-hd{ border-top: 0 none;}
+.fast-channel .sidebar-tab-bd{ height: 161px;}
+.find-hos .list{ padding-bottom: 5px;margin: 0 8px 8px 0;}
+.find-hos h4.ui-tit{ background-position: 0 -40px;width: 81px;height: 16px;line-height: 16px;color: #ffffff;text-indent: 5px;}
+.find-hos .i{ display: block;margin-top: 5px;}
+.find-hos .i a,.mod-find a{ white-space: nowrap;margin-right: 5px;}
+
+.rapid-guhao li{ height: 25px;line-height: 25px;}
+.rapid-guhao .link-btn{ background: #FF8000;display: block;padding: 0 6px;height: 25px;line-height: 25px;width: 54px;color: #ffffff;margin-left: 66px;font-weight: bold;}
+
+/*区域2*/
+/*公用主内容区盒子*/
+.mod-ui-box{ background-position: 0 -170px;border: 1px solid #FFC858;}
+.mod-ui-box .mod-hd{ height: 50px;}
+.mod-ui-box h3.tit{ width: 71px;height: 28px;text-indent: -1024px;overflow: hidden;margin-left: 12px;}
+.mod-ui-box h3.t01{ background-position: 0 0;}/*医生推荐*/
+.mod-ui-box h3.t02{ background-position: 0 -30px;}/*医院推荐*/
+.mod-ui-box h3.t03{ background-position: 0 -60px;}/*企业推荐*/
+.mod-ui-box h3.t04{ background-position: 0 -90px;}/*药品推荐*/
+.mod-ui-box h3.t05{ background-position: 0 -120px;}/*健康资讯*/
+.mod-ui-box h3.t06{ background-position: 0 -155px;}/*母婴*/
+
+/*医生推荐*/
+.recomm-doctor{ }
+.recomm-doctor .wrap-pt02{ width: 728px;overflow: hidden;*zoom:1;display: block;border-bottom: 1px solid #ffffff;}
+.recomm-doctor .pt02{ margin-left: 20px;width: 730px;padding-left: 0;}
+.recomm-doctor .pt02 li{ margin-right: 25px;float: left;width: 155px;}
+.recomm-doctor .pt02 .pic{ margin-right: 10px;_margin-right:7px;}
+.recomm-doctor .pt02 img{ padding: 0;}
+.recomm-doctor .link-btn{ background-position: -85px -39px;width: 71px;height: 19px;line-height: 19px;display: block;text-align: center;}
+.recomm-doctor .pt02 .txt span{ height: 24px;line-height: 24px;}
+.wrap-doctor-list,.wrap-qiye-list{ background-position: 50% 0;width: 728px;}
+.wrap-doctor-list{ *background-position: 366px 0;}
+.doctor-list{ margin-left: 20px;width: 750px;height:129px}
+.doctor-list li{ float: left;margin: 0 65px 5px 0;width: 310px;vertical-align: middle;}
+.doctor-list .i{ float: left;}
+.doctor-list .tit02{ color: #6f6f6f}
+.doctor-list .tit03 a{ color: #007878}
+.doctor-list .tit04 a{ color: #FF8000}
+.doctor-list span{ display: block;height: 19px;line-height: 19px;overflow: hidden;}
+.hos-name{ width: 145px;margin-right: 10px;}
+.doc-name{ width: 96px;margin-right: 5px;}
+
+/*博客资讯*/
+.blog-news .tab-con{ height: 274px;}
+.blog-news .list01{ overflow: hidden;*zoom:1}
+.blog-news li{ margin-right: 8px;height: 28px;line-height: 28px;margin-bottom: -1px;vertical-align: middle;}
+
+/*推荐tab模块*/
+.mod-recomm-tab-hd{ position: absolute;top: 20px;right: 10px;border-right: 1px solid #dddddd;z-index: 2;}
+.mod-recomm-tab-hd h3{ float: left;background-position: 0 -139px;height: 30px;line-height: 30px;padding: 0 15px;border: 1px solid #dddddd;border-bottom: 0 none;border-right: 0 none;cursor: pointer;}
+.mod-recomm-tab-hd .cur{ background-position: 0 -108px;font-weight: bold;}
+.mod-recomm-tab-hd a{ background-position: -171px -34px;padding-left: 12px;}
+
+
+/*推荐医院+医院排行*/
+.recomm-hos .mod-hd{ position: relative;margin-bottom: 10px;}
+.recomm-hos{ width: 728px;overflow: hidden;*zoom:1}
+.recomm-hos .wrap-pt02{ padding-bottom: 15px;overflow: hidden;*zoom:1;display: block;}
+.recomm-hos .wrap-list01{ background-position: 0 0;padding-top: 16px;margin: 0 0px 0 15px;overflow: hidden;float: left;}
+.recomm-hos .pt02{ margin-left: 15px;width: 750px;padding-left: 0;}
+.recomm-hos .pt02 li{ margin-right: 15px;float: left;width: 225px;}
+.recomm-hos .pt02 .pic,.hos-rank .pt02 .pic{ margin-right: 6px;_margin-right:3px;}
+.recomm-hos .pt02 .pic img,.hos-rank .pt02 .pic img{ border: 1px solid #dddddd;padding: 1px;}
+.recomm-hos .pt02 .txt span,.hos-rank .pt02 .txt span{ height: 21px;overflow: hidden;line-height: 21px;display: block;}
+.recomm-hos{ margin-bottom: 10px;padding-bottom: 2px;}
+.recomm-hos .list01{ float: left;clear: none;width: 222px;background-position: right 0;margin: 0 -1px 0 0px;padding-left: 12px;}
+.recomm-hos .list01 li{ line-height: 19px;}
+
+/*普通侧边栏模块*/
+.aside-hd{ background-position: 0 -72px;border-bottom: 0 none;height: 35px;line-height: 35px;}
+.aside-hd h3{ font-size: 14px;font-weight: bold;text-indent: 10px;}
+.hos-rank .pt02{ overflow: hidden;}
+.hos-rank .pt02 li{ overflow: hidden;*zoom:1;margin: 0 10px 5px 0;padding-bottom: 8px;}
+.hos-rank .pic{ position: relative;}
+.hos-rank b{ background: url('../images/rank-ico.gif') no-repeat 0 0; position: absolute;bottom: 0;left: 0;width: 37px;height: 36px;font-size: 18px;font-family: arial;font-weight: bold;font-style: italic;color: #ffffff;text-indent: 6px;line-height: 48px;overflow: hidden;}
+.hos-rank .list01{ padding: 0 10px;}
+.hos-rank .category{ color: #AD3D0E;}
+
+/*企业推荐*/
+.recomm-qiye{ }
+.recomm-qiye .mod-bd{ width: 728px;overflow: hidden;}
+.recomm-qiye .wrap-con{ width: 740px;height: 240px;}
+.recomm-qiye .line{ width: 695px;}
+.recomm-qiye .pt01{ padding-bottom: 0;}
+.recomm-qiye .pt01 li{ width: 105px;margin-right: 15px;}
+.recomm-qiye .pt01 .tit{ height: 18px;overflow: hidden;}
+.recomm-qiye .list01{ width: 350px;float: left;clear: none;padding-left: 10px;}
+.recomm-qiye .list01 li{ float: left;width: 175px;height: 26px;line-height: 26px;}
+
+.other-blog-news .pt03 .more,.other-blog-news .pt03 .more:hover{ color: #ad3d0e;}
+.other-blog-news .pt03{ padding: 10px;}
+.other-blog-news .pt03 .tit a{ font-size: 14px;color: #FA6329;}
+.other-blog-news .list01{ padding: 0 10px;}

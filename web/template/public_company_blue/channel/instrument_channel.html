@@ -1,0 +1,28 @@
+<#include "../includes/header.html"/>
+<#include "../includes/com_header.html"/>
+<#--顶部第一栏begin-->
+<link rel="stylesheet" href="${resStyle}/v2/blue/productList.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="${resStylePubl}/pager.css" type="text/css"/>
+<div class="section">
+    <#include "../includes/instrument_content.html">
+    <div class="sidebar">
+         <div class="gutter"></div>
+    	 <div class="aside" id="channelDiv">
+		     <#include "../includes/instrument_channel.html">
+		 </div>
+        <!--侧边 -->
+		<div class="aside comfile">
+        <#include "../includes/side_1.html"/>
+        </div>
+        <div class="gutter"></div>
+        <div class="aside com_intro">
+        <#include "../includes/side_2.html"/>
+        </div>
+        <div class="gutter"></div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+<#include "../includes/com_footer.html"/>
+</html>

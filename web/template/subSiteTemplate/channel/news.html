@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/hainan/ylnews/index.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#macro-->	
+		<#import '../include/global.html' as global/>
+		<#macro main mapKey isNav>
+				<#if isNav>
+					<#local size=dataMap[mapKey]?size/>
+					<#local m=dataMap[mapKey]/>
+					<#list 1..size as index>
+						<#if 1==index>
+							<h3 class="cur" onmouseover="overTab(2,${index},'h3','div')" onmouseout="outTab()"> 
+								<a href="${m['${index}'].path}" target="_blank">${m['${index}'].channelName}</a> </h3>
+						<#else>
+							<h3 onmouseover="overTab(2,${index},'h3','div')" onmouseout="outTab()"> 
+								<a href="${m['${index}'].path}" target="_blank">${m['${index}'].channelName}</a> </h3>
+						</#if>
+					</#list>
+				</#if>
+				<#if !isNav>
+					<#local size=dataMap[mapKey]?size/>			
+					<#list 1..size as index>						
+						<#local subMain=dataMap[mapKey]['${index}']/>
+						<div class="tab_con" style="display:<#if index==1>block<#else>none</#if>;">				
+						  <#if subMain.contentList??>
+						  	 <#list 0..1 as i>
+						  	 	<#if subMain.contentList[i]??>	
+								 	 <h2> <a href="${subMain.contentList[i].path}" target="_blank">
+								 	  <@global.showTitle title=(subMain.contentList[i].title)!'' titleNum=50/>
+								 	 </a> </h2>
+						         	 <p class="details">
+						         	 <@global.showTitle title=(subMain.contentList[i].detial)!'' titleNum=55/>
+						         	  </p>				         	 
+					         	 </#if>
+					  		 </#list>
+					  		 <#if subMain.contentList[2]??>	
+					  		 	<span class="ui_line"></span>	
+								<ul class="list01 clearfix">
+							  	 <#list 2..subMain.contentList?size as i>
+							  	 	<#if subMain.contentList[i]??>	
+								  			<li> · <a href="${subMain.contentList[i].path}" target="_blank">
+								  			<@global.showTitle title=(subMain.contentList[i].title)!'' titleNum=50/>						  			
+								  			</a> </li>
+							  	 	 </#if>
+						  		 </#list>	
+				  			  </ul>	
+					  		 </#if>			  		 
+						  </#if>		          
+				        </div>
+					</#list>	        
+				</#if>		        
+			</#macro>
+			
+			<#macro middle mapKey>
+			  <div class="ui_bd02">
+			    <div class="ui_hd clearfix"> <span class="ui_tit ui_tit01">${dataMap[mapKey].channelName}</span> <a class="more" href="${dataMap[mapKey].path}" target="_blank">更多&gt;&gt;</a> </div>    
+			    <#--专题	-->
+			    <div class="bd">
+			      <#if dataMap[mapKey].imgContentList??>
+			      	 <@global.showList ulClass='pt03' liClass='' data=dataMap[mapKey].imgContentList;path,imgPath,title,detial>
+			      	 	<h4 class="tit"> <a href="${path}" target="_blank">${title}</a> </h4>
+						          <a class="pic" href="${path}" target="_blank"><img src="${imgPath}" width="130" height="100" alt="${title}"> </a>
+						          <p class="txt">
+						          <@global.showTitle title=detial!'' titleNum=45/>
+						 <a class="more" href="${path}" target="_blank">[详细]</a> </p>
+			      	 </@global.showList>		      	 
+			      </#if>	      
+			    </div>
+			  </div>
+			</#macro>		
+			
+			<#macro noStyleSideList mapKey ulClass hasNumber titleNum>	
+				<#if dataMap[mapKey].contentList??>
+					<ul class="${ulClass}"> 
+					<#local i=0/>
+					<#list dataMap[mapKey].contentList as item>
+						<#local i=i+1/>
+						<li>
+							<#if hasNumber>
+								<span class="num">${i}</span>
+							</#if>
+							<a target="_blank" href="${item.path}">
+							<@global.showTitle title=(item.title)!'' titleNum=titleNum/>
+							</a>
+						</li>
+					</#list>
+					</ul>
+				</#if>		
+			</#macro>	
+			
+			<#macro left1 mapKey>
+			  <div class="w420">
+		        <div class="hd clearfix">
+		          <h4 class="tit"> 最近更新 </h4>
+		          <a class="more" href="${dataMap[mapKey].path}" target="_blank">更多</a>
+		        </div>        
+		        <!--行业政策 -->
+		        <div class="bd">
+		        	<#if dataMap[mapKey].imgContentList??>
+				  		<@global.showList ulClass="pt04" liClass="pic" data=dataMap[mapKey].imgContentList;path,imgPath,title,detial>		        
+							<a href="${path}" target="_blank"><img src="${imgPath}" width="120" height="120" alt="">
+				       	  	  <span class="tit">
+				       	  		  <@global.showTitle title=title!'' titleNum=50/>
+				       	  	  </span>
+				       	  	</a> 
+						</@global.showList>
+				     </#if>                    
+		          <div class="news_list">
+		            <#if dataMap[mapKey].contentList??>
+		            	<#local items=dataMap[mapKey].contentList/>
+		           		<h5 class="tit"> <a href="${items[0].path}" target="_blank">${items[0].title}</a> </h5>
+					    <ul class="list01">	
+			            <#list items as item>	              
+			              <li> · <a href="${item.path}" target="_blank">${item.title}</a> </li>	              
+			            </#list>
+			            </ul>
+			         </#if>
+		          </div>
+		        </div>
+		      </div>
+			</#macro>
+		<#macro left mapKey>
+			<li class="item">
+		      <div class="sub_hd">
+		        <h4 class="tit"> 
+		        <@global.showTitle title=(dataMap[mapKey].channelName)!'' titleNum=50/>
+		        </h4>
+		        <a class="more" href="${(dataMap[mapKey].path)!''}" target="_blank">更多
+		        &gt;&gt;</a> </div>        
+		        <div class="sub_bd">         	
+		        	<#if (dataMap[mapKey].imgContentList)??>  
+		        		<#local item=dataMap[mapKey].imgContentList[0]/>      	
+			        	<a href="${item.path}" class="pic" target="_blank"> <img src="${item.imgPath}" width="300" height="150"> </a>
+				        <h5 class="tit"> <a href="${item.path}" target="_blank">
+				        	<@global.showTitle title=item.title!'' titleNum=50/>
+						</a> </h5>
+				        <p class="txt"><@global.showTitle title=item.detial!'' titleNum=40/><a href="${item.path}" class="more" target="_blank">[详细]</a> </p>
+		        	</#if>
+		        	<#if (dataMap[mapKey].contentList)??>
+				        <span class="ui_line"></span>
+				        <@global.showList ulClass="list01" liClass="" data=dataMap[mapKey].contentList;path,imgPath,title,detial>		        
+							· <a href="${path}" target="_blank"><@global.showTitle title=title!'' titleNum=50/></a>
+						</@global.showList>
+				  </#if>
+		      </div>
+		     </li>
+		</#macro>
+			
+		<#macro macro11 mapKey>
+			<#local data=dataMap[mapKey]/>
+			<div class="mod_side_hd clearfix">
+				<#if data??>
+						<h3 class="tit">
+							<a href="${data.path!'#'}" target="_blank">
+								${data.channelName!''}
+							</a>
+						</h3>
+				</#if>
+			</div>
+			<div class="mod_side_bd">
+				<#if data??> 
+					<#if (data.imgContentList[0])??>
+						<div class="pt03">
+							<a class="pic" target="_blank" href="${data.imgContentList[0].path!'#'}"> <img
+									width="70" height="90"
+									src="${data.imgContentList[0].imgPath!''}"
+									alt=""> </a>
+							<p class="txt">
+								<@global.showTitle title=data.imgContentList[0].detial!'' titleNum=50/>
+								<a class="more"	href="${data.imgContentList[0].path!'#'}">[详细]</a>
+							</p>
+						</div>
+					</#if>
+					<div class="ui_line"></div>
+					<#if (data.contentList)??>
+						<#local	size=data.contentList?size/> 
+						 <@global.showList3 ulClass='list01' liClass='' data=data.contentList;item>
+						 	<div class="txt">·<a href="${item.path!'#'}">${item.title!''} </a></div>
+							<span class="name"> <a class="name" href="${item.path!'#'}"> ${item.time!''}</a> </span>
+				      	 </@global.showList3>	
+					</#if>
+			 </#if>
+			</div>
+		</#macro>
+
+		<!--#macro-->
+		<!--#include virtual="${headUrl}"-->
+		<div class="section">
+			<div class="wrap_topNews clearfix">
+			  <!--#--><!--#1-->
+			  <div class="wrap_focus">        
+			      <div class="focus" id="index_Focus" style="visibility:hidden">
+			      <div class="loading"><span>载入中,请稍候...</span></div>
+			          <@global.PowerPoint mapKey='1' ulClass='pic' liClass='';title,path,imgPath>
+		          	  	<a href="${path}" target="_blank"><img src="${imgPath}" width="265" height="370" alt="${title}"/></a>
+		          	  </@global.PowerPoint>		         
+			      </div>
+		      </div>
+		      <!--#-->
+		      <!--#--><!--#2-->
+		      <div class="w440 topNews" style="overflow: hidden;">
+			      <div class="tab2_hd clearfix" id="tab2_hd">
+		    		 <@main mapKey='2' isNav=true/>
+			      </div>
+			      <div class="tab2_bd" id="tab2_bd"> 
+			         <@main mapKey='2' isNav=false/>
+			      </div>
+		      </div>
+		      <!--#-->
+		    </div>
+		    <!--#--><!--#3-->
+			<div class="sidebar yigai_news">	
+				<@noStyleSideList mapKey='3' ulClass='list01' hasNumber=false titleNum=20/>
+			</div>
+			<!--#-->
+		</div>
+		<!--#--><!--#4-->
+		<div class="section zhuanti">
+			<@middle mapKey='4'/>
+		</div>
+		<div class="section">
+			<a href="http://www.elian.cc/news/#">
+		    	<img src="${resImg}/design/main/ylnews/news980ad01.jpg" width="980" height="90">
+		    </a>
+		</div>
+		<!--#-->
+		<#-- 行业政策  国内新闻 -->
+		<div class="section">
+  			<div class="w710 mod_news_box">
+    			<div class="mod_ui_hd clearfix">
+      				<div class="wrap_ui_tit">
+        				<h3 class="ui_tit ui_tit05"> 行业政策 </h3>
+      				</div>
+      				<b class="ui_tit_right"></b>
+      			</div>
+    			<div class="mod_bd ui_bd02 clearfix">
+    				<!--#--><!--#5-->
+      				<@left1 mapKey='5'/>
+      				<!--#-->
+      				<!--#--><!--#6-->
+      				<div class="w230 rank_list">
+        				<div class="ui_hd">
+          					<h5 class="tit"> 点击排行榜 </h5>
+        				</div>
+        				<@noStyleSideList mapKey='6' ulClass='list' hasNumber=true titleNum=12/>        
+      				</div>
+      				<!--#-->
+    			</div>
+  			</div>
+  			<!--#--><!--#7-->
+  			<div class="w260 blog">
+				<!-- 百家争鸣 -->
+				<@macro11 mapKey='7'/>
+			</div>
+			<!--#-->
+  		</div>
+  		<div class="section">
+			<div class="w710 mod_news_box news_category">
+				<div class="mod_ui_hd clearfix">
+					<div class="wrap_ui_tit">
+						<h3 class="ui_tit ui_tit04">
+							新闻专题
+						</h3>
+					</div>
+					<b class="ui_tit_right"></b>
+				</div>
+				<div class="mod_bd ui_bd02 clearfix">
+					<ul class="list clearfix">
+						<!--#--><!--#8-->
+						<!--行业新闻 -->
+						<@left mapKey='8'/>
+						<!--#-->
+						
+						<!--#--><!--#9-->
+						<!--国际新闻 -->
+						<@left mapKey='9'/>
+						<!--#-->
+
+						<!--#--><!--#10-->
+						<!--医疗机构 -->
+						<@left mapKey='10'/>
+						<!--#-->
+						
+						<!--#--><!--#11-->
+						<!--药企机构 -->
+						<@left mapKey='11'/>
+						<!--#-->
+					</ul>
+				</div>
+			</div>
+			<div class="w260">
+				<!--#--><!--#12-->
+				<div class="aside">
+					<!--名医介绍-->
+					<@macro11 mapKey='12'/>
+				</div>
+				<!--#-->
+				<div class="aside">
+					<a href="http://www.elian.cc/news/#"><img
+							src="${resImg}/design/main/ylnews/pic260x80_1.jpg" width="260"
+							height="80"> </a>
+				</div>
+				<!--#--><!--#13-->
+				<div class="aside heal_info">
+					<div class="mod_side_hd clearfix">
+						<h3 class="tit">
+							健康资讯
+						</h3>
+					</div>
+
+					<!--健康资讯 -->
+					<div class="mod_side_bd">
+						<#if dataMap['13'].contentList??> <@global.showList2
+						ulClass="list01" liClass=""
+						data=dataMap['13'].contentList;path,title,detial,time>
+						<div class="txt">
+							·
+							<a href="${path}"><@global.showTitle title=title!''
+								titleNum=50/></a>
+						</div>
+						<span class="date">${time}</span> </@global.showList2> </#if>
+					</div>
+				</div>
+				<!--#-->
+				<div class="aside">
+					<a href="http://www.elian.cc/news/#"><img
+							src="${resImg}/design/main/ylnews/pic260x80_2.jpg" width="260"
+							height="80"> </a>
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+		<script src="${resScript}/base0530.js"></script>
+		<script src="${resScript}/myfocus-1.2.4.full.js"></script>
+		<script src="${resScript}/mF_tb.js"></script>
+		<script>
+			myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:265,height:370,txtHeight:'default',duration:350,direction:'left',easing:'easeOut',wrap:false});
+		</script>
+	</body>
+</html>

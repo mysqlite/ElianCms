@@ -1,0 +1,85 @@
+<#include "../includes/con_header.html"/>
+<!--头部begin-->
+<div id="headDiv">
+ <!--#include virtual="${headUrl}"-->
+</div>
+<!--头部end-->
+
+<!--导航begin-->
+<div id="navDiv">
+ <!--#include virtual="${navUrl}"-->
+</div>
+<!--导航end-->
+<div class="section">
+    <#include "../includes/info_content.html">
+<!-- 侧边栏开始 -->
+<div class="sidebar">
+
+<!--此处为栏目内容-->
+ <div class="aside aside_nav" id="channelDiv">
+     <#include "../includes/info_channel.html">
+ </div>
+<!--此处为栏目内容-->
+    <!--#macro--><#import '../includes/global.html' as global/><!--#macro-->
+	<!-- 医院杂志begin -->
+    <!--#--><!--#1-->
+    <#if dataMap['1']??>
+     <div class="aside" id="hosp_zazi">
+            <div class="mod_aside_hd">
+            <h3 class="tit"><a href="#">${dataMap['1'].channelName!''}</a></h3></div>
+            <div class="mod_aside_bd">              
+            	<#if dataMap['1'].imgContentList??>
+                    <div class="pt03">
+                        <a class="pic" href="${dataMap['1'].imgContentList[0].path}" target="_blank"> 
+                          <img src="${dataMap['1'].imgContentList[0].imgPath}" alt="${dataMap['1'].imgContentList[0].title}" width="100" height="70"/>
+                        </a>
+                        <h4 class="tit">
+                            <a href="${dataMap['1'].imgContentList[0].path}" target="_blank">${dataMap['1'].imgContentList[0].title}</a>
+                        </h4>
+                        <p class="txt">
+                            ${dataMap['1'].imgContentList[0].detial}
+                        </p>
+                </div>
+            	</#if>
+            <#if dataMap['1'].contentList??>
+                <@global.showList ulClass='list01_lico' liClass='' data=dataMap['1'].contentList;path,imgPath,title,detial>
+                    <a href="${path}" target="_blank">${title}</a>
+                </@global.showList> 
+            </#if>
+        </div>            
+    </div>
+    </#if>
+    <!--#-->
+     <!-- 医院杂志end -->
+     
+    <!-- 医院地图begin -->
+    <!--#--><!--#2-->
+    <#if dataMap['2']??>
+    <div class="aside" id="hosp_yyweiz">
+        <div class="mod_aside_hd">
+            <h3 class="tit"><a href="#">医院位置</a></h3></div>
+            <div class="mod_aside_bd contactInfo">
+            <div class="pic"><img src="${dataMap['2']['contentList'][0].param3}" width="200px"/></div>
+            <ul class="list">
+                <li><em class="tit">医院地址</em>:${dataMap['2']['contentList'][0].param4}</li>
+                <li><em class="tit">医院电话</em>:${dataMap['2']['contentList'][0].param2}</li>
+            </ul>
+        </div>
+    </div>
+    </#if>
+    <!--#-->
+    <!-- 医院地图end --></div>
+<!-- 侧边栏结束 -->
+ </div>
+
+<!--友情链接begin-->
+<#include "../includes/links_list.html">
+<!--友情链接end-->
+
+<!-- 尾部开始-->
+<div id="footDiv" class="footer">
+ <!--#include virtual="${footUrl}"-->
+</div>
+<!-- 尾部结束-->
+</body>
+</html>

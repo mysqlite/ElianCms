@@ -1,0 +1,38 @@
+<#--公共尾部加载内容,位于body结束前，预留扩展-->
+<script src="${resScript}/v2/public_cart.js"></script>
+<script src="${resScript}/v2/base.js"></script>
+
+<script src="${resScript}/v2/jquery.jqzoom-core-pack.js" type="text/javascript"></script>
+<script src="${resScript}/v2/jquery.jcarousel.min.js" type="text/javascript"></script>
+<script src="${resScript}/v2/myfocus-1.2.4.full.js"></script>
+<script src="${resScript}/v2/mF_tb.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.jqzoom').jqzoom({
+            zoomType: 'standard',
+            lens:true,
+            preloadImages: true,
+            alwaysOn:false,
+            zoomWidth:350,
+            zoomHeight:350
+
+        });
+
+        // $('#mycarousel').jcarousel();
+        $('#mycarousel2').jcarousel();
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var $menuItem = $("#list01_aico_parent li a");
+        $menuItem.on("click",function(){
+            var $this=$(this);
+            $menuItem = $("#list01_aico_parent li a");
+            $menuItem.removeClass("cur");
+            $this.addClass("cur");
+        });
+    });
+</script>
+<script src="${resScript}/v2/setNums.js"></script>

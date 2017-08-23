@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/public.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/pager.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/jobs/sub/job_search.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon"  href="http://www.2011-0805-人才.com/favicon.ico"/>	
+		<script src="${resScript}/jquery-1.4.2.min.js"></script>
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script language="javascript" type="text/javascript" src="${resScript}/list.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#include virtual="${headUrl}"-->
+		<!--#include virtual="${navUrl}"-->
+		<div class="section">
+			<div class="section_hd">
+		        <h3 class="tit">搜索职位信息</h3>
+		    </div>
+		    <div class="w970">
+					<div class="ui_search_hd"></div>
+					<div class="search_bar_bd">
+						<form method="post" action="searchListJob.action">
+							<div class="item">
+								<label class="lbl">
+									工作地点：
+								</label>
+								<select id="province" style="width: 155px; background-color: #fff3de" onchange="getCity(this,'city')">
+									<option value="-请选择-">
+										-请选择-
+									</option>
+								<option value="广东">广东</option><option value="安徽">安徽</option><option value="福建">福建</option><option value="甘肃">甘肃</option><option value="广西">广西</option><option value="贵州">贵州</option><option value="海南">海南</option><option value="河北">河北</option><option value="河南">河南</option><option value="黑龙江">黑龙江</option><option value="湖北">湖北</option><option value="湖南">湖南</option><option value="吉林">吉林</option><option value="江苏">江苏</option><option value="江西">江西</option><option value="辽宁">辽宁</option><option value="内蒙古">内蒙古</option><option value="宁夏">宁夏</option><option value="青海">青海</option><option value="山东">山东</option><option value="山西">山西</option><option value="陕西">陕西</option><option value="上海">上海</option><option value="北京">北京</option><option value="天津">天津</option><option value="四川">四川</option><option value="西藏">西藏</option><option value="新疆">新疆</option><option value="云南">云南</option><option value="浙江">浙江</option><option value="港澳">港澳</option></select>
+								<label class="lbl">
+									&nbsp;&nbsp;&nbsp;&nbsp;城市：
+								</label>
+								<select id="city" name="job.workAddress" style="width: 155px; background-color: #fff3de">
+									<option value="-请选择-">
+										-请选择-
+									</option>
+								</select>
+								<label class="lbl">
+									&nbsp;&nbsp;月薪要求：
+								</label>
+								<select name="job.salary" id="job_salary" style="width:155px;background-color:#fff3de">
+    <option value="-1">-请选择-</option>
+    <option value="1">1000-2000元</option>
+    <option value="2">2000-3000元</option>
+    <option value="3">3000-4000元</option>
+    <option value="4">4000-5000元</option>
+    <option value="5">5000-6000元</option>
+    <option value="6">6000-7000元</option>
+    <option value="7">7000-8000元</option>
+    <option value="8">8000-10000元</option>
+    <option value="9">10000以上</option>
+    <option value="0" selected="selected">不限</option>
+</select>
+
+							</div>
+							<div class="item">
+								<label class="lbl">
+									所属行业：
+								</label>
+								
+								<select name="job.tradeType" id="city" style="width:155px;background-color:#fff3de">
+    <option value="-请选择-" selected="selected">-请选择-</option>
+    <option value="医疗机构">医疗机构</option>
+    <option value="药企机构">药企机构</option>
+    <option value="机构组织">机构组织</option>
+    <option value="农林牧渔">农林牧渔</option>
+    <option value="医药卫生">医药卫生</option>
+    <option value="建筑建材">建筑建材</option>
+    <option value="冶金矿产">冶金矿产</option>
+    <option value="石油化工">石油化工</option>
+    <option value="水利水电">水利水电 </option>
+    <option value="交通运输">交通运输</option>
+    <option value="信息产业">信息产业</option>
+    <option value="机械机电">机械机电</option>
+    <option value="轻工食品">轻工食品</option>
+    <option value="服装纺织">服装纺织 </option>
+    <option value="专业服务">专业服务</option>
+    <option value="安全防护">安全防护</option>
+    <option value="环保绿化">环保绿化</option>
+    <option value="旅游休闲">旅游休闲 </option>
+    <option value="办公文教">办公文教</option>
+    <option value="电子电工">电子电工</option>
+    <option value="玩具礼品">玩具礼品</option>
+    <option value="家居用品">家居用品</option>
+    <option value="物资专材">物资专材</option>
+    <option value="包装用品">包装用品</option>
+    <option value="体育用品">体育用品</option>
+    <option value="办公家具">办公家具</option>
+</select>
+								<label class="lbl">
+									发布时间：
+								</label>
+								<select name="job.period" id="job_period" style="width:155px;background-color:#fff3de">
+    <option value="-1" selected="selected">-请选择-</option>
+    <option value="1">一天前</option>
+    <option value="3">三天前</option>
+    <option value="7">一周前</option>
+    <option value="15">半个月前</option>
+    <option value="30">一个月前</option>
+</select>
+
+								<label class="lbl">
+
+									职位关键字：
+								</label>
+								&nbsp;
+								<input type="text" name="job.jobName" style="width: 150px; background-color: #fff3de">
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="submit" value=" 搜  索  ">
+							</div>
+						</form>
+					</div>
+					<div class="ui_search_ft"></div>
+				</div>
+			<div class="w970 search_result" id="search_result">
+				<div class="hd">
+	                <div class="item1">
+	                    <span>排序：把结果按</span>
+	                    <select class="sel"><option>职位名称</option>
+	                        <option>发布日期</option>
+	                    </select>
+	                    <select class="sel"><option>降序</option>
+	                        <option>升序</option>
+	                    </select>
+	                    <span>排序,再按</span>
+	                    <select class="sel"><option>职位名称</option>
+	                        <option>发布日期</option>
+	                    </select>
+	                    <select class="sel"><option>降序</option>
+	                        <option>升序</option>
+	                    </select>
+	                    排序。
+	                </div>
+	                <div class="item2">
+	                    <span class="txt">满足搜索条件的前xxx个记录 | 显示风格选择：</span>
+	                    <span class="style_btn" id="style_btn"><b class="cur" id="style_btn_list">列表</b><b id="style_btn_all">详细</b></span>
+	                </div>
+           		</div>
+           		<input type="hidden" id="tableUrl" value="${tableUrl}"/>          		 	                	
+           		<div class="bd" id="table">           		 	
+                	<script type="text/javascript">
+						getTableHtml('table');
+					</script>
+                   
+           		 </div>
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+	<script src="${resScript}/base.js"></script>
+	<script src="${resScript}/jq.sub.js"></script>
+	</body>
+</html>

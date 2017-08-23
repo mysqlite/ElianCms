@@ -1,0 +1,355 @@
+
+<#import '../../freemakerInclude/global.html' as global/>
+<#--macro1开始-->
+<#macro macro1 mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<div class="tab2_hd" id="tab2_hd">
+			<#if (data?size>0)>
+				<#list 1..data?size as i>
+					<h3 <#if 1==i>class="cur"</#if>><a href="${data['${i}'].path!'#'}">${data['${i}'].channelName!''}</a></h3>
+				</#list>			
+			</#if>
+		</div>
+		<div class="tab2_bd" id="tab2_bd">
+			<#if (data?size>0)>
+				<#list 1..data?size as i>
+		            <div class="tab_con" <#if 1==i> style="display: block;"</#if>>
+		                <div class="pt03">
+		                    <a class="pic" href="${(data['${i}'].contentList[0].path)!'#'}"><img width="115" height="88" src="${(data['${i}'].contentList[0].imgPath)!'#'}" 
+		                    	alt="${(data['${i}'].contentList[0].title)!''}"/></a>
+		                    <p class="txt">
+		                    	<@global.showTitle title=(data['${i}'].contentList[0].detial)!'' titleNum=40></@global.showTitle>
+		                    </p>
+		                </div>
+		            </div>
+				</#list>
+			</#if>
+        </div>		
+	</#if>
+</#macro>
+<#--macro2开始-->
+<#macro macro2 mapKey>
+    <#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+		<div class="ui_hd">
+	        <h3>${data.channelName!''}</h3>
+	    </div>
+	    <div class="pt03 hot_news">
+	    	<#if data.imgContentList??>
+		    	<#list data.imgContentList as item>
+			        <h2 class="tit"><a href="${item.path!'#'}">${item.title!'#'}</a></h2>
+			        <a class="pic" href="${item.path!'#'}"><img src="${item.imgPath!''}" width="90" height="68"/></a>
+			        <p class="txt"><@global.showTitle title=item.detial!'' titleNum=90></@global.showTitle></p>
+		    	</#list>
+	    	</#if>
+            <div class="dot_line"></div>
+        </div>
+	</#if>
+</#macro>
+<#--macro3开始-->
+<#macro macro3 mapKey>
+ 	<#if dataMap[mapKey]??>
+    	<#local localData=dataMap[mapKey]/>
+		<div class="guide_line_hd">就医指南</div>
+		<#if (localData?size>0)>
+			<ul class='guide_line_bd'>
+				<#list 1..localData?size as i>
+					<li>
+						<b class="ico ico0${i}"></b>
+						<a href="${localData['${i}'].path!'#'}">${localData['${i}'].channelName!''}</a>
+					</li>
+				</#list>
+			</ul>
+		</#if>
+    </#if>
+</#macro>
+<#--macro4开始-->
+<#macro macro4 mapKey>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<div class="tab1_hd" id="tab1_hd">
+    		<#if (data?size>0)>
+    			<#list 1..data?size as i>
+    				<h3 <#if i==1> class="cur" </#if> ><a href="${data['${i}'].path!'#'}">${data['${i}'].channelName!''}</a></h3>
+    			</#list>
+    		</#if>
+        </div>
+        <div class="tab1_bd" id="tab1_bd">
+        	<#if (data?size>0)>
+        		<#list 1..data?size as i>
+		            <div class="tab_con" <#if i==1>style="display: block;" </#if>>
+		            	<#if data['${i}'].imgContentList??>
+		            		<#list data['${i}'].imgContentList as item>
+		            			<a class="list_pic" href="${item.path!'#'}"><img width="100px" height="135px" src="${item.imgPath!''}"/></a>
+		            		</#list>
+		            		<#else>
+		            		<a class="list_pic"><img width="100px" height="135px" src="${resStyle}/webbuild/gcyy/guicheng-green/no_pic120x90.jpg"/></a>
+		            	</#if>
+		            	<#if data['${i}'].contentList??>
+		            		<ul class="list03b">
+				            	<#list data['${i}'].contentList as item>
+				            		<li>
+				            			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+		            					<@global.showTime time=item.time!''/></span>
+				            		</li>
+				            	</#list>
+		                    </ul>
+		            	</#if>
+		            </div>
+    			</#list>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro5开始-->
+<#macro macro5 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if data.contentList??>
+        		<@global.showList3 ulClass='list03b' liClass='' data=data.contentList;item>
+        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+        			<@global.showTime time=item.time!''/></span>
+        		</@global.showList3>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro6开始-->
+<#macro macro6 mapKey>
+	<#if (dataMap[mapKey].contentList)??>
+    	<#local data=dataMap[mapKey].contentList/>
+    	<div class="tab3_hd clearfix" id="tab3_hd">
+	    	<#if (data?size>0)>
+    			<#list 0..data?size-1 as i>
+    				<h4 <#if i==0> class="cur" </#if> onmouseover="overTab(3,${i+1},'h4','div')" onmouseout="outTab()">
+    					<a href="${data[i].path!'#'}">${data[i].title!''}</a>
+    				</h4>
+    			</#list>
+    		</#if>
+		</div>
+		<div class="dot_line"></div>
+		<div class="tab3_bd" id="tab3_bd">
+			<#if (data?size>0)>
+    			<#list 0..data?size-1 as i>
+    				<div class="tab_con" <#if i==0> style="display: block;"</#if>>
+    					<h5>${data[i].title!''}</h5>
+    					<p class="txt"><@global.showTitle title=data[i].detial!'' titleNum=350></@global.showTitle><a class="more" href="${data[i].path!''}">【详细】</a></p>
+    					<span class="section_pic">
+    						<#if data[i].imgPath??>
+    							<img src="${data[i].imgPath}!''}" width="250" height="190"/>
+   							<#else>
+    							<img src="${resImg}/design/hosp/webbuild/gcyy/img/depeart_250x190.jpg" width="250" height="190"/>
+    						</#if>
+    					</span>
+    				</div>
+    			</#list>
+    		</#if>
+		</div>
+    </#if>
+</#macro>
+<#--macro7开始-->
+<#macro macro7 mapKey>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<div class="mod_hd mod_hd01">
+            <h3><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt;更多</a>
+        </div>
+        <div class="mod_bd mod_bd01 clearfix">
+        	<ul id="hos_equipment" class="pt01">
+	        	<#if data.imgContentList??>
+	        		<#list data.imgContentList as item>
+	        			<li>
+		    				<a class="pic" href="${item.path!'#'}"><img width="135" height="100" src="${item.imgPath!'#'}" alt="${item.title!''}"/></a>
+		                    <span class="txt"><a href="${item.path!'#'}">${item.title!''}</a></span>
+	        			</li>
+	        		</#list>
+				</#if>
+			</ul>
+        </div>
+    </#if>
+</#macro>    
+<#--macro8开始-->
+<#macro macro8 mapKey>	
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<div class="mod_hd mod_hd01">
+            <h3>${data.channelName!'专家介绍'}</h3>            
+            <a class="more" href="<@global.getParentPath contentPath=(data['1'].imgContentList[0].path)!''/>">&gt;&gt;更多</a>
+        </div>
+        <div class="mod_bd clearfix">
+			<span class="clearfix">
+	            <div class="section_details">
+	            	<div class="tab5_hd" id="tab5_hd">
+	            		<#if (data?size>0)>
+    						<#list 1..data?size as i>
+	   							 <h4 <#if i==1> class="cur" </#if>>
+	   							 	<a href="${data['${i}'].path!'#'}">${data['${i}'].channelName!''}</a>
+	   							 </h4>
+    						</#list>
+    					</#if>			            
+		            </div>
+		            <div class="tab5_bd" id="tab5_bd">
+		            	<#if (data?size>0)>
+    						<#list 1..data?size as i>
+    							<#local subData=data['${i}']/>
+				            	<div class="tab_con" <#if i==1> id="tab_con"  style="display: block;z-index: 999" </#if>>
+						            <ul class="pt01 iframe_intro_doc clearfix">
+						            	<#if (subData.imgContentList?size>0)>
+		    								<#list 0..subData.imgContentList?size-1 as j>
+		    									<#local item=subData.imgContentList[j]/>
+									            <li>
+										            <div class="item-wrap">
+											            <a class="pic" href="${item.path!'#'}">
+											            	<img width="70" height="93" src="${item.imgPath!'#'}" alt="${item.title!''}"/></a>
+											            <h5 class="tit">${item.title!''}</h5>
+											            <span class="txt">${item.param3!'医生'}</span>
+											            <span class="txt txt2">主治：${item.detial!''}</span>
+											            <a href="${item.path!'#'}" class="link_btn">查看详情&gt;&gt;</a>
+										            </div>
+									            </li>
+								            </#list>
+		    							</#if>
+						            </ul>
+					            </div>
+				        	</#list>
+				        </#if>
+		            </div>
+	            </div>
+	        </span>
+	    </div>
+    </#if>
+</#macro>  
+<#--macro9开始-->
+<#macro macro9 mapKey>	
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<#if (data?size>0)>
+    		<#list 1..data?size as i>
+    			<#if data['${i}'].contentList[0]??>
+    				<a href="${data['${i}'].contentList[0].path!'#'}">${data['${i}'].contentList[0].title!''}</a>
+    			</#if>
+    		</#list>
+    	</#if>
+    </#if>
+</#macro>  
+<#--macro10开始-->
+<#macro macro10 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if (data.imgContentList[0])??>
+        		<div class="pt03">
+					<a class="pic" href="${data.imgContentList[0].path!'#'}">
+						<img width="100px" height="80" alt="${data.imgContentList[0].title!''}" src="${data.imgContentList[0].imgPath!''}"/>
+					</a>
+					<h4 class="tit">
+						<a href="${data.imgContentList[0].path!'#'}">${data.imgContentList[0].title!''}</a>
+					</h4>
+					<p class="txt"><@global.showTitle title=data.imgContentList[0].detial!'' titleNum=18></@global.showTitle> </p>
+				</div>
+        	</#if>
+        	<#if data.contentList??>
+        		<@global.showList3 ulClass='list03b' liClass='' data=data.contentList;item>
+        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+        			<@global.showTime time=item.time!''/></span>
+        		</@global.showList3>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro11开始-->
+<#macro macro11 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if data.contentList??>
+        		<#if data.contentList[0]??>
+        			<div class="pt03">    							
+			            <a class="pic" href="${data.contentList[0].path!'#'}"><img width="100px" height="80px"
+			            	 src="${resImg}/design/hosp/webbuild/gcyy/img/rencai100x80.jpg" alt="人才招聘"/></a>
+			            <h4 class="tit">职位：<a href="${data.contentList[0].path!'#'}">
+			            <@global.showTitle title=data.contentList[0].title!'' titleNum=5></@global.showTitle>
+			            </a></h4>
+			            <p class="txt">性别：<em>
+			            <#if data.contentList[0].entity.gender='male'>
+			            	男
+			            </#if>
+			            <#if data.contentList[0].entity.gender='female'>
+			            	女
+			            </#if>
+			            <#if data.contentList[0].entity.gender='Unli'>
+			            	不限
+			            </#if>
+			            </em></p>
+			            <p class="txt">工作地点：<em>全国</em></p>
+		            </div>
+        		</#if>
+        		<#if (data.contentList?size>1)>
+	     			<ul class="list03b">
+		        		<#list 1..data.contentList?size-1 as i>
+		        			<#local item=data.contentList[i]/>
+		                    <li>
+			        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+			        			<@global.showTime time=item.time!''/></span>
+			        		</li>
+	        			</#list>
+	        		</ul>
+        		</#if>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro12开始-->
+<#macro macro12 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if data.contentList??>
+        		<#if data.contentList[0]??>
+        			<div class="pt03">
+						<a class="pic" href="${data.contentList[0].path!'#'}">
+							<img src="${resImg}/design/hosp/webbuild/gcyy/img/zhaobiao100x80.jpg" alt="招标信息"/></a>
+						<h4 class="tit"><a href="${data.contentList[0].path!'#'}">
+							<@global.showTitle title=data.contentList[0].title!'' titleNum=6></@global.showTitle>
+						</a></h4>
+						<p class="txt">
+							<@global.showTitle title=data.contentList[0].entity.description!'' titleNum=18></@global.showTitle>
+						</p>
+					</div>
+        		</#if>
+        		<#if (data.contentList?size>1)>
+	     			<ul class="list03b">
+		        		<#list 1..data.contentList?size-1 as i>
+		        			<#local item=data.contentList[i]/>
+		                    <li>
+			        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+			        			<@global.showTime time=item.time!''/></span>
+			        		</li>
+	        			</#list>
+	        		</ul>
+        		</#if>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--就医指南-->
+            <@macro3 mapKey='3'></@macro3>

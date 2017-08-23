@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="mall" extends="struts-default" namespace="/mall">
+		<interceptors>
+			<interceptor name="trimInterceptor" class="com.elian.cms.syst.filter.TrimInterceptor"/>
+			<interceptor-stack name="baseStack">
+                <!-- 去除两端空格拦截器 -->
+				<interceptor-ref name="trimInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- 配置默认拦截器栈 -->
+		<default-interceptor-ref name="baseStack" />
+		
+		<action name="*" class="{1}Action">
+			<result name="list">/WEB-INF/page/mall/{1}.jsp</result>
+			<result name="edit">/WEB-INF/page/mall/{1}Edit.jsp</result>
+			<result name="save" type="redirectAction">{1}!list</result>
+			<result name="show">/WEB-INF/page/mall/{1}Show.jsp</result>
+			<result name="input">/WEB-INF/page/mall/{1}Edit.jsp</result>
+		</action>
+		
+		<action name="mallOrderConfirm" class="mallOrderConfirmAction">
+			<result name="save" type="redirectAction">
+                <param name="actionName">${path}mallOrderSuccess!list</param>
+                <param name="order.id">${ids}</param>
+                <param name="siteId">${siteId}</param>
+            </result>
+		</action>
+		
+		<action name="mallLogin" class="mallLoginAction">
+			<result name="main">${path}/page/manage/frame/index.jsp</result>
+			<result name="fail">/WEB-INF/page/mall/mallLogin.jsp</result>
+			<result name="input">/WEB-INF/page/mall/mallLogin.jsp</result>
+		</action>
+	</package>
+</struts>

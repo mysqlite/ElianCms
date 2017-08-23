@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.action.extension" value="action" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <!-- 设置上传最大为10M -->                       
+    <constant name="struts.multipart.maxSize" value="1048576000" /><!-- 100MB -->
+    <constant name="struts.action.excludePattern" value="/dwr/*,*/dwr/test/*"/>
+    <constant name="struts.action.excludePattern" value="/js/.*" />
+    <!--
+		<package name="exception-struts-default" extends="struts-default">
+			<global-results>
+				<result name="error">/error.html</result>
+			</global-results>
+			<global-exception-mappings>
+				<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+			</global-exception-mappings>
+		</package>
+	-->
+    <include file="struts/struts-admin.xml"></include>
+    <include file="struts/struts-doctorsSpace.xml"></include>
+    <include file="struts/struts-front.xml"></include>
+    <include file="struts/struts-reg.xml"></include>
+    <include file="struts/struts-tenpay.xml"></include>
+    <include file="struts/struts-alipay.xml"></include>
+    <include file="struts/struts-mall.xml"></include>
+    
+</struts>

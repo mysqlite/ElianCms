@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
+<dwr>
+	<allow>
+	    <!--实体类配置，便于前端使用时可以得到实体的属性
+	    <convert match="java.lang.StackTraceElement" converter="bean"/>  
+	    <convert match="com.elian.cms.admin.model.Role" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Site" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.UserType" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Menu" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Area" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Grade" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Template" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.RoleAction" converter="bean"/>
+	    <convert match="com.elian.cms.admin.model.Action" converter="bean"/>
+	    
+	    
+	    <create javascript="user" creator="spring">
+            <param name="beanName" value="userAction"></param>
+            <include method="findRoleBySiteId" />
+            <include method="checkAccount" />
+        </create>
+        
+		<create javascript="UserType" creator="spring">
+			<param name="beanName" value="userTypeAction"></param>
+			<include method="findUserTypeByAll" />
+			<include method="dwrDelete" />
+			<include method="updateName" />
+			<include method="getUserType"/>
+		</create>
+		
+		<create javascript="menuTree" creator="spring">
+             <param name="beanName" value="menuAction"></param>
+             <include method="findMenuByAll"/>
+             <include method="getMenuById"/>
+             <include method="findMenuNavigationById"/>
+             <include method="findMenuByParentId"/>
+             <include method="findMenuByRoot"/>
+             <include method="findMenuNavigationById"/>
+        </create>
+        
+        <create javascript="area" creator="spring">
+             <param name="beanName" value="areaAction"></param>
+             <include method="areaList"/>
+        </create>
+        
+        <create javascript="list" creator="spring">
+             <param name="beanName" value="listAction"></param>
+             <include method="list"/>
+        </create>
+        
+        <create javascript="ValidateUtils" creator="new">
+            <param name="class" value="com.elian.cms.syst.util.IdCardUtils"></param>
+        </create>-->
+        
+         <create javascript="val" creator="new">
+            <param name="class" value="com.elian.cms.syst.util.ValidateUtils"></param>
+        </create>
+        <create javascript="user" creator="spring">
+            <param name="beanName" value="userAction"></param>
+            <include method="checkAccount" />
+        </create>
+		<!-- 用于处理List泛型集合 -->
+		<signatures>
+	     <![CDATA[
+	      import java.util.*;
+	      import java.util.List;
+	      import cn.org.genomics.health.solexaHlaPl.po.HSolexaHlaPooling;
+	      import cn.org.genomics.health.solexaHlaPl.po.HSolexaHlaPoolingDetail;
+	      poolingService.insert(List<HSolexaHlaPooling> list,HttpServletRequest request);
+	      ]]>
+		</signatures>
+		<!-- 异常Exception的处理 ,默认情况下dwr对异常的处理就是一个弹出框提示为Error -->
+		<create javascript="dwrException" creator="new">
+		</create>
+		<convert match="java.lang.NullPointerException" converter="exception" />
+		<convert match="java.lang.Exception" converter="exception">
+			<param name="include" value="message,lineNumber" />
+		</convert>
+	</allow>
+</dwr>

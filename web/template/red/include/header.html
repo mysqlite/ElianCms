@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="${resStylePubl}/header/topbar.css" type="text/css">
+<link href="${resCms}/plugin/jqueryUI/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="${resScriptPubl}/jquery-1.9.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="${resScriptPubl}/public_cart.js"></script>
+<input type="hidden" id="siteId" value="288"></input>
+<div class="wrap_topbar">
+	<div class="topbar">
+		<div class="login_link">
+			<a href="http://www.elian.cc/" class="home_ico" target="_blank">医联网</a>
+			<a id="userLogin" href="#" class="link">登录</a>
+			<a id="userName" href="#" class="link" style="display: none;"></a>
+			<a id="userLoginOut" href="#" class="link" style="display: none;">退出</a>
+			<span id="goCms" style="display: none;">
+				|
+				<a id="goCms" href="${resCms}/admin/login!main.action" class="link" target="_blank">进入后台管理</a>
+			</span>
+			<span id="goReg" style="display: none;">
+				|
+				<a id="goReg" href="http://www.191580.com/reg/regUserManager!myData.action" class="link" style="display: none;" target="_blank">进入挂号用户中心</a>
+			</span>
+			|
+			<a id="userRegister" href="#" class="link">注册</a>			
+		</div>
+		<ul class="top_link">
+			<!--
+		       <li><a href="#">我要买</a></li>
+		       -->
+			<li>
+				<a href="#">我的医家</a>
+			</li>
+			<li>
+				<div id="j_top_shop_cart" class="top_shop_cart">
+					<div class="wrap_tit">
+						<span class="tit">购物车 (<span class="num">0</span>) </span>
+						<b class="triangle_ico"></b>
+					</div>
+					<div class="top_shop_cart_list"></div>
+				</div>
+			</li>
+			<li>
+				<a href="#">联系客服</a>
+			</li>
+			<li>
+				<a href="#">帮助</a>
+			</li>
+			<li class="last">
+				<a onclick="AddFavorite(window.location,document.title)"
+					href="javascript:void(0);">加入收藏</a>
+			</li>
+		</ul>
+	</div>
+</div>
+${content!''}

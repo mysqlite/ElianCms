@@ -1,0 +1,88 @@
+<!--#macro-->
+<#import '../global/global.html' as global/>
+
+<#macro sideBar mapKey>
+	<div class="mod_aside_hd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</#if>
+	</div>
+	<div class="mod_aside_bd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</#if>
+	</div>
+</#macro>
+
+<#macro macro2 mapKey>
+	<div class="mod_aside_hd">
+		<h3 class="tit">医院位置</h3>
+	</div>
+    <div class="mod_aside_bd contactInfo">
+    	<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+	        <div class="pic"><img src="${(data.contentList[0].param3)!'#'}" width="200px"/></div>
+	        <ul class="list">
+	            <li><em class="tit">医院地址</em>:${(data.contentList[0].param4)!''}</li>
+	            <li><em class="tit">医院总机</em>:${(data.contentList[0].param2)!''}</li>
+	            <li><em class="tit">急救电话</em>:${(data.contentList[0].id)!''}</li>
+	        </ul>
+	    </#if>
+    </div>
+</#macro>
+<!--#macro-->
+<#--页面开始-->
+<#include "../tempInclude/list_header.html"/>
+<body>
+<div class="wrap_body">
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<div class="section wrap-nav-left">
+    <div class="wrap-article">
+    	<#include "../tempInclude/info_content.html">
+	    <div class="sidebar">
+	        <div class="guide_line_hd">
+	           	 就医指南
+	        </div>
+	        <div class="aside aside_nav">
+	            <#include "../tempInclude/info_channel.html">
+	        </div>
+	        <div class="aside">
+				<!--#--><!--#1--><@sideBar mapKey="1"/><!--#-->
+			</div>
+			<div class="aside">
+				<!--#--><!--#2--><@macro2 mapKey="2"/><!--#-->
+			</div>
+	    </div>
+    </div>
+    <div class="denggao-line" style=""></div>
+</div>
+<#include "../tempInclude/friend_link.html"/>
+<!--#include virtual="${footUrl}"-->
+<script src="${resScript}/treeview.js"></script>
+<script>
++function($){
+    $('#treeview').easyTreeView({//可以传入多个id实例
+        branchBtn:'collapsable-hitarea',//按钮的类 加减号;
+        aniSpeed:200,//动画展开速度;
+        last:'last'//最后一个菜单类,折线;
+    })
+}(jQuery)
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>${title!''}</title>
+<meta name="Keywords" content="${keywords!''}" /> 
+<meta name="Description" content="${description!''}" />
+<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+<link rel="stylesheet" href="${resStyle}/hainan/sub.css" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="http://www.ylmh.cc/favicon.ico">
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/common.js"></script>
+<script type="text/javascript" src="${resScript}/hainan/base0530.js"></script>
+</head>
+<body>
+<!--#macro-->
+<#import '../include/global.html' as global/>
+<#--macro1开始-->
+<#macro hotHit mapKey> 
+	<div class="mod_gray_hd">
+    	<h3 class="ico_hand">点击排行</h3>
+    </div>
+    <div class="mod_gray_bd">
+		<div class="aside-bd">
+	       <ul class="list">
+	       		<#if dataMap[mapKey]??>
+		       		<#local data=dataMap[mapKey]/>
+	       			<#if data.contentList??>
+	       				<#list 0..data.contentList?size-1 as i>
+	       					<#if i==0>
+	       						<li class="first">
+	                                <div class="tit"><b class="top-rank">${i+1}</b><a href="${data.contentList[i].path!''}">
+	                                	${data.contentList[i].title!''}</a></div>
+	                                <div class="pt03">	                                	
+	                                    <p class="txt">${data.contentList[i].detial!''}</p>
+	                                </div>                                
+                            	</li>
+	       					</#if>
+	       					<#if i!=0>
+	       						<li>
+	                                <div class="tit"><b class="top-rank">${i+1}</b><a href="${data.contentList[i].path!''}">
+	                                	${data.contentList[i].title!''}</a></div>
+	                                <div class="pt03">	                                	
+	                                    <p class="txt">${data.contentList[i].detial!''}</p>
+	                                </div>                                
+                            	</li>
+	       					</#if>
+	       				</#list>
+	       			</#if>
+	       		</#if>
+	       </ul>
+	    </div>
+    </div>
+</#macro>
+<#--推医院的macro-->
+<#macro hosp1 mapKey>
+	<#if dataMap[mapKey]??>	
+		<#local data=dataMap[mapKey]>
+		<div class="mod_recomm_hd">
+	    	<h3 class="ui_tit">${data.channelName!''}</h3>
+	        <#--<a href="${data.path!'#'}" class="more">&gt;&gt;更多</a>-->
+	    </div>
+	    <div class="mod_recomm_bd">
+	    	<#if data.imgContentList??>
+		    	<@global.showList3 ulClass='pt01 clearfix' liClass='' data=data.imgContentList;listData>
+		    		<a class="pic" target="_blank" href="${listData.path}"><img src="${listData.imgPath}" width="120" height="90" alt=""></a>
+	                <div class="tit">
+	                    <a href="${listData.path}">${listData.title}</a>
+	                </div>
+		    	</@global.showList3>
+	    	</#if>
+	    </div>		
+    </#if>
+</#macro>
+<#--好评医院的macro-->
+<#macro hosp2 mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]>
+		<div class="mod_gray_hd">
+	    	<h3>${data.channelName!''}</h3>
+	    </div>
+	    <div class="mod_gray_bd">
+	  	  <#if data.imgContentList??>
+		     <@global.showList3 ulClass='pt02 clearfix' liClass='' data=data.imgContentList;listData>
+	    	 	<h3><b>${listData.title!''}</b></h3>
+                <div class="wrap_pic">
+                    <a class="pic" href="${listData.path!'#'}">
+                    	<img src="${listData.imgPath!'#'}" width="120px" heigth="90" alt="" /></a>
+                    <span class="rate">综合评分：<em>80</em>分</span>
+                    <span class="wrap_star">
+                        <span class="star star-4"></span>
+                    </span>
+                </div>
+                <div class="txt">
+                    <span><em>${listData.param1!''}</em></span>
+                    <span>已有<em>250</em>位患者成功挂号</span>
+                    <span>特色科室：呼吸专科...</span>
+                    <a class="zixun_btn" href="javascript:void(0)">咨询医生</a>
+                    <a class="guahao_btn" href="javascript:void(0)">网上挂号</a>
+                </div>
+	    	 </@global.showList3>
+    	  </#if>	    	
+	    </div>	
+    </#if>
+</#macro>
+<#--推荐医生-->
+<#macro doctor1 mapKey>
+	<#if dataMap[mapKey]??>	
+		<#local data=dataMap[mapKey]>
+		<div class="mod_recomm_hd">
+	    	<h3 class="ui_tit">${data.channelName!''}</h3>
+	    </div>
+	    <div class="mod_recomm_bd">
+	    	 <#if data.imgContentList??>
+	    	 	<@global.showList3 ulClass='pt02' liClass='' data=data.imgContentList;listData>
+	    	 		<a class="pic" target="_blank" href="${listData.path!'#'}">
+                	<img src="${listData.imgPath!'#'}" width="70" height="90" alt=""></a>
+                    <div class="txt">
+                    	<span class="tit"><a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a></span>
+                        <span>${listData.param2!''}</span>
+                        <span class="ico-tel">${listData.param3!''}</span>
+                        <a href="${listData.path!'#'}" class="link_btn">点击查看</a>
+                    </div>
+	    	 	</@global.showList3>
+	    	 </#if>	                
+	         <div class="line"></div>
+	    </div>	
+    </#if>
+</#macro>
+<#--好评医生-->
+<#macro doctor2 mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]>
+		<div class="mod_gray_hd">
+        	<h3>${data.channelName!''}</h3>
+        </div>
+        <div class="mod_gray_bd pt02 high_rank_doc">
+        	<#if data.imgContentList??>
+        		<#list data.imgContentList as item>
+        			<a class="pic" target="_blank" href="${item.path!'#'}">
+        				<img src="${item.imgPath!'#'}" width="100" height="130" alt=""></a>
+        			<div class="txt">
+		            	<div class="i"><span class="tit">姓名：</span><span>${item.title!''}</span></div>
+		            	<div class="i"><span class="tit">科室：</span><span>${item.param2!''}</span></div>
+		                <div class="i"><span class="tit">医院：</span><span>${item.param1!''}</span></div>
+		                <div class="i"><span class="tit">综合评分：</span><span>4.5分</span></div>
+		                <div class="i">
+		                	<a class="zixun_btn" href="javascript:void(0)">咨询医生</a>
+		                    <a class="guahao_btn" href="javascript:void(0)">网上挂号</a>
+		                </div>
+	           		</div>
+        		</#list>
+        	</#if> 	
+        </div>	
+   </#if>
+</#macro>
+<!--#macro-->
+<!--#include virtual="${headUrl}"--> 
+<div class="gg_banner_980">
+	<a href="#"><img src="${resImg}/design/subs/hainan/gg/pic980x90_1.jpg" width="980" height="90"/></a>
+</div>
+<div class="gg_keyword_980">
+	<div class="inner">
+    	<a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> 
+    </div>
+</div>
+<div class="section">
+	<div class="section_main">
+    	<div class="breadcrumbs_hd">
+        	<span class="tit" id="pathUrl">
+        		您的位置：
+				<script type="text/javascript">
+					getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+				</script>
+			</span>
+			 >> 正文
+        </div>       
+    	<div class="main_bd">
+        	<div class="article">
+            	<div class="article_hd">
+                    <h1>${(info.title)!''} </h1>
+                    <div class="titBar">
+                    	<span class="pubTime">来源：${(info.sourceName)!''}  时间：${(info.publishTime?string('yyyy-MM-dd'))!''}</span> 
+                        </span>
+                    </div>
+                </div>
+                <div class="article_bd">
+                     ${(info.content)!''}
+                </div>
+                <div id="friendDiv" class="article_ft">
+					<script type="text/javascript">
+						getFriendHtml('friendDiv','${tableUrl}','${contentId}');
+					</script>
+				</div>               
+            </div>        
+            <div class="article_recomm">
+                <div class="hd">
+                    <h3>猜你想看的文章</h3>
+                </div>
+                 <div class="bd">
+                     <ul class="list">
+                         <li><a href="#">浙江：买感冒药记得</a></li><li><a href="#">浙江：买感冒药记得买感冒药记得</a></li>
+                         <li><a href="#">浙江：买感冒药记得</a></li><li><a href="#">浙江：买感冒药记得买感冒药记得</a></li>
+                         <li><a href="#">浙江：买感冒药记得</a></li><li><a href="#">浙江：买感冒药记得买感冒药记得</a></li>
+                         <li><a href="#">浙江：买感冒药记得</a></li><li><a href="#">浙江：买感冒药记得买感冒药记得</a></li>
+                     </ul>
+                  </div>
+            </div>
+            <div class="gutter10"></div>
+            <div class="high_rank_hos">
+            	<#--好评医院-->
+            	<!--#--><!--#6--><@hosp2 mapKey='6'></@hosp2><!--#-->
+            </div>
+            <div class="gutter10"></div>
+            <ul class="aside gg_key_word_10">
+                <li><a href="#">秋季进补</a></li><li><a href="#">秋季养生</a></li>
+                <li><a href="#">秋季进补</a></li><li><a href="#">秋季进补</a></li>
+                <li><a href="#">秋季养生</a></li><li><a href="#">秋季进补</a></li>
+                <li><a href="#">秋季进补</a></li><li><a href="#">秋季养生</a></li>
+                <li><a href="#">秋季进补</a></li><li><a href="#">秋季养生</a></li>
+                <li><a href="#">秋季养生</a></li><li><a href="#">秋季进补</a></li>
+                <li><a href="#">秋季进补</a></li><li><a href="#">秋季养生</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar">
+    	<div class="aside mod-rank">
+           <!--#--><!--#1--><@hotHit mapKey='1'></@hotHit><!--#-->
+        </div>
+		<div class="gutter10"></div>
+        <div class="aside">
+           <#--推荐医生-->
+           <!--#--><!--#2--><@doctor1 mapKey='2'></@doctor1><!--#-->
+        </div>
+        <div class="gutter10"></div>
+        <div class="aside">
+        	<#--好评医生-->
+        	<!--#--><!--#3--><@doctor2 mapKey='3'></@doctor2><!--#-->  
+        </div>
+        <div class="gutter10"></div>
+        <div class="aside aside_recomm_hos">
+        	<#--推荐医院-->
+        	<!--#--><!--#4--><@hosp1 mapKey='4'></@hosp1><!--#-->
+        </div>        
+    </div>
+</div>
+<!--#include virtual="${footUrl}"--> 
+</body>
+</html>

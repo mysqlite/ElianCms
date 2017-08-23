@@ -1,0 +1,99 @@
+.loginArea .bgBtn,.searchBar .bd,.searchBar .ipt,.province .imgBtn,.province .bd .tit,.searchBar .cur{ background: url('bg/public_hearder_bg.png') no-repeat 0 -100%;}
+.nav .hd b,.nav h3.cur,.nav_list span.cur,.nav_list a.cur{ background: url('bg/public_nav_bg.png') no-repeat 0 -100%;}
+.nav{ background: url('bg/nav_repeat_bg.png') repeat-x 0 -100%;}
+
+body .topbar{ padding-top: 5px;color: #cccccc;position:relative;z-index:10}
+.topbar,.header,.nav,.section,.footer{ width: 980px;margin: 0 auto;}/*20110903*/
+.topbar,.nav,.section{ margin-bottom: 10px;}/*20120227*/
+.loginArea .lb,.loginArea .ipt,.loginArea .sl,.loginArea .imgBtn,.loginArea .link_btn{ float: left;margin-right: 5px;}
+.topbar .loginArea{ float: right;position:relative;}
+.topbar .loginArea .lb{ color: #555555;}
+.topbar .loginArea .bgBtn{ background-position: -58px -45px;border:0 none;width: 44px;height: 20px;float: left;margin-right: 10px;text-indent:-1024px;cursor:pointer;overflow:hidden}
+.topbar a{ color: #ff6600;}
+.topbar a:hover{ color: #ff2000;}
+.topbar .loginArea .ipt{ width: 76px;border: #e3e3e3 1px solid;height: 18px;line-height: 18px;}
+.topLink{ float: right}
+.header{ position: relative;z-index: 2;}
+.header h1{ width: 182px;height: 100px;overflow: hidden;float: left;margin-right: 10px;}
+.searchBar{ width: 385px;height: 60px;font-size: 14px;;position:absolute;top:30px;left:190px}
+
+.searchBar h3{ float: left;cursor: pointer;width: 44px;height: 19px;line-height: 21px;font-weight:normal;text-align: center;margin-right: 3px;font-size: 12px;color: #555555;overflow: hidden;}
+
+.searchBar h3.cur{ background-position: 0 -45px;color: #ff6600;}
+.searchBar .hd{ position: relative;top: 2px;padding-left: 15px;z-index: 2;}
+.searchBar .bd{ background-position: 0 0;height: 41px;position: relative;}
+.searchBar .ipt,.searchBar .btn{ border: 0 none;position: absolute;}
+.searchBar .ipt{ padding: 3px 0;height: 17px;line-height: 18px;left: 12px;width: 288px;font-family: "simsun";top: 9px;text-indent: 25px;background-position: -363px -44px;color: #666666;}
+.searchBar .no_bg{ background-position:0 -100%;text-indent: 5px;color: #111111;}
+.searchBar .btn{ top: 9px;right: 8px;width:70px;height: 25px;background:none;color:#ffffff;font-weight: bold;}
+
+.province{ width: 380px;position: absolute;right: 0;top: 15px;overflow: hidden;line-height: 26px}
+.province a{ white-space: nowrap;float: left;margin-right: 3px;padding: 0 2px;}
+.province a:hover{ background: #ff6000;color: #ffffff;text-decoration: none;}
+.last_link{ font-weight: bold;color: #ff6600}
+.last_link:hover{ color: #ffffff}
+/*20110809ע��
+.province a{ white-space: nowrap;float: left;margin: 0 3px;padding: 2px;}
+.province a:hover{ background: #ff6600;color: #ffffff;text-decoration: none;position: relative;}
+
+.province h3.tit{ color: #DF6412;font-size: 20px;font-weight: bold;}
+.province span{ display: block;}
+.province .imgBtn{ width: 140px;height: 17px;line-height: 17px;background-position: 0 -76px;overflow: hidden;color: #ffffff;cursor: pointer;}
+.province .txt{ color: #898989;}
+.province .bd{ position: absolute;top: 49px; left: -70px;width: 273px;background: #F2F2F2;border:1px solid #aaaaaa;padding-bottom: 10px;display: none;}
+.province .bd .tit{ font-weight: bold;background-position: 0px -95px;height: 31px;line-height: 31px;}
+.wrap_province{ margin-left: 15px;}*/
+
+.nav h3{ position:relative;font-size:12px}
+
+
+body .nav{ height: 40px;background-position: 0 0;margin-bottom:6px}/*20110903 fix height*/
+.nav .hd{ height: 40px;padding-left: 8px;position: relative;}
+.nav .hd b{ position: absolute;overflow: hidden;}
+.nav b.nav_lbg,.nav b.nav_rbg{top: 0;width: 5px;height: 40px;}
+.nav b.nav_lbg{ left: 0;background-position: 0 0px;}
+.nav b.nav_rbg{ right: 0;background-position: -5px 0px;}
+.nav b.n_line{ background-position:0 -42px;width:2px;height:40px;top:0px;right: -2px}
+.nav h3.cur .n_line{ top: -3px}
+
+.nav h3{ float: left;margin-right: 5px;width: 69px;height: 31px;line-height: 35px;text-align: center;}
+.nav h3.first{ width: auto;}
+.nav h3 a{ color: #ffffff;}
+.nav h3 a:hover{ color: #ffffff;text-decoration: none;}
+.nav h3.cur{ background-position: -13px 0px;width: 69px;height: 38px;line-height: 34px;position: relative;top:3px}
+.nav h3.cur a,.nav h3.cur a:hover{ color: #FF6600;font-weight: bold;text-decoration: none;}
+.nav .bd{ position: relative;top: 2px;}
+.nav_list{ line-height: 19px;text-align: left;color: #E7D6DF;display:none}
+.nav_list span,.nav_list a{display: inline-block;*zoom:1;*display: inline;}
+.nav_list span{ height: 20px;}
+.nav_list a{ height: 20px;line-height: 20px;text-align: center;padding: 0 10px;color: #656565;}
+.nav_list a:hover{ color: #FF6600;text-decoration:none;}
+.nav_list span.cur{ background-position: right -83px;}
+.nav_list a.cur{ background-position: -78px -63px;color: #FF6600;}
+
+.m1{ margin-left: 84px;}
+.m2{ margin-left: 157px;}
+.m3{ margin-left: 230px;}
+.m4{ margin-left: 303px;}
+.m5{ margin-left: 200px;}
+.m6{ margin-left: 451px;}
+.m7{ margin-left: 526px;}
+.m8{ margin-left: 84px;}
+.m9{ margin-left: 84px;}
+.m10{ margin-left: 84px;}
+.m11{ margin-left: 650px;}
+.m12{ margin-left: 84px;}
+
+.topbar:after,.header:after,.province:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.topbar,.header,.province{*zoom:1;}
+
+.footer{ padding-bottom: 30px;}
+.footer p{ text-align: center;}
+.footer .tips{ border: 1px solid #cccccc;background: #eeeeee;color: #ff6600;height: 22px;line-height: 22px;}
+.bottom_nav{ text-align: center;height: 28px;line-height: 28px;margin-top: 5px;}
+.hidden{ display: none;}
+.hot{ color: #ff6000; font-weight: bold;}
+
+/*2012-02-27*/
+.logselectBar{ background: url('bg/sl_bg.png') no-repeat 0 0;height: 20px;width: 90px;float: left;color: #333333;position: relative;z-index: 1;margin-right:10px;text-indent:5px;cursor:pointer}
+.logselectBar_list{ display: none;border: 1px solid #cccccc;background-color: #f4f4f4;width: 100px;position: absolute;top: 20px;left: 0;}

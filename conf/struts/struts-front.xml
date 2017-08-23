@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="front" extends="struts-default" namespace="/front">
+		<interceptors>
+            <interceptor name="trimInterceptor" class="com.elian.cms.syst.filter.TrimInterceptor"/>
+            <interceptor-stack name="baseStack">
+                <!-- 去除两端空格拦截器 -->
+                <interceptor-ref name="trimInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <!-- 配置默认拦截器栈 -->
+        <default-interceptor-ref name="baseStack" />
+		
+	   <action name="reg*" class="reg{1}Action">
+          <result name="success">${path}/page/front/regSuccess.jsp</result>
+          <result name="reg">${path}/page/front/reg{1}.jsp</result>
+          <result name="input">${path}/page/front/reg{1}.jsp</result>
+        </action>
+        
+		<action name="*" class="{1}Action">
+			<result name="list">${path}/page/front/{1}.jsp</result>
+			<result name="show">${path}/page/front/{1}Show.jsp</result>
+		</action>
+		
+		 <action name="imageUpload" class="imageUploadAction" >
+            <result name="success">${path}/page/include/resultTip.jsp</result>
+            <result name="error">${path}/page/include/resultTip.jsp</result>    
+            <result name="todo">${path}/page/include/iframe_upload.jsp</result>                   
+        </action>
+		 
+		<action name="fileUpload" class="fileUploadAction" >
+            <result name="success">${path}/page/include/resultTip.jsp</result>
+            <result name="error">${path}/page/include/resultTip.jsp</result>    
+            <result name="todo">${path}/page/include/f_iframe.jsp</result>                   
+        </action>
+        
+        <action name="searchCompanyAdapter" class="searchCompanyAdapterAction">
+			<result name="medicine" type="redirectAction">
+                <param name="actionName">${path}searchCompanyMedicine!search</param>
+                <param name="siteId">${siteId}</param>
+                <param name="keyword">${keyword}</param>
+            </result>
+            <result name="instrument" type="redirectAction">
+                <param name="actionName">${path}searchCompanyInstrument!search</param>
+                <param name="siteId">${siteId}</param>
+                <param name="keyword">${keyword}</param>
+            </result>
+		</action>
+		
+		<action name="searchAdapter" class="searchAdapterAction">
+			<result name="medicine" type="redirectAction">
+                <param name="actionName">${path}searchMedicine!search</param>
+                <param name="keyword">${keyword}</param>
+            </result>
+            <result name="instrument" type="redirectAction">
+                <param name="actionName">${path}searchInstrument!search</param>
+                <param name="keyword">${keyword}</param>
+            </result>
+		</action>
+	</package>
+</struts>

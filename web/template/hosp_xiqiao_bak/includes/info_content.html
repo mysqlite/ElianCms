@@ -1,0 +1,39 @@
+<#--列表begin-->
+<div class="main_section" id="info_list_div" style="display:none">
+    <div class="breadcrumbs">
+        <span class="tit">位置：</span>
+        <span id="pathUrl_info_list_div"></span>
+    </div>
+    <input type="hidden" id="tableUrl" value=""/>
+    <div class="mod_con article_list" id="list"></div>
+</div>
+<#--列表end-->
+<#--详细页-->
+<#if subContentList??>
+        <#if subContentList?size!=0>
+         <#list 0..(subContentList?size-1) as i>
+         <div class="main_section" id="${subContentList[i].contentId?string}" <#if i!=0> style="display:none" </#if>>
+             <div class="breadcrumbs">
+                <span class="tit">位置:</span>
+                <span id="pathUrl_${subContentList[i].contentId?string}"></span>
+             </div>
+             <div class="mod_con article">
+                    <div class="article_hd">
+                        <h1>${(subContentList[i].title)!''}</h1>
+                        <div class="tagInfo">
+                            <span class="i">时间：${(subContentList[i].createTime)!''}</span><span class="i">编辑：${(subContentList[i].creater)!''}</span>
+                            <#if subContentList[i].entity.sourceName??>
+                            <span class="i">来源：${subContentList[i].entity.sourceName}</span>
+                            </#if>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="article_bd">
+                        ${(subContentList[i].content)!''}
+                        <div class="article_ft" id="friendDiv_${subContentList[i].contentId?string}"></div>
+                    </div>
+               </div>
+           </div>
+         </#list>
+      </#if>
+</#if>

@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+.pagination{ font-size: 12px;font-family: Verdana;text-align: center;margin: 0 auto;padding: 10px 0;overflow: hidden;}
+.pagination li{ float: left;margin-right: 5px;}
+.pagination li a{ float: left;height: 18px;width: auto;padding: 0 5px;line-height: 18px;border-radius: 3px;-webkit-transition: all 0.1s ease-out 0s;}
+.pagination .cur{ font-weight: bold;cursor: default;height: 20px;line-height: 19px;width: auto;padding: 0 5px;border-radius: 3px;}
+.pagination .page_jump a{ height: 18px;width: auto;padding: 0 10px;line-height: 19px;text-decoration:none;overflow: hidden;}/*2*/
+
+.pagination li a{ color: #ff6000;}
+.pagination li a,.pagination a:hover,.pagination .page_jump a:hover,.ipage{ border: 1px solid #cccccc;}
+.pagination .cur,.pagination a:hover,.pagination .page_jump a:hover,ipage{ color:#ffffff;background-color: #ff6000;text-decoration:none;}
+.pagination .no_click a,.pagination .no_click a:hover{ color: #ffffff;border-color: #ffffff;cursor: default;outline: none;}
+.pagination .no_click a:hover{ background-color:#ffffff;}
+
+#pagination-digg .ipage{width:25px;text-align:right;}
+#pagination-digg .itotal{border:none;text-align:left;}
+
+/* 2012-9-14 10:13:50 */
+#pagination-digg .ipage{text-align:center;height:12px;padding:3px;float:left;line-height:15px;overflow:hidden;}
+.pagination li{ line-height: 20px;}

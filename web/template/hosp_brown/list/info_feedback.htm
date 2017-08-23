@@ -1,0 +1,569 @@
+<#include "../tempInclude/list_header.html"/>
+<body>
+<div class="wrap_body">
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<div class="section wrap-feedback">
+    <div class="w720">
+        <div class="breadcrumbs">
+            <span class="ico">位置：</span>
+            <span id="pathUrl">
+                <script type="text/javascript">
+                    getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+                </script>
+            </span>
+        </div>
+        <div class="mod_con article">
+            <div class="article_bd">
+                <ul class="feedback-list" id="firstDiv">
+                	
+                </ul>
+                <ul class="pagination clearfix" id="page">
+                </ul>
+                <form action="front/feedBack!save.action" onsubmit="return validataSave()" method="post">
+                	<input id="siteId" type="hidden" name="siteId" value="${siteId}"/>
+	                <div class="reply-con">
+	                    <div class="i">
+	                        <label class="lbl">用户昵称：</label>
+	                        <input id="realName" name="leaveWord.realName" type="text" class="ipt" onfocus="init('realNameError')" onblur="validataName()"/>
+	                        <b id="realNameError" class="" ></b>
+	                    </div>
+	                    <div class="i">
+	                        <label class="lbl">手机号码：</label>
+	                        <input id="phoneNumber" name="leaveWord.phoneNumber" type="text" class="ipt" onfocus="init('phoneNumberError')" onblur="validataPhoneNumber()"/>
+	                        <b id="phoneNumberError" class=""></b>
+	                    </div><#--
+	                    <div class="i">
+	                        <label class="lbl">电子邮箱：</label>
+	                        <input id="email" name="leaveWord.email" type="text" class="ipt" onfocus="init('emailError')" onblur="validataEmail()"/>
+	                        <b id="emailError" class=""></b>
+	                    </div>-->
+	                    <div class="i">
+	                        <label class="lbl">留言主题：</label>
+	                        <input id="title" name="leaveWord.title" type="text" class="ipt" onfocus="init('titleError')" onblur="validataTitle()"/>
+	                        <b id="titleError" class=""></b>
+	                    </div>
+	                    <div class="i">
+	                        <label class="lbl">内容：</label>
+	                        <textarea id="content" name="leaveWord.content" class="txtarea" onfocus="init('contentError')" onblur="validataContnt()"></textarea>
+	                        <b id="contentError" class=""></b>
+	                    </div>
+	                    <div class="i action-btn veti_code">
+	                    	<#--
+		                    	<div class="wrap_veti_code">
+		                        	<span class="details_tit">验证码：</span>
+		            				<input id="captcha" name="captcha" class="ipt" type="text" maxlength="5" onfocus="init('captchaError')"/>
+	            					<img src="${resCms}/page/common/image.jsp" width="70" height="25" onclick="this.src='${resCms}/page/common/image.jsp?random='+ Math.random()" />
+	                        		<b id="captchaError" class=""></b>
+	                        	</div>
+                        	-->
+	                        <input type="button" onclick="submitForm()" class="ips" value="确定"/>
+	                        <input type="reset" class="iprs" value="重置"/>
+	                    </div>
+	                </div>
+	           </form>	            
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        		<!--#macro-->
+<#import '../global/global.html' as global/>
+<#macro sideBar mapKey>
+	<div class="mod_aside_hd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</#if>
+	</div>
+	<div class="mod_aside_bd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</#if>
+	</div>
+</#macro>
+<!--#macro-->
+<!--#--><!--#1-->
+<div class="hos_intro">
+    <div class="hd2">${(dataMap["1"].channelName)!''}</div>
+    <div class="bd">
+    	<#if dataMap["1"]??>
+        	<@global.showTitle title=(dataMap["1"].contentList[0].detial)!'' titleNum=90 hasDot=true></@global.showTitle>
+        	<a href="${dataMap["1"].path!'#'}" class="more">[详细]</a>
+        </#if>
+    </div>
+</div>
+<!--#-->
+<div class="aside">
+	<!--#--><!--#2--><@sideBar mapKey="2"/><!--#-->
+</div>
+<div class="aside">
+	<!--#--><!--#3--><@sideBar mapKey="3"/><!--#-->
+</div>        
+    </div>
+</div>
+<#include "../tempInclude/friend_link.html"/>
+<!--#include virtual="${footUrl}"-->
+<script>
+(function($){
+	$(".open_btn").live("click",function(){
+		var $hideObj=$(this).parent().parent().find(".reply_in");
+		$hideObj.toggle()
+		})
+	})(jQuery)
+	
+	var reslt=true;
+	function validataSave(){
+		validataName();
+		validataPhoneNumber();
+		//validataEmail();
+		validataTitle();
+		validataContent();
+		//validataCaptcha();
+		return reslt;
+	}
+
+	function validataName(){
+		var status=true;
+		var realName=document.getElementById("realName").value;
+		
+		if(realName==''){
+			showError("realNameError","请填写真实姓名");
+			status=false;reslt=false;
+		}else{
+			if(realName.length>16){
+				showError("realNameError","最大长度为16");
+				status=false;reslt=false;
+			}
+		}		
+		if(status){
+			showOk("realNameError","填写正确");
+		}
+	}
+	
+	function validataPhoneNumber(){
+		var status=true;
+		var phoneNumber=document.getElementById("phoneNumber").value;
+		
+		if(phoneNumber==''){
+			showError("phoneNumberError","请填写电话号码");
+			status=false;reslt=false;
+		}else if(!isPhoneNumber(phoneNumber)){
+			showError("phoneNumberError","请填写正确的电话号码");
+			status=false;reslt=false;
+		}
+		if(status){
+			showOk("phoneNumberError","填写正确");
+		}
+	}
+
+<#--/*
+	function validataEmail(){
+		var status=true;
+		var email=document.getElementById("email").value;
+		
+		if(email==''){
+			showError("emailError","请填写邮箱号码");
+			status=false;reslt=false;
+		}else if(!isEmail(email)){
+			showError("emailError","请填写正确的邮箱号码");
+			status=false;reslt=false;
+		}
+		if(status){
+			showOk("emailError","填写正确");
+		}
+	}*/
+-->	
+	function validataTitle(){
+		var status=true;
+		var title=document.getElementById("title").value;	
+		
+		if(title==''){
+			showError("titleError","请填写留言标题");
+			status=false;reslt=false;
+		}else if(title.length>120){
+			showError("titleError","最大长度为120");
+			status=false;reslt=false;
+		}
+		if(status){
+			showOk("titleError","填写正确");
+		}
+	}
+	
+	function validataContent(){
+		var status=true;
+		var content=document.getElementById("content").value;
+		
+		if(content==''){
+			showError("contentError","请填写留言内容");
+			status=false;reslt=false;
+		}else if(content.length>3500){
+			showError("contentError","最大长度为3500");
+			status=false;reslt=false;
+		}
+		if(status){
+			showOk("contentError","填写正确");
+		}
+	}
+	
+//	function validataCaptcha(){
+//		var status=true;
+//		var captcha=document.getElementById("captcha").value;
+//		if(captcha==''){
+//			showError("captchaError","请填写验证码");
+//			status=false;reslt=false;
+//		}
+//	}
+	
+	function showOk(id,msg){
+		if(msg!=''){
+			var element=document.getElementById(id);
+			element.innerHTML=msg;
+			element.setAttribute("class","reg_tips reg_ok_tips");
+		}
+	}
+	
+	function showError(id,msg){
+		if(msg!=''){
+			var element=document.getElementById(id);
+			element.innerHTML=msg;
+			element.setAttribute("class","reg_tips reg_error_tips");
+		}
+	}
+<#--
+	function isEmail(str){
+		 var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	   	 return myreg.test(str);
+	}
+-->	
+	function isPhoneNumber(str){
+		 var myreg = /^([0-9]{11})?$/;
+	   	 return myreg.test(str);
+	}
+<#--	
+	function isChina(str){
+		//var patrn=^[\u4E00-\u9FA5]+$;
+		return patrn.exec(str);
+	}
+-->	
+	function init(id){
+		var element=document.getElementById(id);
+		element.innerHTML='';
+		element.setAttribute("class","");
+	}
+	
+	function getJsonpData(url,paramData,f) {
+	$.ajax({
+	    url: url,
+	    type: "GET",
+	    dataType: 'jsonp',
+	    data: (paramData),
+	    timeout: 5000,
+	    success: function (data) {
+	       f(data);
+	    }
+		});
+	}
+	
+	function submitFormFunction(data){
+		data=data.error;
+		if(data==null || data==undefined || data==''){
+	 		alert("留言成功！正在等待审核！");
+			history.go(0);
+			document.getElementById("realName").value='';
+			document.getElementById("phoneNumber").value='';
+			//document.getElementById("email").value='';
+			document.getElementById("title").value='';
+			document.getElementById("content").value='';
+			//document.getElementById("captcha").value='';
+		 }
+	 　　　　for(var key in data){
+		 	showError(key,data[key]);
+		 　　}
+	}
+	
+	function submitForm(){
+		var siteId=document.getElementById("siteId").value;
+		var realName=encodeURI(document.getElementById("realName").value);
+		var phoneNumber=document.getElementById("phoneNumber").value;
+		//var email=document.getElementById("email").value;
+		var title=encodeURI(document.getElementById("title").value);	
+		var content=encodeURI(document.getElementById("content").value);
+		//var captcha=document.getElementById("captcha").value;
+		
+		if(validataSave()){
+			addCookie("phoneNumber",phoneNumber,24*10);
+			getJsonpData("${resCms}/front/feedBack!save.action",
+				{'leaveWord.siteId':siteId,'leaveWord.parentId':0,'leaveWord.realName':realName,
+				'leaveWord.phoneNumber':phoneNumber,'leaveWord.title':title,
+				'leaveWord.content':content},submitFormFunction);		
+		}
+	}
+	
+	function addCookie(name, value, hours) {
+		var str = name + "=" + escape(value);
+		if (hours > 0) {
+			var date = new Date();
+			var ms = hours * 3600 * 1000;
+			date.setTime(date.getTime() + ms);
+			str += "; expires=" + date.toGMTString();
+		}
+		document.cookie = str;
+	}
+	
+	function getCookie(name) {//获取指定名称的cookie的值
+		var arrStr = document.cookie.split("; ");
+		for ( var i = 0; i < arrStr.length; i++) {
+			var temp = arrStr[i].split("=");
+			if (temp[0] == name)
+				return unescape(temp[1]);
+		}
+	}
+	
+	function report(id){
+		if(confirm("您确定要举报该条信息！")){
+			$.post("${resCms}/front/feedBack!report.action",{'leaveWord.id':id},function(data){
+				var element=document.getElementById(id+"_report");
+				element.innerHTML="已举报";
+				element.setAttribute("onclick","javascript:void(0)");
+			});
+		}
+	}
+	
+	function showReplyDiv(id){
+		var element=document.getElementById(id+"_reply");
+		if(element.style.display=="none"){
+			element.style.display="block";
+			var cookiePhoneNumber=getCookie("phoneNumber");
+			if(cookiePhoneNumber !=null && cookiePhoneNumber!=undefined){
+				document.getElementById(id+"_reply_phoneNumber").value=cookiePhoneNumber;
+			}
+		}else{
+			element.style.display="none";
+		}
+	}
+	
+	function askedFunction(data){
+		if(data==null || data==undefined || data==''){ 
+			document.getElementById(id+"_reply_content").value='';
+			document.getElementById(id+"_reply").style.display="none";
+			alert("追问成功！正在等待审核通过！");
+		}else{
+			data=data.error;
+			for(var key in data){
+		 		showError(key,data[key]);
+		 　　}
+		}
+	}
+	
+	function asked(id){
+		document.getElementById(id+"_phoneNumberError").innerHTML="";
+		document.getElementById(id+"_phoneNumberError").setAttribute("class","");
+		document.getElementById(id+"_contentError").innerHTML="";
+		document.getElementById(id+"_contentError").setAttribute("class","");
+		var content=encodeURI(document.getElementById(id+"_reply_content").value);
+		var phoneNumber=document.getElementById(id+"_reply_phoneNumber").value
+		$.ajax({
+		    url: '${resCms}/front/feedBack!asked.action',
+		    type: "GET",
+		    dataType: 'jsonp',
+		    data: ({'leaveWord.id':id,'leaveWord.phoneNumber':phoneNumber,'leaveWord.content':content}),
+		    timeout: 5000,
+		    success: function (data) {
+		    	data=data.error;
+				if(data==null || data==undefined || data==''){ 
+					document.getElementById(id+"_reply_content").value='';
+					document.getElementById(id+"_reply").style.display="none";
+					alert("追问成功！正在等待审核通过！");
+				}else{					
+					for(var key in data){
+				 		showError(id+'_'+key,data[key]);
+				 　　}
+				}		  
+			}
+		});
+	}
+	
+	function loadDataFunction(d){
+		var data=d.list;
+		var firstLeaveId="firstDiv";
+		　for(var i=0;i<data.length;i++){
+			var id;
+			if(data[i][0]!=null && data[i][0]!=undefined){
+				id=addFirstDiv(firstLeaveId,data[i][0],data[i][1]);	
+				firstLeaveId=id+"_next";
+			}
+			if(data[i].length>2){
+				var floorId=id;
+				var next=2;
+			 　　for(var j=1;j<data[i].length+0.5;j++){
+				 	if(data[i][next+1]){
+				 		if(data[i][next+1].reply){
+				 			newFloor(j,data[i][next],data[i][next+1],floorId+"_inner");
+				 			next+=2;
+				 		}else{
+					 		newFloor(j,data[i][next],null,floorId+"_inner");
+					 		next+=1;
+					 	}
+				 	}else{
+				 		newFloor(j,data[i][next],null,floorId+"_inner");
+				 		break;
+				 	}
+			 	}
+			}
+		 　　}
+		//添加分页字段
+		var page=d.pagination;
+		document.getElementById("page").innerHTML=page.pageInfo;
+	}
+	
+	function loadData(pageNo){	//获取留言板数据
+		var siteId=document.getElementById('siteId').value;
+		getJsonpData("${resCms}/front/feedBack!list.action",
+			{'leaveWord.siteId':siteId,'pagination.pageNo':pageNo},loadDataFunction);	
+	}
+	
+	loadData(1);
+	
+	//加载第一层html代码
+	function addFirstDiv(divId,question,reply){
+		var time = new Date(parseInt(question.createDate.time));
+		var html="<li>";
+		    html+="<div class='i user'>";
+		    html+="<span class='tit'>昵称：</span>";
+		    html+="<p class='txt'>"+question.realName+"</p>";
+		    html+="<span class='ico'></span>";
+		        html+="<span class='date'>"+time.getUTCFullYear()+"-"+(time.getUTCMonth()+1)+"-"+time.getUTCDate()+"  "
+		        	+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds()+"</span>";
+		    html+="</div>";
+		    html+="<div class='i'>";
+		        html+="<span class='tit'>主题：</span>";
+		        html+="<p class='txt'>"+question.title+"</p>";
+		    html+="</div>";
+		    html+="<div class='i'>";
+		        html+="<span class='tit'>内容：</span>";
+		        html+="<p class='txt'>"+question.content+"</p>";
+		        html+="<div class='action_btn_area'>";
+		        	 if(question.status==2)
+	               		html+="<a id='"+question.id+"_report' class='jubao_btn' onclick='javascript:void(0)'>被举报</a>";
+	               	 else
+	               		html+="<a id='"+question.id+"_report' class='jubao_btn' onclick='report("+question.id+")'>举报</a>";
+		        html+="</div>";              
+		    html+="</div>";
+		    if(reply!=null && reply!=undefined){
+		    	var replyTime = new Date(parseInt(reply.createDate.time));
+			    html+="<div class='i reply' style='position:relative'>";
+	     			html+="<span class='ico'></span>";
+		        	html+="<div class='hd'>";
+			            html+="<b class='red'>管理员回复:</b>";
+			            html+="<span class='date'>"+replyTime.getUTCFullYear()+"-"+(replyTime.getUTCMonth()+1)+"-"+replyTime.getUTCDate()+"  "
+		        	+replyTime.getHours()+":"+replyTime.getMinutes()+":"+replyTime.getSeconds()+"</span>";
+			        html+="</div>";
+			        html+="<p>"+reply.content+"</p>";
+			        html+="<div class='action_btn_area'>";
+			            html+="<a class='zhuiwen_btn' onclick='showReplyDiv("+reply.id+")'>追问</a><a class='open_btn'>展开</a>";
+			            html+="<div id='"+reply.id+"_reply' style='display:none'>";
+                      		html+="<br/><br/>";
+                       		html+="<textarea id='"+reply.id+"_reply_content'  class='textarea' cols='103' rows='5'></textarea>";
+                       		html+="<div>";
+	                       		html+="<label class='lbl'>手机号码：</label><input id='"+reply.id+"_reply_phoneNumber' class='ipt' type='text'/>"
+	                       		html+="<b id='"+reply.id+"_phoneNumberError' class=''></b>";
+	                       		html+="<b id='"+reply.id+"_contentError' class=''></b>";
+                       			html+="<a class='open_btn' onclick='asked("+reply.id+")'>提交</a>";
+	                      	html+="</div>";
+                      	html+="</div>";
+			        html+="</div>";
+			        html+="<div class='i reply_in' id="+question.id+"_inner>";
+			        html+="</div>";
+			     html+="</div>";
+		    }
+		html+="</li>";
+		html+="<div id="+question.id+"_next></div>";
+		document.getElementById(divId).innerHTML=html;
+		return question.id;
+	}
+	
+	function newFloor(index,question,reply,divId){
+		var html="<div class='wrap'>";
+       	html+="<div class='txt'>";
+       		if(question!=null && question!=undefined){
+				var questionTime = new Date(parseInt(question.createDate.time));
+	           	html+="<div class='hd'>";
+	               	html+="<span class='floor_num'>"+index+"<b class='floor_str'>楼</b></span>";
+	               	html+="<span class='name'>"+question.email+"</span><b class='red'>追问:</b>";
+	                   html+="<span class='date'>"+questionTime.getUTCFullYear()+"-"+(questionTime.getUTCMonth()+1)+"-"+questionTime.getUTCDate()+"  "
+			        	+questionTime.getHours()+":"+questionTime.getMinutes()+":"+questionTime.getSeconds()+"</span>";
+	               html+="</div>";
+	               html+="<p>"+question.content;
+	               html+="</p>";
+	               html+="<div class='action_btn_area'>";
+	               	   if(question.status==2)
+	               		    html+="<a id='"+question.id+"_report' class='jubao_btn' onclick='javascript:void(0)'>被举报</a>";
+	               	   else
+	               		   html+="<a id='"+question.id+"_report' class='jubao_btn' onclick='report("+question.id+")'>举报</a>";
+	               html+="</div>";
+	           html+="</div>";
+       		}
+           if(question!=null && question!=undefined && reply!=null && reply!=undefined){
+        	   var replyTime = new Date(parseInt(reply.createDate.time));
+	           html+="<div class='txt'>";
+	           	html+="<div class='hd'>";
+	               	html+="<b class='red'>管理员回复:</b>";
+	                   html+="<span class='date'>"+replyTime.getUTCFullYear()+"-"+replyTime.getUTCDay()+"-"+replyTime.getUTCDate()+"  "
+		        	+replyTime.getHours()+":"+replyTime.getMinutes()+":"+replyTime.getSeconds()+"</span>";
+	               html+="</div>";
+	               html+="<p>"+reply.content+"</p>";
+	           html+="</div>";
+          }
+       html+="</div>";
+       document.getElementById(divId).innerHTML+=html;
+	}
+</script>
+
+<script type="text/javascript">
+function toPage(pNo) {
+	loadData(pNo);
+}
+
+function go(pNo, currentPage) {
+	var pageNo = document.getElementById(pNo);
+	var cPage = document.getElementById(currentPage);
+	if (Number(pageNo.value) == Number(cPage.value))
+	return;
+	toPage(Number(pageNo.value, 1));
+}
+
+function numberFormat(pageNo, lastPage) {
+	var idNum = document.getElementById(pageNo);
+	if (!Number(idNum.value) || idNum.value == null || idNum.value == undefined) {
+		idNum.value = 1;
+	} else {
+		var last = document.getElementById(lastPage);
+		if (Number(idNum.value) > Number(last.value)) {
+			idNum.value = last.value;
+		}
+	}
+	idNum.value = Number(idNum.value);
+}
+
+function checkEnter(event, clickId) {
+	if(event.keyCode == 13){
+	     	document.getElementById(clickId).click();
+	 }
+ }
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<#import '../includes/global.html' as global/>
+<#include "../includes/header.html"/>
+<!-- 以下是大图片 -->
+<div class="index_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat">
+				<a href="news/detail/160.html" tppabs="http://zh.e-cantonfair.com/news/detail/160.html">
+					<div class="index_banner_itempic_in">
+					</div>
+				</a>
+			</div>
+		</div>
+		<div tag="2" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_2.jpg) center 0px no-repeat">
+				<a href="dongtai/detail/120.html" tppabs="http://zh.e-cantonfair.com/dongtai/detail/120.html">
+					<div class="index_banner_itempic_in">
+					</div>
+				</a>
+			</div>
+		</div>
+		<div tag="3" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_3.jpg) center 0px no-repeat">
+				<a href="activity/activity_detail001.html"
+				   tppabs="http://zh.e-cantonfair.com/activity/activity_detail001.html">
+					<div class="index_banner_itempic_in">
+					</div>
+				</a>
+			</div>
+		</div>
+		<div tag="4" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_4.jpg) center 0px no-repeat">
+				<a href="exhibition/index.htm" tppabs="http://zh.e-cantonfair.com/exhibition/">
+					<div class="index_banner_itempic_in">
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<a href="javascript:;" class="btn-prev"></a>
+	<a href="javascript:;" class="btn-next"></a>
+
+	<div class="index_banner_p">
+		<div class="index_banner_p_in" id="bannerclick">
+			<span tag="1" class="index_banner_p_item_current"></span>
+			<span tag="2" class="index_banner_p_item"></span>
+			<span tag="3" class="index_banner_p_item"></span>
+			<span tag="4" class="index_banner_p_item"></span>
+		</div>
+	</div>
+</div>
+<!-- 以下是第一个section -->
+<div class="gutter"></div>
+<div class="section">
+    <div class="main_con clearfix">
+	    <div class="mod_main_hd">
+		    <h3 class="tit">
+				<em class="cn">${(dataMap['3'].channelName)!'新闻'}</em>
+				<em class="en"> news</em>
+			</h3>
+		    <a href="${(dataMap['3'].path)!'#'}" class="more">更多&gt;&gt;</a>
+	    </div>
+	    <div class="mod_main_bd">
+		    <div class="wrap_focus clearfix">
+		    	<!-- 区域2 幻灯片 -->
+			    <div class="focus" id="index_Focus" style="visibility:hidden">
+				    <div class="loading"><span>载入中,请稍候...</span></div>
+				    <@global.PowerPoint mapKey='2' ulClass='pic' liClass='';title,path,imgPath>
+	                    <a target="_blank" href="${path}"><img src="${imgPath}" width="300" height="275" alt="${title}"/></a>
+               		 </@global.PowerPoint>
+			    </div>
+		    </div>
+		    <div class="news_list">
+		    	 <!-- 区域3 资讯 -->
+		    	<c:if dataMap['3'].contentList??>
+		    		<@global.showList3 ulClass='list01_aico' liClass='' data=dataMap['3'].contentList;item>
+		    			<div class="txt">
+		    				<a href="${item.path!'#'}">
+		    					<@global.showTitle title=item.title!'' titleNum=21></@global.showTitle>
+		    				</a>
+		    			</div>
+					    <span class="date"><@global.showTime time=(item.time)!'[2013-6-24]'/></span>
+		    		</@global.showList3>	
+		    	</c:if>
+		    </div>
+	    </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside comfile">
+	        <!-- 区域1 侧边1 -->
+			<#include "../includes/side_1.html"/>
+        </div>
+    </div>
+</div>
+<!-- 以下是第二个section -->
+<div class="section">
+	<div class="main_con prd_show clearfix">
+	   <@global.showProduct data=dataMap['5']></@global.showProduct>
+	</div>
+	<div class="sidebar">
+		<div class="aside com_intro">
+			 <!-- 区域4 侧边2 -->
+			<#include "../includes/side_2.html"/>
+		</div>
+		<div class="gutter"></div>
+		<div class="aside">
+			<div class="aside_hd">
+				<h3 class="tit">产品分类</h3>
+			</div>
+			<div class="aside_bd">
+				<ul class="list01_aico">
+					<li>
+						<a href="#">北京同仁堂系列</a>
+					</li>
+					<li>
+						<a href="#">北京同仁堂系列</a>
+					</li>
+					<li>
+						<a href="#">北京同仁堂系列</a>
+					</li>
+					<li>
+						<a href="#">北京同仁堂系列</a>
+					</li>
+					<li>
+						<a href="#">北京同仁堂系列</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+<script src="${resScript}/v2/full-banner-roll.js"></script>
+<script src="${resScript}/v2/base.js"></script>
+<script src="${resScript}/v2/myfocus-1.2.4.full.js"></script>
+<script src="${resScript}/v2/mF_tb.js"></script>
+<script>
+	myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:300,height:275,txtHeight:30,duration:350,direction:'left',easing:'easeOut',wrap:false});//宽度为图片容器实际宽度,主程序注释了自动添加皮肤。20110711
+</script>
+</body>
+</html>

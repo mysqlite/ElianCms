@@ -1,0 +1,62 @@
+﻿<#include "../includes/con_header.html"/>
+<!--头部begin-->
+<div id="headDiv">
+ <!--#include virtual="${headUrl}"-->
+</div>
+<!--头部end-->
+
+<!--导航begin-->
+<div id="navDiv">
+ <!--#include virtual="${navUrl}"-->
+</div>
+<!--导航end-->
+<div class="section">
+     <!-- 正文开始-->
+      <div class="w750">
+        <div class="breadcrumbs">
+                    <span class="ico"> 您的位置:</span>
+                    <span id="pathUrl">
+                        <script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+                        <script type="text/javascript">
+                            getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+                        </script>
+                    </span>
+         </div>
+        <div class="mod_con article">
+            <div class="article_hd">
+                <h1>${(info.title)!''}</h1>
+                <div class="tagInfo">
+                    <span class="i">编辑：${(info.creater.realName)!''}</span><span class="i">时间：${(info.publishTime?string('yyyy-MM-dd'))!''}</span>
+                </div>
+            <div class="article_bd">
+                ${(info.content)!''}${(info.introduction)!''} ${(info.description)!''}
+            </div>
+        </div>
+      </div>
+    </div>
+    <!--正文结束-->
+<!-- 侧边栏开始 -->
+<div class="sidebar" >
+    <#import '../includes/global.html' as global/>
+	<!-- 医院杂志begin -->
+    <!--#include file="${detailFolder}1.shtml"-->
+     <!-- 医院杂志end -->
+     
+    <!-- 医院地图begin -->
+    <!--#include file="${detailFolder}2.shtml"-->
+    <!-- 医院地图end -->
+</div>
+<!-- 侧边栏结束 -->
+ </div>
+
+<!--友情链接begin-->
+<#include "../includes/links_list.html">
+<!--友情链接end-->
+
+<!-- 尾部开始-->
+<div id="footDiv" class="footer">
+ <!--#include virtual="${footUrl}"-->
+</div>
+<!-- 尾部结束-->
+</body>
+</html>

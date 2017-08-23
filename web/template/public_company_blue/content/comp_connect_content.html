@@ -1,0 +1,69 @@
+﻿<#include "../includes/header.html"/>
+<script>
+	function listCssFunction(path,data){
+		var html="<ul class='list01_aico'>";
+		for(var i=0;i<data.data.length;i++){
+			html+="<li><div class='txt'>";
+			html+="		<a href='"+path+"/"+data.data[i].id+".shtml' target='_blank'>"+data.data[i].title+"</a>";
+			html+="		</div>";
+			html+="		<span class='date'>["+data.data[i].createTime.substring(0,10)+"]</span>";
+			html+="</li>";
+		}
+		html+="</ul>";
+		return html+data.page;
+	}
+</script>
+<div class="index_banner_grid sub_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat;">
+				<a href="#">
+					<div class="index_banner_itempic_in"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gutter"></div>
+<#--顶部第一栏begin-->
+<div class="section">
+    <div class="main_con wrap_aricle clearfix">
+	    <div class="mod_main_hd">
+		    <div class="location">
+			    <a href="#">联系我们</a> / <span class="cur">正文</span>
+		    </div>
+	    </div>
+	    <div class="mod_main_bd article">
+		    <div class="article_hd">
+			    <h1>${comp.name!'不详'}</h1>
+		    </div>
+		    <div class="line"></div>
+		    <div class="article_bd mod_contact_us">
+				<h3>${comp.name!'不详'}</h3>
+                <ul class="list">
+                	<li><span class="tit">联系人：</span> 无信息 </li>
+                    <li><span class="tit">电话：</span>${comp.phone!'不详'} </li>
+                    <li><span class="tit">地址：</span>${comp.address!'不详'} </li>
+                    <li><span class="tit">邮编：</span>${comp.postcode!'无信息'} </li>
+                    <li><span class="tit">公司主页：</span> 
+                   		<a href="${comp.siteUrl!'#'}" target="blank">${comp.siteUrl!'无信息'}</a> 
+                    </li>
+                </ul>
+                <div class="google_map">
+                	${comp.busLine}
+                </div>
+		    </div>
+		</div>
+	</div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="aside comfile">
+			<#include "../includes/side_1.html"/>
+		</div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

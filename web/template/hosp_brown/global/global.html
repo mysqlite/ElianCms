@@ -1,0 +1,167 @@
+<#--可以使用-->
+<#macro showList ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.imgPath item.title item.detial/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用     可以显示时间-->
+<#macro showList2 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.title item.detial item.time/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用     可以显示时间-->
+<#macro showList3 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+
+<#--可以使用-->
+<#macro showNumList ulClass liClass begin end data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list begin..end as i>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested i data[i]/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showTitle title titleNum hasDot>
+	<#if showTitle??>
+		<#if (title?length>titleNum)>
+			${title[0..titleNum]}
+			<#if hasDot>...</#if>
+		<#else>
+			${title}
+		</#if>
+	</#if>
+</#macro>
+
+<#--换灯片-->
+<#macro PowerPoint ulClass liClass>
+	<#if (dataMap['powerPoint'].imgContentList)??>
+		<#local data=dataMap['powerPoint'].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	</#if>
+</#macro>
+<#--换灯片-->
+<#macro PowerPoint mapKey ulClass liClass>
+    <#if (dataMap[mapKey].imgContentList)??>
+        <#local data=dataMap[mapKey].imgContentList/>
+        <#if data??>
+            <ul class="${ulClass!''}">
+                <#list data as item>
+                    <li class="${liClass!''}">
+                        <#nested item.title item.path item.imgPath/>
+                    </li>               
+                </#list>
+            </ul>
+        </#if>
+    </#if>
+</#macro>
+
+<#-- 导航换行显示 -->
+<#macro nav showNum data>  
+    <#local showNum=showNum-1/>
+    <#if data??>
+        <#if (data?size>showNum)>
+             <div class="nav">
+                 <ul class="list">
+                   <#list 0..showNum as i> 
+                     <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                     </#if>
+                   </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+             </div>
+             
+              <#if (data?size>showNum+1)>
+              <div class="nav2">
+                <ul class="list">
+                 <#list (showNum+1)..data?size as i>
+                  <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                  </#if>
+                 </#list>
+                </ul>
+              </div>
+              </#if>
+             <#else>
+              <div class="nav">
+                 <ul class="list">
+                  <#list 0..data?size as i> 
+                    <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                    </#if>
+                  </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+               </div>
+        </#if>
+     </#if>    
+</#macro>
+
+<#macro navLi data>
+ <#if data??>
+   <li><a href="${data.path}" target="_self">${data.channelName}</a></li>
+  </#if>
+</#macro>
+
+
+
+<#macro getParentPath contentPath>
+	<#if contentPath??>
+		<#local data=contentPath?split('/')/>
+		<#list 0..data?size-3 as i>
+			<#if data[i]??>${data[i]}/</#if>
+		</#list>index.shtml
+	</#if>
+</#macro>
+
+<#macro showTime time>
+	<#if time??>
+		<#if time?trim!=''>
+			<#local data=time?split('[')[1]/>
+			<#if data??>
+				${data?split(']')[0]}
+			</#if>
+		</#if>
+	</#if>
+</#macro>

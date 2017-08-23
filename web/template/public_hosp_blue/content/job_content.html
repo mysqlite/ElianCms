@@ -1,0 +1,87 @@
+﻿<#include "../includes/index_header.html"/>
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<#--顶部第一栏begin-->
+<div class="section">
+   <div class="w700">
+        <div class="mod_box">
+            <div class="mod_box_hd">
+            	<h3>
+					<span id="pathUrl">
+	                     <script type="text/javascript">
+	                         getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+	                     </script>
+	                 </span>
+            	</h3>
+            </div>
+            <div class="mod_box_bd article">
+                <div class="article_hd">
+                    <h1>${job.title!''}</h1>
+                    </div>
+                <div class="article_bd">
+                    <div class="product_details_bd">
+                    <div class="tbl_hd"><h4>详细信息</h4></div>
+                    <table cellspacing="0" class="tbl">
+                    <tbody><tr>
+                       <td class="td1">招聘有效期</td>
+                       <td class="td2">
+                       		<#if job.expireTime??>
+	                       		${job.expireTime?string?date("yyyy-MM-dd")}
+                       		</#if>
+                       </td>
+                    </tr>
+                   <tr>
+                    <td class="td1">招聘人数</td>
+                    <td class="td2">${job.hireNum!''} 人</td>
+                  </tr>
+                   <tr>
+                    <td class="td1">招聘职位</td>
+                    <td class="td2">${job.jobName!''}</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">年龄范围</td>
+                       <td class="td2">${job.ageRange!''}</td>
+                   </tr><!--
+                   <tr>
+                       <td class="td1">学历要求</td>
+                       <td class="td2">
+         					${job.education!''}
+                       </td>
+                   </tr>
+                   --><tr>
+                       <td class="td1">工作年限</td>
+                       <td class="td2">
+                       		${job.workExpe!''}                       
+                       </td>
+                   </tr><!--
+                   <tr>
+                       <td class="td1">工作类型</td>
+                       <td class="td2">
+							${job.jobNature!''}                       
+                       </td>
+                   </tr>
+                   --><tr>
+                       <td class="td1">薪资待遇</td>
+                       <td class="td2">
+                       		${job.salary!''}
+                       </td>
+                   </tr>
+                   <tr>
+                       <td class="td1">招聘详情</td>
+                       <td class="td2">${job.jobRequ!''}</td>
+                   </tr>
+                </tbody></table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="sidebar">
+        <!--侧边 -->
+		<#include "../includes/all_side.html"/>
+    </div>
+</div>
+<div class="footer" style="border-top: 5px solid #007DCA;padding-top: 5px;">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

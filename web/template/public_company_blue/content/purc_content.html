@@ -1,0 +1,89 @@
+﻿<#include "../includes/header.html"/>
+<div class="index_banner_grid sub_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat;">
+				<a href="#">
+					<div class="index_banner_itempic_in"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gutter"></div>
+<#--顶部第一栏begin-->
+<div class="section">
+  <div class="main_con wrap_aricle clearfix">
+  		<div class="mod_main_hd">
+		    <div class="location">
+			    <span id="pathUrl">
+                    <script type="text/javascript">
+                        getPageLevelHtml('pathUrl','${pathUrl!''}','>>',true);
+                    </script>
+                </span>
+                     / <span class="cur">正文</span>
+		    </div>
+	    </div>
+            <div class="mod_box_bd article">
+                <div class="article_hd">
+                    <h1>${purc.name!''}</h1>
+                    </div>
+                <div class="article_bd">
+                    <div class="product_details_bd">
+                    <table cellspacing="0" class="tbl">
+                    <tbody><tr>
+                       <td class="td1">发布日期</td>
+                       <td class="td2">
+	                       <#if purc.createTime??>
+		                       ${purc.createTime?string("yyyy-MM-dd")}</td>
+	                       </#if>
+                    </tr>
+                   <tr>
+                    <td class="td1">截止日期</td>
+                    <td class="td2">
+                    	 <#if purc.expireTime??>
+	                         ${purc.expireTime?string("yyyy-MM-dd")}</td>
+                         </#if>
+                   </tr><tr>
+                    <td class="td1">产品规格</td>
+                    <td class="td2">${purc.specification!'暂无信息'}</td>
+
+                   </tr>
+                   <tr>
+                       <td class="td1">采购数量</td>
+                       <td class="td2">${purc.number!'暂无信息'}</td>
+
+                   </tr><!--
+                   <tr>
+                       <td class="td1">计量单位</td>
+                       <td class="td2">台</td>
+                   </tr>
+                   --><tr>
+                       <td class="td1">价格说明</td>
+                       <td class="td2">${purc.price!''}元</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">求购产品说明</td>
+                       <td class="td2">${purc.desc!''}</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">求购说明</td>
+                       <td class="td2">${purc.notice!''}</td>
+                   </tr>
+                </tbody></table>
+                </div>
+                </div>
+            </div>
+        </div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="aside comfile">
+			<#include "../includes/side_1.html"/>
+		</div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

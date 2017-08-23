@@ -1,0 +1,41 @@
+<#if channel??>
+    <div class="aside_hd ui_aisde_hd">
+        <h3 class="tit">${channel.channelName!''}</h3>
+    </div>
+</#if>
+<#if subChannelList??>
+   <#if subChannelList?size!=0>
+        <div class="aside_bd ui_aisde_bd">
+             <ul class="list01_aico" id="list01_aico_parent">
+               <#list 0..(subChannelList?size-1) as i>
+                  <#if ((subChannelList[i].type=='single'&&subChannelList[i].contentId??)||(subChannelList[i].type=='list'))>
+                        <li>
+                           <#if i==0>
+                               <#if subChannelList[0].type=='list'>
+                                  <script type="text/javascript">
+                                  G("tableUrl").value="${subChannelList[i].tableUrl}";
+                                 setTimeout(function(){
+                                    showDiv("instr_list_div","main_con",'${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);
+                                 },300);
+                                 </script>
+                               <#elseif subChannelList[0].type=='single'>
+                                <script type="text/javascript">
+                                 setTimeout(function(){
+                                    getPageLevelHtml('pathUrl_${subChannelList[0].contentId}','${subChannelList[i].pathUrl}','>>',false);
+                                 },300);
+                              </script>
+                            </#if>
+                        </#if>
+                        <#if subChannelList[i].type=='single'>
+                             <a <#if i==0>class="cur"</#if> onclick="showDiv(${subChannelList[i].contentId?string},'main_con','','${subChannelList[i].pathUrl}',false);" target="_self">${subChannelList[i].channelName}</a>
+                        </#if>
+                        <#if subChannelList[i].type=='list'>
+                             <a <#if i==0>class="cur"</#if> onclick="showDiv('instr_list_div','main_con','${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);" target="_self">${subChannelList[i].channelName}</a>
+                        </#if>
+                    </li>
+                </#if>
+            </#list>
+          </ul>
+        </div>
+ </#if>
+</#if>

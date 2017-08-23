@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="admin" extends="struts-default" namespace="/admin">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.elian.cms.syst.filter.LoginInterceptor"/>
+            <interceptor name="trimInterceptor" class="com.elian.cms.syst.filter.TrimInterceptor"/>
+            <interceptor name="tokenInterceptor" class="com.elian.cms.syst.filter.TokenInterceptor"/>
+            <interceptor-stack name="baseStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <!-- 防止重复提交拦截器 -->
+                <interceptor-ref name="tokenInterceptor">
+                    <param name="includeMethods">edit</param>
+                    <param name="checkTokenMethods">save</param>
+                </interceptor-ref>
+                <!-- 去除两端空格拦截器 -->
+                <interceptor-ref name="trimInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <!-- 配置默认拦截器栈 -->
+        <default-interceptor-ref name="baseStack" />
+        
+        <global-results>
+            <result name="invalidToken">/invalidTokenError.html</result>
+            <result name="login" type="redirectAction">${path}login!login.action</result>
+        </global-results>
+        
+        <action name="navigation" class="navigationAction">
+            <result name="success" type="redirect">${path}/page/manage/frame/${url}.jsp${param}</result>
+        </action>
+        
+        <action name="*Tree" class="{1}Action">
+            <result name="tree">${path}/page/manage/frame/{1}Province.jsp</result>
+            <result name="hospDoctorTree">${path}/page/manage/frame/{1}Tree.jsp</result>
+            <result name="allTree">${path}/page/manage/frame/{1}Tree.jsp</result>
+            <result name="list">${path}/page/manage/{1}.jsp</result>
+            <result name="edit">${path}/page/manage/{1}Edit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">${path}{1}!list</param>
+                <param name="areaCode">${areaCode}</param>
+                <param name="ztree">${ztree}</param>
+                <param name="hospId">${hospId}</param>
+                <param name="departId">${departId}</param>
+            </result>
+            <result name="show">${path}/page/manage/{1}Show.jsp</result>
+            <result name="treeList" type="redirectAction">${path}{1}!list</result>
+            <result name="inputMyHosp" type="redirectAction">
+               <param name="actionName">${path}{1}!edit</param>
+               <param name="areaCode">${areaCode}</param>
+               <param name="ztree">${ztree}</param>
+               <param name="hospId">${hospId}</param>
+               <param name="departId">${departId}</param> 
+           </result>
+           <result name="input">${path}/page/manage/{1}Edit.jsp</result>
+        </action>
+        
+        <action name="*_c" class="{1}Action">
+            <result name="edit">${path}/page/manage/{1}Edit.jsp</result>
+            <result name="show">${path}/page/manage/{1}Show.jsp</result>
+            <result name="input">${path}/page/manage/{1}Edit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">content!list</param>
+                <param name="channelId">${channelId}</param>
+                <param name="leaf">${leaf}</param>
+                <param name="action">${action}</param>
+                <param name="status">${status}</param>
+                <param name="controlId">${controlId}</param>
+                <param name="publish">${publish}</param>
+            </result>
+        </action>
+        
+        <action name="*_cImport" class="{1}ImportAction">
+            <result name="edit">${path}/page/manage/{1}ImportEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">content!list</param>
+                <param name="channelId">${channelId}</param>
+                <param name="leaf">${leaf}</param>
+                <param name="action">${action}</param>
+                <param name="public">${public}</param>
+                <param name="status">${status}</param>
+            </result>
+        </action>
+        
+        <action name="*" class="{1}Action">
+            <result name="list">${path}/page/manage/{1}.jsp</result>
+            <result name="edit">${path}/page/manage/{1}Edit.jsp</result>
+            <result name="save" type="redirectAction">${path}{1}!list</result>
+            <result name="show">${path}/page/manage/{1}Show.jsp</result>
+            <result name="input">${path}/page/manage/{1}Edit.jsp</result>
+        </action>
+        
+        <action name="contentModel_edit" class="contentModelAction">
+            <result name="edit">${path}/page/manage/contentModelEdit1.jsp</result>
+        </action>
+        
+        <action name="company" class="companyAction">
+            <result name="tree">${path}/page/manage/frame/secondMenu.jsp?page=companyTree</result>
+            <result name="list">${path}/page/manage/company.jsp</result>
+            <result name="edit">${path}/page/manage/companyEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}company!list</result>
+            <result name="show">${path}/page/manage/companyShow.jsp</result>
+            <result name="input">${path}/page/manage/companyEdit.jsp</result>
+        </action>
+        
+        <action name="login" class="loginAction">
+            <result name="success" type="redirectAction">${path}login!main.action</result>
+            <result name="main">${path}/page/manage/frame/index.jsp</result>
+            <result name="fail">${path}/page/manage/login.jsp</result>
+            <result name="loginOut" type="redirectAction">${path}login!login.action</result>
+            <result name="input">${path}/page/manage/login.jsp</result>
+        </action>
+        
+        <action name="template" class="templateAction">
+            <result name="list">${path}/page/manage/frame/templateRight.jsp</result>
+            <result name="edit">${path}/page/manage/templateEdit.jsp</result>
+            <result name="input">${path}/page/manage/templateEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">template!list</param>
+                <param name="url">${url}</param>
+                <param name="tempId">${tempId}</param>
+            </result>
+            <result name="create" type="redirectAction">
+                <param name="actionName">template!list</param>
+                <param name="navigateUrl">${navigateUrl}</param>  
+            </result>
+        </action>
+        
+        <action name="site" class="siteAction">
+            <result name="list">${path}/page/manage/site.jsp</result>
+            <result name="edit">${path}/page/manage/siteEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}site!list</result>
+            <result name="show">${path}/page/manage/siteShow.jsp</result>
+            <result name="input">${path}/page/manage/siteEdit.jsp</result>
+            <result name="temp">${path}/page/manage/siteTempEdit.jsp?isInit=${init}</result>            
+        </action>
+        
+        <action name="channel" class="channelAction">
+            <result name="list">${path}/page/manage/frame/channelRight.jsp</result>
+            <result name="frontList">${path}/page/manage/staticNav.jsp</result>
+            <result name="edit">${path}/page/manage/channelEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">channel!list</param>
+                <param name="parent">${parent}</param>
+                <param name="channel.parentId">${navigateId}</param>
+                <param name="parentStaticPath">${parentStaticPath}</param>
+            </result>
+            <result name="input">${path}/page/manage/channelEdit.jsp</result>
+        </action>
+        
+        <action name="initChannel" class="initChannelAction">
+            <result name="tree">${path}/page/manage/frame/initChannelTree.jsp</result>
+            <result name="list">${path}/page/manage/initChannel.jsp</result>
+            <result name="edit">${path}/page/manage/initChannelEdit.jsp</result>
+            <result name="input">${path}/page/manage/initChannelEdit.jsp</result>
+        </action>
+        
+        <action name="siteUser" class="siteUserAction">
+            <result name="list">${path}/page/manage/siteUser.jsp</result>
+            <result name="userList">${path}/page/manage/siteUserList.jsp</result>
+            <result name="edit">${path}/page/manage/siteUserEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}siteUser!list</result>
+            <result name="show">${path}/page/manage/siteUserShow.jsp</result>
+            <result name="input">${path}/page/manage/siteUserEdit.jsp</result>
+        </action>
+        
+        <action name="upload" class="uploadAction">
+            <result name="fail">${path}/error.html</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">${url}</param>
+                <param name="navigateUrl">${uploadToUrl}</param>
+                <param name="tempId">${tempId}</param>
+            </result>
+        </action>
+        
+        <action name="user" class="userAction">
+            <result name="list">${path}/page/manage/user.jsp</result>
+            <result name="edit">${path}/page/manage/userEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}user!list</result>
+            <result name="show">${path}/page/manage/userShow.jsp</result>
+            <result name="input">${path}/page/manage/userEdit.jsp</result>
+            <result name="siteUserList" type="redirectAction">
+                <param name="actionName">siteUser!list</param>
+                <param name="roleId">${roleId}</param>
+            </result>
+        </action>
+        
+        <action name="content" class="contentAction">
+            <result name="list">${path}/page/manage/frame/contentRight.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">content!list</param>
+                <param name="channelId">${channelId}</param>
+                <param name="parentId">${parentId}</param>
+                <param name="action">${action}</param>
+                <param name="id">${id}</param>
+            </result>
+        </action>
+        
+        <action name="roleAction" class="roleActionAction">
+            <result name="edit">${path}/page/manage/roleActionEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}role!list</result>
+            <result name="input">${path}/page/manage/roleActionEdit.jsp</result>
+        </action>
+        
+        <action name="*_cImport" class="{1}ImportAction">
+            <result name="edit">${path}/page/manage/{1}ImportEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">content!list</param>
+                <param name="channelId">${channelId}</param>
+                <param name="leaf">${leaf}</param>
+                <param name="action">${action}</param>
+                <param name="public">${public}</param>
+                <param name="status">${status}</param>
+            </result>
+        </action>
+        
+        <action name="static" class="staticAction">
+            <result name="success">${path}/page/manage/${url}.jsp</result>
+        </action>
+        
+        <action name="tempConfig" class="tempConfigAction">
+            <result name="tree">${path}/page/manage/frame/tempTree.jsp</result>
+            <result name="list">${path}/page/manage/tempConfig.jsp</result>
+            <result name="edit">${path}/page/manage/tempConfigEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}tempConfig!list</result>
+            <result name="show">${path}/page/manage/tempConfigShow.jsp</result>
+            <result name="input">${path}/page/manage/tempConfigEdit.jsp</result>
+        </action>
+        
+        <action name="initTempConfig" class="initTempConfigAction">
+            <result name="tree">${path}/page/manage/frame/initTempTree.jsp</result>
+            <result name="list">${path}/page/manage/initTempConfig.jsp</result>
+            <result name="edit">${path}/page/manage/initTempConfigEdit.jsp</result>
+            <result name="save" type="redirectAction">${path}tempConfig!list</result>
+            <result name="show">${path}/page/manage/initTempConfigShow.jsp</result>
+            <result name="input">${path}/page/manage/initTempConfigEdit.jsp</result>
+        </action>
+        
+        <action name="doctorRegisterSet" class="doctorRegisterSetAction">
+            <result name="list">${path}/page/manage/doctorRegisterSet.jsp</result>
+            <result name="edit">${path}/page/manage/doctorRegisterSetEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">doctorRegisterSet!list</param>
+                <param name="doctorId">${doctorId}</param>
+            </result>
+            <result name="input">${path}/page/manage/doctorRegisterSetEdit.jsp</result>
+        </action>
+        
+        <action name="doctorWork" class="doctorWorkAction">
+            <result name="list">${path}/page/manage/doctorWork.jsp</result>
+            <result name="edit">${path}/page/manage/doctorWorkEdit.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">doctorWork!list</param>
+                <param name="doctorId">${doctorId}</param>
+            </result>
+            <result name="input">${path}/page/manage/doctorWorkEdit.jsp</result>
+        </action>
+    </package>
+</struts>

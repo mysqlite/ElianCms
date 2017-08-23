@@ -1,0 +1,229 @@
+<#import '../includes/global.html' as global/>
+<script type="text/javascript">
+function listCssFunction(path,data){
+    var html='<ul class="pt01">';
+    var instr=data.insList;
+    if(instr!=undefined&&instr!=null){
+        for(var i=0,len=instr.length;i<len;i++){
+           html+='<li>';
+           html+='<a class="pic" href="'+instr[i].staticPath+'">';
+           html+='<a href="'+instr[i].staticPath+'">';
+           html+='<img src="'+instr[i].frontsImg+'" height="160" width="160" alt="'+instr[i].cnName+'"></a></div>';
+           html+='</a>';
+           html+='<span class="tit">';
+           html+='<a href="'+instr[i].staticPath+'">';
+           html+=instr[i].cnName+'</a></span>';
+           html+='<span class="txt">';
+           html+='抢购价：<em class="price">￥'+instr[i].pricePany;
+           html+='</em></span>';
+           html+='</li>';
+        }
+        html+='</ul>';
+        G("pagers").innerHTML=data.page;
+        G("head_pagers").innerHTML=data.page;
+        G("pagers").style.display="";
+        G("head_pagers").style.display="";
+    }else{
+        G("pagers").style.display="none";
+        G("head_pagers").style.display="none";
+    }
+    return html;
+}
+</script>
+<div class="main_con" id="instr_list_div" style="display:none">
+    <div class="prd_show clearfix">
+        <div class="gutter"></div>
+        <div class="typeSelecte typeSelecte_bg">
+            <ul class="typeContent" id="typeContent"></ul>
+        </div>
+        <div class="gutter"></div>
+        <div class="typeSelecte typeSelecte_bg2" id="head_pagers"></div>
+		<div class="gutter"></div>
+		<div class="search_box_top_line"></div>
+		<div id="pathUrl_instr_list_div" style="display:none"></div>
+		<div class="mod_main_bd" id="table"></div>
+		<div class="typeSelecte typeSelecte_bg2" id="pagers"></div>
+		<input type="hidden" id="tableUrl" value=""/>
+		<input type="hidden" id="rowSize_list" value="12"/>
+		<script type="text/javascript">
+        setTimeout(function(){loadType('${siteId}','typeContent','instr_list_div','instrument','main_con'),1000});
+        $(document).ready(function() {
+                var $menuItem = $("#typeContent li a");
+                $menuItem.on("click",function(){
+                var $this=$(this);
+                $menuItem = $("#typeContent li a");
+                $menuItem.removeClass("cur");
+                $this.addClass("cur");
+            });
+        });
+        </script>
+	</div>
+</div>
+<#if subContentList??>
+   <#if subContentList?size!=0>
+   <link rel="stylesheet" href="${resStyle}/v2/blue/gouwu.css" type="text/css" media="screen" />
+    <#list 0..(subContentList?size-1) as i>
+      <div id="pathUrl_${subContentList[i].contentId?string}" style="display:none"></div>
+      <div class="main_con" id="${subContentList[i].contentId?string}" style="display:none">
+	      <div class="clearfix">
+	        <div class="wrap_product_details">
+	            <div class="product_buy_bd">
+	                <h2 class="tit">${subContentList[i].entity.cnName}</h2>
+	                <@global.showProductImg data=(subContentList[i].entity.frontImgs)![] title=(subContentList[i].entity.cnName)!''></@global.showProductImg>
+	                <div class="wrap_buy_area">
+	                    <div class="i">
+	                        <span class="tit">器械名称:</span>
+	                        <span class="txt"><em>${(subContentList[i].entity.cnName)!''}</em><em>${(subContentList[i].entity.enName)!''}</em></span>
+	                    </div>
+	                    <div class="i">
+	                        <span class="tit">通用名:</span>
+	                        <span class="txt">${(subContentList[i].entity.alias)!''}</span>
+	                    </div>
+	                    <div class="i">
+	                        <span class="tit">批准文号:</span>
+	                        <span class="txt">${(subContentList[i].entity.approvalNumber)!''}</span>
+	                    </div>
+	                    <div class="i">
+	                        <span class="tit">产品规格:</span>
+	                        <span class="txt">${(subContentList[i].entity.specifications)!''}</span>
+	                    </div>
+	                    <div class="i">
+	                        <span class="tit">本店售价:</span>
+	                        <span class="txt">
+	                            <em class="price">￥
+	                             <#if (subContentList[i].entity.pricePany>0)>
+	                                    ${(subContentList[i].entity.pricePany?string("###########.##"))!''}元
+	                             <#elseif (subContentList[i].entity.discountedPrice)>
+	                                ${(subContentList[i].entity.discountedPricePany?string("###########.##"))!''}元
+	                             <#else>
+	                                    面议
+	                             </#if>
+	                            </em>
+	                        </span>
+	                    </div>
+	                    <div class="i last_i">
+	                        <span class="tit">服　　务:</span>
+	                        <span class="txt">本商品由<em>${(subContentList[i].entity.company.name)!''}</em>提供,并负责配送</span>
+	                    </div>
+	                    <div class="buy_area">
+	                        <div class="buy_num">
+	                            <span class="tit">购买数量：</span>
+	                            <div class="num">
+	                                <a href="javascript:void(0)" class="ico minus_num" id="minus_num">-</a>
+	                                <input id="prd_nums" value="1" type="text" class="ipt" maxlength="3" />
+	                                <a href="javascript:void(0)" class="ico add_num" id="add_num">+</a>
+	                            </div>
+	                        </div>
+	                        <a class="ui_btn cart_now_btn" onclick="addShoppingCart('${subContentList[i].entity.id}','${subContentList[i].entityType}','${subContentList[i].contentId?string}')" href="javascript:void(0);">放入购物车</a>
+	                        <div id="shop_${subContentList[i].contentId?string}"></div>
+	                        <a class="link_btn" href="#">添加到收藏夹</a>
+	                    </div>
+	                </div>
+	            </div>
+	            <#--
+	            <div class="sns_link">
+	                <div class="bd">
+	                    <span class="tit">分享到：</span>
+	                    <a class="ico ico1" href="#">分享至新浪微博</a>
+	                    <a class="ico ico2" href="#">分享至人人网</a>
+	                    <a class="ico ico3" href="#">分享至腾讯微博</a>
+	                    <a class="ico ico4" href="#">分享至开心网</a>
+	                </div>
+	            </div>
+	            -->
+	            <div class="product_details_bd">
+	                <div class="tab_hd" id="tab1_hd">
+	                    <h3 class="cur">商品介绍</h3>
+	                    <h3>商品参数</h3>
+	                    <#--<h3>商品评论</h3>-->
+	                </div>
+	                <div class="tab_bd" id="tab1_bd">
+	                    <div class="tab_con" style="display: block;">
+	                        <h3>概要</h3>
+	                        <p>${(subContentList[i].entity.summary)!''}</p>
+	                        <h3>商品介绍</h3>
+	                        <p>${(subContentList[i].entity.frontDesc)!''}</p>
+	                    </div>
+	                    <div class="tab_con">
+	                        <table class="prd_details_tbl" cellSpacing="0" cellpadding="0">
+	                            <tbody>
+	                                <tr>
+	                                    <td class="tit">药品类型</td>
+	                                    <td class="txt">${(subContentList[i].entity.type.typeName)!''}</td>
+	                                    <td class="tit">所属科种</td>
+	                                    <td class="txt">${(subContentList[i].entity.departmentType.typeName)!''}</td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="tit">用途</td>
+	                                    <td class="txt">${(subContentList[i].entity.instrUse)!''}</td>
+	                                    <td class="tit">产品用法</td>
+	                                    <td class="txt">${(subContentList[i].entity.usage)!''}</td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="tit">批准时间</td>
+	                                    <td class="txt">
+	                                    <#if subContentList[i].entity.approvalTime??>
+	                                        ${subContentList[i].entity.approvalTime?string("yyyy-MM-dd")}
+	                                    </#if>
+	                                    </td>
+	                                    <td class="tit">到期时间</td>
+	                                    <td class="txt">
+	                                    <#if subContentList[i].entity.effectiveTime??>
+	                                        ${subContentList[i].entity.effectiveTime?string("yyyy-MM-dd")}
+	                                    </#if>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="tit">产品包装</td>
+	                                    <td class="txt">${(subContentList[i].entity.packaging)!''}</td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                    <#--<div class="tab_con">
+	                        <div class="reply_content">
+	                            <ul class="list">
+	                                <li>
+	                                    <div class="hd">
+	                                        <span class="usr_name">admin</span>
+	                                        <span class="date">
+	                                            2012-03-12 16:34 [<a href="#">回复此评论</a>]
+	                                        </span>
+	                                    </div>
+	                                    <div class="bd">送货也及时。很好！</div>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                        <div class="reply_gutter">
+	                            <a href="#">查看所有评论&gt;&gt;</a>
+	                        </div>
+	                        <div class="reply_area">
+	                            <div class="hd">发表评论</div>
+	                            <div class="bd">
+	                                <div class="i">
+	                                    <span class="tit">评论内容：</span>
+	                                    <textarea class="txt_area"></textarea>
+	                                </div>
+	                                <div class="i">
+	                                    <span class="tit">联系方式：</span>
+	                                    <input class="ipt" type="text" value="" />
+	                                </div>
+	                                <div class="i">
+	                                    <span class="tit">验证码：</span>
+	                                    <input class="ipt vcode_ipt" type="text" maxlength="4" />
+	                                    <img src="images/vcode.gif" class="vcode" />
+	                                    <input class="ips" type="submit" value="提交评论" />
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    -->
+	                </div>
+	            </div>
+	        </div>
+        </div>
+    </div>
+   </#list>
+   <script src="${resScript}/v2/tab.js"></script>
+ </#if>
+</#if>

@@ -1,0 +1,373 @@
+﻿<!--#macro-->
+<#import '../includes/global.html' as global/>
+<#macro main mapKey isNav>
+    <#if isNav>
+        <#local size=dataMap[mapKey]?size/>
+        <#local m=dataMap[mapKey]/>
+        <#if (size>0)>
+            <#list 1..size as index>
+                <#if 1==index>
+                    <h3 class="cur" onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+                        <a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!'暂无数据'}</a> </h3>
+                <#else>
+                    <h3 onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+                        <a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!'暂无数据'}</a> </h3>
+                </#if>
+            </#list>
+        <#else>
+           暂无匹配数据
+        </#if>   
+    </#if>
+    <#if !isNav>    
+        <#local size=dataMap[mapKey]?size/>   
+        <#if (size>0)>
+        <#list 1..size as index>                        
+            <#local subMain=dataMap[mapKey]['${index}']/>
+            <div class="tab_con" style="display:<#if index==1>block<#else>none</#if>;">             
+              <#if subMain.contentList??>
+                <#if subMain.contentList[0]??>  
+                     <h2> <a href="${subMain.contentList[0].path}" target="_blank">
+                      <@global.showTitle title=subMain.contentList[0].title titleNum=50/>
+                     </a> </h2>
+                     <p class="details">
+                     <@global.showTitle title=(subMain.contentList[0].detial)!'' titleNum=55/>
+                      </p>                           
+                 </#if>
+                 <#if (subMain.contentList?size>1)> 
+                    <@global.showNumList ulClass='list03 clearfix' liClass='' begin=1 end=subMain.contentList?size-1 data=subMain.contentList;i,item>
+                        <span class="txt">
+                            <a href="${item.path!''}">${item.title!''}</a>
+                            </span>
+                        <span class="date">${item.time!''}</span>   
+                    </@global.showNumList>
+                 </#if>                  
+              </#if>                  
+            </div>
+        </#list>  
+        </#if>          
+    </#if>              
+</#macro>
+
+<#macro sideBar mapKey>
+    <#if dataMap[mapKey]??>
+        <#local data=dataMap[mapKey]/>
+        <div class="aside">
+            <div class="mod_aside_hd">
+                <h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+                <a class="more" href="${data.path!'#'}">更多</a>
+            </div>
+            <div class="mod_aside_bd">
+                <#if data.imgContentList??> 
+                    <#local item=data.imgContentList[0]/>               
+                    <div class="pt03">
+                        <a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+                        <h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+                        <p class="txt"><@global.showTitle title=(item.detial)!'' titleNum=19/></p>
+                    </div>
+                </#if>
+                
+                <#if data.contentList??>
+                    <@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+                        <a href="${path}" target="_blank">${title}</a>
+                    </@global.showList> 
+                </#if>
+            </div>
+        </div>
+       <#else>
+        <div class="aside">
+            <div class="mod_aside_hd">
+                <h3 class="tit"><a href="#">暂无数据</a></h3>
+            </div>
+            <div class="mod_aside_bd">
+                
+            </div>
+        </div>
+    </#if>
+</#macro>
+
+<#macro showTabHead data param1 param2 param3>
+    <#list 0..data?size-1 as i>
+        <h4 <#if i==0> class="cur"</#if> onmouseover="overTab(${param1},${i+1},'${param2}','${param3}')"
+             onmouseout="outTab()"><a href="${data[i].path}">${data[i].title}</a></h4>      
+    </#list>
+</#macro>
+
+<#macro middle4 mapKey isNav>
+    <#if dataMap[mapKey]??>
+        <#local data=dataMap[mapKey]/>
+        <#local size=dataMap[mapKey]?size/>
+        <#if isNav>
+            <#list 1..size as i>                
+                <h4 <#if 1==i> class="cur" </#if> onmouseover="overTab(3,${i},'h4','ul')" onmouseout="outTab()"> 
+                    <a href="${(data['${i}'].path)!'#'}" target="_blank">${(data['${i}'].channelName)!''}</a> 
+                </h4>   
+            </#list>        
+        </#if>
+        <#if !isNav>
+               <div class="section_details">
+                  <div class="tab3_bd" id="tab3_bd">
+		            <#list 1..size as i>
+                        <ul class="tab_con" <#if 1==i> style="display: block;" </#if>>
+                            <#if (data['${i}'].contentList)??>
+                                <#if data['${i}'].contentList[0]??>
+                                    <li>                                        
+                                       <h5 class="tit"><a href="${data['${i}'].contentList[0].path}">${data['${i}'].contentList[0].title}</a></h5>
+                                       <p class="txt"><@global.showTitle title=(data['${i}'].contentList[0].detial)!'' titleNum=55/>
+                                       <a class="more" href="${data['${i}'].contentList[0].path}">【详细】</a></p>
+                                    </li>
+                                </#if>
+                                <#if (data['${i}'].contentList?size>1)>
+                                    <li>
+                                       <div class="health_news_hd">
+                                           <h6>最新资讯</h6><a target="_blank" href="${(data['${i}'].path)!'#'}" class="more">>>更多</a>
+                                       </div>
+                                       <div class="health_news_bd">
+                                           <#if data['${i}'].contentList??>
+                                               <dl class="list01_lico clearfix">
+                                               <#list 1..data['${i}'].contentList?size-1 as index>
+                                                     <li><a href="${data['${i}'].contentList[index].path}">${data['${i}'].contentList[index].title}</a></li>
+                                               </#list>
+                                               </dl>
+                                           </#if>                                  
+                                        </div>
+                                     </li>
+                                 </#if>
+                            </#if>
+                        </ul>
+            		</#list>
+               </div>
+            </div>             
+        </#if>
+    </#if>
+</#macro>
+
+<#macro doctorList mapKey>
+  <#if dataMap['${mapKey}']??>
+    <div class="mod_hd ui_hd_01">
+        <h3>${dataMap['${mapKey}'].channelName}</h3><span class="more"><a href="${dataMap['${mapKey}'].path!'#'}">&gt;&gt; 更多</a></span>
+    </div>
+    <div class="mod_bd expert_show">
+        <!--无缝滚动开始-->
+        <ul class="marquee" id="marquee">
+            <li>
+                 <#if dataMap['${mapKey}'].contentList??>
+                  <@global.showDoctorList data=dataMap['${mapKey}'].contentList></@global.showDoctorList>
+                 <#elseif dataMap['${mapKey}'].imgContentList??>
+                  <@global.showDoctorList data=dataMap['${mapKey}'].imgContentList></@global.showDoctorList>
+                 <#else>
+                  <span class="name">此区域尚无数据</span>
+                </#if>
+            </li>
+        </ul>
+       <!--无缝滚动结束-->
+    </div>
+    <#else>
+    <div class="mod_hd ui_hd_01">
+        <h3>此区域暂无数据</h3><span class="more"></span>
+    </div>
+    <div class="mod_bd expert_show">
+        <ul class="marquee" id="marquee">
+            <li>
+            </li>
+        </ul>
+    </div>
+  </#if>
+</#macro>
+
+<#macro linkList mapKey maxSize>
+      <#if dataMap[mapKey]??>
+         <#local data=dataMap[mapKey]/>
+         <#local length=dataMap[mapKey]?size/>
+         <#if (length<maxSize)>
+            <#local maxSize=length/>
+         </#if>
+          <div class="mod_hd ui_hd_02">
+            <h3><span class="ui_tit">${(data["1"].channelName)!'暂无数据'}</span></h3>
+          </div>
+          <div class="mod_bd clearfix">
+          <ul class="intro_hos_nav">
+          <#list 2..maxSize as i>
+            <li><a href="${(data['${i}'].path)!'#'}">${(data['${i}'].channelName)!'暂无数据'}</a></li>
+          </#list>
+          </ul>
+      <#else>
+        <div class="mod_hd ui_hd_02">
+            <h3><span class="ui_tit">暂无数据</span></h3>
+          </div>
+          <div class="mod_bd clearfix">
+          <ul class="intro_hos_nav">
+            <li></li>
+          </ul>
+      </#if>
+</#macro>
+<!--#macro-->   
+<#include "../includes/index_header.html"/>
+
+<#-- 站点头部begin-->
+<div id="headDiv">
+<!--#include virtual="${headUrl}"-->
+</div>
+<#--站点头部end-->
+
+<#--导航begin-->
+<div id="navDiv">
+<!--#include virtual="${navUrl}"-->
+</div>
+<#--导航end-->
+
+<#--顶部第一栏begin-->
+<div class="section">
+    <#--幻灯片部分begin-->
+    <div class="wrap_focus">
+        <div class="focus" id="index_Focus" style="visibility:hidden">
+            <div class="loading"><span>载入中,请稍候...</span></div>
+             <!--#--><!--#1-->
+             <@global.PowerPoint mapKey='1' ulClass='pic' liClass='';title,path,imgPath>
+                <a href="${path}"><img src="${imgPath}" width="360" height="270" alt="${title}"/>
+                </a>
+             </@global.PowerPoint>
+            <!--#-->                
+        </div>
+    </div>
+    <#--幻灯片部分end-->
+    
+    <#--第二区域begin《今日头条、医院新闻、就医指南》-->
+    <div class="w350 hos_news">
+        <div class="tab1_hd clearfix" id="tab1_hd">
+             <!--#--><!--#2-->
+                <div class="tab1_hd clearfix" id="tab1_hd">
+                    <div class="wrap_hd">
+                        <@main mapKey='2' isNav=true/>
+                    </div>
+                </div>
+                <div class="tab1_bd" id="tab1_bd">
+                   <@main mapKey='2' isNav=false/>
+                </div>
+             <!--#-->
+        </div>
+    </div> 
+    <#--第二区域end-->
+    
+     <#--就医指南begin-->
+    <!--#--><!--#3-->
+    <div class="sidebar">
+        <div class="aside appointment_link">
+            <a href="#" class="link_btn">马上预约挂号！</a>
+        </div>
+        <@sideBar mapKey="3"/>
+    </div>
+    <!--#-->
+    <#--就医指南end-->
+</div>
+<#--顶部第一栏end-->
+
+<#--第二栏《专家推荐》begin-->
+<!--#--><!--#4-->
+<div class="section doc_recomm">
+   <@doctorList mapKey="4"/>
+</div>
+<!--#-->
+<#--第二栏《专家推荐》end-->
+
+<#--第三栏《医院介绍》begin-->
+<div class="section intro_hos">
+    <div class="w720">
+        <!--#--><!--#5-->
+        <@linkList mapKey="5" maxSize=6/>
+        <!--#-->
+            <!--#--><!--#6-->
+            <div class="intro_hos_details">
+                <ul class="list">
+                   <@global.showSingle data=(dataMap["6"])!'' maxSize=2/>
+                </ul>
+            </div>
+            <!--#-->
+        </div>
+    </div>
+    <div class="sidebar">
+        <!--#--><!--#7--><@sideBar mapKey="7"/><!--#-->
+    </div>
+</div>
+<#--第三栏《医院介绍》end-->
+
+<#--第四栏《flash区域》begin-->
+<div class="section">
+    <object class="flashCon" id="FlashID2" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="980" height="100" style="width:980px">
+        <param name="movie" value="http://style.elian.cc/hosp/cmsbuild/pink/swf/banner-2.swf">
+        <param name="quality" value="high">
+        <param name="wmode" value="opaque">
+        <param name="swfversion" value="8.0.35.0">
+        <embed src="http://style.elian.cc/hosp/cmsbuild/pink/swf/banner-2.swf" width="980" height="100" quality="autohigh" wmode="transparent" type="application/x-shockwave-flash" plugspace="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" style="display:block"/>
+    </object>
+</div>
+<#--第四栏《flash区域》begin-->
+
+<#--第五栏《科室介绍》begin-->
+<div class="section intro_depeartment">
+    <#--科室介绍部分begin-->
+    <div class="w720">
+        <!--#--><!--#8-->
+        <@global.showDepartPlate data=(dataMap["8"])!''/>
+        <@global.showDepartChird data=(dataMap["8"])!'' thisId="2"/>
+        <!--#-->
+        <#--科室介绍部分begin-->
+        <div class="sidebar">
+            <!--#--><!--#9--><@sideBar mapKey="9"/><!--#-->
+        </div>
+    </div>
+</div>
+<#--第五栏《科室介绍》end-->
+
+<#--第六栏《健康宣教》begin-->
+<div class="section health_publicity">
+    <div class="w720">
+        <!--#--><!--#10-->
+        <div class="mod_hd ui_hd_03">
+            <h3 class="tit"><span class="ui_tit ui_tit_02">健康宣教</span></h3><span class="more"><a href="#">&gt;&gt;更多</a></span>
+            <div class="tab3_hd" id="tab3_hd">
+               <@middle4 mapKey='10' isNav=true/>
+            </div>
+        </div>
+        <div class="mod_bd clearfix">
+            <div class="section_pic"><img src="${resImg}/design/hosp/webbuild/public_prink/img/pic/pic180x250.jpg" width="180" height="250"/></div>
+            <@middle4 mapKey='10' isNav=false/>
+        </div>
+        <!--#-->
+    </div>
+    <div class="sidebar">
+        <!--#--><!--#11--><@sideBar mapKey="11"/><!--#-->
+    </div>
+</div>
+<#--第六栏《健康宣教》end-->
+
+<#--友情链接begin-->
+<div class="section wrap_ulink" id="linksDiv">
+     <!--#--><!--#12-->
+     <div class="mod_hd ui_hd_01 ">
+        <h3>${(dataMap['12'].channelName)!''}</h3>
+        <span class="more"></span>
+    </div>
+    <div class="mod_bd friend_link">
+        <#if (dataMap['12'].contentList)??>
+            <#list dataMap['12'].contentList as links>
+               <a href="${links.path!'#'}">${links.title!''}</a> 
+            </#list>
+        </#if>
+    </div>
+    <!--#-->
+</div>
+<#--友情链接end-->
+
+<div id="bottomDiv" class="footer">
+<!--#include virtual="${footUrl}"-->
+</div>
+
+<script src="${resScriptPubl}/base.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/myfocus-1.2.4.full.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/mF_tb.js"></script>
+<script type="text/javascript">
+   myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:360,height:270,txtHeight:30,duration:350,direction:'left',easing:'easeOut',wrap:false});
+</script>
+<script src="${resScriptPubl}/gd.js"></script>
+</body>
+</html>

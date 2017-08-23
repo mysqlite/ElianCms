@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/healthNews/index.css" type="text/css" media="screen">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#macro-->
+		<#import '../include/global.html' as global/>
+		<#macro main mapKey title>
+			<div class="section_s_400">
+	          <h4 class="ui_tit01_01"><@global.showTitle title=title titleNum=50/> </h4>
+	          <#if dataMap[mapKey].imgContentList??>
+	              <@global.showList ulClass='pt01 clearfix' liClass='' data=dataMap[mapKey].imgContentList;path,imgPath,title,detial>
+		      	 	 <a class="pic" href="${path}" target="_blank"> 
+	            	 	<img src="${imgPath}" alt="${title}">
+	            	 </a>
+	            	 <span class="tit"> 
+	            	 	<a href="${path}" target="_blank"><@global.showTitle title=title titleNum=50/></a>
+	            	 </span>
+		      	  </@global.showList>
+		      </#if>
+		      <#if dataMap[mapKey].contentList??>
+		          <@global.showList ulClass='list07' liClass='' data=dataMap[mapKey].contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		          </@global.showList>	            	
+		      </#if>
+	          <div class="more"> <a href="${dataMap[mapKey].path}" target="_blank">了解更多</a> </div>
+	        </div>
+		</#macro>
+		<#macro sideBar mapKey headClass>
+			<div class="aside ui_bd_01">
+				<div class="mod_side_hd">
+					<h3 class="${headClass}">
+						${dataMap[mapKey].channelName}
+					</h3>
+					<span class="more"><a
+						href="${dataMap[mapKey].path}"
+						target="_blank">[更多]</a> </span>
+				</div>
+				<div class="mod_side_bd">
+					<#if dataMap[mapKey].imgContentList??>
+						<#local item =dataMap[mapKey].imgContentList[0]/>					
+						<div class="pt03">				
+							<div class="item">
+								<a class="pic"
+									href="${item.path}"
+									target="_blank"> <img
+										src="${item.imgPath}"
+										alt="${item.title}" width="100" height="70"> </a>
+								<h4 class="tit">
+									<a href="${item.path}"
+										target="_blank">${item.title}</a>
+								</h4>
+								<p class="txt">
+									<@global.showTitle title=item.detial!'' titleNum=24/>
+									<a class="more"
+										href="${item.path}"
+										target="_blank">[详细]</a>
+								</p>
+							</div>
+						</div>
+					</#if>	
+					<#if dataMap[mapKey].contentList??>
+						<@global.showList ulClass='list01_lico' liClass='' data=dataMap[mapKey].contentList;path,imgPath,title,detial>
+				            <a href="${path}" target="_blank">${title}</a>
+				        </@global.showList>	
+					</#if>						
+				</div>
+			</div>	
+		</#macro>
+		
+		<#macro left mapKey headClass hasLine>
+		  <div class="section_s_330">
+	        <div class="mod_hd">
+	          <h3 class="${headClass}">${dataMap[mapKey].channelName} </h3>
+	          <span class="more"><a href="${dataMap[mapKey].path}" target="_blank">[更多]</a> </span>
+	        </div>
+	        <#if dataMap[mapKey].imgContentList??>
+				<#local item =dataMap[mapKey].imgContentList[0]/>	
+		        <div class="pt01">
+		          <div class="item"> 
+		          	<a class="pic" href="${item.path}" target="_blank"> 
+		          		<img width="320" height="175" src="${item.imgPath}" alt="${item.title}">
+		          	</a>
+		          	<span class="tit"> 
+		          		<a href="${item.path}" target="_blank">
+		          		<@global.showTitle title=item.title titleNum=50/>
+		          		</a> 
+		          	</span> 
+		          	<span class="txt">
+		          	<@global.showTitle title=item.detial titleNum=40/>
+		          	<a class="more" href="${item.path}" target="_blank">[详细]</a> </span> 
+		          </div>
+		        </div>
+		    </#if>
+		    <#if dataMap[mapKey].contentList??>
+		      <#local style='list01_lico lico02'/>	      
+		      <#if !hasLine>
+	          	<#local style="list01_lico lico02 noline">
+	          </#if>          
+	          <@global.showList ulClass=style liClass='' data=dataMap[mapKey].contentList;path,imgPath,title,detial>
+				   <em> <a href="${path}" target="_blank">${title}</a></em>         
+			  </@global.showList>
+	        </#if>
+	      </div>
+		</#macro>
+		<!--#macro-->
+		<!--#include virtual="${headUrl}"-->
+		<!--#include virtual="${navUrl}"-->
+		<div class="section">
+			<div class="section_m_685 publicity">
+			    <div class="ui_bd_01 clearfix">
+			    	<div class="hd tit01">
+			        	<h3> 宣传教育 </h3>
+			    	</div>
+				    <div class="bd clearfix">
+				    	<!--#--><!--#1-->
+				        <div class="wrap_focus">
+					        <div class="focus" id="index_Focus" style="visibility:hidden">
+					        	<div class="loading"><span>载入中,请稍候...</span></div>
+					          	<@global.PowerPoint mapKey='1' ulClass='pic' liClass='';title,path,imgPath>
+					          		<a href="${path}" target="_blank"><img src="${imgPath}" width="265" height="370" alt="${title}"/></a>
+					          	</@global.PowerPoint>	          
+					       	</div>
+				    	</div>
+				    	<!--#-->
+				    	<!--#--><!--#2-->
+			    		<@main mapKey='2' title='健康资讯从宣传教育做起 '/>
+			    		<!--#-->
+			    	</div>
+				</div>
+			</div>
+			<!--#--><!--#3-->
+			<div class="sidebar">						
+				<@sideBar mapKey='3' headClass='tit04 ui_tit04_01'/>
+				<div class="hr10"></div>		
+			</div>
+			<!--#-->
+		</div>
+		<div class="section">
+			<div class="section_m_685 ui_line">
+				<div class="tit02">
+					<h3 class="ui_tit02_01">
+						健康专栏
+					</h3>
+				</div>
+				<div class="wrap_bd_710">
+					<!--#--><!--#4-->
+					<@left mapKey='4' headClass='tit03 ui_tit03_01' hasLine=true/>
+					<!--#-->
+					<!--#--><!--#5-->
+					<@left mapKey='5' headClass='tit03 ui_tit03_02' hasLine=true/>
+					<!--#-->
+				</div>
+			</div>
+			<div class="sidebar">
+				<!--#--><!--#6-->
+				<@sideBar mapKey='6' headClass='tit04 ui_tit04_02'/>
+				<!--#-->
+				<div class="hr10"></div>
+				<div class="gg_285x80">
+					<a target="_blank"
+						href="http://www.915800.com/Category.aspx?_hosid=582"> <img
+							width="285" height="80"
+							src="${resImg}/design/main/healthNews/285x80_20110708.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+		  	<div class="section_m_685">    
+		    	<div class="wrap_bd_710">
+		    		<!--#--><!--#7-->
+		    		<@left mapKey='7' headClass='tit03 ui_tit03_03' hasLine=false/>
+		    		<!--#-->
+		    		<!--#--><!--#8-->
+		    		<@left mapKey='8' headClass='tit03 ui_tit03_04' hasLine=false/>
+		    		<!--#-->
+		    	</div>
+		    	<div class="hr10"></div>
+				<div class="gg_685x90">
+					<a target="_blank" href="#">
+						<img width="685" height="90" src="${resImg}/design/main/healthNews/a680x90_20110614.jpg">
+					</a>
+				</div>
+		  	</div>
+			<div class="sidebar">
+				<!--#--><!--#9-->
+				<@sideBar mapKey='9' headClass='tit04 ui_tit04_03'/>
+				<!--#-->
+				<div class="hr10"></div>
+				<div class="gg_285x80">
+					<a target="_blank" href="http://www.915800.com/Category.aspx?_hosid=582">
+					<img width="285" height="118" src="${resImg}/design/main/healthNews/a285x118_20110614.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="section_m_685 ui_line">
+				<div class="tit02">
+					<h3 class="ui_tit02_02">
+						中医中药
+					</h3>
+				</div>
+				<div class="wrap_bd_710">
+					<!--#--><!--#10-->
+					<@left mapKey='10' headClass='tit03 ui_tit03_05' hasLine=false/>
+					<!--#-->
+					<!--#--><!--#11-->
+					<@left mapKey='11' headClass='tit03 ui_tit03_06' hasLine=false/>
+					<!--#-->
+				</div>
+			</div>
+			<div class="sidebar">
+				<!--#--><!--#12-->
+				<@sideBar mapKey='12' headClass='tit04 ui_tit04_04'/>
+				<!--#-->
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+		<script src="${resScript}/jquery-1.4.2.min.js"></script>
+		<script src="${resScript}/jquery.header.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+		<script src="${resScript}/myfocus-1.2.4.full.js"></script>
+		<script src="${resScript}/mF_tb.js"></script>
+		<script>
+			myFocus.set( {
+				path : 0,
+				id : 'index_Focus',
+				pattern : 'mF_tb',
+				time : 4,
+				trigger : 'mouseover',
+				width : 250,
+				height : 310,
+				txtHeight : 'default',
+				duration : 600,
+				direction : 'left',
+				easing : 'easeOut',
+				wrap : false
+			});
+		</script>
+	</body>
+</html>

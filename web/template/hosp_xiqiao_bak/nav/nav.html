@@ -1,0 +1,30 @@
+<#--导航-->
+<#macro nav data>  
+    <#if data??>
+        <div class="wrap_nav">
+            <div class="nav">
+                <div class="tab1_hd" id="tab1_hd">
+                    <#list 0..data?size as i>
+                        <#if data[i]??>
+                        <h3 <#if i==0>class="cur"</#if>><a href="${data[i].path}">${data[i].channelName}</a></h3>
+                        </#if>
+                    </#list>
+                </div>
+                <div class="tab1_bd" id="tab1_bd">
+                     <#list 0..data?size as i>
+                         <#if data[i]??>
+                         <div class="tab_con" <#if i==0>style="display: block;"</#if>>
+                            <#if data[i].chirds??&&(data[i].chirds?size>0)>
+                                <#list 0..data[i].chirds?size-1 as j>
+                                    <a href="${data[i].chirds[j].path}">${data[i].chirds[j].channelName}</a>
+                                </#list>
+                            </#if>
+                         </div>
+                         </#if>
+                    </#list>
+                </div>
+            </div>
+        </div>
+     </#if>    
+</#macro>
+<@nav data=pNavList/>

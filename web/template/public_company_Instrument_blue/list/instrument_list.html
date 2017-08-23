@@ -1,0 +1,81 @@
+﻿<#include "../includes/header.html"/>
+<#--顶部第一栏begin-->
+<link rel="stylesheet" href="${resStyle}/v2/blue/productList.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="${resStylePubl}/pager.css" type="text/css"/>
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+function listCssFunction(path,data){
+    var html='<ul class="pt01">';
+    var instr=data.insList;
+    for(var i=0,len=instr.length;i<len;i++){
+       html+='<li>';
+       html+='<a class="pic" href="'+instr[i].staticPath+'">';
+       html+='<a href="'+instr[i].staticPath+'">';
+       html+='<img src="'+instr[i].frontImg+'" height="160" width="160" alt="'+instr[i].cnName+'"></a></div>';
+       html+='</a>';
+       html+='<span class="tit">';
+       html+='<a href="'+instr[i].staticPath+'">';
+       html+=instr[i].cnName+'</a></span>';
+       html+='<span class="txt">';
+       html+='抢购价：<em class="price">￥'+instr[i].pricePany;
+       html+='</em></span>';
+       html+='</li>';
+    }
+    html+='</ul>';
+    G("pagers").innerHTML=data.page;
+    return html;
+}
+</script>
+<div class="section">
+    <div class="main_con" id="instr_list_div">
+       <#--
+        <div class="mod_box_hd">
+                <h3>
+                     <span id="pathUrl"></span>
+                     <script type="text/javascript">getPageLevelHtml('pathUrl','${pathUrl}','>>',false);</script>
+                </h3>
+        </div>
+        -->
+       
+	    <div class="prd_show clearfix">
+	         <#--<div class="typeSelecte typeSelecte_bg">
+	            <ul class="typeContent">
+	                <li class="tit">按类别选择：</li>
+	                <li>
+	                    <a href="#" class="cur">全部</a>
+	                    <a href="#">妇科</a>
+	                    <a href="#">儿科</a>
+	                    <a href="#">骨质增生科</a>
+	                    <a href="#">妇产科</a>
+	                </li>
+	            </ul>
+	        </div>
+	        -->
+	        <div class="gutter"></div>
+	        <input type="hidden" id="tableUrl" value="${tableUrl}"/>
+            <input type="hidden" id="rowSize_list" value="12"/>
+	        <div class="search_box_top_line"></div>
+	        <div class="mod_main_bd" id="table"></div>
+	        <script type="text/javascript">getTableHtml('table','${tableUrl}');</script>
+	        <div class="typeSelecte typeSelecte_bg2" id="pagers"></div>
+	    </div>
+    </div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="gutter"></div>
+        <div class="aside comfile">
+        <#include "../includes/side_1.html"/>
+        </div>
+        <div class="gutter"></div>
+        <div class="aside com_intro">
+        <#include "../includes/side_2.html"/>
+        </div>
+        <div class="gutter">
+        </div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

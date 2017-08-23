@@ -1,0 +1,184 @@
+<#include "../includes/content_header.html"/>
+<#--头部begin--><!--#include virtual="${headUrl}"--><#--头部end-->
+<#--导航begin--><!--#include virtual="${navUrl}"--><#--导航end-->
+<input id="siteId" value="${siteId}" type="hidden"/>
+<script type="text/javascript">  
+function getPageLeveAjax(id,url,getLast){
+    if(null==getLast) getLast=true; 
+    url+="&getLast="+getLast; 
+    getJson(url,function(data){
+        var leve="";
+        if(!blank(data.data)){
+            for(var i=0;i<data.data.length;i++){
+                if(i<(data.data.length-1))
+                  leve+='<a href="'+data.data[i].path+'">'+data.data[i].channelName+"</a>>>";
+                else
+                  leve+='<span class="cur">'+data.data[i].channelName+'</span>';
+            }
+        }
+        G(id).innerHTML=leve;
+    });
+}
+
+function getListAjax(id,url){
+    getJson(url,function(data){
+        var m=data.m,list="";
+        if(!blank(m)){
+        	list+='<ul class="list01_aico">';
+            for(var i=0;i<m.length;i++){
+                list+='<li><div class="txt"><a href="'+m[i].path+'">'+m[i].title+'</a></div><span class="date">['+m[i].createTime+']</span></li>';
+            }
+            list+='</ul>';
+        }
+        G("list").innerHTML=list+listPage(data.page);
+    });
+}
+
+function listPage(page){
+    var pageHtml="";
+    if(!blank(page)){
+    	    pageHtml+='<ul class="pagination clearfix">';
+            pageHtml+='<input id="currentPage" name="pagination.pageNo" type="hidden" value="'+page.pageNo+'"/>';
+            pageHtml+='<input id="lastPage" type="hidden" value="'+page.pageCount+'"/>';
+            if(page.pageNo>1){
+                pageHtml+='<li class="page_jump"><a onclick="toPageAjax(1)">第一页</a></li>';
+                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+(page.pageNo-1)+')">上一页</a></li>';
+            }
+            for(var i=(page.pageNo-page.offsetSize);i<page.pageNo;i++){
+                if(i>page.pageCount)break;
+                if(i<1)continue;
+                pageHtml+='<li><a onclick="toPageAjax('+i+')">'+i+'</a></li>';
+            }
+            if(page.pageNo<=page.pageCount)
+                pageHtml+='<li class="cur">'+page.pageNo+'</li>';
+            for(var i=(page.pageNo+1);i<=page.pageNo+page.offsetSize;i++){
+                if(i>page.pageCount)break;
+                pageHtml+='<li><a onclick="toPageAjax('+i+')">'+i+'</a></li>';
+            }
+            if(page.pageNo<page.pageCount){
+                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+(page.pageNo+1)+')">下一页</a></li>';
+                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+page.pageCount+')">最尾页</a></li>';
+            }
+            pageHtml+='<li class="page">';
+            pageHtml+='<input type="text" id="pageNo" class="ipage" title="请输入页码" ';
+            pageHtml+='onkeydown="checkEnter(event,\'igo\')"  onkeyup="numberFormat(\'pageNo\',\'lastPage\')" ';
+            pageHtml+='value="'+page.pageNo+'"/>';
+            pageHtml+='<span class="page-count">&nbsp;/'+page.pageCount==0?1:page.pageCount+'</span></li>';
+            pageHtml+='<li title="跳转页面" class="go">';
+            pageHtml+='<a id="igo" class="igo" onclick="goAjax(\'pageNo\',\'currentPage\');">GO</a></li>';
+            pageHtml+='</ul>';    
+    }
+    return pageHtml;
+}
+function frendHtml(id,data){
+    var m=data.m,html="";
+    if(!blank(m)){
+        for(var i=0;i<m.length;i++){
+         html+='<a href="'+m[i].path+'" class="'+(m[i].last?"left-link":"right-link")+'">'+(m[i].last?"上":"下")+"一篇："+m[i].title+'</a>';
+        }
+    }
+    G(id).innerHTML=html;
+}
+</script>
+<div class="section">
+	<#--列表begin-->
+	<div class="main_section" id="info_list_div" style="display:none">
+	    <div class="breadcrumbs">
+	        <span class="tit">位置：</span>
+	        <span id="pathUrl_info_list_div"></span>
+	    </div>
+	    <input type="hidden" id="tableUrl" value=""/>
+	    <div class="mod_con expert_list" id="table"></div>
+	</div>
+	<#--列表end-->
+    <div class="sidebar">
+
+<#if subChannelList??>
+<#if subChannelList?size!=0>
+<div class="aside aside_nav">
+    <div class="ui_hd"></div>
+    <div class="ui_bd">
+        <div class="tit_bar">
+            <div class="subtit">The list of categories</div>
+            <h3 class="tit">${(parentChannel.channelName)!''}</h3>
+        </div>
+        <ul class="side_nav">
+            <#list 0..(subChannelList?size-1) as i>
+                <#if ((subChannelList[i].type=='single'&&subChannelList[i].contentId??)||(subChannelList[i].type=='list'))>
+                  <li>
+                    <#if i==0>
+                           <#if subChannelList[0].type=='list'>
+                             <script type="text/javascript">
+                             setTimeout(function(){
+                                showDiv("info_list_div","main_section",'${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);
+                             },300);
+                             </script>
+                           <#elseif subChannelList[0].type=='single'>
+                            <script type="text/javascript">
+                             setTimeout(function(){
+                                getPageLeveAjax('pathUrl_${subChannelList[0].contentId}','${subChannelList[i].pathUrl}',false);
+                             },300);
+                            </script>
+                           </#if>
+                    </#if>
+                    <#if subChannelList[i].type=='single'>
+                         <a class="ico<#if i==0> cur</#if>" onclick="showDiv(${subChannelList[i].contentId?string},'main_section','','${subChannelList[i].pathUrl}',false);" target="_self">${subChannelList[i].channelName}</a>
+                    </#if>
+                    <#if subChannelList[i].type=='list'>
+                         <a class="ico<#if i==0> cur</#if>" onclick="showDiv('info_list_div','main_section','${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);" target="_self">${subChannelList[i].channelName}</a>
+                    </#if>
+                  </li>
+                </#if>
+            </#list>
+        </ul>
+    </div>
+    <div class="ui_ft"></div>
+</div>
+</#if>
+</#if>    
+
+
+    <#include "../other/reg.html">
+    <#import '../includes/global.html' as global/>
+        <#--就医指南部分begin-->
+        <div class="aside guide_line">
+            <#if dataMap['1']??>
+            <div class="aside_hd"><h3 class="ui_tit">${(dataMap['1'].channelName)!''}</h3></div>
+            <ul class="guide_line_bd">
+                <#if dataMap['1'].contentList??>
+                <#list 0..dataMap['1'].contentList?size-1 as i>
+                <li><b class="ico ico0${i+1}"></b><a href="${(dataMap['1'].contentList[i].path)!'#'}"><@global.showTitle title=(dataMap['1'].contentList[i].title)!'' titleNum=15/></a></li>
+                </#list>
+                </#if>
+            </ul>
+            </#if>
+        </div>
+        <#--就医指南部分end-->
+    
+        <#--医院介绍部分begin-->
+        <#if dataMap["2"]??>
+        <#if dataMap["2"].contentList[1]??>
+        <div class="aside hos_intro">
+            <div class="aside_hd">
+                <h3 class="ui_tit">医院介绍</h3>
+            </div>
+            <div class="aside_bd">
+                <a class="wrap_pic" href="${(dataMap["2"].contentList[1].path)!'#'}">
+                    <img src="${resImg}${(dataMap["2"].contentList[1].entity.hospImg)!''}"/>
+                </a>
+                <p class="txt">
+                <@global.showTitle title=(dataMap["2"].contentList[1].entity.shortDesc)!'' titleNum=98/>
+                <a class="more" href="${(dataMap["2"].contentList[1].path)!'#'}">[详细]</a>
+                </p>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <#--医院介绍部分end-->
+    </div>
+</div>
+<#--友情链接begin-->
+<@global.frendLink data=dataMap['3']/>
+<#--友情链接end-->
+<!--#include virtual="${footUrl}"-->
+<#include "../includes/content_footer.html">

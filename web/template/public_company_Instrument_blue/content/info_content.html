@@ -1,0 +1,59 @@
+﻿<#include "../includes/header.html"/>
+<div class="index_banner_grid sub_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat;">
+				<a href="#">
+					<div class="index_banner_itempic_in"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gutter"></div>
+<#--顶部第一栏begin-->
+<div class="section">
+	<div class="main_con wrap_aricle clearfix">
+	    <div class="mod_main_hd">
+		    <div class="location">
+			     <span id="pathUrl">
+                     <script type="text/javascript">
+                         getPageLevelHtml('pathUrl','${pathUrl}','/',true);
+                     </script>
+                 </span>
+                 / <span class="cur">正文</span>
+		    </div>
+	    </div>
+	    <div class="mod_main_bd article">
+		    <div class="article_hd">
+			    <h1>${info.title!''}</h1>
+			    <div class="tagBar">
+				    <span class="news_source">来源：${(info.sourceName)!'本站'}</span>
+				    <span class="date">${(info.publishTime?string('yyyy-MM-dd'))!''}</span>
+			    </div>
+		    </div>
+		    <div class="line"></div>
+		    <div class="article_bd">
+			    <div class="article_ft">
+			    	${info.content!''}
+				    <div id="friendDiv">
+					<script type="text/javascript">
+						getFriendHtml('friendDiv','${tableUrl}','${contentId}');
+					</script>
+				</div>   
+			    </div>
+		    </div>
+		</div>
+	</div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="aside comfile">
+			<#include "../includes/side_1.html"/>
+		</div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

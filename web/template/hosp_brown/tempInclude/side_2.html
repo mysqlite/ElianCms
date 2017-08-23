@@ -1,0 +1,54 @@
+<!--#macro-->
+<#import '../global/global.html' as global/>
+
+<#macro sideBar mapKey>
+	<div class="mod_aside_hd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</#if>
+	</div>
+	<div class="mod_aside_bd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</#if>
+	</div>
+</#macro>
+
+<#macro macro2 mapKey>
+	<div class="mod_aside_hd">
+		<h3 class="tit">医院位置</h3>
+	</div>
+    <div class="mod_aside_bd contactInfo">
+    	<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+	        <div class="pic"><img src="${(data.contentList[0].param3)!'#'}" width="200px"/></div>
+	        <ul class="list">
+	            <li><em class="tit">医院地址</em>:${(data.contentList[0].param4)!''}</li>
+	            <li><em class="tit">医院总机</em>:${(data.contentList[0].param2)!''}</li>
+	            <li><em class="tit">急救电话</em>:${(data.contentList[0].id)!''}</li>
+	        </ul>
+	    </#if>
+    </div>
+</#macro>
+<!--#macro-->
+<div class="aside">
+	<!--#--><!--#1--><@sideBar mapKey="1"/><!--#-->
+</div>
+<div class="aside">
+	<!--#--><!--#2--><@macro2 mapKey="2"/><!--#-->
+</div>

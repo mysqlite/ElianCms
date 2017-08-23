@@ -1,0 +1,74 @@
+<#--导航-->
+<#macro nav data>  
+    <#if data??>
+        <div id="nav">
+            <div class="bd">    
+                <ul class="main_nav">
+                    <#list 0..data?size as i>
+                    <#if data[i]??>
+                        <@navLis data=data[i] i=i maxSize=data?size></@navLis>
+                    </#if>
+                    </#list>
+                </ul>    
+            </div>
+        </div>
+     </#if>    
+</#macro>
+
+<#macro navLis data i maxSize>
+ <#if data??>
+     <#local haveChird=false/>
+     <#if data.chirds??&&(data.chirds?size>0)>
+        <#local haveChird=true/>
+     </#if>
+     <#if i==0>
+        <li class="first">
+             <a href="${data.path}" class="on">${data.channelName}</a>
+        </li>
+     <#elseif (i<=maxSize)&&haveChird>
+        <li id="channel_${data.id}" style="position:relative;z-index:2;">
+            <script>$(function(){$('#channel_${data.id}').hover(function(){ $('.tszk_subnav').show()},function(){$('.tszk_subnav').hide()})}); </script>
+            <a href="${data.chirds[0].path??}">${data.channelName}</a>
+            <div class="tszk_subnav" style="display:none ;">
+                <div class="tszk_subnav_bd">
+                <#local items=data.chirds/>
+                <#list 0..items?size as j>
+                    <#if items[j]??>
+                        <ul class="item <#if j==0>item_fck</#if><#if j==items?size>last_item</#if>">
+                                <li class="tit"><h3><a href="${items[j].path}">${items[j].channelName}</a></h3></li>
+                                <@navLi datas=items[j].chirds data=data></@navLi>
+                        </ul>
+                    </#if>
+                </#list>
+                </div>
+            </div>
+        </li>
+     <#else>
+        <li>
+            <a href="${data.path}">${data.channelName}</a>
+        </li>
+     </#if>
+ </#if>
+</#macro>
+
+<#macro navLi datas data>
+ <#if datas??>
+     <#list 0..datas?size as i>
+        <#if datas[i]??>
+            <li><a href="${data.path}" target="_self">${datas[i].channelName}</a></li>
+        </#if>
+     </#list>
+ </#if>
+</#macro>
+
+<#macro showTitle title titleNum>
+    <#if showTitle??>
+        <#if (title?length>titleNum)>
+            ${title[0..titleNum]}...
+        <#else>
+            ${title}
+        </#if>
+    </#if>
+</#macro>
+
+

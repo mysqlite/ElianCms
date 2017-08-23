@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/healthNews/public.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/healthNews/news_list.css" type="text/css" media="screen">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#macro-->
+		<#import '../include/global.html' as global/>
+		<#macro side mapKey>
+			<#if dataMap[mapKey]??>
+				<div class="aside">
+					<h3 class="tit">${dataMap[mapKey].channelName}</h3>
+					<#if dataMap[mapKey].contentList??>
+						<@global.showList ulClass='list01_lico' liClass='' data=dataMap[mapKey].contentList;path,imgPath,title,detial>	
+					        <a href="${path}" target="_blank">${title}</a>		
+					    </@global.showList> 
+					</#if>				
+				</div>	
+			</#if>
+		</#macro>
+		<!--#macro-->
+		<!--#include virtual="${headUrl}"-->
+		<!--#include virtual="${navUrl}"-->
+		<div class="breadcrumbs">
+			<h2 class="tit_healthInfo"> 健康资讯 </h2>
+			<div class="hd">您的位置：
+			    <span id="pathUrl">
+			    	<script type="text/javascript" src="${resScript}/jquery-1.4.2.min.js"></script>
+					<script type="text/javascript">
+						getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+					</script>
+				</span>
+			    >> 正文
+			</div>           
+		</div>
+		<div class="section">
+		    <div class="section_m_720">    
+		         <div class="ui_bd article clearfix">
+		            <div class="article_hd">
+		                <h1>${(info.title)!''}</h1>
+		                <div class="titBar">
+							<span class="pubTime">来源：${(info.sourceName)!''} 时间：${(info.publishTime?string('yyyy-MM-dd'))!''}</span>
+							<span class="artComm">
+							<a href="#" target="_self" onclick="toComment(this)">『我要评论』</a>
+							</span>
+						</div>
+						<div class="tag"> </div>  
+		            </div>
+		            <div class="article_bd">
+		               ${(info.content)!''}
+		            </div>
+		            <!-- JiaThis Button BEGIN -->
+					<div id="ckepop">
+						<span class="jiathis_txt">分享到：</span>
+						<a class="jiathis_button_qzone"></a>
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_tqq"></a>
+						<a class="jiathis_button_renren"></a>
+						<a class="jiathis_button_kaixin001"></a>
+						<a href="http://www.jiathis.com/share?uid=1534094"
+							class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+						<a class="jiathis_counter_style"></a>
+						<a class="jiathis_like_qzone"></a>
+					</div>
+					
+					<div id="friendDiv" class="article_ft">
+						<script type="text/javascript">
+							getFriendHtml('friendDiv', '${tableUrl}', '${contentId}');
+						</script>
+					</div>
+					<!-- JiaThis Button END -->
+					<div class="article_ft"></div>
+		        </div>
+		        <!-- UY BEGIN -->
+				<div id="uyan_frame"></div>
+				<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=0" async=""></script>
+				<!-- UY END -->
+		    </div>
+			<div class="sidebar">
+				<div class="ui_bd">
+					<!--#--><!--#1-->
+					<@side mapKey='1'></@side>
+					<!--#-->
+					<!--#--><!--#2-->
+					<@side mapKey='2'></@side>
+					<!--#-->
+					<!--#--><!--#3-->
+					<@side mapKey='3'></@side>
+					<!--#-->
+					<!--#--><!--#4-->
+					<@side mapKey='4'></@side>
+					<!--#-->
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+		<script type="text/javascript">
+			var jiathis_config = {
+				data_track_clickback : true
+			};
+		</script>
+		<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1534094" charset="utf-8"></script>
+		<script>function toComment (val){var path=window.location.pathname;val.href=path+"#uyan_frame";}</script>	
+	</body>
+</html>

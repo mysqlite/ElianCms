@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/jobs/index0729.css" type="text/css" media="screen">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<link href="${resStyle}/jobs/RC_images.css" rel="stylesheet" type="text/css">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js">
+		<script type="text/javascript">
+			function setLoginType(id) {
+				if (id == 1) {
+					document.getElementById("frm_login").action = 'loginPersonal.action';
+				} else if (id == 2) {
+					document.getElementById("frm_login").action = 'enterMemberlogin.action';
+				} else {
+					alert("请选择登录帐号类型!");
+					return false;
+				}
+			}
+		</script>
+	</head>
+	<body>	
+	<#import '../include/global.html' as global/>
+
+	<!--#include virtual="${headUrl}"-->
+	<!--#include virtual="${navUrl}"-->
+<script type="text/javascript">
+try{
+
+}catch(e){}
+</script>
+<div class="section">
+  <div class="RC_guangao"> <img src="${resImg}/design/main/jobs/guangao.png"> </div>
+  <div class="RC_zhuche">
+    <div class="RC_top">
+      <div class="RC_top_left"> <img src="${resStyle}/jobs/bg/crie.png"> </div>
+      <div class="RC_top_right"> <img src="${resStyle}/jobs/bg/crie_right.png"> </div>
+      <div class="RC_top_Enter">
+        <div class="RC_top_Enter_left"> 热点播报 </div>
+        <div class="RC_top_Enter_right"> 会员服务 </div>
+        <div class="RC_top_Enter_Enter"> <img src="${resStyle}/jobs/bg/crie_banner.png"> </div>
+        <div class="clean"></div>
+      </div>
+    </div>
+    <div class="RC_Enter">
+      <div class="RC_Enter_left">
+        <div class="wrap_focus">
+        <div class="focus" id="index_Focus" style="visibility:hidden">
+          <div class="loading"><span>载入中,请稍候...</span></div>
+          <ul class="pic">
+            <li><a href="#"><img src="${resImg}/design/main/jobs/1.jpg" width="270" height="220" alt="图片1来源于网络，版权属于作者"/></a></li>
+            <li><a href="#"><img src="${resImg}/design/main/jobs/1.jpg" width="270" height="220" alt="图片1来源于网络，版权属于作者"/></a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="RC_Enter_right">
+        <div class="RC_Enter1"> <img src="${resStyle}/jobs/bg/zhuche_btn.png" width="229" height="40"> </div>
+        <div class="RC_Enter2">
+          <form method="post" id="frm_login" action="http://www.elian.cc/job/loginPersonal.action">
+            <ul>
+              <li> <span class="RC_span">用户名：</span>
+                <input class="RC_input" name="p.username" type="text">
+              </li>
+              <li> <span class="RC_span">密码：</span>
+                <input class="RC_input" name="p.password" type="text">
+              </li>
+              <li> <span class="RC_span">类型：</span>
+                <input class="RC_text" id="personalMember" name="loginType" type="radio" checked="" onclick="setLoginType(1)">
+                <label class="RC_label"> 求职 </label>
+                <input class="RC_text" id="enterMember" name="loginType" type="radio" onclick="setLoginType(2)">
+                <label class="RC_label"> 招聘 </label>
+              </li>
+              <li>
+                <div class="RC_btn">
+                  <input class="imgBtn" type="submit" value="登录">
+                </div>
+                <label class="RC_label"> <a href="http://www.elian.cc/job/Register.jsp">个人注册</a> | <a href="http://www.elian.cc/job/company/enterReg.jsp">企业注册</a> </label>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+      <div class="RC_Enter_Enter">
+        <div class="RC_Enter_Enter2">
+          <div class="RC_Enter_in2">
+            <form method="post" action="http://www.elian.cc/job/searchListJob.action">
+              <ul>
+                <li>
+                  <label> 工作地点：
+                    <select name="job.province" id="province" onchange="getCity(this,'city')">
+                      <option> -请选择- </option>
+                      <option value="广东">广东</option>
+                      <option value="安徽">安徽</option>
+                      <option value="福建">福建</option>
+                      <option value="甘肃">甘肃</option>
+                      <option value="广西">广西</option>
+                      <option value="贵州">贵州</option>
+                      <option value="海南">海南</option>
+                      <option value="河北">河北</option>
+                      <option value="河南">河南</option>
+                      <option value="黑龙江">黑龙江</option>
+                      <option value="湖北">湖北</option>
+                      <option value="湖南">湖南</option>
+                      <option value="吉林">吉林</option>
+                      <option value="江苏">江苏</option>
+                      <option value="江西">江西</option>
+                      <option value="辽宁">辽宁</option>
+                      <option value="内蒙古">内蒙古</option>
+                      <option value="宁夏">宁夏</option>
+                      <option value="青海">青海</option>
+                      <option value="山东">山东</option>
+                      <option value="山西">山西</option>
+                      <option value="陕西">陕西</option>
+                      <option value="上海">上海</option>
+                      <option value="北京">北京</option>
+                      <option value="天津">天津</option>
+                      <option value="四川">四川</option>
+                      <option value="西藏">西藏</option>
+                      <option value="新疆">新疆</option>
+                      <option value="云南">云南</option>
+                      <option value="浙江">浙江</option>
+                      <option value="港澳">港澳</option>
+                    </select>
+                  </label>
+                </li>
+                <li>
+                  <label> 城　　市：
+                    <select name="job.workAddress" id="city">
+                      <option> -请选择- </option>
+                    </select>
+                  </label>
+                </li>
+                <li>
+                  <label> 所属行业：
+                    <select name="job.tradeType" id="job.tradeType">
+                      <option value="-请选择-">-请选择-</option>
+                      <option value="医疗机构">医疗机构</option>
+                      <option value="药企机构">药企机构</option>
+                      <option value="机构组织">机构组织</option>
+                      <option value="农林牧渔">农林牧渔</option>
+                      <option value="医药卫生">医药卫生</option>
+                      <option value="建筑建材">建筑建材</option>
+                      <option value="冶金矿产">冶金矿产</option>
+                      <option value="石油化工">石油化工</option>
+                      <option value="水利水电">水利水电 </option>
+                      <option value="交通运输">交通运输</option>
+                      <option value="信息产业">信息产业</option>
+                      <option value="机械机电">机械机电</option>
+                      <option value="轻工食品">轻工食品</option>
+                      <option value="服装纺织">服装纺织 </option>
+                      <option value="专业服务">专业服务</option>
+                      <option value="安全防护">安全防护</option>
+                      <option value="环保绿化">环保绿化</option>
+                      <option value="旅游休闲">旅游休闲 </option>
+                      <option value="办公文教">办公文教</option>
+                      <option value="电子电工">电子电工</option>
+                      <option value="玩具礼品">玩具礼品</option>
+                      <option value="家居用品">家居用品</option>
+                      <option value="物资专材">物资专材</option>
+                      <option value="包装用品">包装用品</option>
+                      <option value="体育用品">体育用品</option>
+                      <option value="办公家具">办公家具</option>
+                    </select>
+                  </label>
+                </li>
+                <li>
+                  <label> 发布时间：
+                    <select name="job.period" id="job_period">
+                      <option value="-1">-请选择-</option>
+                      <option value="1">一天前</option>
+                      <option value="3">三天前</option>
+                      <option value="7">一周前</option>
+                      <option value="15">半个月前</option>
+                      <option value="30">一个月前</option>
+                    </select>
+                  </label>
+                </li>
+                <li>
+                  <label> 职位关键字：
+                    <input class="view_name" name="job.jobName" type="text">
+                  </label>
+                  <p> 如：网页策划 编辑 美编 内容编辑 </p>
+                </li>
+              </ul>
+              <div class="RC_Enter_btn">
+                <input class="imgBtn" type="submit" value="搜索">
+              </div>
+            </form>
+          </div>
+          <div class="beizhu">
+            <div class="beizhu_line"></div>
+            <p> <span class="STYLE1">特色服务&gt;&gt;</span> 求职：您留简历，我来免费推荐好工作！ </p>
+            <p> </p>
+            <div align="right"> 招聘：免费发布职位(不限数量)，天天推荐简历！ </div>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="clean"></div>
+    </div>
+    <div class="RC_zhuche_bottom">
+      <div class="RC_zhuche_bottom_left"> <img src="${resStyle}/jobs/bg/crie_bottom_left.png"> </div>
+      <div class="RC_zhuche_bottom_right"> <img src="${resStyle}/jobs/bg/crie_bottom_right.png"> </div>
+      <div class="clean"></div>
+    </div>
+  </div>
+  <div class="line_clear"></div>
+  <div class="RC_hot">
+    <div class="RC_hot_left">
+      <div class="hot_left_top">
+        <div class="hot_btn"> 热点招聘 </div>
+        <a href="http://www.elian.cc/job/getHotListJob.action" class="more" target="_blank">更多 &gt;&gt;</a> </div>
+      <div class="hot_Enter">
+        <div class="hot_line_in">
+          <div class="hot_line">
+            <ul>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=403&job.comType=2&job.jid=265" target="_blank">妇产科医师</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=60&job.comType=2&job.jid=261" target="_blank">导诊员</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=96&job.comType=2&job.jid=242" target="_blank">主任医师</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=370&job.comType=2&job.jid=241" target="_blank">妇幼保健;儿科;妇产科;药剂;护理</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=259&job.comType=2&job.jid=237" target="_blank">护士长</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=158&job.comType=2&job.jid=236" target="_blank">超声科医师</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=246&job.comType=2&job.jid=235" target="_blank">编外护士</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=236&job.comType=2&job.jid=232" target="_blank">外科、内科、医技</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=234&job.comType=2&job.jid=231" target="_blank">超声、放射、麻醉、耳鼻喉</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=234&job.comType=2&job.jid=230" target="_blank">西医儿科、影像、麻醉、耳鼻喉</a> </li>
+            </ul>
+          </div>
+          <div class="hot_line_right">
+            <ul>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=234&job.comType=2&job.jid=229" target="_blank">妇产科、儿科医生</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=65&job.comType=2&job.jid=228" target="_blank">收银员</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=65&job.comType=2&job.jid=227" target="_blank">保健师25名</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=212" target="_blank">司炉工/锅炉工</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=211" target="_blank">薪酬专员 </a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=210" target="_blank">验证专员</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=209" target="_blank">医学专员</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=208" target="_blank">质量控制技术员（动物室）</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=227&job.comType=1&job.jid=207" target="_blank">质量控制专员</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=155&job.comType=2&job.jid=204" target="_blank">泌尿外科</a> </li>
+            </ul>
+          </div>
+          <div class="hot_line_icon"></div>
+          <div class="clean"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 医院招聘 -->
+    <div class="RC_hot_right">
+      <div class="hot_left_top">
+        <div class="hot_btn"> 医院招聘 </div>
+        <a href="http://www.elian.cc/job/getPageTypeJob.action?job.comType=2" class="more"  target="_blank">更多 &gt;&gt;</a> </div>
+      <div class="hot_Enter">
+        <div class="hot_line_in">
+          <div class="hot_line">
+            <ul>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=135&job.comType=2&job.jid=300" target="_blank">护士&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=234&job.comType=2&job.jid=299" target="_blank">妇科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=153&job.comType=2&job.jid=293" target="_blank">秘书&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=470&job.comType=2&job.jid=292" target="_blank">儿科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=309&job.comType=2&job.jid=291" target="_blank">呼吸内科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=309&job.comType=2&job.jid=290" target="_blank">心血管内科医生&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=311&job.comType=2&job.jid=289" target="_blank">护理、药学实习生&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=324&job.comType=2&job.jid=288" target="_blank">儿科住院医师或主治医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=198&job.comType=2&job.jid=287" target="_blank">临床医学&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=438&job.comType=2&job.jid=273" target="_blank">博士&nbsp;&nbsp;</a> </li>
+            </ul>
+          </div>
+          <div class="hot_line_right">
+            <ul>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=438&job.comType=2&job.jid=271" target="_blank">护理人员&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=403&job.comType=2&job.jid=265" target="_blank">妇产科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=99&job.comType=2&job.jid=264" target="_blank">妇产科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=60&job.comType=2&job.jid=261" target="_blank">导诊员&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=22&job.comType=2&job.jid=248" target="_blank">人才代理护士；聘用护士&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=96&job.comType=2&job.jid=242" target="_blank">主任医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=370&job.comType=2&job.jid=241" target="_blank">妇幼保健;儿科;妇产科;药剂;护理&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=259&job.comType=2&job.jid=237" target="_blank">护士长&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=158&job.comType=2&job.jid=236" target="_blank">超声科医师&nbsp;&nbsp;</a> </li>
+              <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=246&job.comType=2&job.jid=235" target="_blank">编外护士&nbsp;&nbsp;</a> </li>
+            </ul>
+          </div>
+          <div class="hot_line_icon"></div>
+          <div class="clean"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clean"></div>
+  </div>
+  <div class="line_clear"></div>
+  <div class="hot_ganwei">
+    <div class="ganwei_top"> <img src="${resStyle}/jobs/bg/ganwei_top.png"> </div>
+    <div class="ganwei_btn">
+      <ul>
+        <li> <a href="http://www.elian.cc/job/#">浠水县人民医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">苏大附医</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">圣心医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">越南红玉美容整形医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">东南整形美容医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">江城妇科医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">张鸿民骨伤专科医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">华中科技大学校医院</a> </li>
+        <li> <a href="http://www.elian.cc/job/#">苏大附医</a> </li>
+      </ul>
+    </div>
+    <div class="ganwei_Enter">
+      <ul>
+        <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=266&job.comType=2&job.jid=217" target="_blank"> <img src="http://www.eliao.cc/ftpFile/1323064954296.jpg" width="231" height="60"> </a> </li>
+        <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=301&job.comType=2&job.jid=216" target="_blank"> <img src="http://www.eliao.cc/ftpFile/1323065124875.jpg" width="231" height="60"> </a> </li>
+        <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=298&job.comType=2&job.jid=214" target="_blank"> <img src="http://www.eliao.cc/ftpFile/1323065232609.jpg" width="231" height="60"> </a> </li>
+        <li> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=155&job.comType=2&job.jid=203" target="_blank"> <img src="http://www.eliao.cc/ftpFile/1323065501609.jpg" width="231" height="60"> </a> </li>
+      </ul>
+      <div class="clean"></div>
+    </div>
+    <div class="ganwei_bottom"> <img src="${resStyle}/jobs/bg/ganwei_bottom.png" width="980" height="11"> </div>
+  </div>
+  <div class="line_clear"></div>
+  <div class="hot_pingpai">
+    <div class="pingpai_top"> <img src="${resStyle}/jobs/bg/pingpai_top.png"> </div>
+    <div class="pingpai_Enter">
+      <ul>
+        <li> <img src="${resImg}/design/main/jobs/pingpai_pic1.png"> </li>
+        <li> <img src="${resImg}/design/main/jobs/pingpai_pic2.png"> </li>
+        <li> <img src="${resImg}/design/main/jobs/pingpai_pic3.png"> </li>
+      </ul>
+    </div>
+    <div class="pingpai_bottom"> <img src="${resStyle}/jobs/bg/ganwei_bottom.png" width="980" height="11"> </div>
+  </div>
+  <div class="line_clear"></div>
+  <div class="RC_bottom"> 
+    
+    <!-- 药企招聘 -->
+    <div class="RC_bottom_left">
+      <div class="bottom_left_top">
+        <div class="bottom_btn"> 药企招聘 </div>
+        <a href="http://www.elian.cc/job/getPageTypeJob.action?job.comType=1" class="more"  target="_blank">更多 &gt;&gt;</a> </div>
+      <div class="bottom_Enter">
+        <div class="hd clearfix"> <span class="tit">招聘职位</span><span class="tit num">招聘人数</span><span class="tit date">发布日期</span> </div>
+        <div class="bottom_line_in">
+          <div class="bottom_line">
+            <ul>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=179&job.comType=1&job.jid=298" target="_blank"> 培训讲师</a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-08-02] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=297" target="_blank"> 医药代表</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-08-02] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=276&job.comType=1&job.jid=296" target="_blank"> 网站SEO优化推广专员</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-07-31] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=251&job.comType=1&job.jid=295" target="_blank"> 注册申报人员</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-07-31] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=289&job.comType=1&job.jid=294" target="_blank"> 客服文员</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-07-31] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=289&job.comType=1&job.jid=285" target="_blank"> 区域业务经理</a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-06-14] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=284&job.comType=1&job.jid=282" target="_blank"> 市场推广与销售专员</a> </div>
+                <div class="need_num">10人</div>
+                <div class="line_right"> [2012-05-16] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=284&job.comType=1&job.jid=280" target="_blank"> 单片机编程工程师</a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-05-14] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=284&job.comType=1&job.jid=279" target="_blank"> 电气工艺工程师</a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-05-14] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=251&job.comType=1&job.jid=266" target="_blank"> 技术人员</a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-04-05] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=260" target="_blank"> 销售行政助理</a> </div>
+                <div class="need_num">3人</div>
+                <div class="line_right"> [2012-02-22] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=259" target="_blank"> 司机</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-02-22] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=258" target="_blank"> 医药代表 </a> </div>
+                <div class="need_num">2人</div>
+                <div class="line_right"> [2012-02-22] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=257" target="_blank"> 医药代表</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-02-22] </div>
+              </li>
+              <li>
+                <div class="line_left"> <a href="http://www.elian.cc/job/getEnterListJob.action?job.comId=225&job.comType=1&job.jid=256" target="_blank"> 生产主管</a> </div>
+                <div class="need_num">1人</div>
+                <div class="line_right"> [2012-02-22] </div>
+              </li>
+            </ul>
+          </div>
+          <div class="clean"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 个人简历 -->
+    <div class="bottom_jianli">
+      <div class="jianli_index">
+        <div class="jianli_top">
+          <div class="jianli_wr"> 个人简历 </div>
+          <a href="http://www.elian.cc/job/searchListResume.action?resume.wkIntent.workAddress=0&resume.wkIntent.workSalary=0&resume.eduBack.education=0&resume.age=0&resume.maxAge=0&resume.wkIntent.workJob=" class="more" target="_blank">更多 &gt;&gt;</a> </div>
+        <div class="jianli_btn"> <em class="txtin">编号</em><em class="txtin">性别</em><em class="txtin">学历</em> </div>
+        <div class="jianli_line">
+          <ul>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=42">42</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=42">女</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=42"> 大专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=45">45</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=45">女</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=45"> 中专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=43">43</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=43">女</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=43"> 中专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=33">33</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=33">女</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=33"> 中专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=37">37</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=37">男</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=37"> 中专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=31">31</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=31">男</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=31"> 本科 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=39">39</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=39">女</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=39"> 大专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=36">36</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=36">男</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=36"> 硕士研究生 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=38">38</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=38">男</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=38"> 大专 </a> </span> </li>
+            <li> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=34">34</a> </span> <span class="RC_wr"><a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=34">男</a> </span> <span class="RC_wr"> <a href="http://www.elian.cc/job/getInfoResume.action?resume.rid=34"> 硕士研究生 </a> </span> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="line_guangao"> <img src="${resImg}/design/main/jobs/line_guangao.gif" width="360" height="107"> </div>
+    </div>
+    <div class="clean"></div>
+  </div>
+  <div class="line_clear"></div>
+</div>
+	<!--#include virtual="${footUrl}"-->
+	<script src="${resScript}/base.js"></script> 
+	<script src="${resScript}/myfocus-1.2.4.full.js"></script> 
+	<script src="${resScript}/mF_tb.js"></script> 
+	<script>
+		myFocus.set( {
+			path : 0,
+			id : 'index_Focus',
+			pattern : 'mF_tb',
+			time : 3,
+			trigger : 'mouseover',
+			width : 460,
+			height : 185,
+			txtHeight : 0,
+			duration : 350,
+			direction : 'left',
+			easing : 'easeOut',
+			wrap : false
+		});//宽度为图片容器实际宽度,主程序注释了自动添加皮肤，脚本。20110711
+	</script> 
+	<script src="${resScript}/jquery-1.4.2.min.js"></script> 
+	<script src="${resScript}/jquery.scroll.js"></script> 
+	<script src="${resScript}/select.js"></script>
+	</body>
+</html>

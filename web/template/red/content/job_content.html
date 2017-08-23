@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/public.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/jobs/sub/ent_resume_manage.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>	
+	<body>	
+		<!--#include virtual="${headUrl}"-->
+		<!--#include virtual="${navUrl}"-->
+		<div class="section">
+		  <div class="position">
+		    <div class="position2">
+		      <div class="position_top">
+		        <div class="position_tisi"> <font color="#df6412"><strong>专家提示：</strong> </font>经常更新简历可以提升简历的排名，让你的简历保持新鲜吧！ </div>
+		        <div class="position_btn"> <span class="btn1"><a href="javascript:void(0)">公司介绍</a> </span> <span class="btn2"><a target="self" href="${path!''}" >招聘职位</a> </span> </div>
+		        <div class="clear"></div>
+		      </div>
+		      <div class="position_id">
+		        <div class="position_id2">
+		          <div class="position_left">
+		            <div class="left_biaoti"> &gt;&gt;所有招聘职位 </div>
+		            <ul class="treeview" id="treeview">
+		              <li class="collapsable ">
+		                <div class="hd"> <b class="hitarea collapsable-hitarea"></b><span class="tit">${site.shortName!site.siteName}</span> </div>
+		                <ul class="list">
+		                  <li> <a href="${path!''}">${job.title!'缺少信息'}</a> </li>
+		                  <#if jobList??>
+		                  	 <#list jobList as item>
+		                  	  <li> <a href="${item.path!''}">${item.title!'缺少信息'}</a> </li>
+		                 	 </#list>
+		                  </#if>
+		                </ul>
+		              </li>
+		            </ul>
+		            <div class="left_biaoti"> &gt;&gt;该职位的简历查看 </div>
+		            <div class="left_look">
+		              <div class="left_look_wr1"> 查看率： </div>
+		              <div class="left_look_wr2"> 83% </div>
+		              <div class="look_left"> <span class="look_box"></span> </div>
+		            </div>
+		            <div class="position_tisi"> <img src="${resImg}/design/main/jobs/position_tisi.png" width="202" height="56"> </div>
+		            <div class="position_zhuche"> <img src="${resImg}/design/main/jobs/position_zheche.png" width="204" height="114"> </div>
+		            <div class="position_banner">
+		              <div class="position_banner_top">
+		                <div class="position_banner_icon"> 黄金广告位 </div>
+		              </div>
+		              <div class="position_guangao"> <img src="${resImg}/design/main/jobs/position_banner_guangao.png" width="186" height="189"> </div>
+		            </div>
+		          </div>
+		          <div class="position_right">
+		            <ul>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn1.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn2.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn3.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn4.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn5.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn6.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn7.png" width="136" height="30"> </li>
+		              <li> <img src="${resStyle}/jobs/sub/bg/position_right_btn8.png" width="136" height="30"> </li>
+		            </ul>
+		          </div>
+		          <div class="position_Enter">
+		            <div class="job_tit"> <span>职位名称：</span><em class="tit">${job.jobName!'缺少信息'}（${job.hireNum!'1'}人）</em> 
+		            	<img src="${resImg}/design/main/jobs/ico_jipin.png"> </div>
+		            <table class="job_detail_tbl" cellspacing="0" width="100%">
+		              <tbody>
+		                <tr class="tr">
+		                  <td class="td_tit"> 发布日期： </td>
+		                  <td>${job.publishTime?string('yyyy-MM-dd')}</td>
+		                  <td class="td_tit"> 有效日期： </td>
+		                  <td class="txtL">${job.expireTime?string('yyyy-MM-dd')}</td>
+		                </tr>
+		                <tr class="tr">
+		                  <td class="td_tit"> 职位类型： </td>
+		                  <td> ${job.jobNature!'全职 '}</td>
+		                  <td class="td_tit"> 提供月薪： </td>
+		                  <td class="txtL"><#if job.salary??>${job.salary}<#else>面议</#if> </td>
+		                </tr>
+		                <tr class="tr">
+		                  <td class="td_tit"> 学历要求： </td>
+		                  <td>${job.education!'不限'}</td>
+		                  <td class="td_tit"> 工作地点： </td>
+		                  <td class="txtL">${area.areaName!'全国'}
+		                    <div id="jobId" style="display: none"> ${job.areaId} </div></td>
+		                </tr>
+		                <tr class="tr">
+		                  <td class="td_tit"> 联 系 人： </td>
+		                  <td>${job.contacter!'缺少信息'}</td>
+		                  <td class="td_tit"> 联系电话： </td>
+		                  <td class="txtL">${job.contactPhone!'缺少信息'}</td>
+		                </tr>
+		              </tbody>
+		            </table>
+		            <div class="job_demand demand02">
+		              <div class="ui_bg">
+		                <div class="item"> <span class="tit">招聘标题：${job.title}<br>
+		                  </span>
+		                  <p>&nbsp;</p>
+		                  <div class="job_demand demand02">
+		                    <div class="ui_bg">
+		                      <div class="item">
+		                      	<#if job.majorRequ??>
+		                      		<br>专业要求：${job.majorRequ}<br>
+		                      	</#if>
+		                      	<#if job.language??>
+		                      		<br>语言要求：${job.language}</br>
+		                      	</#if>
+		                      	<#if job.housing??>
+		                      		<br>住宿情况：${job.housing!'缺少信息'}。<br>
+		                      	</#if>
+		                        <br>工作介绍：${job.description!'缺少信息'}。</div>
+		                    </div>
+		                  </div>
+		                </div>
+		                <!-- <div class="item"></div> --> 
+		              </div>
+		            </div>
+		            <div> <a class="employ_btn" href="javascript:void(0)" onclick="applyJob();">应聘该职位</a> </div>
+		          </div>
+		          <div class="clear"></div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="newline"></div>
+		  	<!--#include virtual="${footUrl}"-->
+		  </div>
+		</div>
+		<script src="${resScript}/applyJob.js"></script> 
+		<script src="${resScript}/jquery-1.4.2.min.js"></script> 
+		<script src="${resScript}/jquery.easyTreeView.js"></script>
+		<script>
+		    +function($){
+		    $('#treeview').easyTreeView({//可以传入多个id实例
+		        aniSpeed:200
+		    })
+		}(jQuery)
+			function toLocation(val){
+				var path=window.location.pathname;
+				window.location.href=path;
+			}
+		</script>		
+	</body>	
+</html>

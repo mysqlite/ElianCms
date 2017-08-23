@@ -1,0 +1,38 @@
+﻿<#include "../includes/index_header.html"/>
+<#--顶部第一栏begin-->
+<div class="section">
+   <div class="w700">
+        <div class="mod_box">
+            <div class="mod_box_hd"><h3><a href="javascript:void(0);">联系我们</a></h3>
+            </div>
+            <div class="mod_box_bd mod_contact_us">
+                <h3> ${comp.name!'不详'}</h3>
+                <ul class="list">
+                    <#--<li><span class="tit">联系人：</span>无信息</li>-->
+                    <li><span class="tit">电话：</span>
+                   		 ${comp.phone!'不详'}
+                    </li>
+                    <li><span class="tit">地址：</span>
+                   		 ${comp.address!'不详'}
+                    </li>
+                    <li><span class="tit">邮编：</span>
+                   		  ${comp.postcode!'无信息'}
+                    </li>
+                    <li><span class="tit">公司主页：</span>
+                   		 <a href="${comp.siteUrl!'#'}" target="blank">${comp.siteUrl!'无信息'}</a> 
+                	</li>
+                </ul>
+                <div class="google_map">${comp.busLine!''}</div>
+            </div>
+        </div>
+    </div>   
+    <div class="sidebar">
+        <!--侧边 -->
+		<#include "../includes/all_side.html"/>
+    </div>
+</div>
+<div class="footer" style="border-top: 5px solid #007DCA;padding-top: 5px;">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

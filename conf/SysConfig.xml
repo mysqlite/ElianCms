@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RESULT>
+    <!-- 定时器表达式 -->
+    <odd name="quartz" value="0 0 */1 * * ?"></odd>
+    <!--初始密码 -->
+    <odd name="initialPwd" value="123456"></odd>
+    <!-- 后台登录logo -->
+    <odd name="adminLoginlogoImg" value="http://images.elian.cc/design/main/logo.jpg"></odd>
+    <!-- 后台头部logo -->
+    <odd name="adminHeaderlogoImg" value="http://images.elian.cc/design/main/manage/logo.jpg"></odd>
+    <!-- 主站前台域名 -->
+    <odd name="mainSitedomain" value="http://www"></odd>
+    <!-- 主站后台域名 -->
+    <odd name="cmsSitedomain" value="http://cms"></odd>
+    <!-- 主域名 -->
+    <odd name="mainDomain" value=".elian.cc"></odd>
+    <!-- 网站favicon.ico -->
+    <odd name="favicon" value="http://images.elian.cc/design/main/favicon.ico"></odd>
+    <odd name="siteImgIcon" value="http://images.elian.cc/design/main/favicon.ico"></odd>
+    <!--图片最大宽度、最大高度-->
+     <odd name="imgMaxW" value="700"></odd>
+     <odd name="imgMaxH" value="10000"></odd>
+</RESULT>

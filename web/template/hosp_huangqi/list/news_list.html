@@ -1,0 +1,162 @@
+﻿		<#include "../includes/content_header.html"/>	
+       <!--头部begin-->
+        <div id="headDiv">
+         <!--#include virtual="${headUrl}"-->
+        </div>
+        <!--头部end-->
+        
+        <!--导航begin-->
+        <div id="navDiv">
+         <!--#include virtual="${navUrl}"-->
+        </div>
+        <!--导航end-->
+        <input id="siteId" value="${siteId}" type="hidden"/>
+        <script type="text/javascript">  
+			function getPageLeveAjax(id,url,getLast){
+			    if(null==getLast) getLast=true; 
+			    url+="&getLast="+getLast; 
+			    getJson(url,function(data){
+			        var leve="";
+			        if(!blank(data.data)){
+			            for(var i=0;i<data.data.length;i++){
+			                if(i<(data.data.length-1))
+			                  leve+='<a href="'+data.data[i].path+'">'+data.data[i].channelName+"</a>>>";
+			                else
+			                  leve+='<span class="cur">'+data.data[i].channelName+'</span>';
+			            }
+			        }
+			        G(id).innerHTML=leve;
+			    });
+			}
+			
+			function getListAjax(id,url){
+			    getJson(url,function(data){
+			        var m=data.m,list="";
+			        if(!blank(m)){
+			            list+='<ul class="list02_dot">';
+			            for(var i=0;i<m.length;i++){
+			                list+='<li><a href="'+m[i].path+'">'+m[i].title+'</a><span class="date">['+m[i].createTime+']</span></li>';
+			            }
+			            list+='</ul>';
+			        }
+			        G(id).innerHTML=list+listPage(data.page);
+			    });
+			}
+			
+			function listPage(page){
+			    var pageHtml="";
+			    if(!blank(page)){
+			            pageHtml+='<ul class="pagination clearfix">';
+			            pageHtml+='<input id="currentPage" name="pagination.pageNo" type="hidden" value="'+page.pageNo+'"/>';
+			            pageHtml+='<input id="lastPage" type="hidden" value="'+page.pageCount+'"/>';
+			            if(page.pageNo>1){
+			                pageHtml+='<li class="page_jump"><a onclick="toPageAjax(1)">&lt;&lt;第一页</a></li>';
+			                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+(page.pageNo-1)+')">&lt;上一页</a></li>';
+			            }
+			            for(var i=(page.pageNo-page.offsetSize);i<page.pageNo;i++){
+			                if(i>page.pageCount)break;
+			                if(i<1)continue;
+			                pageHtml+='<li><a onclick="toPageAjax('+i+')">'+i+'</a></li>';
+			            }
+			            if(page.pageNo<=page.pageCount)
+			                pageHtml+='<li class="pages cur">'+page.pageNo+'</li>';
+			            for(var i=(page.pageNo+1);i<=page.pageNo+page.offsetSize;i++){
+			                if(i>page.pageCount)break;
+			                pageHtml+='<li><a onclick="toPageAjax('+i+')">'+i+'</a></li>';
+			            }
+			            if(page.pageNo<page.pageCount){
+			                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+(page.pageNo+1)+')">下一页&gt;</a></li>';
+			                pageHtml+='<li class="page_jump"><a onclick="toPageAjax('+page.pageCount+')">最尾页&gt;&gt;</a></li>';
+			            }
+			            pageHtml+='<li class="page">';
+			            pageHtml+='<input type="text" id="pageNo" class="ipage" title="请输入页码" ';
+			            pageHtml+='onkeydown="checkEnter(event,\'igo\')"  onkeyup="numberFormat(\'pageNo\',\'lastPage\')" ';
+			            pageHtml+='value="'+page.pageNo+'"/>';
+			            pageHtml+='<span class="page-count">&nbsp;/'+page.pageCount==0?1:page.pageCount+'</span></li>';
+			            pageHtml+='<li title="跳转页面" class="go">';
+			            pageHtml+='<a id="igo" class="igo" onclick="goAjax(\'pageNo\',\'currentPage\');">GO</a></li>';
+			            pageHtml+='</ul>';    
+			    }
+			    return pageHtml;
+			}
+			</script>
+		<!--列表及栏目-->
+		<#if dataMap['1'].imgContentList??>
+		<#if dataMap['1'].imgContentList[0]??>
+		<div id="banner">
+		    <img alt="" src="${dataMap['1'].imgContentList[0].imgPath}" width="960" height="210"/>
+		</div>
+		</#if>
+		</#if>
+		
+		<div class="wrap clearfix">
+		    <div class="section_m ">
+		        <!--位置盒子begin-->
+		        <div class="crumbs ui_crumbs" style="width:700px">
+		            <b>位置：</b>
+		            <span id="pathUrl">
+		                <script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+		                <script type="text/javascript">
+		                    getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+		                </script>
+		            </span>
+		        </div>
+		        <!--位置盒子end-->
+		        <div class="article ui_gray_2">
+		            <input type="hidden" id="tableUrl" value="${tableUrl}"/>
+		            <div class="article_bd article_list" id="list">
+		                <script type="text/javascript">
+				             getListAjax("list",'${tableUrl}');
+				        </script>
+		            </div>
+		        </div>
+		        <div class="article_ft_ad"></div>
+		    </div>
+		    <div class="sidebar">
+		        <div class="aside">
+		            <#if dataMap['2'].contentList??>
+		            <div class="mod_hd ui_hd_gray">
+		                <h3 class="mod_tit">
+		                    <a href="${dataMap['2'].path!'#'}">${dataMap['1'].channelName}</a>
+		                </h3>
+		            </div>
+		            </#if>
+		            <div class="mod_bd clearfix">
+	                    <#if dataMap['2'].contentList??>
+		                <ul class="list06">
+		                    <#list 1..dataMap['2'].contentList?size as i>
+                            <#if i lte 8>
+		                    <li>
+		                        <a href="${dataMap['2'].contentList['${i}'].path!'#'}">
+		                             ${dataMap['2'].contentList['${i}'].title!''}
+		                        </a>
+		                    </li>
+		                    </#if>
+                            </#list>
+		                </ul>
+		                </#if>
+		                <#if dataMap['3'].imgContentList??>
+		                <#if dataMap['3'].imgContentList[0]??>
+		                <div class="address_tel_num">
+		                    <a class="address" href="${dataMap['3'].imgContentList[0].path!''}">
+		                        <img src="${dataMap['3'].imgContentList[0].imgPath!''}" width="80" height="100" />
+		                    </a>
+		                    <b class="tel_num">
+		                        ${dataMap['3'].imgContentList[0].imgPath!''}
+		                    </b>
+		                </div>
+		                </#if>
+		                </#if>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="ui_bottom_line960_2"></div><!-- 内容结束 -->
+		<!--友情链接end-->
+		<!-- 尾部开始-->
+   <div id="footDiv" class="footer">
+    <!--#include virtual="${footUrl}"-->
+   </div>
+<!-- 尾部结束-->
+</body>
+</html>

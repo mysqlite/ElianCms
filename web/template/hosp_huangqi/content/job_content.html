@@ -1,0 +1,125 @@
+﻿<#include "../includes/content_header.html"/>
+<!--头部begin-->
+<div id="headDiv">
+ <!--#include virtual="${headUrl}"-->
+</div>
+<!--头部end-->
+
+<!--导航begin-->
+<div id="navDiv">
+ <!--#include virtual="${navUrl}"-->
+</div>
+<!--导航end-->
+<div class="wrap ui_article_view clearfix">
+    <div class="section_m ">
+        <!--位置盒子begin-->
+        <div class="crumbs ui_crumbs"  style="width:700px">
+            <b>位置：</b>
+            <span id="pathUrl">
+                <script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+                <script type="text/javascript">
+                    getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+                </script>
+            </span>
+        </div>
+        <!--位置盒子end-->
+        <div class="article ui_gray_3">
+            <div class="article_hd">
+                <h2>${(info.title)!''}</h2>
+                <div class="article_meta">
+                    <b>编辑：${(info.author)!''}</b>
+                    <b class="article_date">时间：${(info.publishTime?string('yyyy-MM-dd'))!''}</b>
+                    <#if info.sourceName??>
+                    <b><a href="${(info.sourceUrl)!'#'}">来源：${(info.sourceName)!''}</a></b>
+                    </#if>
+                </div>
+            </div>
+            <div class="article_bd"> ${(info.content)!''}</div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside">
+            <#if (dataMap['1'].imgContentList??) || (dataMap['1'].contentList??)>
+            <div class="mod_hd ui_hd_gray">
+                <h3 class="mod_tit">
+                    <a href="${dataMap['1'].path!'#'}">
+                       ${dataMap['1'].channelName}
+                    </a>
+                </h3>
+            </div>
+            <div class="mod_bd clearfix">
+                <#if dataMap['1'].imgContentList??>
+                <div class="hotnews_img">
+                    <#list 1..dataMap['1'].imgContentList?size as i>
+                    <#if i lte 2>
+                    <a href="${dataMap['1'].imgContentList['${i}'].path!'#'}">
+                        <img class="img90x60" width="90" height="60" src="${dataMap['1'].imgContentList['${i}'].imgPath}"
+                        alt="${dataMap['1'].imgContentList['${i}'].title!''}" />
+                    </a>
+                    </#if>
+                    </#list>
+                </div>
+                </#if>
+                <#if dataMap['2'].contentList??>
+                <ul class="list01_dot">
+                    <#list 1..dataMap['2'].contentList?size as i>
+                    <#if i lte 7>
+                    <li>
+                        <a href="${dataMap['2'].contentList['${i}'].path!'#'}">
+                            ${dataMap['2'].contentList['${i}'].title!''}
+                        </a>
+                    </li>
+                    </#if>
+                    </#list>
+                </ul>
+                </#if>
+            </div>
+            </#if>
+        </div>
+        <div class="aside">
+            <#if dataMap['3'].contentList??>
+            <div class="mod_hd ui_hd_gray_2">
+                <h3>
+                    <a href="${dataMap['3'].path!'#'}">
+                        ${dataMap['3'].channelName}
+                    </a>
+                </h3>
+            </div>
+            </#if>
+            <div class="mod_bd">
+                <#if dataMap['3'].contentList??>
+                <ul class="list06">
+                    <#list 1..dataMap['3'].contentList?size as i>
+                    <#if i lte 8>
+                    <li>
+                        <a href="${dataMap['3'].contentList['${i}'].path!'#'}">
+                            ${dataMap['3'].contentList['${i}'].title!''}
+                        </a>
+                    </li>
+                    </#if>
+                    </#list>
+                </ul>
+                </#if>
+                <#if dataMap['4'].imgContentList??>
+                <#if dataMap['4'].imgContentList[0]??>
+                <div class="address_tel_num">
+                    <a class="address" href="${dataMap['4'].imgContentList[0].path!''}">
+                        <img src="${dataMap['4'].imgContentList[0].imgPath!''}" width="80" height="100" />
+                    </a>
+                    <b class="tel_num">
+                        ${dataMap['4'].imgContentList[0].imgPath!''}
+                    </b>
+                </div>
+                </#if>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui_bottom_line960_2"></div>
+<!-- 尾部开始-->
+<div id="footDiv">
+ <!--#include virtual="${footUrl}"-->
+</div>
+<!-- 尾部结束-->
+</body>
+</html>

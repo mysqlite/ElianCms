@@ -1,0 +1,47 @@
+${content!''}
+<#if (content?? && content=='')>
+<div id="topbar">
+    <div class="link">
+        <a class="t" href="index.jsp">&gt;&gt; 值得信赖的专家团队 关爱您的一生健康</a>
+        <a href="home.jsp"> FLASH首页</a>-
+        <a href="index.jsp">设为首页</a>-
+        <a href="#">简体中文</a>-
+        <a href="http://en.hqyy.com.cn/index.jsp">ENGLISH</a>
+    </div>
+</div>
+<div id="ad20120427" class="section" style="display:none;">
+    <img src="http://style.elian.cc/hosp/webbuild/hqyy/images/ad20120427.jpg" width="960" height="300">
+</div>
+<div id="header">
+    <h1>
+        <a href="index.jsp">
+            <img alt="${siteName!'默认医院名称'}" src="http://style.elian.cc/hosp/webbuild/hqyy/images/logo.png" width="456"
+            height="74" />
+            <br />
+            ${siteName!'默认医院名称'}
+        </a>
+    </h1>
+    <div class="searchbar">
+        <form id="f_search" action="seachArticleInfo.jsp" method="get">
+            <div class="txt_bd">
+                <input type="text" id="artTitle" onClick="if(this.value=='请输入关键词')this.value=''"
+                onblur="if(this.value.length == 0)this.value='请输入关键词'" name="artTitle"
+                value="请输入关键词" />
+                <span class="tel">
+                    <img src="http://style.elian.cc/hosp/webbuild/hqyy/images/tel.png" />
+                </span>
+            </div>
+            <input type="submit" onclick="this.value=''" class="btn" value="搜索资讯"
+            />
+        </form>
+        <a class="wrap_guahao" href="http://www.915800.com/Category.aspx?_hosid=202&menuid=1&pid=&aid=&pno=">
+            预约挂号
+            <img style="display: block;" class="guahao_ico" src="http://style.elian.cc/hosp/webbuild/hqyy/images/spirit_holder.gif"
+            width="97" height="81" />
+            <a class="linkBtn" href="http://hqyy.com.cn/tel_guahao.jsp">
+                电话预约
+            </a>
+        </a>
+    </div>
+</div>
+</#if>

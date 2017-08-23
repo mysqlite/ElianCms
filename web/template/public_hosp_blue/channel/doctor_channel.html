@@ -1,0 +1,44 @@
+<#include "../includes/con_header.html"/>
+<!--头部begin-->
+<div id="headDiv">
+ <!--#include virtual="${headUrl}"-->
+</div>
+<!--头部end-->
+
+<!--导航begin-->
+<div id="navDiv">
+ <!--#include virtual="${navUrl}"-->
+</div>
+<!--导航end-->
+<div class="section">
+    <#include "../includes/doctor_content.html">
+<!-- 侧边栏开始 -->
+<div class="sidebar" >
+
+<!--此处为栏目内容-->
+ <div class="aside aside_nav" id="channelDiv">
+     <#include "../includes/doctor_channel.html">
+ </div>
+<!--此处为栏目内容-->
+    <#import '../includes/global.html' as global/>
+	<!-- 医院杂志begin -->
+    <!--#include file="${detailFolder}1.shtml"-->
+     <!-- 医院杂志end -->
+     
+    <!-- 医院地图begin -->
+    <!--#include file="${detailFolder}2.shtml"-->
+    <!-- 医院地图end --></div>
+<!-- 侧边栏结束 -->
+ </div>
+
+<!--友情链接begin-->
+<#include "../includes/links_list.html">
+<!--友情链接end-->
+
+<!-- 尾部开始-->
+<div id="footDiv" class="footer">
+ <!--#include virtual="${footUrl}"-->
+</div>
+<!-- 尾部结束-->
+</body>
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="reg" extends="struts-default" namespace="/reg">
+        <interceptors>
+            <interceptor name="regLoginInterceptor" class="com.elian.cms.syst.filter.RegLoginInterceptor"/>
+            <interceptor name="trimInterceptor" class="com.elian.cms.syst.filter.TrimInterceptor"/>
+            <interceptor-stack name="baseStack">
+                <interceptor-ref name="regLoginInterceptor"/>
+                <!-- 去除两端空格拦截器 -->
+                <interceptor-ref name="trimInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <!-- 配置默认拦截器栈 -->
+        <default-interceptor-ref name="baseStack" />
+        
+        <action name="registered" class="registeredAction">
+            <result name="reg">${path}/reg/registered.jsp</result>
+            <result name="success" type="redirectAction">${path}regIndex.action</result>
+            <result name="main">${path}/regindex.jsp</result>
+            <result name="input">${path}/reg/registered.jsp</result>
+            <result name="loginOut" type="redirectAction">${path}regIndex.action</result>
+        </action>
+        
+        <action name="login" class="regLoginAction">
+            <result name="success" type="redirectAction">${path}regIndex.action</result>
+            <result name="main">${path}/reg/loginSuccess.jsp</result>
+            <result name="input">${path}/regindex.jsp</result>
+            <result name="loginOut" type="redirectAction">${path}login!main.action</result>
+        </action>
+        
+        <action name="logins" class="regLoginsAction">
+            <result name="success" type="redirectAction">${path}logins!main.action</result>
+            <result name="main">${path}/reg/loginSuccess.jsp</result>
+            <result name="input">${path}/reg/login.jsp</result>
+            <result name="loginOut" type="redirectAction">${path}regIndex.action</result>
+        </action>
+        
+        <action name="imageUpload" class="imageUploadAction" >
+            <result name="success">${path}/page/include/resultTip.jsp</result>
+            <result name="error">${path}/page/include/resultTip.jsp</result>    
+            <result name="todo">${path}/page/include/iframe_upload.jsp</result>                   
+        </action>
+        
+        <action name="regUserManager" class="regUserManagerAction">
+            <result name="list">${path}/reg/regUserManager.jsp</result>
+            <result name="input">${path}/reg/regUserManager.jsp</result>
+            <result name="edit">${path}/reg/regUserManager.jsp</result>
+            <result name="login">${path}/reg/login.jsp</result>
+        </action>
+        
+        <action name="regDoctor" class="regDoctorAction">
+            <result name="list">${path}/reg/regDoctor.jsp</result>
+            <result name="show">${path}/reg/regDoctorDetial.jsp</result>
+            <result name="input">${path}/reg/regDoctorDetial.jsp</result>
+            <result name="search">${path}/reg/regDoctorSearch.jsp</result>
+            <result name="regSearch">${path}/reg/regDoctorRegSearch.jsp</result>
+            <result name="save" type="redirectAction">
+                <param name="actionName">${path}regDoctor!detial</param>
+                <param name="docId">${docId}</param>
+            </result>
+            <result name="login">${path}/reg/login.jsp</result>
+        </action>
+        
+        <action name="regDoctorClone" class="regDoctorCloneAction">
+            <result name="show">${path}/reg/regDoctorDetialClone.jsp</result>
+            <result name="input">${path}/reg/regDoctorDetialClone.jsp</result>
+        </action>
+        
+       <action name="regIndex" class="regIndexAction">
+            <result>
+                ${path}/regindex.jsp
+            </result>
+        </action>
+        
+       <action name="tingZhen" class="regTingZhenAction">
+            <result name="show">
+                ${path}/reg/tingZhen/regTingZhenDetial.jsp
+            </result> 
+        </action>
+        
+        <action name="regRegisterConfirm" class="regRegisterConfirmAction">
+            <result name="confirm">${path}/reg/regRegisterConfirm.jsp</result>
+            <result name="ok" type="redirectAction">
+                <param name="actionName">${path}regRegisterConfirmOk!list</param>
+                <param name="phone">${phone}</param>
+                <param name="doctorWork.id">${doctorWork.id}</param>
+                <param name="userRegister.id">${userRegister.id}</param>
+            </result>
+            <result name="fail">${path}/reg/regRegisterConfirmFail.jsp</result>
+            <result name="exists">${path}/reg/regRegisterConfirmExists.jsp</result>
+        </action>
+        
+        <action name="regRegisterConfirmClone" class="regRegisterConfirmCloneAction">
+            <result name="confirm">${path}/reg/regRegisterConfirmClone.jsp</result>
+            <result name="ok" type="redirectAction">
+                <param name="actionName">${path}regRegisterConfirmOkClone!list</param>
+                <param name="phone">${phone}</param>
+                <param name="doctorWork.id">${doctorWork.id}</param>
+                <param name="userRegister.id">${userRegister.id}</param>
+            </result>
+            <result name="fail">${path}/reg/regRegisterConfirmFailClone.jsp</result>
+            <result name="exists">${path}/reg/regRegisterConfirmExistsClone.jsp</result>
+        </action>
+                
+        <action name="*" class="{1}Action">
+            <result name="list">${path}/reg/{1}.jsp</result>
+            <result name="reg">${path}/reg/{1}.jsp</result>
+            <result name="input">${path}/reg/{1}Edit.jsp</result>
+            <result name="edit">${path}/reg/{1}Edit.jsp</result>
+            <result name="login">${path}/reg/login.jsp</result>
+        </action>
+    </package>
+</struts>

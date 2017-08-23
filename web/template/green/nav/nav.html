@@ -1,0 +1,28 @@
+﻿<#import '../freemakerInclude/global.html' as global/>
+ <#macro nav>
+ 	<#if navList??>
+		<#local size=navList?size>
+		<#if (size<=12)>
+			<div class="nav">
+				<@global.showList3 ulClass='list' liClass='' data=navList;item>
+					<a href="${item.path!'#'}" target="_self">${item.channelName!''}</a>
+				</@global.showList3>	
+			</div>
+		</#if>
+		<#if (size>12)>
+			<div class="nav">
+				<@global.showNumList ulClass='list' liClass='' begin=0 end=11 data=navList;i,item>
+					<a href="${item.path!'#'}" target="_self">${item.channelName!''}</a>
+				</@global.showNumList>
+				<b class="nav_lbg"></b>
+	   			<b class="nav_rbg"></b>
+	   		</div>
+	   		<div class="nav2">
+	   			<@global.showNumList ulClass='list' liClass='' begin=12 end=size-1 data=navList;i,item>
+					<a class="nav_ico${i-11}"  href="${item.path!'#'}" target="_self">${item.channelName!''}</a>
+				</@global.showNumList>
+	   		</div>
+		</#if>
+	</#if>
+ </#macro> 
+ <@nav></@nav>

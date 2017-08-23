@@ -1,0 +1,23 @@
+
+<#import '../../freemakerInclude/global.html' as global/>
+<#--macro5开始-->
+<#macro macro5 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if data.contentList??>
+        		<@global.showList3 ulClass='list03b' liClass='' data=data.contentList;item>
+        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+        			<@global.showTime time=item.time!''/></span>
+        		</@global.showList3>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--人员招聘-->
+           <@macro5 mapKey='2' headClass='mod_hd mod_hd03' bodyClass='mod_hd mod_bd03'></@macro5>
+           

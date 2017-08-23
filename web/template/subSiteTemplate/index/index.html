@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>${title!''}</title>
+<meta name="Keywords" content="${keywords!''}" /> 
+<meta name="Description" content="${description!''}" />
+<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+<link rel="stylesheet" href="${resStyle}/hainan/index.css" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="http://www.elian.cc/favicon.ico">
+<script type="text/javascript" src="${resScript}/hainan/base0530.js"></script><script>
+    fgm.on(window, "load", function(){
+    new LazyLoad("slide");
+    new LazyLoad("tab7_bd");
+    new LazyLoad("j-pic750x100_1");
+    new LazyLoad("j-hos-rank");
+    //new LazyLoad("slide2");//没有的要注释，否则出错
+    //new LazyLoad("j-other-blog-news");
+    //new LazyLoad("tab8_bd");
+	new LazyLoad("hos_news");//医疗新闻
+	new LazyLoad("health_news");//健康资讯
+	new LazyLoad("j-pic220x80_1");
+	new LazyLoad("j-pic220x87-1");
+	new LazyLoad("j-pic220x87-2");
+	new LazyLoad("treatment_guide_line");
+    });
+</script>
+</head>
+<body>
+<!--#macro-->
+<#import '../include/global.html' as global/>
+<#--top1开始-->
+<#macro top1 mapKey> 
+   <div class="topnews clearfix"> 
+  	  <#if dataMap[mapKey]??>
+	      <#local data=dataMap[mapKey]/>      
+  	  	 <#local size=data.contentList?size/>    
+      	 <#if (size>0)>
+      	 	<h1 class="tit"><a target="_blank" href="${data.contentList[0].path}">${data.contentList[0].title}</a></h1>
+            <p class="txt"><@global.showTitle title=data.contentList[0].detial titleNum=90></@global.showTitle>
+            <a target="_blank" href="${data.contentList[0].path}" class="more">[全文]</a></p>
+      	 </#if>
+      	 <#if (size>1)>
+      	 	<span class="sub-tit">
+      	 		<#list 1..3 as i>
+					<#if data.contentList[i]??>				          					          				
+          				<a target="_blank" href="${data.contentList[i].path}">${data.contentList[i].title}</a> 
+          				<#if data.contentList[i+1]?? && i!=3>|</#if>				          				
+          			</#if>	
+  				</#list>                	 		
+      	 	</span>
+      	 </#if>
+      	 <#if (size>4)>
+      	 	<div class="blue_dot_line"></div>
+			<ul class="list clearfix">	
+  			<#list 4..size-1 as i>		          					          				
+  				 	<li>·<a target="_blank" href="${data.contentList[i].path}">${data.contentList[i].title}</a> </li>				
+  			</#list>
+  			</ul>
+		</#if>          	           	 
+  	 </#if>  
+  </div>	
+</#macro> 
+<#--bottom开始-->
+<#macro bottom mapKey id>
+	<#if dataMap[mapKey]??>
+		<#local subDataMap=dataMap[mapKey]/>
+		<div class="mod-tab-hd clearfix" id="tab${id}_hd">
+			<#list 1..subDataMap?size as i>		
+				<#if subDataMap['${i}']??>
+		            <h3 <#if i==1>class="cur"</#if> onmouseover="overTab(${id},${i},'h3','div')" onmouseout="outTab()">
+		            	<a href="${subDataMap['${i}'].path}" target="_blank">${subDataMap['${i}'].channelName}</a></h3>				
+				</#if>		
+			</#list>
+	    </div>
+	    <div class="mod-tab-bd clearfix" id="tab${id}_bd">
+	    	<#list 1..subDataMap?size as i>	
+	    		<#if subDataMap['${i}']??>
+		    		<#local data=subDataMap['${i}']/>
+		    		<div class="tab-con"<#if i==1> style="display: block;"</#if>> <span class="pt04">
+		    		<#if data.imgContentList??>
+		    			 <span class="pic">	<a href="${data.imgContentList[0].path}" target="_blank"><img src="http://style.elian.cc/main/bg/none.gif"
+		    			  data-img="${data.imgContentList[0].imgPath}" width="150" height="100" 
+		    			  alt="${data.imgContentList[0].title}"> <span class="tit">${data.imgContentList[0].title}</span></a> </span>
+		    		</#if>
+		    		<#if data.contentList??>
+	    				<#if data.contentList[0]??>
+	    					  <h4 class="tit"><a href="${data.contentList[0].path}" target="_blank">${data.contentList[0].title}</a></h4>
+	    				</#if>
+	    				<#if data.contentList[1]??>
+	    					<ul class="list01">
+				    			<#list 1..3 as i>
+				    				<#if data.contentList[i]??>			    				
+				    					<li>·<a href="${data.contentList[i].path}" target="_blank">${data.contentList[i].title}</a></li>
+				    				</#if>
+				    			</#list>
+				    		</ul>
+	    				</#if>
+						 </span>
+	    				<#if data.contentList[4]??>
+	              			 <ul class="list03b">
+	              			 	<#list 4..data.contentList?size-1 as i>
+	              			 	   <li><span class="txt">·<a href="${data.contentList[i].path}" target="_blank">${data.contentList[i].title}</a>
+	              			 	   </span><span class="date">${data.contentList[i].time}</span></li>
+	              			 	</#list>
+	              			 </ul>
+	    				</#if>
+		    		</#if>
+		    		</div>
+		    	</#if>
+	    	</#list>
+	    </div>
+	</#if>
+</#macro>
+
+<#--医院推荐-->
+<#macro hospital1 mapKey id> 
+   <#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<div class="mod-hd">
+			<h3 class="tit t01">医院推荐</h3>
+			<div class="mod-recomm-tab-hd clearfix" id="tab${id}_hd">
+			<#list 1..data?size as i>	
+				<#if data['${i}']??>
+		            <h3 <#if i==1>class="cur"</#if> onmouseover="overTab(${id},${i},'h3','div')" onmouseout="outTab()">
+		            	<a href="javascript:void(0)}">${data['${i}'].channelName}</a></h3>				
+				</#if>			
+			</#list>
+			</div> <span class="tri-line"></span>
+	    </div>
+	   <div class="mod-recomm-tab-bd clearfix" id="tab${id}_bd"> 
+	   		<#list 1..data?size as i>
+	   			<#if data['${i}']??>
+		   			<#local subData=data['${i}']/>
+	   				<div class="tab-con" <#if 1==i> style="display: block;" <#else> style="display: none;" </#if>> <span class="wrap-pt02">
+		   			<#if subData.imgContentList??>
+			    		<@global.showList3 ulClass='pt02' liClass='' data=subData.imgContentList;listData>
+			    			<a class="pic" target="_blank" href="${listData.path!'#'}"><img src="${listData.imgPath!'#'}" alt="${listData.title!''}" height="75px" width="100px"></a>
+		     				<p class="txt"> <span><a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a></span> <span>${listData.param1!''}</span> <span class="ico-tel">${listData.param2}</span> </p>
+			    		</@global.showList3>	
+		   			</#if>	
+		    		</span> <span class="line"></span> <span class="wrap-list01 clearfix">	
+		    		<#if subData.contentList??>
+		    			<#if (subData.contentList?size<=6)>
+		    				<@global.showList3 ulClass='list01' liClass='' data=subData.contentList;listData>
+		    					·<a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a>
+		    				</@global.showList3>	
+		    			</#if>
+		    			<#if (subData.contentList?size>6)>
+		    				<@global.showNumList ulClass='list01' liClass='' begin=0 end=5 data=subData.contentList;i,listData>
+		    					·<a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a>
+		    				</@global.showNumList>
+		    				<@global.showNumList ulClass='list01' liClass='' begin=6 end=subData.contentList?size data=subData.contentList;i,listData>
+		    					<#if listData??>
+			    					·<a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a>
+		    					</#if>
+		    				</@global.showNumList>
+		    			</#if>
+		    		</#if>	 
+		    		</span>  </div> 		
+		    	</#if>
+	    	</#list>
+	    </div>
+	</#if>
+</#macro> 
+<#--三好医院-->
+<#macro hospital2 mapKey>
+  	<#if dataMap[mapKey]??>  	
+		<#local data=dataMap[mapKey]/>      
+	    <div class="aside-hd">
+		    <h3><a href="javascript:void(0);">${data.channelName}</a></h3>
+		</div>
+		<div class="aside-bd">   
+			 <#if data.imgContentList??>
+	    	 	<@global.showNumList ulClass='pt02' liClass='' begin=0 end=data.imgContentList?size-1 data=data.imgContentList;i,listData>   
+	    	 		<a class="pic" target="_blank" href="${listData.path!'#'}"> <img class="loaded" src="${listData.imgPath!'#'}" alt="${listData.title!'#'}" height="75px" width="100px"> <b class="rank1">${i+1}</b> </a>
+				    <div class="txt" style="zoom:1">
+			        <h4><a class="pic" target="_blank" href="${listData.path!'#'}">${listData.title!'#'}</a></h4>
+			        <span>${listData.param1!'#'}</span> <span class="ico-tel">${listData.param2!'#'}</span> </div>   
+	    	 	</@global.showNumList>
+	    	 </#if> 	
+	    	 <#if data.contentList??>
+	    	 	<@global.showList3 ulClass='list01' liClass='' data=data.contentList;listData>
+					<a class="category" target="_blank" href="${listData.path!'#'}">[${listData.param1!'人民医院'}]</a>
+					<a target="_blank" href="${listData.path!'#'}">${listData.title!'#'}</a>
+				</@global.showList3>	
+	    	 </#if>
+		</div>
+  	</#if>
+</#macro>
+<#--儿科医院-->
+<#macro hospital3 mapKey>
+  	<#if dataMap[mapKey]??>  
+		<#local data=dataMap[mapKey]/>      
+		<div class="hd">${data.channelName!''}</div>
+		<div class="bd">
+			<#if data.imgContentList??>
+	    	 	<@global.showList3 ulClass='pt02' liClass='' data=data.imgContentList;listData>
+					<a class="pic" target="_blank" href="${listData.path!'#'}"><img src="${listData.imgPath!'#'}" width="145" height="115" alt="${listData.title!''}"></a>
+		            <p class="txt"> <span><a target="_blank" href="${listData.path!'#'}">${listData.title!''}</a></span> <span>${listData.param1!'人民医院'}</span></p>
+				</@global.showList3>	
+	    	 </#if>
+		</div>
+	</#if>
+</#macro>
+
+<#--医生推荐-->
+<#macro doctor1 mapKey>
+	<#if dataMap[mapKey]??>
+	<#local data=dataMap[mapKey]/>
+		<div class="mod-hd">
+            <h3 class="tit t02">医生推荐</h3>
+            <span class="arr-control"> <b class="arrL" title="上一页">上一页</b> <b class="arrR" title="下一页">下一页</b> </span>
+            <div id="recomm-doctor-controller"> 
+            	<#local size=data?size/>
+            	<#list 1..size as i>
+            		<span class="recomm-doctor-controll<#if 1==i> jFlowSelected</#if>">${i}</span>
+            	</#list>            
+            </div>
+        </div>
+         <div id="recomm-doctor-slide">
+            <div class="mod-bd clearfix" id="slide">
+            	<#list 1..data?size as i>
+            		<#if data['${i}']??>
+		   				<#local subData=data['${i}']/>
+		   				<div class="slide_wrap">
+		   					<#if subData.imgContentList??>
+		    	 				<@global.showList3 ulClass='pt02' liClass='' data=subData.imgContentList;listData>
+		    	 					<a class="pic" target="_blank"  href="${listData.path!'#'}"><img src="http://style.elian.cc/main/bg/none.gif" data-img="${listData.imgPath!'#'}" alt="${listData.title!''}"  width="100" height="135"></a>
+	                                <div class="txt"><span>${listData.title!''} ${listData.param3!''}</span><span>${listData.param2!''}</span><a class="link-btn" target="_blank" href="${listData.path!'#'}">查看详细</a> </div>
+		    	 				</@global.showList3>
+		    	 			</#if>
+		    	 			<div class="line"></div>
+	                        <div class="wrap-doctor-list">
+	                        <#if subData.contentList??>
+	                        	<@global.showList3 ulClass='doctor-list clearfix' liClass='' data=subData.contentList;listData>
+	                        		 <div class="i hos-name"> <span class="tit01">${listData.param1!''}</span> <span class="tit02">${listData.param2!''}</span> </div>
+	                                 <div class="i doc-name"> <span class="tit03"><a target="_blank"  href="${listData.path!'#'}">${listData.title!''}</a></span> <span class="tit02">${listData.param3!''}</span> </div>
+	                                 <div class="i doc-page"> <span class="tit03"><a href="javascript:void(0);">个人博客</a></span> <span class="tit04">
+	                                 	<a href="http://www.191580.com/reg/regDoctor!detial.action?docId=${listData.id!''}#doc-list">我要挂号</a></span> </div>
+		    	 				</@global.showList3>
+		    	 			</#if>
+	                        </div>
+		   				</div>
+            		</#if>
+	   			</#list>
+            </div>
+        </div>
+	</#if>
+</#macro>
+
+<#--侧边资讯列表-->
+<#macro macro11 mapKey>
+	<div class="aside-hd sidebar-tab-hd clearfix" id="tab6_hd">
+		<#local subDataMap=dataMap[mapKey]/>
+		<#if subDataMap??>
+			<#local i=1/> 
+			<#local size=subDataMap?size/> 
+			<#list 1..size as item>
+				<h3
+					<#if i=1>class="cur"</#if>
+					onmouseover="overTab(6,${i},'h3','div')" onmouseout="outTab()">
+					<a href="${subDataMap['${i}'].path}" target="_blank">
+						${subDataMap['${i}'].channelName}
+					</a>
+				</h3>
+				<#local i=i+1/> 
+			</#list>
+		</#if>
+	</div>
+	<div class="aside-bd aside-tab-bd blog-news clearfix" id="tab6_bd">
+		<#local subDataMap=dataMap[mapKey]/>
+		<#if subDataMap??> 
+			<#local	size1=subDataMap?size/> 
+			<#list 1..size1 as i>
+				<div class="tab-con" <#if i==1>style="display: block;"</#if>> 
+				    <#if subDataMap['${i}']??> 
+				    <#local data=subDataMap['${i}']/>
+				    <#if data??> 
+					<@global.showList ulClass='list01' liClass=''
+					data=data.contentList;path,imgPath,title,detial> ·
+						<a target="_blank" href="${path}">${title}</a>
+         			</@global.showList>	          			
+         		</#if>	         
+         	</#if>
+      		</div>
+			</#list>
+	 </#if>
+	</div>
+</#macro>
+
+<#--侧边最新资讯-->
+<#macro macro12 mapKey>
+	<#local data=dataMap[mapKey]/>
+	<div class="aside-hd">
+		<h3>${(data.channelName)!''}</h3>
+	</div>
+	<div class="aside-bd">
+		<ul id="hot_news_list" class="list01">
+			<#if data.contentList??>
+				<#list data.contentList as item>
+					<li>·<a target="_blank" href="${item.path!'#'}">${item.title!''}</a></li>
+				</#list>
+			</#if>
+		</ul>
+	</div>
+</#macro>
+<!--#macro-->
+<!--#include virtual="${headUrl}"--> 
+<div class="section top-con">
+    <div class="section_m">
+        <div class="section_260">
+            <div class="wrap_focus">
+                <div class="focus" id="index_Focus" style="visibility:hidden">
+                    <div class="loading"><span>载入中,请稍候...</span></div>
+                    <!--#--><!--#1--><@global.PowerPoint mapKey='1' ulClass='pic' liClass='';title,path,imgPath>
+                    	<a href="javascript:void(0)">
+                    		<img src="${imgPath!'#'}" width="254" height="244" alt="${title!''}"/>
+                    	</a>
+                    </@global.PowerPoint><!--#-->                   
+                </div>
+            </div>
+            <div class="wrap_gg_best">
+            	<div class="inner">
+            	 <!--#--><!--#3-->
+                	<div class="hd">
+                    	<h3>${(dataMap['3'].channelName)!''}</h3><a href="${(dataMap['3'].path)!''}" class="more">&gt;&gt;更多</a>
+                    </div>
+                    <div class="bd">
+                    	<ul class="list01_lico">
+                    		<#if dataMap['3'].contentList??>
+	                    		<#list dataMap['3'].contentList as item>
+		                        	<li class="ico${item_index+1}"><a href="${item.path!'#'}">${item.title!''}</a></li>
+	                    		</#list>
+                    		</#if>
+                        </ul>
+                    </div>
+                    <!--#-->
+                     <!--#--><!--#4-->
+                    <div class="hd">
+                    	<h3>${(dataMap['4'].channelName)!''}</h3><a href="${(dataMap['4'].path)!''}" class="more">&gt;&gt;更多</a>
+                    </div>
+                    <div class="bd">
+                    	<ul class="list01_lico">
+                    		<#if dataMap['4'].contentList??>
+	                    		<#list dataMap['4'].contentList as item>
+		                        	<li class="ico${item_index+1}"><a href="${item.path!'#'}">${item.title!''}</a></li>
+	                    		</#list>
+                    		</#if>
+                        </ul>
+                    </div>
+                    <!--#-->
+                </div>
+            </div>
+        </div>
+        <div class="section_480">
+            <!--#--><!--#2--><@top1 mapKey='2'></@top1><!--#-->
+            <div class="mob-tab topnews2">
+            	<div class="tab3_hd clearfix" id="tab3_hd">
+				    <h3 class="cur" onmouseover="overTab(3,1,'h3','div')" onmouseout="outTab()">招标信息</h3>
+				    <h3 onmouseover="overTab(3,2,'h3','div')" onmouseout="outTab()">中标信息</h3>
+				</div>
+				<div class="tab3_bd" id="tab3_bd">
+				    <div class="tab-con" style="display: block;">
+				        <ul class="list clearfix">
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8381.shtml">
+				                    北京市海淀区卫生局宫颈癌筛查工作项目重新公开招标公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8391.shtml">
+				                卫生部北京医院药学部第二批设备采购 
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8380.shtml">
+				                    北京市卫生局机关医院管理局办公用设备项目招标公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8379.shtml">
+				                    北京市卫生局机关医院管理局办公用家具项目招标公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8378.shtml">
+				                    灵宝市卫生局放射类设备采购B、D包竞争性谈判公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8377.shtml">
+				                    GNXCGZX 2011-016号广南县卫生局计算机设备采购项目招标公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8376.shtml">
+				                    无锡市政府采购中心关于无锡市卫生局市民健康档案信息系统集成项目的公开招标公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8375.shtml">
+				                    江西省兴国县卫生局电脑、打印机项目（项目编号：MCZTB201108-XG009）的重新公开招标采购
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/zfzhaob/8374.shtml">
+				                    民权县卫生局医疗设备采购竞争性谈判公告
+				                </a>
+				            </li>
+				            <li class="">
+				                ·
+				                <a target="_blank" href="http://www.elian.cc/invite/yyzhaob/8078.shtml">
+				                     南京市第一医院医疗设备询价采购公告
+				                </a>
+				            </li>
+				        </ul>
+				    </div>
+				</div>
+            </div>
+        </div>
+        <b class="corner_ico">资讯</b> </div>
+    <div class="sidebar">
+        <div class="sidebar-tab fast-channel">
+			<div class="ui-hd">
+				<h3>
+					快捷通道
+				</h3>
+				<span class="ico"></span>
+			</div>
+			<div class="sidebar-tab-hd clearfix" id="tab5_hd">
+				<h3 class="cur" onmouseover="overTab(5,1,'h3','div')"
+					onmouseout="outTab()">
+					<a href="javascript:void(0);">查医院</a>
+				</h3>
+				<h3 onmouseover="overTab(5,2,'h3','div')" onmouseout="outTab()">
+					<a href="javascript:void(0);">查疾病</a>
+				</h3>
+				<h3 onmouseover="overTab(5,3,'h3','div')" onmouseout="outTab()">
+					<a href="javascript:void(0);">快速挂号</a>
+				</h3>
+			</div>
+			<div class="sidebar-tab-bd clearfix" id="tab5_bd">
+				<div class="tab-con find-hos" style="display: block;">
+					<ul>
+						<h4 class="ui-tit">
+							按地区查询
+						</h4>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=310000">上海</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=320000&subAreaCode=320100">南京</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=120000">天津</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=330000&subAreaCode=330100">杭州</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=320000&subAreaCode=320500">苏州</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=340000&subAreaCode=340100">合肥</a>
+						</li>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=110000">北京</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=130000&subAreaCode=130600">保定</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=130000&subAreaCode=130200">唐山</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=140000&subAreaCode=140100">太原</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=140000&subAreaCode=140200">大同</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=130000&subAreaCode=130100">石家庄</a>
+						</li>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=440000&subAreaCode=440100">广州</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=440000&subAreaCode=440600">佛山</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=440000&subAreaCode=440300">深圳</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=450000&subAreaCode=450100">南宁</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=450000&subAreaCode=450300">桂林</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=450000&subAreaCode=450200">柳州</a>
+						</li>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=410000&subAreaCode=410100">郑州</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=410000&subAreaCode=410300">洛阳</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=410000&subAreaCode=410200">开封</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=420000&subAreaCode=420100">武汉</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=420000&subAreaCode=420500">宜昌</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=420000&subAreaCode=420200">黄石</a>
+						</li>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=510000&subAreaCode=510100">成都</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=520000&subAreaCode=520100">贵阳</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=530000&subAreaCode=530100">昆明</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=540000&subAreaCode=540100">拉萨</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=510000&subAreaCode=510700">绵阳</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=520000&subAreaCode=520300">遵义</a>
+						</li>
+						<li>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=610000&subAreaCode=610100">西安</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=620000&subAreaCode=620100">兰州</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=630000&subAreaCode=630100">西宁</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=640000&subAreaCode=640100">银川</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=610000&subAreaCode=610400">咸阳</a>
+							<a target="_blank"
+								href="http://cms.elian.cc/front/searchHospital!search.action?parentAreaCode=650000&subAreaCode=650100">乌鲁木齐</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab-con mod-find">
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=2177">中暑</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=519">癫痫</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=6598">禽流感</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=8885">脑膜炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=793">小儿肺炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=36">流行感冒</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=338">高血压</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=1333">慢性鼻炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=294">支气管炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=113">麻疹</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=1822">冠心病</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=259">肝硬化</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=8811">腹泻</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=3037">胃癌</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=2184">白血病</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=458">甲亢</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=180">慢性胃炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=55">肺结核</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=461">糖尿病</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=954">手足口病</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=1933">高心病</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=230">急性阑尾炎</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=1448">腰椎间盘</a>
+					<a target="_blank"
+						href="http://cms.elian.cc/front/illness!detial.action?illId=295">支气管哮喘</a>
+				</div>
+				<div class="tab-con rapid-guhao">
+					<form name="searchHospitalForm" method="post" action="http://cms.elian.cc/front/searchHospital!search.action">
+						<ul>
+							<li>
+								<span>医院等级：</span>
+								<select name="hospRank">
+									<option value="0">不限</option>
+									<option value="28">一级甲等</option>
+									<option value="27">二级甲等</option>
+									<option value="25">三级甲等</option>
+									<option value="13">三级乙等</option>
+									<option value="31">二级乙等</option>
+									<option value="32">二级丙等</option>
+									<option value="33">三级丙等</option>
+								</select>
+							</li>
+							<li>
+								<span>医院类型：</span>
+								<select name="hospType">
+									<option value="0">不限</option>
+									<option value="4">综合</option>
+									<option value="5">专科</option>
+								</select>
+							</li>
+							<li>
+								<span>医院名称：</span>
+								<input name="keyword" class="ipt" onfocus="if (this.value=='请输入关键字'){this.value='';this.style.color='#333'}" onblur="if (this.value!='请输入关键字'){document.getElementById('hosptialName').value=this.value}" type="text" value="请输入关键字"/>
+							</li>
+							<li>
+								<a href="#" onclick="document.searchHospitalForm.submit();" class="link-btn">立即挂号</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+        <div class="gutter10"></div>
+        <div class="aside"> <img src="http://www.elian.cc/index/images/photo/pic220x60.jpg" width="220" height="60" alt=""> </div>
+        <div class="gutter10"></div>
+        <ul class="aside gg_key_word_10">
+	        <li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=2177">中暑</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=519">癫痫</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=6598">禽流感</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=8885">脑膜炎</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=793">小儿肺炎</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=36">流行感冒</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=338">高血压</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=1333">慢性鼻炎</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=294">支气管炎</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=113">麻疹</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=1822">冠心病</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=259">肝硬化</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=8811">腹泻</a></li>
+			<li><a target="_blank" href="http://cms.elian.cc/front/illness!detial.action?illId=3037">胃癌</a></li>
+        </ul>
+    </div>
+</div>
+<!--区域2===================================================-->
+<div class="section">
+    <div class="section_750">
+        <div class="mod-ui-box recomm-hos">  
+        	<!--#--><!--#6--><@hospital1 mapKey='6' id=7></@hospital1><!--#-->
+            <!-- 医院推荐结束 --> 
+        </div>
+        <div class="gg_banner" id="j-pic750x100_1"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="${resImg}/design/subs/hainan/gg/pic750x100_1.jpg" width="750" height="100" alt=""> </div>
+    </div>
+    <div class="sidebar hos-rank" id="j-hos-rank">
+       <#--三好医院-->
+	   <!--#--><!--#7--><@hospital2 mapKey='7'></@hospital2><!--#-->
+    </div>
+</div>
+<!--区域3=======================================================-->
+<div class="section">
+    <div class="section_750">
+        <div class="mod-ui-box recomm-doctor">
+        	<#--医生推荐-->
+        	<!--#--><!--#8--><@doctor1 mapKey='8'></@doctor1><!--#-->
+        </div>
+    </div>
+    <div class="sidebar">
+   		<#--医学博文-->
+   		<!--#--><!--#9--><@macro11 mapKey='9'/><!--#-->
+        <div class="gutter10"></div>
+ 		<div class="aside" id="j-pic220x80_1"> <img src="images/none.gif" data-img="http://images.elian.cc/design/subs/gg/gg220X80-2012-12-26.jpg" width="220" height="80" alt=""> </div>    </div>
+</div>
+<!--==区域4=======================================-->
+<!--
+<div class="section">
+    <div class="section_750">
+        <div class="mod-ui-box recomm-qiye clearfix">
+            <div class="mod-hd">
+                <h3 class="tit t03">企业推荐</h3>
+                <span class="arr-control" style="display:none;"> <b class="arrL-qiye" title="上一页">上一页</b> <b class="arrR-qiye" title="下一页">下一页</b> </span>
+                <div id="recomm-qiye-controller"> <span class="recomm-qiye-controll">1</span> <span class="recomm-qiye-controll">2</span> </div>
+            </div>
+            <div class="mod-bd" id="slide2">
+                <div class="slide_wrap">
+                    <div class="wrap-con">
+                        <ul class="pt01 clearfix">
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/284/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/c/284/20120612/22232__afa4e66d1339489661156_crop_.jpg" width="100" height="75" alt="南京鼎世医疗器械有限公司"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/284/index.html">南京鼎世医疗器械有限公司</a></span></li>
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/283/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/c/283/20120516/35153ed909208c21337130947053.jpg" width="100" height="75" alt="山东豪博尔医疗科技有限公司"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/283/index.html">山东豪博尔医疗科技有限公司</a></span></li>
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/276/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/c/276/20120507/c31ccbeca8a1add1336384506922_crop_.jpg" width="100" height="75" alt="浙江维康集团"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/276/index.html">浙江维康集团</a></span></li>
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/275/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/c/275/20120511/_d21dae80b2cf1e1336729225134.jpg" width="100" height="75" alt="佛山市南海辉越医用设备有限公司"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/275/index.html">佛山市南海辉越医用设备有限公司</a></span></li>
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/254/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/com/image/1335520877015.jpg" width="100" height="75" alt="广东益和堂制药有限公司"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/254/index.html">广东益和堂制药有限公司</a></span></li>
+                            <li><a class="pic" target="_blank" href="http://www.elian.cc/company/251/index.html"> <img src="http://style.elian.cc/main/bg/none.gif" data-img="http://picture.elian.cc/ftpFile/com/image/1332841360890.jpg" width="100" height="75" alt="中山生物工程有限公司"></a><span class="tit"><a target="_blank" href="http://www.elian.cc/company/251/index.html">中山生物工程有限公司</a></span></li>
+                        </ul>
+                        <div class="line"></div>
+                        <div class="wrap-qiye-list clearfix">
+                            <ul class="list01 clearfix">
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/250/index.html">广东一禾药业有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/227/index.html">广东天普生化医药股份有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/226/index.html">广州陈李济药厂</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/225/index.html">康臣药业集团</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/224/index.html">广州敬修堂（药业）股份有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/206/index.html">广州奇星药业有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/183/index.html">广东众生药业股份有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/181/index.html">顺峰药业有限公司</a></li>
+                            </ul>
+                            <ul class="list01 clearfix">
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/179/index.html">惠州大亚制药股份有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/177/index.html">深圳市国源药业有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/176/index.html">东莞广发制药有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/116/index.html">广东泰宝科技医疗用品有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/113/index.html">中山中智药业集团</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/58/index.html">广州王老吉药业股份有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/57/index.html">深圳市中联制药有限公司</a></li>
+                                <li>·<a target="_blank" href="http://www.elian.cc/company/56/index.html">广州巨虹药业有限公司</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar other-blog-news" id="j-other-blog-news">
+        <div class="aside-hd">
+            <h3><a href="javascript:void(0);">社会博文</a></h3>
+        </div>
+        <div class="aside-bd">
+            <div class="pt03"> <a class="pic" href="http://www.elian.cc:8001/Blog/flyfish/article/34/"><img src="http://style.elian.cc/main/bg/none.gif" data-img="http://www.elian.cc:8001/eliaoTerminus/blog/userfiles/images/1315274354530.jpg" width="80" height="60" alt="在悦耳音乐中养生防病"></a>
+                <h4 class="tit"><a href="http://www.elian.cc:8001/Blog/flyfish/article/34/">在悦耳音乐中养</a></h4>
+                <p class="txt"> 音乐是一种旋律，一种心境。常听舒缓平和... <a class="more" href="http://www.elian.cc:8001/Blog/flyfish/article/34/">详细&gt;&gt;</a> </p>
+            </div>
+            <ul class="list01">
+                <li>·<a href="http://www.elian.cc:8001/Blog/flyfish/article/34/">在悦耳音乐中养生防病</a></li>
+                <li>·<a href="http://www.elian.cc:8001/Blog/freedom/article/53/">电脑辐射可致多种疾病</a></li>
+                <li>·<a href="http://www.elian.cc:8001/Blog/freedom/article/51/">3-6岁幼儿教育关键期</a></li>
+                <li>·<a href="http://www.elian.cc:8001/Blog/freedom/article/50/">常喝蜂蜜改善皮肤抗衰老</a></li>
+                <li>·<a href="http://www.elian.cc:8001/Blog/freedom/article/49/">夏季白领诱发颈椎病七大原因</a></li>
+                <li>·<a href="http://www.elian.cc:8001/Blog/freedom/article/48/">中国老人不舍得为自己花钱</a></li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+<!--区域5==================================================================================-->
+<div class="section">
+    <div class="section_750">
+        <div class="mod-ui-box mod_news_box clearfix" id="hos_news">
+            <div class="mod-hd">
+                <h3 class="tit t04">医疗新闻</h3>
+            </div>
+            <div class="mod-bd">
+                <div class="wrap-con clearfix"> 
+                    <!--=============医疗新闻1============================-->
+                    <div class="mod-tab">
+                    	<!--#--><!--#10--><@bottom mapKey='10' id=10/><!--#-->
+                    </div>
+                    <!--======================健康资讯2========================-->
+                    <div class="mod-tab">
+                        <!--#--><!--#11--><@bottom mapKey='11' id=11/><!--#-->
+                    </div>
+                    <!--======================医疗新闻3========================-->
+                    <div class="mod-tab">
+                        <!--#--><!--#12--><@bottom mapKey='12' id=12/><!--#-->
+                    </div>
+                    <!--======================医疗新闻4========================-->
+                    <div class="mod-tab">
+                        <!--#--><!--#13--><@bottom mapKey='13' id=13/><!--#--> 
+                    </div>
+                    <!-- 健康资讯end --> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+    	<div class="aside" id="j-pic220x87-1"> <img src="images/none.gif" data-img="${resImg}/design/subs/hainan/gg/pic220x87_1.jpg" width="220" height="87" alt=""> </div>
+        <div class="gutter10"></div>
+        <div class="aside nurse-rank">
+        	<!-- 最新资讯 -->
+            <@macro12 mapKey='14'/>
+        </div>
+        <div class="gutter10"></div>
+        <div class="aside" id="j-pic220x87-2">
+        <img src="http://style.elian.cc/main/bg/none.gif" data-img="${resImg}/design/subs/hainan/gg/pic220x87_2.jpg" width="220" height="87" alt="">
+        </div>
+    </div>
+</div>
+<!--==区域6=======================================-->
+<div class="section">
+    <div class="section_750">
+        <div class="mod-ui-box mod_news_box clearfix" id="health_news">
+            <div class="mod-hd">
+                <h3 class="tit t03">健康资讯</h3>
+            </div>
+            <div class="mod-bd">
+                <div class="wrap-con clearfix"> 
+                    <!--=============健康资讯1============================-->
+                    <div class="mod-tab">
+                         <!--#--><!--#15--><@bottom mapKey='15' id=15/><!--#-->
+                    </div>
+                    <!--======================健康资讯2========================-->
+                    <div class="mod-tab">
+                         <!--#--><!--#16--><@bottom mapKey='16' id=16/><!--#-->
+                    </div>
+                    <!--======================健康资讯3========================-->
+                    <div class="mod-tab">
+                         <!--#--><!--#17--><@bottom mapKey='17' id=17/><!--#-->
+                    </div>
+                    <!--======================健康资讯4========================-->
+                    <div class="mod-tab">
+                       	<!--#--><!--#18--><@bottom mapKey='18' id=18/><!--#-->
+                    </div>
+                    <!-- 健康资讯end --> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside-hd">
+            <h3><a href="javascript:void(0);">最新药品</a></h3>
+        </div>
+        <div class="aside-bd new-drugs clearfix">
+            <div class="i">
+                <h4 class="tit"><b class="ico1"></b>西药</h4>
+                <div class="category">
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">抗生素药</a> 
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">解热镇痛</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">呼吸系统</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">心脑血管</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">感冒发烧</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">消化系统</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">眼科用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">口耳鼻喉</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">妇科用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">抗过敏药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">骨科用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'西药')">口耳鼻喉</a>
+                </div>
+            </div>
+            <div class="i even">
+                <h4 class="tit"><b class="ico2"></b>中成药</h4>
+                <div class="category"> 
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">感冒用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">呼吸系统</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">心脑血管</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">皮肤用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">胃肠用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">泌尿生殖</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">耳鼻用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">安神用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">祛暑用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">妇科用药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">骨伤科药</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中成药')">痔疮用药</a>
+                </div>
+            </div>
+            <div class="i last">
+                <h4 class="tit"><b class="ico3"></b>中草药</h4>
+                <div class="category">
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">根类</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">叶类</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">花类</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">皮类</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">果类</a>
+                	<a href="javaScript:void(0)" onclick="searchDrug(this,'中草药')">木类</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form name="searchDrugForm" target="_blank" 
+	action="${resCms}/front/searchDrugCommon!search.action" style="display: none" method="post">
+	<input id="searchDrugFormType" name="type" value=""></input>
+	<input id="searchDrugFormKeyWord" name="keyword" value=""></input>
+	<input id="searchDrugFormDrugType" name="drugType" value=""></input>
+</form>
+<!--==区域7=======================================-->
+<#macro departmentMacro>
+	<div class="ui_hd tab19_hd" id="tab19_hd">
+		<h2 class="ui_tit">海南就医指南</h2>
+		<div class="wrap">
+			<#if dataMap['19']??>
+				<#local subDataMap=dataMap['19']/>
+				<#list 1..subDataMap?size as i>
+					<#if subDataMap['${i}']??>
+						<h3 id="dept_title_${i}" <#if i==1>class="cur"</#if> onmousemove="overDeptName('${subDataMap['${i}'].channelName}','dapt_illness_${i}')">${subDataMap['${i}'].channelName}</h3>
+					</#if>		
+				</#list>
+			</#if>
+        </div>
+	</div>
+	<div class="tab19_bd" id="tab19_bd">
+		<#if dataMap['20']??>
+			<#list 1..subDataMap?size as i>
+				<#if subDataMap['${i}']??>
+					<#local data=subDataMap['${i}']/>
+					<div class="tab_con" <#if i==1>style="display:block"</#if>>
+			        	<div class="section_m">
+			                <div class="section_260">
+			                    <div class="focus">
+			                        <a href="#">
+			                            <img src="${resImg}/design/subs/hainan/banner4.jpg" width="255" height="245"/>
+			                        </a> 
+			                        <span class="tit"><em>我是标题我14个字是标题我是标题我是标是标题</em></span>
+			                    </div>
+			                </div>
+			                <div class="section_480">
+			                    <div class="topnews clearfix">
+			                        <div class="ui_guide_line_hd">
+			                        	<h3>${data.channelName!''}</h3>
+			                            <a href="${data.path!'#'}" class="more">&gt;&gt;更多</a>
+			                        </div>
+			                        <h2 class="tit"><a target="_blank" href="${(data.contentList[0].path)!'#'}">${(data.contentList[0].title)!''}</a></h2>
+			                        <p class="txt">
+			                        	<@global.showTitle title=(data.contentList[0].detial)!'' titleNum=90></@global.showTitle>
+			                        	<a target="_blank" href="${(data.contentList[0].path)!'#'}" class="more">[全文]</a>
+			                        </p>
+			                        <div class="blue_dot_line"></div>
+			                        <ul class="list clearfix">
+			                        	<#if (data.contentList?size>1)>
+			                        		<#list 1..data.contentList?size-1 as i>
+					                            <li>·<a target="_blank" href="${(data.contentList[i].path)!'#'}">${(data.contentList[i].title)!''}</a></li>
+			                        		</#list>
+			                        	</#if>
+			                        </ul>
+			                        </div>
+			                    </div>
+			                    <div class="gutter10"></div>
+								<div class="gg_recomm_hos">
+									<#--儿科医院推荐-->
+			                    	<@hospital3 mapKey='${19+i}'></@hospital3>
+			                    </div>
+			                </div>
+			                <div class="sidebar">
+			                    <div class="aside gg_keyword">
+			                        <div class="aside-hd">
+			                            <h3>${data.channelName!''}疾病</h3>
+			                        </div>
+			                        <div class="aside-bd clearfix">
+			                            <ul id="dapt_illness_${i}" class="list clearfix"></ul>
+			                        </div>
+			                    </div>
+				        </div>
+				    </div>
+				</#if>	
+			</#list>
+		</#if>	    	
+	</div>
+</#macro>
+<div class="section treatment_guide_line" id="treatment_guide_line">
+	<@departmentMacro/>
+</div>
+<!--==区域8=======================================-->
+<div class="section col mod-ui-box jobs-channel">
+    <div class="mod-hd">
+        <h3 class="tit t05">招聘频道</h3>
+    </div>
+    <div id="tab13_bd" class="col-tab-bd clearfix"> <span style="display: block;" class="tab-con">
+        <div class="i">
+			<div class="mod-hd">
+				<h4>医院招聘</h4>
+				<a class="more" target="_blank" href="http://www.elian.cc/job/yyzp/list.shtml">更多&gt;&gt;</a>
+			</div>
+			<ul class="list01 jobs-hos">
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7377.shtml">·内江市第一人民医院血透室护士招聘</a><span class="num">(0人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7376.shtml">·医生招聘</a><span class="num">(1人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7375.shtml">·医生招聘公告</a><span class="num">(1人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7367.shtml">·血管外科科研助手招聘启事</a><span class="num">(1人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7366.shtml">·系统架构师</a><span class="num">(6人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7365.shtml">·胸外科医师</a><span class="num">(35人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7364.shtml">·心血管内科医师</a><span class="num">(35人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7363.shtml">·放射 B超：影像专业</a><span class="num">(2人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7362.shtml">·眼科 耳鼻喉专业</a><span class="num">(2人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/yyzp/7361.shtml">·ICU：急救 重症 </a><span class="num">(2人)</span></div>
+						  <b class="name"></b>
+				  </li>
+			</ul>
+		</div>
+		<div class="i">							
+			<div class="mod-hd">
+				<h4>企业招聘</h4>
+				<a class="more" target="_blank" href="http://www.elian.cc/job/qyzp/list.shtml">更多&gt;&gt;</a>
+			</div>
+			<ul class="list01 jobs-hos">
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7475.shtml">·市场营销部文员</a><span class="num">(1人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7474.shtml">·市场部业务经理</a><span class="num">(1人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7473.shtml">·招聘精神科高级专业人员</a><span class="num">(33人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7472.shtml">·急诊科医师招聘</a><span class="num">(4人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7471.shtml">·招聘护士</a><span class="num">(2人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7470.shtml">·招聘治疗师</a><span class="num">(3人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7469.shtml">·ZXCZXCVXZC</a><span class="num">(2人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7468.shtml">·招聘启示（妇科医师）</a><span class="num">(6人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7467.shtml">·中智药业招聘（三）</a><span class="num">(6人)</span></div>
+						  <b class="name"></b>
+				  </li>
+				  <li class=""> 
+							 <div class="txt"><a target="_blank" href="http://www.elian.cc/job/qyzp/7466.shtml">·中智药业招聘（二）</a><span class="num">(47人)</span></div>
+						  <b class="name"></b>
+				  </li>
+			 </ul>
+		</div>
+		<div class="i">
+			<div class="mod-hd">
+				<h4>
+					热点招聘
+				</h4>
+			</div>
+			<ul class="list">
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">1</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7456.shtml">助理法务经理</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">2</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7457.shtml">招聘招商经理</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">3</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7458.shtml">化验员-QC </a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">4</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7459.shtml">生产部副经理 </a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">5</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7460.shtml">研发部副经理 </a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">6</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7461.shtml">北京玛丽妇婴医院2010年度总招聘</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">7</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7462.shtml">产科住院医生</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">8</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7463.shtml">化验员招聘</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">9</b><a target="_blank" href="http://www.elian.cc/job/qyzp/7464.shtml">广州巨虹药业招聘</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			       	  <li class=""> 
+						<div class="txt"><b class="top-rank">10</b><a target="_blank" href="/job/qyzp/7465.shtml">中智药业招聘（一）</a></div><span class="date">[2012-12-03]</span>
+			       	  </li>
+			  </ul>
+		</div>
+        </span> </div>
+</div>
+<!--#include virtual="${footUrl}"--> 
+<script src="${resScript}/hainan/myfocus-1.2.4.full.js"></script> 
+<script src="${resScript}/hainan/mF_tb.js"></script> 
+<script>
+myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:254,height:244,txtHeight:50,duration:350,direction:'left',easing:'easeOut',wrap:false});//宽度为图片容器实际宽度,主程序注释了自动添加皮肤，脚本。20110711
+</script> 
+<script src="${resScript}/hainan/jquery.flow.1.2.auto.js"></script> 
+<script src="${resScript}/hainan/tab.js"></script>
+<script>
++function(){$("#recomm-doctor-controller").jFlow({slides: "#slide",controller: ".recomm-doctor-controll",slideWrapper : "#recomm-doctor-slide",width: "748px",height: "330px",auto: true,duration: 0,time:99999,prev: ".arrL",next: ".arrR"});
+			//$("#recomm-qiye-controller").jFlow({slides: "#slide2",controller: ".recomm-qiye-controll",slideWrapper : "#recomm-qiye-slide",width: "728px",height: "241px",auto: true,duration: 600,time:4500,prev: ".arrL-qiye",next: ".arrR-qiye"});
+}();
+ztab("tab19_hd","h3","tab19_bd","div","tab_con","cur")
+</script>
+<script>
+	function searchDrug(obj,title){
+		document.getElementById("searchDrugFormType").value="marjorFunction";
+		document.getElementById("searchDrugFormKeyWord").value=obj.innerHTML;
+		document.getElementById("searchDrugFormDrugType").value=title;
+		document.searchDrugForm.submit();
+	}
+	
+	function overDeptName(deptName,ulId){
+		if($("#"+ulId).html()!=null && $("#"+ulId).html()!="") return;
+		$.ajax({
+			url: '${resCms}/front/illness!listJson.action',
+			type: "GET",
+			dataType: 'jsonp',
+			data: {'departmentName':encodeURI(deptName)},
+			success: function(data) {
+				if(data!=null && data!=undefined){
+					var code="";
+					for(var i=0,size=data.length;i<size;i++){
+						var item=data[i];
+						for(var j=0,size2=item.value.length>26?26:item.value.length;j<size2;j++){
+							if(j%2==0) code+="<li>";
+							code+="	  <a target=_blank href='${resCms}/front/illness!detial.action?illId="+item.value[j].id+"'>"+item.value[j].illnessName+"</a>";
+							if(j%2==1) code+="</li>";
+						}
+					}
+					if(code=='') code="暂无数据";
+					$("#"+ulId).html(code);
+				}
+			}
+		});
+	}
+
+	$(document).ready(function(){
+		var item=$("#dept_title_1");
+		if(item==undefined || item==null) return;
+		overDeptName(item.html(),"dapt_illness_1");
+	});
+</script>
+</body>
+</html>

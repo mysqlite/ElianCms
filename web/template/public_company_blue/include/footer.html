@@ -1,0 +1,81 @@
+${content!''}
+<#if ((content!'')=='')>
+	<div class="bottom_nav">
+		<a href="" target="_blank">关于我们</a>
+		|
+		<a href="#" target="_blank">网站地图</a>
+		|
+		<a href="" target="_blank">友情链接</a>
+		|
+		<a href="">营销中心</a> |
+		<a href="" target="_blank">法律声明</a>
+		|
+		<a href="">隐私声明</a> |
+		<a href="http://software.elian.cc/contactus.asp?mid=8" target="_blank">联系我们</a>
+		|
+		<a href="http://software.elian.cc/agent-join.asp?mid=6" target="_blank">加入医联网推广</a>
+	</div>
+	<div class="footer">
+		<p style="text-align:center;">
+			电话：0757-82137888 传真：0757-82139888 全国电话：40001-91580
+		</p>
+		<p style="text-align:center;">
+			<a href="http://www.elian.cc">www.elian.cc </a>
+			<a href="http://www.xn--ekrw93hgwa.com">医联网.COM</a>
+			<a href="http://www.xn--ekrw93hgwa.cn">医联网.CN</a> 版权所有未经授权请勿转载
+		</p>
+		<p style="text-align:center;">
+			粤ICP备10054714号-2 <a href="#">互联网药品信息服务资格证书</a> 证件编号：<a href="#" target="_blank">（粤）-非经营性-2010-0176</a>
+		</p>
+		<p style="text-align:center;">
+			本站信息仅供参考不能作为诊断及医疗的依据，如有转载或引用文章涉及版权问题请速与我们联系。
+		</p>
+	</div>
+</#if>
+<div style="display: none;">
+	<script language="javascript" type="text/javascript" src="${resScriptPubl}/webAnalytics.js"></script>
+</div>
+<a href="#" id="closeDialog" onclick="closeDialog()" style="display: none"></a>
+<script src="${resCms}/plugin/jqueryUI/js/jquery-ui-1.10.0.custom.js"></script>
+<script src="${resCms}/plugin/jqueryUI/js/jquery-ui-main.js"></script>
+<script src="${resCms}/plugin/jqueryUI/js/jquery-ui-list.js"></script>
+<script language="javascript" type="text/javascript" src="${resScriptPubl}/login_company.js"></script>
+<script type="text/javascript">
+var siteDomain="${siteDomain!''}";
+var siteAlias="${siteAlias!''}";
+var domainSuffix="${domainSuffix!''}";
+var thisHref=window.location.href;
+var domain=window.location.host;
+
+$(function(){
+	
+	$('.nav_bd a').click(function() {
+		
+		if(thisHref.indexOf("http://cms.") != -1 || thisHref.indexOf("ElianCms") != -1){
+			var str=this.href;
+			//判断是否绑定自定义域名
+			if(siteAlias.indexOf("") == -1){
+				str=str.replace(domain,siteAlias);
+			}else{
+				var domainStr=siteDomain+domainSuffix;
+				str=str.replace(domain,domainStr);
+			}
+
+			this.href=str;
+		}
+	});
+});
+</script>
+<script type='text/javascript' src='${resCms}/plugin/jqueryUI/js/xd.js'></script>
+<script type='text/javascript' >
+	var callback = function(data) {
+		closeDialogDiv();
+		closeDialog(data);
+		$("#j_top_shop_cart").find(".top_shop_cart_list").html("");
+		//在用户登录成功后将cookie中购物车信息添加到数据库
+		login();
+	};
+	XD.receiveMessage(callback);
+	//在页面刷新的时候加载头部的购物车下拉列表
+	listCart();	
+</script>

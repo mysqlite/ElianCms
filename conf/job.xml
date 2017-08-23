@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        overwrite-existing-jobs="true">
+    <!-- 每隔五秒调用一次   --> 
+    <!--
+    <job>
+		<job-detail>
+			<name>myJob</name>
+			<group>Elian Job</group>
+			<job-class>com.elian.cms.syst.job.MyJob</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>myJobTrigger</name>
+				<group>Elian Job</group>
+				<job-name>myJob</job-name>
+				<job-group>Elian Job</job-group>
+				<cron-expression>0/5 * * * * ?</cron-expression> 
+			</cron>
+		</trigger>
+	</job>
+	-->
+    <!--
+    <job>
+		<job-detail>
+			<name>ftpFileJob</name>
+			<group>Elian Job</group>
+			<job-class>com.elian.cms.syst.job.FtpFileJob</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>ftpFileJobTrigger</name>
+				<group>Elian Job</group>
+				<job-name>ftpFileJob</job-name>
+				<job-group>Elian Job</job-group>
+				<cron-expression>0 0 */1 * * ?</cron-expression> 
+			</cron>
+		</trigger>
+	</job>
+	-->
+	<!-- 医生自动排班服务,每天晚上十点运行下个星期的今天的数据   -->
+	<!--
+    <job>
+		<job-detail>
+			<name>doctorWorkJob</name>
+			<group>Elian Job</group>
+			<job-class>com.elian.cms.syst.job.DoctorWorkJob</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>doctorWorkJobJobTrigger</name>
+				<group>Elian Job</group>
+				<job-name>doctorWorkJob</job-name>
+				<job-group>Elian Job</job-group>
+				<cron-expression>0 0 23 * * ?</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+	-->
+</quartz> 

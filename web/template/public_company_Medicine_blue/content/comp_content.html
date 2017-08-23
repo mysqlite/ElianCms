@@ -1,0 +1,43 @@
+﻿<#include "../includes/header.html"/>
+<div class="index_banner_grid sub_banner_grid">
+	<div class="index_banner" id="bannerbox">
+		<div tag="1" class="index_banner_item">
+			<div class="index_banner_itempic" style="background:url(${resImg}/design/comp/v2/full/banner_1.jpg) center 0px no-repeat;">
+				<a href="#">
+					<div class="index_banner_itempic_in"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gutter"></div>
+<#--顶部第一栏begin-->
+<div class="section">
+	<div class="main_con wrap_aricle clearfix">
+	    <div class="mod_main_hd">
+		    <h3 class="tit com_intro_tit">
+			    公司简介
+		    </h3>
+		    <div class="location">
+                 / <span class="cur">正文</span>
+		    </div>
+	    </div>
+	    <div class="mod_main_bd article">
+		    <div class="article_bd">
+			    <img class="com_image_pic" src="${comp.companyImg!''}" width="260" height="195"/>
+		    	${comp.introduce!''}
+		    </div>
+		</div>
+	</div>
+    <div class="sidebar">
+        <!--侧边 -->
+        <div class="aside comfile">
+			<#include "../includes/side_1.html"/>
+		</div>
+    </div>
+</div>
+<div class="wrap_footer">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

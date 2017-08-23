@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>${title!''}</title>
+<meta name="Keywords" content="${keywords!''}" /> 
+<meta name="Description" content="${description!''}" />
+<link rel="stylesheet" href="${resStyle}/hainan/global.css" type="text/css">
+<link rel="stylesheet" href="${resStyle}/hainan/sub.css" type="text/css">
+<link rel="shortcut icon" type="image/x-icon" href="http://www.ylmh.cc/favicon.ico">
+<script type="text/javascript" src="${resScriptPubl}/common.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/list.js"></script>
+<script type="text/javascript" src="${resScript}/hainan/base0530.js"></script>
+</head>
+<body>
+<!--#macro-->
+<#import '../include/global.html' as global/>
+<#--macro1开始-->
+<#macro hotHit mapKey> 
+	<div class="mod_gray_hd">
+    	<h3 class="ico_hand">点击排行</h3>
+    </div>
+    <div class="mod_gray_bd">
+		<div class="aside-bd">
+	       <ul class="list">
+	       		<#if dataMap[mapKey]??>
+	       		<#local data=dataMap[mapKey]/>
+	       			<#if data.contentList??>
+	       				<#list 0..data.contentList?size-1 as i>
+	       					<#if i==0>
+	       						<li class="first">
+	                                <div class="tit"><b class="top-rank">${i+1}</b><a href="${data.contentList[i].path!''}">
+	                                	${data.contentList[i].title!''}</a></div>
+	                                <div class="pt03">	                                	
+	                                    <p class="txt">${data.contentList[i].detial!''}</p>
+	                                </div>                                
+                            	</li>
+	       					</#if>
+	       					<#if i!=0>
+	       						<li>
+	                                <div class="tit"><b class="top-rank">${i+1}</b><a href="${data.contentList[i].path!''}">
+	                                	${data.contentList[i].title!''}</a></div>
+	                                <div class="pt03">	                                	
+	                                    <p class="txt">${data.contentList[i].detial!''}</p>
+	                                </div>                                
+                            	</li>
+	       					</#if>
+	       				</#list>
+	       			</#if>
+	       		</#if>
+	       </ul>
+	    </div>
+    </div>
+</#macro>
+<#--macro2开始-->
+<#macro side1 mapKey isNav tabIndex> 
+	<#if dataMap[mapKey]??>
+		<#if isNav>
+			<div class="mod_gray_hd aside-tab-hd clearfix" id="tab${tabIndex}_hd">
+				<#local size=dataMap[mapKey]?size/>
+				<#if dataMap[mapKey]??>
+					<#local m=dataMap[mapKey]/>
+					<#list 1..size as index>
+						<#if m['${index}']??>
+							<#if 1==index>
+								<h3 class="cur" onmouseover="overTab(${tabIndex},${index},'h3','div')" onmouseout="outTab()"> 
+									<a href="${m['${index}'].path!'#'}" target="_blank">${m['${index}'].channelName}</a> </h3>
+							<#else>
+								<h3 onmouseover="overTab(${tabIndex},${index},'h3','div')" onmouseout="outTab()"> 
+									<a href="${m['${index}'].path!'#'}" target="_blank">${m['${index}'].channelName}</a> </h3>
+							</#if>
+						</#if>
+					</#list>
+				</#if>
+			</div>
+		</#if>	
+		<#if !isNav>
+			<div class="mod_gray_bd aside-tab-bd blog-news clearfix" id="tab${tabIndex}_bd">
+				<#local size=dataMap[mapKey]?size/>			
+				<#list 1..size as index>
+					<#if dataMap[mapKey]['${index}']??>
+						<#local subMain=dataMap[mapKey]['${index}']/>
+						 <div class="tab_con" style="display:<#if index==1>block<#else>none</#if>;">				
+							<#if subMain.contentList??>					  	
+						  		<@global.showList ulClass='list01' liClass='' data=subMain.contentList;path,imgPath,title,detial>
+						  			<a target="_blank" href="${path}">·${title}</a>
+						  		</@global.showList> 	  		 
+							</#if>		          
+				        </div>
+					</#if>						
+				</#list>	
+			</div>        
+		</#if>		
+	</#if>      
+</#macro>
+<#--macro3开始-->
+<#macro side2 mapKey>
+	 <div class="aside aside_recomm_zhuanti">
+	 	<#if dataMap[mapKey]??>
+	 		<#local data=dataMap[mapKey]/>	 	
+		 	<div class="mod_recomm_hd">
+	        	<h3 class="ui_tit">${data.channelName!''}</h3>
+	            <a href="${data.path!'#'}" class="more">&gt;&gt;更多</a>
+	        </div>
+	        <#if data.imgContentList??>
+	        	<div class="mod_recomm_bd">
+		        	<@global.showList ulClass='pt03 clearfix' liClass='' data=data.imgContentList;path,imgPath,title,detial>
+	        			<h3 class="ico"><a href="${path!'#'}">${title!''}</a></h3>
+	                 	<a class="pic" target="_blank" href="${path!'#'}"><img src="${imgPath!'#'}" width="120" height="90" alt=""></a>
+	                    <p class="txt">${title!''}<a href="${path!'#'}" class="more">[详细]</a></p>
+		        	</@global.showList >	
+		        </div>        	
+	        </#if>
+	 	</#if>	 	
+	 </div>
+</#macro>
+<!--#macro-->
+<!--#include virtual="${headUrl}"--> 
+<div class="gg_banner_980">
+	<a href="#"><img src="${resImg}/design/subs/hainan/gg/pic980x90_1.jpg" width="980" height="90"/></a>
+</div>
+<#--导航-->
+<div class="gg_keyword_980">
+	<div class="inner">
+    	<a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | 
+        <a href="#">广告位招租</a> | <a href="#">广告位招租</a> | <a href="#">广告位招租</a> 
+    </div>
+</div>
+<#--导航结束-->
+<div class="section">
+	<div class="section_main">
+    	<div class="breadcrumbs_hd">
+        	<span class="tit" id="pathUrl">
+        		您的位置：
+				<script type="text/javascript">
+					getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+				</script>
+			</span>
+        </div>
+        <div class="main_bd">
+        	<div class="article_list">
+        		<div class="list_txt">
+	            	<input type="hidden" id="tableUrl" value="${tableUrl}"/>
+					<div id="table">
+						<script type="text/javascript">
+							getTableHtml('table','${tableUrl}');
+						</script>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="sidebar">
+    	<div class="aside mod-rank">
+           <!--#--><!--#1--><@hotHit mapKey='1'></@hotHit><!--#-->
+        </div>
+		<div class="gutter10"></div>
+        <div class="aside">        
+           <!--#--><!--#2--><@side1 mapKey='2' isNav=true tabIndex=1></@side1> 
+           <@side1 mapKey='2' isNav=false tabIndex=1></@side1><!--#-->           
+        </div>
+        <div class="gutter10"></div>
+        <div class="aside">            
+           <!--#--><!--#3--><@side1 mapKey='3' isNav=true tabIndex=2></@side1> 
+           <@side1 mapKey='3' isNav=false tabIndex=2></@side1><!--#-->
+        </div>
+        <div class="gutter10"></div>
+        <div class="aside">
+           <!--#--><!--#4--><@side1 mapKey='4' isNav=true tabIndex=3></@side1> 
+           <@side1 mapKey='4' isNav=false tabIndex=3></@side1><!--#--> 
+        </div>
+        <div class="gutter10"></div>
+        <!--#--><!--#5--><@side2 mapKey='5'></@side2><!--#-->
+    </div>
+</div>
+<!--#include virtual="${footUrl}"--> 
+</body>
+</html>

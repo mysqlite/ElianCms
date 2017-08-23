@@ -1,0 +1,63 @@
+﻿body,h1, h2, h3, h4, h5, h6, pre, code,form,input, button,textarea, p{margin: 0;padding: 0;}
+img{border: 0 none;}
+img{vertical-align: top;}
+:focus {outline: 0;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
+input, button, textarea,select, optgroup, option {font-family: arial;font-size: inherit;font-style: inherit;font-weight: inherit;}
+input, button, textarea, select {*font-size: 100%;}
+:link, :visited , ins {text-decoration: none;}
+button,.btn{cursor: pointer;}
+.clearfix:after,.loginArea .i:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.clearfix,.loginArea .i{*zoom:1;}
+.imgbtn{ cursor: pointer;float: left;text-indent: -1024px;overflow: hidden;border: 0 none;}
+
+/*
+-----------------
+@global全局+结构
+-----------------
+*/  
+body{color:#333333;font:12px/1.6 "\5b8b\4f53","Tahoma",arial;background-color: #ffffff; }
+.select_area .tit em,.sidebar .ft{ font-family:"\5fae\8f6f\96c5\9ed1","\9ed1\4f53";}/*微软雅黑+黑体*/
+a{color:#1C5180;text-decoration:none;}/*主链接颜色*/
+a:hover{color:#FF6600;text-decoration:underline;}
+.topbar,.header,.nav,.section,.footer,.gg_980x90{ width: 980px;margin: 0 auto;}
+.topbar,.nav{ margin-bottom: 10px;}
+.section{ margin-bottom:50px}
+
+.header{ margin: 10px auto;}
+.header h1{ width: 182px;height: 100px;overflow: hidden;margin-left: 50px;}
+.login_bg{ background: url('../../images/manage/login_banner.jpg') no-repeat 80px -20px;position: relative;height: 360px;}
+.con{ float: right;}
+.wrap_loginArea{ width: 351px;border: 1px solid #CACACA;background-color: #F5F5F5;padding: 1px;position: relative;right: 100px;margin: 45px 0 5px 0;}
+.loginArea{ border: 2px solid #EBEBEB;background-color: #F8F8F8;width: 347px;}
+.loginArea h3{ font-size: 14px;width: 335px;margin: 10px auto;border-bottom: 1px solid #dddddd;padding-bottom: 10px;text-align: center;}
+.loginArea .i{ margin-bottom: 8px;overflow:hidden;*zoom:1;clear:left}
+.loginArea .tit,.ipt{ float: left;}
+.loginArea .tit{ height: 26px;line-height: 26px;width: 70px;text-align: right;}
+.loginArea .ipt{ border: #e3e3e3 1px solid;height: 21px;line-height: 21px;padding: 1px 3px;width: 200px;}
+.loginArea .ipc{ vertical-align: -2px;}
+.loginArea .lbl,.ipc,.imgBtn{ cursor: pointer;}
+.loginArea .login_option{ padding-left: 75px;margin-bottom: 20px;}
+.loginArea .imgBtn,.ui_login_bg{ background: url('../../images/manage/shop_login_sprite.jpg') no-repeat -100% 0;}
+.loginArea .imgBtn{ background-position: 0 0;width: 110px;height: 30px;text-indent: -1024px;overflow: hidden;float:left;border: 0 none;margin-right: 20px;}
+.loginArea .login{ padding-left: 70px;}
+.loginArea .login .link_btn{ margin-top: 6px;}
+.loginArea .link_txt{ color: #1C5180;float:left;}
+.loginArea .link_txt b{ color: #333333;font-weight: normal;}
+.loginArea .last{ border-top: 1px solid #dddddd;width: 325px;margin: 20px auto 20px;padding-top: 10px;}
+.ui_login_bg{ background-position: 0 -50px;height:33px;width: 355px;position: relative;bottom: 0px;right: 100px;}
+
+
+/*
+-----------------
+@footer脚部
+-----------------
+*/ 
+.footer{ padding-bottom: 30px;}
+.footer p{ text-align: center;}
+.footer .tips{ border: 1px solid #cccccc;background: #eeeeee;color: #ff6000;height: 22px;line-height: 22px;}
+.bottom_nav{ text-align: center;height: 28px;line-height: 28px;margin-top: 5px;border-top: 1px solid #d1d1d1;padding-top: 8px;}
+.copyright{ font-family: tahoma, arial, 宋体;}
+/*提示*/
+.error_tips{line-height: 25px;border: 1px solid #DF9999;background-color: #FFEBEB;color: #ff0000;padding: 0 10px;margin: 0 20px;}
+.ok_tips{ float: left;height: 25px;line-height: 25px;border: 1px solid #5EBC81;background-color: #EAFFE6;color: #009900;padding: 0 10px;margin: 0 20px;}

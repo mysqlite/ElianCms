@@ -1,0 +1,72 @@
+﻿<#include "../includes/index_header.html"/>
+<script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+<#--顶部第一栏begin-->
+<div class="section">
+   <div class="w700">
+        <div class="mod_box">
+            <div class="mod_box_hd">
+            	<h3>
+				 <span id="pathUrl">
+	                     <script type="text/javascript">
+	                         getPageLevelHtml('pathUrl','${pathUrl!''}','>>',false);
+	                     </script>
+	                 </span>
+            	</h3>
+            </div>
+            <div class="mod_box_bd article">
+                <div class="article_hd">
+                    <h1>${purc.name!''}</h1>
+                    </div>
+                <div class="article_bd">
+                    <div class="product_details_bd">
+                    <table cellspacing="0" class="tbl">
+                    <tbody><tr>
+                       <td class="td1">发布日期</td>
+                       <td class="td2">${purc.createTime?string?date("yyyy-MM-dd")}</td>
+                    </tr>
+                   <tr>
+                    <td class="td1">截止日期</td>
+                    <td class="td2">${purc.expireTime?string?date("yyyy-MM-dd")}</td>
+
+                   </tr><tr>
+                    <td class="td1">产品规格</td>
+                    <td class="td2">${purc.specification!'暂无信息'}</td>
+
+                   </tr>
+                   <tr>
+                       <td class="td1">采购数量</td>
+                       <td class="td2">${purc.number!'暂无信息'}</td>
+
+                   </tr><!--
+                   <tr>
+                       <td class="td1">计量单位</td>
+                       <td class="td2">台</td>
+                   </tr>
+                   --><tr>
+                       <td class="td1">价格说明</td>
+                       <td class="td2">${purc.price!''}元</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">求购产品说明</td>
+                       <td class="td2">${purc.desc!''}</td>
+                   </tr>
+                   <tr>
+                       <td class="td1">求购说明</td>
+                       <td class="td2">${purc.notice!''}</td>
+                   </tr>
+                </tbody></table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <!--侧边 -->
+		<#include "../includes/all_side.html"/>
+    </div>
+</div>
+<div class="footer" style="border-top: 5px solid #007DCA;padding-top: 5px;">
+	<!--#include virtual="${footUrl}"-->
+</div>
+</body>
+</html>

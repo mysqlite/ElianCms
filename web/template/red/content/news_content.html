@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<title>${title!''}</title>
+		<meta name="Keywords" content="${keywords!''}" /> 
+		<meta name="Description" content="${description!''}" />
+		<link rel="stylesheet" href="${resStyle}/public.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/global.css" type="text/css">
+		<link rel="stylesheet" href="${resStyle}/news_list.css" type="text/css">	
+		<link href="http://www.elian.cc/favicon.ico" type="image/x-icon" rel="shortcut icon">
+		<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+		<script src="${resScript}/base0530.js"></script>
+	</head>
+	<body>
+		<!--#macro-->	
+		<#macro showList dataList channelName="" path="#">
+			<div class="mod_hd_aside clearfix">
+				<h4 class="tit">${channelName}</h4>
+				<span class="more">
+					<a href="${path}" target="_blank">更多</a>
+				</span>
+			</div>
+			<ul class="list_num_ico">
+				<#if dataList?size != 0>
+		       		<#list dataList as c>
+						<li>
+							<a href="${c.path}"  target="_blank">${c.title}</a>
+						</li>
+					</#list>
+		  			</#if>
+			</ul>
+		</#macro>
+		<!--#macro-->
+		<!--#include virtual="${headUrl}"-->
+		<!--#include virtual="${navUrl}"-->
+		<div class="section">
+		    <div class="section_m_650">
+		        <div class="breadcrumbs artCrumbs">
+		        	<div class="position article_position">
+			        	<span id="pathUrl">
+					    	<script type="text/javascript" src="${resScript}/jquery-1.4.2.min.js"></script>
+							<script type="text/javascript">
+								getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+							</script>
+						</span>
+					    >> 正文
+					 </div>
+		        </div>
+		        <div class="gg_650x90">
+					<img width="650" height="90" src="${resImg}/other/img650x90.jpg">
+				</div>
+				<div class="ui_artLine"></div>				
+		        <div class="article clearfix">
+		            <div class="article_hd">
+		                <h1>${(info.title)!''}</h1>
+		                <div class="titBar">
+							<span class="pubTime">来源：${(info.sourceName)!''} 时间：${(info.publishTime?string('yyyy-MM-dd'))!''}</span>
+							<span class="artComm">
+							<a href="#" target="_self" onclick="toComment(this)">『我要评论』</a>
+							</span>
+						</div>
+						<div class="tag"> </div>  
+		            </div>
+		            <div class="article_bd">
+		               ${(info.content)!''}
+		            </div>
+		            <!-- JiaThis Button BEGIN -->
+					<div id="ckepop">
+						<span class="jiathis_txt">分享到：</span>
+						<a class="jiathis_button_qzone"></a>
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_tqq"></a>
+						<a class="jiathis_button_renren"></a>
+						<a class="jiathis_button_kaixin001"></a>
+						<a href="http://www.jiathis.com/share?uid=1534094"
+							class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+						<a class="jiathis_counter_style"></a>
+						<a class="jiathis_like_qzone"></a>
+					</div>			
+					<div id="friendDiv" class="article_ft">
+						<script type="text/javascript" src="${resScript}/jquery-1.4.2.min.js"></script>
+						<script type="text/javascript">
+							getFriendHtml('friendDiv', '${tableUrl}', '${contentId}');
+						</script>
+					</div>
+					<!-- JiaThis Button END -->
+		        </div>
+		        <!-- UY BEGIN -->
+				<div id="uyan_frame"></div>
+				<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=0" async=""></script>
+				<!-- UY END -->
+		    </div>
+		    <div id="sidebar" class="sidebar">
+				<div class="sidebar">
+					<!--#--><!--#1-->
+					<div class="aside" id="tab2">
+						<div class="hd clearfix" id="tab2_hd">
+							<#if dataMap['1']??>
+								<#list dataMap['1']?keys as prop>
+									<#if prop_has_next>
+										<h4 class="cur" onmouseover="overTab(2,1,'h4','ul')"
+											onmouseout="outTab()">
+											${dataMap['1'][prop].channelName}
+										</h4>
+										<#else>
+										<h4 onmouseover="overTab(2,2,'h4','ul')" onmouseout="outTab()">
+											${dataMap['1'][prop].channelName}
+										</h4>
+									</#if>
+								</#list>
+							</#if>
+						</div>
+						<div id="tab2_bd">
+							<#if dataMap['1']??>
+								<#list dataMap['1']?keys as prop>
+									<#if prop_has_next>
+										<ul class="list01_lico" style="display: block;">
+											<#if dataMap['1'][prop].contentList?size != 0>
+					       						<#list dataMap['1'][prop].contentList as c>
+													<li>
+														<a href="${c.path}" target="_blank">${c.title}</a>
+													</li>
+												</#list>
+				   							</#if>
+										</ul>
+										<#else>
+										<ul class="list01_lico">
+											<#if dataMap['1'][prop].contentList?size != 0>
+					       						<#list dataMap['1'][prop].contentList as c>
+													<li>
+														<a href="${c.path}" target="_blank">${c.title}</a>
+													</li>
+												</#list>
+				   							</#if>
+										</ul>
+									</#if>
+								</#list>
+							</#if>
+						</div>
+					</div>	
+					<!--#-->
+					<div class="aside">
+						<h3 class="tit_aside">
+							<a>健康资讯</a>
+						</h3>			
+						<div class="aside_ui_bd">
+							<!--#--><!--#2-->				
+							<@showList dataList=dataMap['2'].contentList channelName=dataMap['2'].channelName path=dataMap['2'].path/>
+							<!--#-->
+							<!--#--><!--#3-->
+							<@showList dataList=dataMap['3'].contentList channelName=dataMap['3'].channelName path=dataMap['3'].path/>
+							<!--#-->		   		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--#include virtual="${footUrl}"-->
+		<script type="text/javascript">
+			var jiathis_config = {
+			data_track_clickback : true
+			};
+		</script>
+		<script type="text/javascript"	src="http://v2.jiathis.com/code/jia.js?uid=1534094" charset="utf-8">
+		</script>
+		<script>function toComment (val){var path=window.location.pathname;val.href=path+"#uyan_frame";}</script>	
+	</body>
+</html>

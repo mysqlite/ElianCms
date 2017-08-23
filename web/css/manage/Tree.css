@@ -1,0 +1,50 @@
+body {
+	margin: 0;
+	padding: 0;
+	font: 12px/ 1.5 Tahoma, Helvetica, Arial, sans-serif;
+}
+
+ul,li,{
+margin:0;padding:0;
+}
+ul{
+ list-style: none;
+}
+
+#root {
+	margin: 10px;
+	width: 900px;
+	overflow: hidden;
+}
+
+#root li {
+	line-height: 25px;
+}
+
+#root .rem {
+	padding-left: 16px;
+}
+
+#root .add {
+	background: url(../../images/proscenium/201010122130_add.gif) -4px -31px
+		no-repeat;
+}
+
+#root .ren {
+	background: url(../../images/proscenium/201010122130_add.gif) -4px -7px
+		no-repeat;
+}
+#root li a {
+	color: #666666;
+	padding-left: 5px;
+	outline: none;
+	blr: expression(this.onFocus =       this.blur () );
+}
+#root li input {
+	vertical-align: middle;
+	margin-left: 5px;
+}
+#root .two {
+	padding-left: 20px;
+	display: none;
+}

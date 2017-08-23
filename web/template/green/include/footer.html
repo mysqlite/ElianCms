@@ -1,0 +1,13 @@
+${content!''}
+<p>累计访问量：<span id="siteFlowCount"></span></p>
+<div style="display: none">
+	<script language="javascript" type="text/javascript" src="${resScriptPubl}/webAnalytics.js"></script>
+</div>
+<script type="text/javascript" src="${resScriptPubl}/cookie.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/front.js"></script>
+<script type="text/javascript">
+$(function() {
+	Cms.siteFlow("${resCms}",${siteId}, location.href, document.referrer);
+	Cms.siteFlowCount("${resCms}",${siteId},"siteFlowCount");
+});
+</script>

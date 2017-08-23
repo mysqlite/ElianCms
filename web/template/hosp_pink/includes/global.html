@@ -1,0 +1,146 @@
+<#macro showList ulClass liClass data>  
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list data as item>
+              <li class="${liClass}"> 
+                <#nested item.path item.imgPath item.title item.detial/>                
+              </li>
+            </#list>    
+          </ul>
+     </#if>    
+</#macro>
+
+<#macro showList2 ulClass liClass data> 
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list data as item>
+              <li class="${liClass}"> 
+                <#nested item.path item.title item.detial item.time/>               
+              </li>
+            </#list>    
+          </ul>
+     </#if>    
+</#macro>
+
+<#macro showList3 ulClass liClass data begin end> 
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list begin..end as i>
+              <li class="${liClass}"> 
+                <#nested data[i].path data[i].title data[i].detial data[i].time/>               
+              </li>
+            </#list>    
+          </ul>
+     </#if>    
+</#macro>
+
+
+<#macro showNumList ulClass liClass begin end data> 
+    <#if data??>
+          <ul class="${ulClass}">
+            <#list begin..end as i>
+              <li class="${liClass}"> 
+                <#nested i data[i]/>                
+              </li>
+            </#list>    
+          </ul>
+     </#if>    
+</#macro>
+
+<#macro showNumList2 ulClass begin end data id> 
+    <#if data??>
+          <ul class="${ulClass}" id="marquee_notice<#if (id>0)>${id}</#if>">
+            <li>
+            <#list begin..end as i>
+                <#nested i data[i]/>                
+            </#list>   
+            </li> 
+          </ul>
+     </#if>    
+</#macro>
+
+<#macro showTitle title titleNum>
+    <#if showTitle??>
+        <#if (title?length>titleNum)>
+            ${title[0..titleNum]}...
+        <#else>
+            ${title}
+        </#if>
+    </#if>
+</#macro>
+
+<#macro PowerPoint ulClass liClass>
+    <#if (dataMap['powerPoint'].imgContentList)??>
+        <#local data=dataMap['powerPoint'].imgContentList/>
+        <#if data??>
+            <ul class="${ulClass!''}">
+                <#list data as item>
+                    <li class="${liClass!''}">
+                        <#nested item.title item.path item.imgPath/>
+                    </li>               
+                </#list>
+            </ul>
+        </#if>
+    </#if>
+</#macro>
+
+<#macro PowerPoint mapKey ulClass liClass>
+    <#if (dataMap[mapKey].imgContentList)??>
+        <#local data=dataMap[mapKey].imgContentList/>
+        <#if data??>
+            <ul class="${ulClass!''}">
+                <#list data as item>
+                    <li class="${liClass!''}">
+                        <#nested item.title item.path item.imgPath/>
+                    </li>               
+                </#list>
+            </ul>
+        </#if>
+    </#if>
+</#macro>
+
+<#macro nav showNum data>  
+    <#local showNum=showNum-1/>
+    <#if data??>
+        <#if (data?size>showNum)>
+            <div class="nav">
+                 <ul class="list">
+                   <#list 0..showNum as i> 
+                     <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                     </#if>
+                   </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+             </div>
+              <#if (data?size>showNum+1)>
+              <div class="nav2">
+                <ul class="list">
+                 <#list (showNum+1)..data?size as i>
+                  <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                  </#if>
+                 </#list>
+                </ul>
+              </div>
+              </#if>
+             <#else>
+              <div class="nav">
+                 <ul class="list">
+                  <#list 0..data?size as i> 
+                    <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                    </#if>
+                  </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+               </div>
+        </#if>
+     </#if>    
+</#macro>
+
+<#macro navLi data>
+ <#if data??><li><a href="${data.path}" target="_self">${data.channelName}</a></li></#if>
+</#macro>

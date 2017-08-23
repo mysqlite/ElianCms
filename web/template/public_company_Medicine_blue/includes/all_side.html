@@ -1,0 +1,68 @@
+<#import '../includes/global.html' as global/>
+<#if dataMap['1']??>
+	<div class="aside business_files">
+	    <div class="hd">
+	        <h3>企业档案</h3>
+	        <b class="ico"></b>
+	    </div>
+	    <#if (dataMap['1'].contentList?size>0)>
+		    <div class="bd clearfix">
+		        <h4>${(dataMap['1'].contentList[0].entity.name)!'公司名称'}</h4>
+		        <span class="feedBack_btn clearfix">
+		            <em class="name"></em>
+		            <a class="imgBtn" href="http://www.elian.cc/company/275/leaveword.html#leaveForm">
+		            给我留言</a>
+		        </span>
+		        <div class="files_details">
+		            <ul class="list">
+		                <li><em class="tit">经营种类：</em>器械</li>
+		                <li><em class="tit">公司地址：</em>${(dataMap['1'].contentList[0].entity.address)!'暂无信息'}</li>
+		                <li><em class="tit">供应产品：</em>已发布 5   条</li>
+		                <li><em class="tit">联系电话：</em>${(dataMap['1'].contentList[0].entity.phone)!'暂无信息'}</li>
+		                <li><em class="tit">电子邮箱：</em>${(dataMap['1'].contentList[0].entity.email)!'暂无信息'}</li>
+		            </ul>
+		        </div>
+		    </div>
+		</#if>
+	    <div class="ft"></div>
+	</div>
+</#if>
+<#--产品分类-->
+<#--
+<div class="aside">
+	<div class="mod_aside_hd">
+		<h3 class="tit">
+			<a href="http://www.elian.cc/company/275/prolist.html">产品分类</a>
+		</h3>
+	</div>
+	<div class="mod_aside_bd">
+		<ul class="list01_aico">
+				<li>
+					<a href="http://www.elian.cc/company/275/procatelist/4.html"> 消毒设备
+					</a>
+				</li>
+				<li>
+					<a href="http://www.elian.cc/company/275/procatelist/114.html"> 消毒器
+					</a>
+				</li>
+		</ul>
+	</div>
+</div>
+-->
+<#--友情链接-->
+<#if dataMap['3']??>
+	<div class="aside">
+	    <div class="mod_aside_hd">
+	    	<h3 class="tit"><a href="javascript:void(0);">${dataMap['3']['channelName']!''}</a></h3>
+	    </div>
+	    <div class="mod_aside_bd">
+	    	<ul class="list01_aico">  
+		        <#if dataMap['3']['contentList']??>
+		            <#list dataMap['3']['contentList'] as links>
+		                <li><a href="${links.path!'#'}" target="_blank">${links.title!''}</a></li>
+		            </#list>
+		        </#if>
+		    </ul>
+	    </div>
+	</div>
+</#if>

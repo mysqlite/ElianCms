@@ -1,0 +1,438 @@
+<#import '../global/global.html' as global/>
+<#macro main mapKey isNav>
+	<#if isNav>
+		<#local size=dataMap[mapKey]?size/>
+		<#local m=dataMap[mapKey]/>
+		<#list 1..size as index>
+			<#if 1==index>
+				<h3 class="cur" onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+					<a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!''}</a> </h3>
+			<#else>
+				<h3 onmouseover="overTab(1,${index},'h3','div')" onmouseout="outTab()"> 
+					<a href="${(m['${index}'].path)!'#'}" target="_blank">${(m['${index}'].channelName)!''}</a> </h3>
+			</#if>
+		</#list>
+	</#if>
+	<#if !isNav>	
+		<#local size=dataMap[mapKey]?size/>		
+		<#list 1..size as index>						
+			<#local subMain=dataMap[mapKey]['${index}']/>
+			<div class="tab_con" style="display:<#if index==1>block<#else>none</#if>;">				
+			  <#if subMain.contentList??>
+		  	 	<#if subMain.contentList[0]??>	
+				 	 <h2> <a href="${subMain.contentList[0].path}" target="_blank">
+				 	  <@global.showTitle title=subMain.contentList[0].title titleNum=50 hasDot=true/>
+				 	 </a> </h2>
+		         	 <p class="details">
+		         	 <@global.showTitle title=subMain.contentList[0].detial titleNum=55 hasDot=true/>
+		         	  </p>				         	 
+	         	 </#if>
+		  		 <#if (subMain.contentList?size>1)>	
+		  		 	<@global.showNumList ulClass='list03 clearfix' liClass='' begin=1 end=subMain.contentList?size-1 data=subMain.contentList;i,item>
+		  		 		<span class="txt">
+							<a href="${item.path!''}">${item.title!''}</a>
+							</span>
+						<span class="date">${item.time!''}</span>	
+		  		 	</@global.showNumList>
+		  		 </#if>			  		 
+			  </#if>		          
+	        </div>
+		</#list>	        
+	</#if>		        
+</#macro>
+
+<#macro sideBar mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<div class="mod_aside_hd">
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</div>
+		<div class="mod_aside_bd">
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</div>
+	</#if>
+</#macro>
+
+<#macro sideBar2 mapKey>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+			<div class="mod_aside_hd"><h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3></div>
+			 <div class="mod_aside_bd">
+			 	<#if data.contentList??>
+			 		<ul class="list01_lico no-bg">
+				 	<#list data.contentList as item>
+				 		<li><a href="${item.path!'#'}">${item.title!''}</a></li>
+				 	</#list>
+				 	</ul>
+			 	</#if>
+            </div>
+	</#if>
+</#macro>
+            
+<#macro middle4 mapKey isNav>
+	<#if dataMap[mapKey]??>
+		<#local data=dataMap[mapKey]/>
+		<#local size=dataMap[mapKey]?size/>
+		<#if isNav>
+			<#list 1..size as i>				
+				<h4 <#if 1==i> class="cur" </#if> onmouseover="overTab(8,${i},'h4','ul')" onmouseout="outTab()"> 
+					<a href="${(data['${i}'].path)!'#'}" target="_blank">${(data['${i}'].channelName)!''}</a> 
+				</h4>	
+			</#list>		
+		</#if>
+		<#if !isNav>
+			<#list 1..size as i>
+				 <div class="section_details">
+	                <div class="tab3_bd" id="tab8_bd">
+	                	<ul class="tab_con" <#if 1==i> style="display: block;" </#if>>
+	                		<#if data['${i}'].contentList??>
+	                			<#if data['${i}'].contentList[0]??>
+			                		<li>			                			
+			                           <h5 class="tit"><a href="${data['${i}'].contentList[0].path}">${data['${i}'].contentList[0].title}</a></h5>
+			                           <p class="txt"><@global.showTitle title=(data['${i}'].contentList[0].detial)!'' titleNum=55 hasDot=true/>
+			                           <a class="more" href="${data['${i}'].contentList[0].path}">【详细】</a></p>
+			                        </li>
+			                    </#if>
+			                    <#if (data['${i}'].contentList?size>1)>
+				                    <li>
+			                           <div class="health_news_hd">
+			                               <h6>最新资讯</h6><a target="_blank" href="${(data['${i}'].path)!'#'}" class="more">>>更多</a>
+			                           </div>
+			                           <div class="health_news_bd">
+			                           	   <#if data['${i}'].contentList??>
+			                           	   	   <dl class="list01_lico clearfix">
+				                           	   <#list 1..data['${i}'].contentList?size-1 as index>
+				                           	   		 <li><a href="${data['${i}'].contentList[index].path}">${data['${i}'].contentList[index].title}</a></li>
+				                           	   </#list>
+				                           	   </dl>
+			                           	   </#if>	                               
+			                            </div>
+				                     </li>
+				                 </#if>
+			                </#if>
+	                	</ul>
+	                </div>
+		         </div>				
+			</#list>
+		</#if>
+	</#if>
+</#macro>
+<#--页面开始-->
+<#include "../tempInclude/index_header.html"/>
+<body>
+<div class="wrap_body">
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<div class="section">
+    <div class="w350 hos_news">
+        <div class="tab1_hd clearfix" id="tab1_hd">
+            <div class="wrap_hd">
+            	<@main mapKey='1' isNav=true/>
+            </div>
+        </div>
+        <div class="tab1_bd" id="tab1_bd">
+            <@main mapKey='1' isNav=false/>
+        </div>
+    </div> 
+    <div class="wrap_focus">
+        <div class="focus" id="index_Focus" style="visibility:hidden">
+            <div class="loading"><span>载入中,请稍候...</span></div>
+            	 <#--换灯片-->
+            	 <@global.PowerPoint mapKey='2' ulClass='pic' liClass='';title,path,imgPath>
+                    <a href="${path}"><img src="${imgPath}" width="345" height="330" alt="${title}"/>
+                    </a>
+                </@global.PowerPoint>      
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside guide_line">
+        	<#if dataMap["3"]??>
+	            <div class="guide_line_hd">${dataMap["3"].channelName!''}</div>
+	            <ul class="guide_line_bd">
+	            <#list 0..(dataMap["3"]?size-1) as i>
+	            	<#if dataMap["3"]["${i+1}"]??>
+	                	<li><b class="ico ico0${i+1}"></b><a href="${dataMap["3"]["${i+1}"].path!'#'}">${dataMap["3"]["${i+1}"].channelName!''}</a></li>
+	            	</#if>
+                </#list>
+	            </ul>
+	       </#if>
+        </div>
+        <div class="hos_intro">
+        	<#if dataMap["4"]??>
+	            <div class="hd">${dataMap["4"].channelName!''}</div>
+	            <div class="bd">
+	            	<@global.showTitle title=(dataMap["4"].contentList[0].detial)!'' titleNum=90 hasDot=true></@global.showTitle>
+	            	<a href="${dataMap["4"].path!'#'}" class="more">[详细]</a>
+	            </div>
+            </#if>
+        </div>
+    </div>
+</div>
+<div class="section intro_hos">
+    <div class="w720">
+        <div class="mod_hd ui_hd_01">
+            <h3><span class="ui_tit">${(dataMap["5"]["1"].channelName)!''}</span></h3>
+            <span class="more"><a href="${(dataMap["5"]["1"].path)!'#'}">&gt;&gt;更多</a></span>
+        </div>
+        <div class="mod_bd clearfix">
+            <ul class="intro_hos_nav">
+                <li><a href="${(dataMap["5"]["2"].path)!'#'}" class="cur">${(dataMap["5"]["2"].channelName)!''}</a></li>
+                <li><a href="${(dataMap["5"]["3"].path)!'#'}">${(dataMap["5"]["3"].channelName)!''}</a></li>
+                <li><a href="${(dataMap["5"]["4"].path)!'#'}">${(dataMap["5"]["4"].channelName)!''}</a></li>
+                <li><a href="${(dataMap["5"]["5"].path)!'#'}">${(dataMap["5"]["5"].channelName)!''}</a></li>
+                <li><a href="${(dataMap["5"]["6"].path)!'#'}">${(dataMap["5"]["6"].channelName)!''}</a></li>
+            </ul>
+            <div class="intro_hos_details">
+                <ul class="list">
+                    <li class="pt01">
+                        <div class="hd">${(dataMap["6"]["1"].channelName)!''}</div>
+                        <div class="bd">
+                             <a class="pic" href="${(dataMap["6"]["1"].path)!''}">
+                             	<img src="${(dataMap["6"]["1"].contentList[0].imgPath)!'#'}" alt="${(dataMap["6"]["1"].channelName)!''}" 
+                             		width="230" height="120"/></a>
+                             <p class="txt"><@global.showTitle title=(dataMap["6"]["1"].contentList[0].detial)!'' titleNum=50 hasDot=true/>
+                             <a class="more" href="${(dataMap["6"]["1"].path)!''}">[详细]</a></p>
+                        </div>
+                    </li>
+                    <li class="pt01">
+                        <div class="hd">${(dataMap["6"]["2"].channelName)!''}</div>
+                        <div class="bd">
+                             <a class="pic" href="${(dataMap["6"]["2"].contentList[0].path)!'#'}">
+                             	<img src="${(dataMap["6"]["2"].contentList[0].imgPath)!'#'}" alt="${(dataMap["6"]["2"].channelName)!''}" width="230" height="120"/></a>
+                             <p class="txt"><@global.showTitle title=(dataMap["6"]["2"].contentList[0].detial)!'' titleNum=50 hasDot=true/>
+                             <a class="more" href="${(dataMap["6"]["2"].contentList[0].path)!'#'}">[详细]</a></p>
+                        </div>
+                    </li>
+                </ul>
+                <span class="line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside">
+        	<#--医疗设备-->
+        	<@sideBar mapKey="7"/>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <img src="${resImg}/design/hosp/webbuild/zjdyzy/img/banner2a.jpg" width="980" height="128"/>
+</div>
+<div class="section intro_depeartment">
+    <div class="w720">
+        <div class="mod_hd ui_hd_02" id="tab4_hd">
+        	<#if (dataMap["8"])??>
+            	<h3 class="cur" onmouseover="overTab(4,1,'h3','span')" onmouseout="outTab()">科室介绍</h3>
+            </#if>
+            <#if (dataMap["9"])??>
+            	<h3 onmouseover="overTab(4,2,'h3','span')" onmouseout="outTab()">名医</h3>
+            </#if>
+            <#if (dataMap["10"])??>
+            	<h3 onmouseover="overTab(4,3,'h3','span')" onmouseout="outTab()">专家</h3>
+            </#if>
+            <span class="ui_hd_left"></span><span class="ui_hd_right"></span>
+        </div>
+        <div class="mod_bd clearfix" id="tab4_bd">
+            <span class="tab_con" style="display: block;">
+            <div class="section_details">
+                <div class="tab2_hd clearfix" id="tab2_hd">
+                	 <#if (dataMap["8"])??>
+                        <#list 1..dataMap["8"]?size as i>
+                            <h4 <#if i==1> class="cur"</#if> onmouseover="overTab(2,${i},'h4','div')"
+                                 onmouseout="outTab()"><a href="${(dataMap["8"]['${i}'].path)!"#"}">
+                                 ${(dataMap["8"]['${i}'].channelName)!""}</a></h4>       
+                        </#list>
+                    </#if>
+                </div>
+                <div class="tab2_bd" id="tab2_bd">
+                	<#if (dataMap["8"])??>                              
+                        <#list 1..dataMap["8"]?size as i>                                   
+                            <div class="tab_con" <#if i==1>style="display: block;"</#if>>
+                                <h5>${(dataMap["8"]['${i}'].contentList[0].title)!''}</h5>
+                                <p class="txt"><@global.showTitle title=(dataMap["8"]['${i}'].contentList[0].detial)!'' titleNum=200 hasDot=true/>
+                                <a class="more" href="${(dataMap["8"]['${i}'].contentList[0].path)!'#'}">【详细】</a></p>
+                                <p class="section_pic">
+                                	<#if (dataMap["8"]['${i}'].contentList[0].imgPath)??>
+                                		<#if (dataMap["8"]['${i}'].contentList[0].imgPath?string)?trim==''>
+                                			<img src="${resImg}/design/hosp/webbuild/zjdyzy/img/keshi200x180.jpg" width="250" height="258"/>
+                                			<#else>
+                                				<img src="${dataMap["8"]['${i}'].contentList[0].imgPath}" width="250" height="258"/>
+                                		</#if>
+                                	<#else>
+                                		<img src="${resImg}/design/hosp/webbuild/zjdyzy/img/keshi200x180.jpg" width="250" height="258"/>
+                                	</#if>
+                            	</p>   
+                            </div>
+                        </#list>            
+                    </#if>
+                </div>
+            </div><!--================================big tabcon===========================-->
+            </span>
+            <span class="tab_con intro_doc clearfix">
+            <div class="section_details">
+                <div class="tab5_hd" id="tab5_hd">
+               		<#if (dataMap["9"])??>
+                        <#list 1..dataMap["9"]?size as i>
+                            <h4 <#if i==1> class="cur"</#if> onmouseover="overTab(5,${i},'h4','div')"
+                                 onmouseout="outTab()"><a href="${(dataMap["9"]['${i}'].path)!"#"}">
+                                 ${(dataMap["9"]['${i}'].channelName)!""}</a></h4>       
+                        </#list>
+                    </#if>
+                </div>
+                <div class="tab5_bd" id="tab5_bd">
+                	<#if dataMap['9']??>
+                        <#list 1..dataMap['9']?size as i>
+                            <div class="tab_con" <#if i==1>style="display: block;"<#else>style="display: none;"</#if>>
+                                <#if (dataMap['9']['${i}'].imgContentList)??>   
+                                    <ul class="pt01 clearfix">                                              
+                                    <#list dataMap['9']['${i}'].imgContentList as item>                                                     
+                                        <li>
+                                         <span class="item-wrap">
+                                            <a class="pic" href="${item.path!'#'}">
+                                            	<img width="90" height="120" src="${item.imgPath!'#'}" alt="${item.title!''}"/>
+                                            </a>
+                                            <span class="tit">
+                                           		 <em >${item.title!''}</em>${item.param3!''}
+                                           	</span>
+                                           	<span class="txt">主治：${item.detial!''}</span>
+                                         </span>
+                                        </li>
+                                    </#list>
+                                    </ul>
+                                </#if>
+                            </div>
+                        </#list>
+                   </#if> 
+                </div>
+            </div>
+            <!--================================big tabcon===========================-->
+            </span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside">
+        	<@sideBar mapKey="11"/>
+        </div>
+    </div>
+</div>
+
+<!--===================================特色专科===================================-->
+<div class="section special-depeartment">
+    <div class="w720">
+        <div class="mod_hd ui_hd_01">
+            <h3 class="tit"><span class="ui_tit">${(dataMap["12"].channelName)!"特色专科"}</span></h3>
+            <div class="tab3_hd" id="tab7_hd">
+	            <#if (dataMap["12"])??>
+	                <#list 1..dataMap["12"]?size as i>
+	                    <h4 <#if i==1> class="cur"</#if> onmouseover="overTab(7,${i},'h4','ul')"
+	                         onmouseout="outTab()"><a href="${(dataMap["12"]['${i}'].path)!"#"}">
+	                         ${(dataMap["12"]['${i}'].channelName)!""}</a></h4>       
+	                </#list>
+	            </#if>
+            </div>
+        </div>
+        <div class="mod_bd clearfix">
+            <!--图片可考虑转换为焦点图轮换2011-10-08-->
+                <div class="tab6_bd clearfix" id="tab7_bd">
+                	<#if dataMap["12"]??>
+                        <#list 1..dataMap['12']?size as i>
+                             <ul class="tab_con" style="display:<#if i==1>block;<#else>none;</#if>">
+                             <#if (dataMap['12']['${i}'].contentList)??>
+                              <#list dataMap['12']['${i}'].contentList as item>  
+                                  <li>
+                                    <div class="section_pic">
+	                                	<#if (item.imgPath)??>
+	                                		<#if (item.imgPath?string)?trim==''>
+	                                			<img src="${resImg}/design/hosp/webbuild/zjdyzy/img/keshi200x180.jpg"  width="200" height="180"/>
+	                                			<#else>
+	                                				<img src="${item.imgPath}"  width="200" height="180"/>
+	                                		</#if>
+	                                	<#else>
+	                                		<img src="${resImg}/design/hosp/webbuild/zjdyzy/img/keshi200x180.jpg"  width="200" height="180"/>
+	                                	</#if>
+                                    </div>
+                                  </li>
+                                  <li>
+                                   <p class="txt">
+                                      <@global.showTitle title=(dataMap["12"]['${i}'].contentList[0].detial)!'' titleNum=200 hasDot=true/>
+                                       <a href="${(dataMap["12"]['${i}'].contentList[0].path)!'#'}" class="more"> [详细]</a>
+                                   </p>
+                                  </li>
+                              </#list>
+                             </#if>
+                             </ul>
+                        </#list>
+                    </#if>
+                </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside">
+        	<#--人才招聘-->
+        	<@sideBar2 mapKey="13"/>
+        </div>
+    </div>
+</div>
+<#--预防保健begin-->
+<div class="section health_publicity">
+    <div class="w720">
+        <div class="mod_hd ui_hd_01">
+            <h3 class="tit"><span class="ui_tit">${(dataMap['14'].channelName)!'预防保健'}</span></h3>
+            <div class="tab3_hd" id="tab3_hd">
+               <@middle4 mapKey='14' isNav=true/>
+            </div>
+        </div>
+        <div class="mod_bd clearfix">
+            <!--图片可考虑转换为焦点图轮换2011-10-08-->
+            <div class="section_pic"><img src="${resImg}/design/hosp/webbuild/zjdyzy/img/pic/pic180x250b.jpg" width="180" height="250"/></div>
+            <@middle4 mapKey='14' isNav=false/>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="aside">
+           <#--院务公开-->
+           <div class="sidebar"><@sideBar mapKey="15"/></div>
+        </div>
+    </div>
+</div>
+
+<!--友情链接begin-->
+<div class="section wrap_ulink" id="linksDiv">
+	 <div class="mod_hd">
+        <h3>${(dataMap['16']['channelName'])!''}</h3>
+        <b class="ui_hd_left"></b><b class="ui_hd_right"></b>
+    </div>
+    <div class="mod_bd friend_link">
+        <#if (dataMap['16']['contentList'])??>
+            <#list dataMap['16']['contentList'] as links>
+               <a href="${links.path!'#'}">${links.title!''}</a> 
+            </#list>
+        </#if>
+    </div>
+</div>
+<!--友情链接end-->
+<!--#include virtual="${footUrl}"-->
+</div>
+<script src="${resScript}/tab.js"></script>
+<script src="${resScript}/base.js"></script>
+<script src="${resScript}/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="${resScript}/myfocus-1.2.4.full.js"></script>
+<script type="text/javascript" src="${resScript}/mF_tb.js"></script>
+<script>
+myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:345,height:330,txtHeight:30,duration:350,direction:'left',easing:'easeOut',wrap:false});//宽度为图片容器实际宽度,主程序注释了自动添加皮肤，脚本。20110711
+</script>
+</body>
+</html>

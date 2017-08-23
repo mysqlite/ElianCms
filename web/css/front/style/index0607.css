@@ -1,0 +1,428 @@
+@charset "utf-8";
+/*重置*/
+body, div, dl, dt, dd, ul, ol, li,h1, h2, h3, h4, h5, h6, pre, code,form, fieldset, legend, input, button,textarea, p, blockquote, th, td,select {margin: 0;padding: 0;}
+fieldset, img{border: 0 none;}
+img{vertical-align: top;}
+:focus {outline: 0;}
+address, caption, cite, code, dfn,em,th, var, optgroup {font-style: normal;font-weight: normal;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;font-weight: normal;}
+abbr, acronym {border: 0;font-variant: normal;}
+input, button, textarea,select, optgroup, option {font-family: arial;font-size: inherit;font-style: inherit;font-weight: inherit;}
+code, kbd, samp, tt {font-size: 100%;}
+input, button, textarea, select {*font-size: 100%;}
+ol, ul {list-style: none;}
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: collapse;/*ie8底边消失*/
+border-spacing: 0;}
+caption, th {text-align: left;}
+sup, sub {font-size: 100%;vertical-align: baseline;}
+:link, :visited , ins {text-decoration: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+button{cursor: pointer;}
+.clearfix:after,.nav:after,.section:after,.tab_con:after,.pt03:after,.pt04:after,.list06:after,.list01_lico:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.clearfix,.nav,.section,.tab_con,.pt03,.pt04,.list06,.list01_lico{*zoom:1;}
+.topbar:after,.header:after,.province:after{content:'\20';clear:both;display:block;font-size: 0;height:0;}
+.topbar,.header,.province{*zoom:1;}
+/*
+-----------------
+@global全局
+-----------------
+*/  
+body{color:#333333;font:12px/1.6 "\5b8b\4f53","Tahoma",arial;background-color: #ffffff; }
+a{color:#333333;text-decoration:none;}/*主链接颜色*/
+a:hover{color:#FF6600;text-decoration:underline;}
+
+/*基类*/
+/*.pt01 .pic:hover img,.pt02 a.pic:hover img,.pt03 a.pic:hover img,.pt04 a.pic:hover img{ border-color: #FF6600;}图片加边框*/
+.list01{ font-size: 12px;clear: both;}
+.list01 li{ height: 25px;line-height: 25px;overflow: hidden;}
+.list03{ font-size: 12px;overflow: hidden;}
+.list03 li{ height: 22px;line-height: 22px;overflow: hidden;}
+.list03 li .txt{ float: left;margin-right: 86px;}
+.list03 li .date{ float: left;text-align: left;margin-left: -76px;width: 76px;}
+.list03b{ }
+.list03b li{ height: 24px;line-height: 24px;overflow: hidden;vertical-align: middle;}
+.list03b li .txt{ float: left;width: 500px;}
+.list03b li .date{ float: left;width: 100px;}
+.pt01{ padding:0 0 15px 10px;}
+.pt01 li{ float: left;width: 100px;margin-right: 10px;}
+.pt01 .pic{ display: block;line-height: 0;margin-bottom: 5px;}
+.pt01 .pic img{ margin:0 auto;display: block;padding: 1px;border: 1px solid #e4e4e4;}
+.pt01 .tit{ text-align: center;}
+.pt01 .tit,.pt01 .txt{ display: block;font-size: 12px;line-height: 18px;}
+.pt01 .tit em,.pt01 .txt em{ font-weight: bold;font-style: normal;}
+.pt02{ padding:5px 0 0 10px;font-size: 12px;overflow: hidden;}
+.pt02 li{ padding: 6px 0 0 0;}
+.pt02 .pic{ float: left;}
+.pt02 .pic img{ padding: 1px;border: 1px solid #e4e4e4;}
+.pt02 .txt{ line-height: 21px;overflow: hidden;}
+.pt02 .txt span{ display: block;}
+.pt03{ padding:0 0 10px;font-size: 12px;}
+.pt03 li{ padding: 15px 0;*zoom:1;}/*li的pic结束标签换行后可不要zoom*/
+.pt03 .pic{ float: left;margin-right: 10px;_margin-right: 7px;}/*margin-right不能放img,否则出现多余虚线框*/
+.pt03 .pic img{ border: 1px solid #e3e3e3;padding: 1px;}
+.pt03 .tit{ line-height: 21px;}/*文字容器*/
+.pt03 .tit a:hover{color:#ff6000;text-decoration:underline;}
+.pt03 .txt{ line-height: 21px;overflow: hidden;*zoom:1}
+.pt04{ font-size: 12px;overflow: hidden;}
+.pt04 .pic{ float: left;}/*实例中补充margin-right的ie hack 20110801*/
+.pt04 .pic img{ border: 1px solid #e3e3e3;padding: 1px;}
+.pt04 .list01_lico{ font-size: 12px;}
+.pt04 .list01_lico li{ height: 22px;line-height: 22px;margin-right: 12px;overflow: hidden;}
+.pt04 .tit{ height: 21px;line-height: 21px;text-align: left;overflow: hidden;}
+.pt04 .pic a{ color:#ffffff;text-decoration:none;}
+.pt04 .pic a:hover{color:#ffffff;text-decoration:underline;}
+.list06{ margin-left: 12px;}
+.list06 li{ float:left;height: 22px;line-height: 22px;margin-right: 12px;padding-left: 9px;overflow: hidden;}/*此处只能用inline*/
+.list06 li{ width: 198px;}
+.list06{ font-size: 12px;clear: both;overflow: hidden;}
+.list07{ font-size: 14px;clear: both;}
+.list07 li{ overflow: hidden;}
+.list07 li a{ padding-left: 9px;}
+.list01_lico li{ height: 22px;line-height: 22px;padding-left: 9px;overflow: hidden;*vertical-align:middle}
+
+/*结构*/
+.topbar,.header,.nav,.section,.footer{ width: 980px;margin: 0 auto;}
+/*模块结构*/
+.section{ margin-bottom: 10px;}
+.section_m{ width: 750px;float: left;}
+.section_340{ width: 340px;float: left;overflow:hidden}
+.section_400{ width: 400px;float: right;}
+.section_730{ width: 730px;float: left;}
+.sidebar{ width: 240px;float: right;}
+/*微软雅黑字体定义*/
+.mod_tab_bd .tit,.quick_links h3.tit{ font-family: \5fae\8f6f\96c5\9ed1,arial;}
+/*隐藏文字*/
+/*.link_btn{ text-indent: -1024px;position: relative;overflow: hidden;}*/
+/*广告位*/
+.gg_banner_980{ width: 980px;margin: 0 auto 10px;}
+
+/*精灵图*/
+.video-news .list li,.vip-ico,.fast-channel .ui-hd h3,.fast-channel .ui-hd .ico,.find-hos h4.ui-tit,.recomm-doctor .link-btn,.mod-recomm-tab-hd a,.new-drugs .tit b,.nurse-rank .list b,.col-tab-bd .mod-hd h4,.col .list b,.col .list .top-rank,.arr-control b,.ico-tel{ background: url('bg/index-ico-sprite.jpg') no-repeat -100% 0;}
+.mob-tab .mod-tab-hd h3,.mob-tab .mod-tab-hd .cur,.mod-ui-box,.mod-ui-box h3.tit,.sidebar-tab-hd,.mod-recomm-tab-hd h3,.aside-hd,.health-news .mod-tab-hd h3,.health-news .mod-tab-hd .cur,.col-tab-hd .cur{ background: url('bg/index-repeat-sprite.jpg') repeat-x 0 -100%;}
+.mod-ui-box h3.tit{ background: url('bg/index-tit-sprite.jpg') no-repeat -100% 0;}
+
+.topnews2 .list li,.find-hos .list,.line,.blog-news li,.hos-rank .pt02 li,.health-news .pt04,.nurse-rank .list li,.col .list li{ background: url('bg/bottom_dot.gif') repeat-x 0 bottom;}
+.wrap-doctor-list,.recomm-hos .list01,.wrap-qiye-list,.recomm-hos .wrap-list01{ background: url('bg/vertical-line.gif') no-repeat -100% 0;}
+
+/*公用元素*/
+.video-news,.mob-tab .mod-tab-hd,.mob-tab .mod-tab-hd h3,.mob-tab .mod-tab-bd,.sidebar-tab-hd,.sidebar-tab-bd,.aside-hd,.aside-bd{ border: 1px solid #dddddd;}/*灰色边框*/
+.topnews h1 a,.topnews .txt .more,.topnews .txt .more:hover,.topnews .sub-tit a{ color:#FF6600}
+.gutter10{ height: 10px;overflow: hidden;}
+.line{ height: 1px;margin: 15px;display: block;background-position: 0 0;overflow: hidden;clear: both;}/*横向分割线-背景重新定位,加上overflow，解决ie6*/
+.tri-line{ background: url('bg/tri-line.gif') repeat-x 0 0;height: 3px;*zoom:1;position: relative;top: 20px;font-size:0;display: block;z-index: 1;}/*横向分割线*/
+
+
+/*侧边栏公用选项卡头部*/
+.sidebar-tab-hd{ background-position: 0 -72px;border-bottom: 0 none;margin-bottom: -1px;padding-left: 10px;height: 35px;}
+.sidebar-tab-hd h3{ float: left;padding: 0 10px;overflow: hidden;position: relative;height: 27px;line-height: 31px;top: 5px;font-size: 14px;}
+.sidebar-tab-hd .cur{ border: 1px solid #dddddd;border-bottom: 1px solid #ffffff;border-top: 2px solid #ff8000;background: #ffffff;line-height: 27px;font-weight: bold;}
+
+/*盒子高度*/
+#tab2_bd{ height: 198px;}
+#tab3_bd{ height: 121px}
+
+/*实例化开始*/
+.video-news{ padding: 6px 0 6px 9px;overflow: hidden;width:329px;*zoom:1}
+.video-news .wrap{ width: 360px;}
+.video-news .i{ clear:both;overflow:hidden;*zoom:1}
+.video-news .pic{ float:left;margin: 0 20px 0px 0;padding-bottom:6px}
+.video-news .list li{ background-position: -160px 4px;padding-left: 19px;height: 21px;overflow: hidden;float:left;margin-right:15px;width:135px}
+
+/*热点新闻*/
+.mob-tab{ border-top: 0 none;}
+.mob-tab .mod-tab-hd{ border: 0 none;overflow: hidden;border-left: 1px solid #dddddd;}
+.mob-tab .mod-tab-bd{ border-top: 0 none;padding: 0px 0px;}
+.mob-tab .tab-con{ padding-top: 8px;overflow: hidden;*zoom:1;margin: 0 10px;width: 378px;}
+.tab-con{ display: none;}
+
+.mob-tab .mod-tab-hd h3{ background-position: 0 -36px;height: 35px;line-height: 35px;width: 130px;text-align: center;float: left;border-bottom: 0 none;margin-left: -1px;font-size: 14px;}
+.mob-tab .mod-tab-hd .cur{ background-position: 0 0;width: 136px;font-weight: bold;}
+.mob-tab .mod-tab-hd a:hover{ color: #333333;}
+
+.topnews{ height: 235px;margin-bottom: 10px;}
+.topnews h1{ font-family: 黑体;font-size: 20px;text-align: center;margin-bottom: 6px;line-height:32px;height:32px;overflow:hidden}
+.topnews h1 a{ }
+.topnews .txt{ text-indent: 2em;color:#666666;margin-bottom: 6px;}
+.topnews .txt .more{ color:#FF6600}
+.topnews .sub-tit{ color: #999999;margin-bottom: 6px;display: block;height: 25px;}
+.topnews .sub-tit a{ display: inline-block;*zoom:1;_display:inline;width: 114px;text-align: center;height: 19px;line-height: 25px;overflow: hidden;}
+.topnews .list,.topnews2 .list{ margin-right: -10px;}
+.topnews .list li,.topnews2 .list li{ float: left;font-size: 14px;margin-right: 10px;height: 25px;line-height: 25px;width: 182px;overflow: hidden;}
+
+#tab3_bd .tab-con{ overflow: hidden;*zoom:1;}
+.topnews2 .list{ margin-bottom: -1px;float: left;}
+.topnews2 .list li{ font-size: 12px;float: left;height: 28px;line-height: 28px;overflow: hidden;float: left;}
+
+/*头条板块-侧边栏*/
+.top-con .sidebar{ width: 220px;float: right;}
+.top-con .sidebar-tab-hd{ height: 26px;background: #f5f5f5;}
+.top-con .sidebar-tab-hd h3{ height: 22px;line-height: 24px;top: 2px;font-size: 12px;}
+.top-con .sidebar-tab-hd .cur{ line-height: 22px;font-weight: normal;border-top: 1px solid #dddddd;}
+.rapid-link .sidebar-tab-bd{ height: 65px;}
+.sidebar-tab-bd{ }
+.sidebar-tab-bd .tab-con{ padding: 5px 0 0 10px;overflow:hidden;_zoom:1}
+.sidebar-tab-bd .vip-news{ padding: 13px 0 0 85px;position: relative;*zoom:1}
+.vip-news .i{ display: block;}
+.vip-ico{ background-position: -75px -145px;width: 65px;height: 45px;position: absolute;top: 10px;left: 10px;}
+.elian-zt-news .list li{ height: 19px;line-height: 19px;overflow: hidden;}
+
+/*快速通道*/
+.fast-channel .ui-hd{ background: #f5f5f5;position: relative;height: 40px;border: 1px solid #dddddd;border-top: 2px solid #FA6329;border-bottom: 0 none;}
+.fast-channel .ui-hd h3{ background-position: 0 0;width: 100px;height: 35px;position: absolute;top: 5px;left: 10px;text-indent: -1024px;overflow: hidden;padding: 0;}
+.fast-channel .ui-hd .ico{ background-position: -107px 0;width: 40px;height: 31px;position: absolute;top: 0px;right: 0;}
+.fast-channel h3{ padding: 0 5px;}
+.fast-channel .sidebar-tab-hd{ border-top: 0 none;}
+.fast-channel .sidebar-tab-bd{ height: 161px;}
+.find-hos .list{ padding-bottom: 5px;margin: 0 8px 8px 0;}
+.find-hos h4.ui-tit{ background-position: 0 -40px;width: 81px;height: 16px;line-height: 16px;color: #ffffff;text-indent: 5px;}
+.find-hos .i{ display: block;margin-top: 5px;}
+.find-hos .i a,.mod-find a{ margin-right: 5px;float: left;width: 62px}
+
+.rapid-guhao li{ height: 25px;line-height: 25px;}
+.rapid-guhao .link-btn{ background: #FF8000;display: block;padding: 0 6px;height: 25px;line-height: 25px;width: 54px;color: #ffffff;margin-left: 66px;font-weight: bold;}
+
+/*区域2*/
+/*公用主内容区盒子*/
+.mod-ui-box{ background-position: 0 -170px;border: 1px solid #FFC858;}
+.mod-ui-box .mod-hd{ height: 50px;}
+.mod-ui-box h3.tit{ width: 71px;height: 28px;text-indent: -1024px;overflow: hidden;margin-left: 12px;}
+.mod-ui-box h3.t01{ background-position: 0 0;}/*医生推荐*/
+.mod-ui-box h3.t02{ background-position: 0 -30px;}/*医院推荐*/
+.mod-ui-box h3.t03{ background-position: 0 -60px;}/*企业推荐*/
+.mod-ui-box h3.t04{ background-position: 0 -90px;}/*药品推荐*/
+.mod-ui-box h3.t05{ background-position: 0 -120px;}/*健康资讯*/
+.mod-ui-box h3.t06{ background-position: 0 -155px;}/*母婴*/
+.mod-ui-box h3.t07{ background-position: 0 -190px;}/*人才*/
+
+/*医生推荐*/
+.recomm-doctor .mod-bd{ height: 264px;overflow:hidden}
+.recomm-doctor .slide_wrap{ width: 728px;overflow: hidden;*zoom:1;display: block;border-bottom: 1px solid #ffffff;}
+.recomm-doctor .pt02{ margin-left: 20px;width: 730px;padding: 0;}
+.recomm-doctor .pt02 li{ margin-right: 25px;float: left;width: 155px;}
+.recomm-doctor .pt02 .pic{ margin-right: 10px;_margin-right:7px;}
+.recomm-doctor .pt02 img{ padding: 0;}
+.recomm-doctor .link-btn{ background-position: -85px -39px;width: 71px;height: 19px;line-height: 19px;display: block;text-align: center;}
+.recomm-doctor .slide_wrap .txt{ width: 71px}
+.recomm-doctor .pt02 .txt span{ height: 24px;line-height: 24px;overflow: hidden;}
+.recomm-doctor .line{ }
+.wrap-doctor-list,.wrap-qiye-list{ background-position: 50% 0;width: 728px;}
+.wrap-doctor-list{ *background-position: 366px 0;}
+.doctor-list{ margin-left: 20px;width: 750px;height:129px}
+.doctor-list li{ float: left;margin: 0 65px 5px 0;width: 310px;vertical-align: middle;}
+.doctor-list .i{ float: left;}
+.doctor-list .tit02{ color: #6f6f6f}
+.doctor-list .tit03 a{ color: #007878}
+.doctor-list .tit04 a{ color: #FF8000}
+.doctor-list span{ display: block;height: 19px;line-height: 19px;overflow: hidden;}
+.hos-name{ width: 145px;margin-right: 10px;}
+.doc-name{ width: 96px;margin-right: 5px;}
+
+/*博客资讯*/
+.blog-news .tab-con{ height: 274px;}
+.blog-news .list01{ overflow: hidden;*zoom:1}
+.blog-news li{ margin-right: 8px;height: 28px;line-height: 28px;margin-bottom: -1px;vertical-align: middle;}
+
+/*推荐tab模块+健康资讯tab模块*/
+/*公用*/
+.recomm-drug .mod-hd,.recomm-hos .mod-hd,.col .mod-hd{ position: relative;margin-bottom: 10px;}
+.mod-recomm-tab-hd h3,.health-news .mod-tab-hd h3{ float: left;background-position: 0 -139px;height: 30px;line-height: 30px;border: 1px solid #dddddd;border-bottom: 0 none;border-right: 0 none;cursor: pointer;}
+.mod-recomm-tab-hd .cur,.health-news .mod-tab-hd .cur,.col-tab-hd .cur{ background-position: 0 -108px;font-weight: bold;}
+/*推荐tab实例*/
+.mod-recomm-tab-hd{ border-right: 1px solid #dddddd;position: absolute;top: 20px;right: 10px;z-index: 2;}
+.mod-recomm-tab-hd h3{ padding: 0 15px;}
+.mod-recomm-tab-hd a{ background-position: -171px -34px;padding-left: 12px;}
+/*健康资讯实例*/
+.health-news .mod-tab-hd{ position: relative;left: 1px;_padding-left: 2px;}
+.health-news .mod-tab-hd h3{ width: 75px;text-align: center;border: 1px solid #dddddd;border-bottom: 0 none;margin-left: -1px;}
+.health-news .mod-tab-hd .cur{ border-top: 2px solid #FA6329;}
+.health-news .mod-tab-hd a{ }
+
+/*母婴*/
+.col-tab-hd{ position: absolute;top: 20px;right: 10px;z-index: 2;}
+.col-tab-hd h3{ float: left;height: 30px;line-height: 30px;cursor: pointer;padding: 0 10px;}
+.col-tab-hd .cur{ border: 1px solid #dddddd;border-bottom: 0 none;}
+.col-tab-hd .cur a{ color: #B87B00;}
+
+/*推荐医院+医院排行*/
+.recomm-hos{ width: 728px;overflow: hidden;*zoom:1}
+.recomm-hos .wrap-pt02{ overflow: hidden;*zoom:1;display: block;}
+.recomm-hos .wrap-list01{ background-position: 354px 0;margin: 0 0px 0 10px;overflow: hidden;display:block;width: 730px;}
+.recomm-hos .pt02{ margin-left: 10px;width: 750px;padding-left: 0;}
+.recomm-hos .pt02 li{ margin-right: 8px;float: left;width: 112px;}
+.recomm-hos .pt02 .pic,.hos-rank .pt02 .pic{ margin-right: 6px;_margin-right:3px;}
+.recomm-hos .pt02 .pic img,.hos-rank .pt02 .pic img{ border: 1px solid #dddddd;padding: 1px;}
+.recomm-hos .pt02 .txt span,.hos-rank .pt02 .txt span{ height: 21px;overflow: hidden;line-height: 21px;display: block;}
+.recomm-hos .pt02 .pic{ margin-bottom:5px;overflow:hidden;float:none;display:block}
+.recomm-hos .pt02 .txt{ clear:both}
+.recomm-hos .pt02 .txt a{ color: #ff6000;font-weight: bold;}
+.recomm-hos{ margin-bottom: 10px;padding-bottom: 2px;}
+.recomm-hos .list01{ float: left;width: 350px;background: none;margin: 0 15px 0 -1px;padding-left: 0px;clear:none;_dis1play: inline;_margin-right:10px}
+.recomm-hos .list01 li{ float: left;width: 170px;line-height: 19px;margin-right: 5px;}
+.recomm-hos .ico-tel,.hos-rank .ico-tel{ background-position:  -160px -73px;padding-left: 19px}
+
+/*普通侧边栏模块*/
+.aside-hd{ background-position: 0 -72px;border-bottom: 0 none;height: 35px;line-height: 35px;}
+.aside-hd h3{ font-size: 14px;font-weight: bold;text-indent: 10px;}
+.hos-rank .aside-bd{ height: 400px;}
+.hos-rank .pt02{ overflow: hidden;}
+.hos-rank .pt02 li{ overflow: hidden;*zoom:1;margin: 0 8px 5px 0;padding-bottom: 8px;}
+.hos-rank .pic{ position: relative;}
+.hos-rank  .txt h4,.hos-rank .pt02 .txt span{ height: 26px;line-height: 26px;overflow:hidden}
+.hos-rank  .txt a{ color: #FF6000;font-weight:bold}
+.hos-rank b{ background: url('bg/rank-ico.gif') no-repeat 0 0; position: absolute;bottom: 0;left: 0;width: 37px;height: 36px;font-size: 18px;font-family: arial;font-weight: bold;font-style: italic;color: #ffffff;text-indent: 6px;line-height: 48px;overflow: hidden;}
+.hos-rank .list01{ padding: 0 10px;}
+.hos-rank .category{ color: #AD3D0E;}
+.hos-rank .ico-tel{ background-position: -160px -70px}
+
+/*企业推荐*/
+.recomm-qiye .mod-bd{ height: 241px;overflow:hidden }
+.recomm-qiye .slide_wrap{ width: 728px;overflow: hidden;}
+.recomm-qiye .wrap-con{ width: 740px;height: 241px;}
+.recomm-qiye .line{ width: 695px;}
+.recomm-qiye .pt01{ padding-bottom: 0;padding-top: 2px;}
+.recomm-qiye .pt01 li{ width: 105px;margin-right: 15px;}
+.recomm-qiye .pt01 .tit{ height: 18px;overflow: hidden;}
+.recomm-qiye .list01{ width: 350px;float: left;clear: none;padding-left: 10px;}
+.recomm-qiye .list01 li{ float: left;width: 175px;height: 26px;line-height: 26px;}
+
+.other-blog-news .aside-bd{ height: 255px;}
+.other-blog-news .pt03 .more,.other-blog-news .pt03 .more:hover{ color: #ad3d0e;}
+.other-blog-news .pt03{ padding: 10px;}
+.other-blog-news .pt03 .tit a{ font-size: 14px;color: #FA6329;}
+.other-blog-news .list01{ padding: 0 10px;}
+
+/*药品推荐*/
+.recomm-drug h3.t04{ width: 108px}
+.recomm-drug .tab-cona{ height: 345px;}
+.recomm-drug .pt03{ padding-bottom: 5px;}
+.recomm-drug .pt03 li{ width: 220px;margin-left: 18px;float: left;_display:inline;padding-bottom: 0px;}
+.recomm-drug .pt03 h4 a,.price,.recomm-drug .pt03 .more{ color: #FF6600;}
+.recomm-drug .pt03 h4,.price{ font-weight: bold;}
+.recomm-drug .pt03 h4,.recomm-drug .pt03 .i{ display: block;height: 28px;line-height: 28px;overflow: hidden;}
+.recomm-drug .pt03 .pic{ width: 105px;}
+.recomm-drug .pt03 .txt{ clear: left;height: 65px;overflow: hidden;margin-top: 8px;}
+
+/*最新药品*/
+.new-drugs{ height: 373px;}
+.new-drugs .tit{ width: 55px;text-align: center;float: left;position: relative;top: 25%;font-weight: bold;}
+.new-drugs .tit b{ display: block;margin: 0 auto;}
+.new-drugs b.ico1{ background-position: 0 -83px;width: 28px;height: 31px;}
+.new-drugs b.ico2{ background-position: -30px -83px;width: 35px;height: 40px;}
+.new-drugs b.ico3{ background-position: -70px -83px;width: 40px;height: 44px;}
+.new-drugs .i{ height: 150px;overflow: hidden;}
+.new-drugs .even{ background-color: #f7f7f7;}
+.new-drugs .last{ height: 65px;}
+.new-drugs .last .tit{ top: 5px;}
+.new-drugs .category{ margin-left: 56px;}
+.new-drugs .category a{ white-space: nowrap;margin-right: 7px;line-height: 35px;}
+.new-drugs .last a{ margin-right: 30px;}
+
+/*健康资讯*/
+.health-news{ height: 530px;}
+.health-news .wrap-con{ overflow:hidden}
+.health-news .mod-tab{ width: 340px;float: left;margin: 0 10px 15px 10px;height: 230px;overflow: hidden;_display:inline}
+.health-news .mod-tab-bd{ border-top: 2px solid #cccccc;margin-top: -2px;padding-top: 5px;}
+.health-news span{ display: block;}
+.health-news .pt04{ height: 115px;}
+.health-news .pt04 .pic{ width: 155px;margin-right: 10px;_margin-right:7px}
+.health-news .pt04 span.tit{ background-color: #f60;margin-top: -22px;position: relative;z-index: 2;text-align: center;
+background: rgba(255, 102, 0, 0.75);
+}
+.health-news .pt04 h4.tit{ font-size: 14px;font-weight: bold;height: 28px;line-height: 28px;}
+.health-news .pt04 h4.tit a{ color: #ff6000;}
+.health-news .list01{ clear: none;}
+.health-news .list03b{ clear: left;margin-top: 5px;}
+.health-news .list03b .txt{ width: 240px;}
+.health-news .list03b .date{ text-align: right;}
+
+/*护士排行+母婴热门排行*/
+.nurse-rank .list{ padding: 10px 10px 0;margin-bottom: 0;overflow: hidden;*zoom:1}
+.nurse-rank .list li,.col .list li{ height: 30px;line-height: 30px;vertical-align: middle;overflow: hidden;*zoom:1;margin-bottom: -1px;}
+.nurse-rank .list .name{ float: left;}
+.nurse-rank .list .hos-name{ float: right;width: auto;margin-right: 0;width:108px}
+.nurse-rank .list b,.col .list b{ background-position: -25px -135px;height: 15px;width: 15px;float: left;text-align: center;line-height: 15px;color: #ffffff;margin: 6px 3px 0 0;}
+.nurse-rank .list .top-rank,.col .list .top-rank{ background-position: 0 -135px;}
+
+/*母婴频道+人才频道通用模块*/
+.col{ overflow: hidden;*zoom:1}
+.col .tab-con{ margin-left: 10px;}
+.col .list{ overflow: hidden;_zoom:1}
+.col .list li{ height: 32px;line-height: 32px;margin-bottom: -1px;}
+.col .list b{ margin-top: 8px;}
+.col .list .txt{ float: left;}
+.col .tri-line{ top: 19px;}
+.col h3.t06,.col h3.t07{ position: relative;top: 12px;}
+.col h3.t06{ width: 127px;height: 29px;}
+.col h3.t07{ width: 111px;height: 30px}
+.col-tab-bd{ }
+.col-tab-bd .i{ float: left;width: 305px;margin-right: 15px;}
+.col-tab-bd .mod-hd{ height: 27px;border-bottom: 1px solid #E65211;}
+.col-tab-bd .mod-hd h4{ background-position: 0 -165px;width: 70px;height: 27px;line-height: 29px;text-align: center;color: #ffffff;font-weight: bold;overflow: hidden;float: left;}
+.col-tab-bd .mod-hd .more{ float: right;height: 27px;line-height: 29px;overflow: hidden;}
+.col-tab-bd .i h5{ font-weight: bold;height: 21px;line-height: 21px;overflow: hidden;}
+.col-tab-bd .i .line{ margin: 10px 0 5px;}
+.col-tab-bd p.txt{ color: #888888;}
+.col-tab-bd p.txt a{ color: #ff6000;}
+.col-tab-bd .list01{ }
+.col-tab-bd .list01 li{ vertical-align: middle;}
+.col-tab-bd .list01 .txt{ float: left;width: 230px;}
+.col-tab-bd .date,.jobs-channel .jobs-hos .name{ float: right;font-weight: normal;color: #888888;}
+.col-tab-bd .pt03{ padding-bottom: 12px;}
+.col-tab-bd .pt03 .txt{ text-indent: 2em;}
+
+/*人才招聘*/
+.jobs-channel{ height: 353px;}
+.jobs-channel .num{ color: #ff6000;}
+.jobs-channel .jobs-hos .txt a{ float: left;width: 132px;}
+.jobs-channel .jobs-hos .num{ float: left;width: 48px;text-align: center;}
+.jobs-channel .jobs-hos .txt{ width: 180px;height: 25px;overflow: hidden;}
+.jobs-channel .jobs-hos .name{ width: 125px;text-align: right;}
+
+/*little fun*/
+.col,.mod-ui-box{ border-radius: 5px;}
+a{ -webkit-transition: color 1s ease-out 0s;
+-moz-transition: color 1s ease-out 0s;
+-o-transition: color 1s ease-out 0s;
+transition: color 1s ease-out 0s;}
+a:hover{text-shadow: 0px 1px 1px #cccccc;}
+
+/*=======================================焦点图滚动样式=======================================*/
+.wrap_focus{ height: 235px;margin-bottom: 10px;overflow: hidden;}/*高度放这里是防止图片没加载时过高;of放在这里是配合高度一起使用超出隐藏 ie6 bug*/
+.focus{ width: 340px;}/*
+*/
+/*=========焦点图========*/
+.mF_tb .pic{position:absolute;vertical-align: middle;}
+.mF_tb .pic li{position:relative;overflow:hidden;}
+.mF_tb .left li{float:left;}
+.mF_tb .right li{float:right;}
+.mF_tb .txt li{position:absolute;z-index:2;bottom:0px;width:100%;height:38px;line-height:38px;display:none;}/*默认标题高度*/
+.mF_tb .txt li a{position:relative;z-index:1;color:#fff;padding-left:16px;font-size:14px;font-weight:bold;text-decoration:none;}/*标题样式*/
+/*.mF_tb .txt li p{ color: #ffffff;position: relative;z-index: 5;}*/
+.mF_tb .txt li span{display:block;height:100%;position:absolute;top:0;left:0;background:#000;filter:alpha(opacity=50);opacity:0.5;}
+.mF_tb .num{position:absolute;z-index:3;bottom:6px;right:6px;}/*按钮样式*/
+.mF_tb .num li{float:left;}
+.mF_tb .num li a{ background:#ffffff}
+.mF_tb .num li a{float:left;color:#ff6600;width:18px;height:18px;position:relative;line-height:18px;text-align:center;margin-right:3px;cursor:pointer;text-decoration:none;background-position: -23px -3px;border:1px solid #ff6600}
+.mF_tb .num li.current a,.mF_tb .num li.hover a{ background-color: #ff6600;color:#ffffff;font-weight:bold;width: 20px;height:20px;line-height:20px;top:-1px;text-align: center;_overflow: hidden;}
+
+/*
+-----------------
+@footer脚部
+-----------------
+*/ 
+.footer{ padding-bottom: 30px;}
+.footer p{ text-align: center;}
+.footer .tips{ border: 1px solid #cccccc;background: #eeeeee;color: #ff6000;height: 22px;line-height: 22px;}
+.bottom_nav{ text-align: center;height: 28px;line-height: 28px;margin-top: 5px;}
+
+#recomm-qiye-controller{ display: none}
+.recomm-doctor .mod-hd,.recomm-qiye .mod-hd{ position: relative;}
+#recomm-doctor-controller{ position: absolute;right: 80px;top: 17px;}
+.recomm-doctor-controll{ border: 1px solid #cccccc;background-color: #ffffff;float: left;width: 16px;height: 16px;text-align: center;line-height: 16px;cursor: pointer;margin-right: 3px;}
+.jFlowSelected{ background-color: #FFC858;border-color: #FFC858;color: #ffffff;}
+.arr-control{ position: absolute;right: 5px;top: 18px;}
+.arr-control b{ width: 18px;height: 16px;text-indent: -1024px;overflow: hidden;float: left;margin-right: 5px;cursor:pointer}
+.arr-control .arrL,.arr-control .arrL-qiye{ background-position: 1px -60px;}
+.arr-control .arrR,.arr-control .arrR-qiye{ background-position: -19px -60px;}

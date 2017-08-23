@@ -1,0 +1,96 @@
+<#import '../global/global.html' as global/>
+<#--页面开始-->
+<#include "../tempInclude/list_header.html"/>
+<body>
+<div class="wrap_body">
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<div class="section">
+    <div class="w720">
+       <div class="breadcrumbs">
+            <span class="ico">位置：</span>
+            <span id="pathUrl">
+                <script type="text/javascript">
+                    getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+                </script>
+            </span>
+            <span class="cur">>> 正文</span>
+        </div>
+        <div class="mod_con article">
+            <div class="article_bd doc-intro-detail">
+                <h3 class="ui-tit">医师介绍</h3>
+                <div class="i pt">
+                    <div class="pt03">
+                        <a class="pic"><img width="120" height="160" src="${(doc.doctImg)!''}"  alt="${doc.doctName}"/></a>
+                        <h4 class="name">${doc.doctName}</h4>
+                        <div class="txt1">职称：${(doc.jobTitle)!'尚未填写'}</div>
+                        <div class="txt1">职务：<@global.showTitle title=doc.dutyName!'尚未填写' titleNum=25 hasDot=false/></div>
+                        <div class="txt">
+                            <h5 class="ui-tit">专业特长</h5>
+                            <p><@global.showTitle title=(doc.speciality)!'尚未填写' titleNum=50 hasDot=true/></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="i details">
+                    <h3 class="tit">详细介绍</h3>
+                    ${(doc.introduction)!'尚未填写'}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+       <!--#macro-->
+<#import '../global/global.html' as global/>
+
+<#macro sideBar mapKey>
+	<div class="mod_aside_hd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</#if>
+	</div>
+	<div class="mod_aside_bd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</#if>
+	</div>
+</#macro>
+<!--#macro-->
+<!--#--><!--#1-->
+<div class="hos_intro">
+    <div class="hd2">${(dataMap["1"].channelName)!''}</div>
+    <div class="bd">
+    	<#if dataMap["1"]??>
+        	<@global.showTitle title=(dataMap["1"].contentList[0].detial)!'' titleNum=90 hasDot=true></@global.showTitle>
+        	<a href="${dataMap["1"].path!'#'}" class="more">[详细]</a>
+        </#if>
+    </div>
+</div>
+<!--#-->
+<div class="aside">
+	<!--#--><!--#2--><@sideBar mapKey="2"/><!--#-->
+</div>
+<div class="aside">
+	<!--#--><!--#3--><@sideBar mapKey="3"/><!--#-->
+</div> 
+    </div>
+</div>
+<!--友情链接-->
+<#include "../tempInclude/friend_link.html"/>
+<!--#include virtual="${footUrl}"-->
+</body>
+</html>

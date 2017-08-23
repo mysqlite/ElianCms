@@ -1,0 +1,25 @@
+<#import '../includes/global.html' as global/>
+<#if dataMap['1']??>
+	<div class="aside_hd ui_comfile_hd">
+        <h3 class="tit">企业档案</h3>
+   </div>
+   <div class="aside_bd">
+	    <h4 class="tit">${(dataMap['1'].contentList[0].entity.name)!'公司名称'}</h4>
+	    <div class="contact_usr">
+		     <em>${(dataMap['1'].contentList[0].entity.contactName)!'联系人'}</em>
+		     <a class="qq_talk" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=${(dataMap['1'].contentList[0].entity.qq)!''}&site=qq&menu=yes">
+		     	<img border="0" src="http://im.bizapp.qq.com:8000/zx_qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+	    </div>
+	    <div class="line"></div>
+	    <ul class="list">
+	     <li><span class="tit">经营模式:</span>${(dataMap['1'].contentList[0].entity.empiricaMode)!'经营模式'}</li>
+	     <li>
+	     	<span class="tit">所在地区:</span><@global.showTitle title=(dataMap['1'].contentList[0].entity.address)!'企业地址' titleNum=13></@global.showTitle>
+	     </li>
+	     <li><span class="tit">供应产品:</span>36条</li>
+	     <li><span class="tit">联系电话:</span>${(dataMap['1'].contentList[0].entity.phone)!'电话号码'}</li>
+	    </ul>
+	    <div class="line"></div>
+    	<a href="#" class="ui_fav_btn">收藏本企业</a>
+   </div>
+</#if>

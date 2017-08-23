@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=9">
+                <title>${title!''}</title>
+                <meta name="Keywords" content="${keywords!''}" /> 
+                <meta name="Description" content="${description!''}" />
+                <link rel="shortcut icon" type="image/x-icon"  href="${resImg}/design/main/favicon.ico"/>
+				<link rel="stylesheet" href="${resStyle}/v2/blue/base.css" type="text/css" media="screen" />
+				<link rel="stylesheet" href="${resStyle}/v2/blue/header.css" type="text/css" media="screen" />            
+				<link rel="stylesheet" href="${resStyle}/v2/blue/main.css" type="text/css" media="screen">             
+                <link rel="stylesheet" href="${resStylePubl}/header/topbar.css" type="text/css">
+                <link rel="stylesheet" href="${resStyle}/v2/blue/jqzoom/jquery.jqzoom.css" type="text/css">
+                <link rel="stylesheet" href="${resStyle}/v2/blue/jqzoom/skin.css" type="text/css">
+                <link media="screen" type="text/css" href="${resStyle}/v2/blue/shopping_cart.css" rel="stylesheet">
+                <link href="${resCms}/plugin/jqueryUI/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+                <script language="javascript" type="text/javascript" src="${resScriptPubl}/jquery-1.9.1.min.js"></script>                
+                <script language="javascript" type="text/javascript" src="${resScriptPubl}/public_cart.js"></script>
+                <script language="javascript" type="text/javascript" src="${resScriptPubl}/list.js"></script>
+				<script language="javascript" type="text/javascript" src="${resScript}/common.js"></script>
+                <script language="javascript" type="text/javascript" src="${resScriptPubl}/base0530.js"></script>
+            </head>
+            <body>
+            <input type="hidden" id="siteId" value="${siteId}"></input>      
+<div class="wrap_topbar">
+    <div class="topbar">
+	    <div class="login_link">
+			<a href="http://www.elian.cc/" class="home_ico" target="_blank">医联网</a>
+			<a id="userLogin" href="#" class="link">登录</a>
+			<a id="userName" href="#" class="link" style="display: none;"></a>
+			<a id="userLoginOut" href="#" class="link" style="display: none;">退出</a>
+			<span id="goCms" style="display: none;">
+				|
+				<a id="goCms" href="${resCms}/admin/login!main.action" class="link" target="_blank">进入后台管理</a>
+			</span>
+			<span id="goReg" style="display: none;">
+				|
+				<a id="goReg" href="http://www.191580.com/reg/regUserManager!myData.action" class="link" style="display: none;" target="_blank">进入挂号用户中心</a>
+			</span>
+			|
+			<a id="userRegister" href="#" class="link">普通用户注册</a>
+			|
+			<a class="link" href="http://cms.elian.cc/front/regHosp!regHospital.action" target="_blank">医院注册</a>
+			|
+			<a class="link" href="http://cms.elian.cc/front/regSubstation!regSubstation.action" target="_blank">分站注册</a>
+			|
+			<a class="link" href="http://www.191580.com/reg/registered.jsp" target="_blank">挂号注册</a>
+		</div>
+        <ul class="top_link"><!--
+	        <li><a href="#">我要买</a></li>
+	        --><li><a href="#">我的医家</a></li>
+	        <li>
+		        <div id="j_top_shop_cart" class="top_shop_cart">
+			        <div class="wrap_tit">
+				        <span class="tit">我的购物车
+				        	(<span class="num">0</span>)
+				        </span>
+			        </div>
+			        <div class="top_shop_cart_list"></div>
+		        </div>
+	        </li>
+	        <li><a href="#">联系客服</a></li>
+	        <li><a href="#">帮助</a></li>
+	        <li class="last"><a onclick="AddFavorite(window.location,document.title)" href="javascript:void(0);">加入收藏</a></li>
+        </ul>
+    </div>
+</div>
+<div class="header">
+	${content!''}
+	<#if (content?? && content=='')>
+		<div class="wrap_tit">
+			<h1><a href="#">${siteName!''}</a></h1>
+			<h2 class="sub_tit">HENGJIA and air purification equipment Co.Ltd</h2>
+		</div>
+	    <div class="search_bar">
+			<div class="hd" id="tab100_hd">
+				<h3 class="cur">
+					本店
+				</h3>
+				<h3>
+					医电商
+				</h3>
+			</div>
+			<div class="bd" id="tab100_bd">
+				<div class="ui_search_bar" style="display: block">
+					<form method="post" action="${resCms}/front/searchCompanyAdapter.action">
+		            	<input type="hidden" name="siteId" value="${siteId}"></input>
+		                <input class="ipt" id="headKeyword" type="text" name="keyword" value=""/>
+		                <input class="ips" type="submit" value="搜索"/>
+		            </form>
+				</div>
+				<div class="ui_search_bar">
+					<form method="post" action="${resCms}/front/searchAdapter.action">
+		            	<input type="hidden" name="siteId" value="${siteId}"></input>
+		                <input class="ipt" type="text" name="keyword" value=""/>
+		                <input class="ips" type="submit" value="搜索"/>
+		            </form>
+				</div>
+			</div>
+			<div class="hot_search">
+				<span class="tit">热门搜索:</span>
+				<a href="#">中国点心</a><a href="#">地方特产</a>
+				<a href="#">医疗器械</a><a href="#">医疗器械</a>
+			</div>
+		</div>
+		<script src="${resScript}/v2/tab.js"></script>
+		<script>
+			ztab("tab100_hd","h3","tab100_bd","div","ui_search_bar","cur")
+		</script>
+	</#if>
+</div>

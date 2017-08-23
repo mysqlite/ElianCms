@@ -1,0 +1,17 @@
+<div class="wrap_nav">
+    <ul class="list">
+        <#if navList?size != 0>
+	       <#list navList as nav>
+	       		<#if nav.channelType??>
+	       			<#if nav.channelType=='out'>
+       					<li><a href="${nav.path}" target="_blank">${nav.channelName}</a></li>
+       				<#elseif nav.channelType=='index'>
+       					<li class="nav_index_bg"><a href="${nav.path}">${nav.channelName}</a></li>
+    				<#else>
+    					<li><a href="${nav.path}">${nav.channelName}</a></li>
+	       			</#if>
+	       		</#if>
+	       </#list>
+	   </#if>
+    </ul>
+</div>

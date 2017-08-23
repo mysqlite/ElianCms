@@ -1,0 +1,12 @@
+${content!''}
+<#if (content?? && content=='')>
+	<div class="topbar">
+	    <h1><a href="#">${siteName!'默认医院名称'}</a></h1>
+	    <div class="topNav">
+	        <div class="item top_link"><a href="#">设为首页</a> | <a href="#">网站导航</a></div>
+	        <div class="item search_bar">
+	            <span class="wrap_ipt"><input class="ipt" type="text" value="站内搜索"/></span><span class="wrap_btn"><input class="imgBtn noBg" type="submit" value="搜索"/></span>
+	        </div>
+	    </div>
+	</div>
+</#if>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="tenpay" extends="struts-default" namespace="/tenpay">
+        <action name="*" class="{1}Action">
+            <result name="list">${path}/tenpay/{1}.jsp</result>
+            <result name="reg">${path}/tenpay/{1}.jsp</result>
+            <result name="input">${path}/tenpay/{1}Edit.jsp</result>
+            <result name="edit">${path}/tenpay/{1}Edit.jsp</result>
+            <result name="login">${path}/tenpay/login.jsp</result>
+            <result name="return">${path}/tenpay/payReturnUrl.jsp</result>
+            <result name="notify">${path}/tenpay/payNotifyUrl.jsp</result>
+        </action>
+    </package>
+</struts>

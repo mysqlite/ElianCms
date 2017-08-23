@@ -1,0 +1,40 @@
+<#if channel??>
+	<div class="mod_aside_hd">
+	    <h3 class="tit"> ${channel.channelName!''} </h3>
+	</div>
+</#if>
+<#if subChannelList??>
+   <#if subChannelList?size!=0>
+	   	<div class="mod_aside_bd sub_nav_aside_bd">
+	         <ul class="list01">
+		       <#list 0..(subChannelList?size-1) as i>
+		          <#if ((subChannelList[i].type=='single'&&subChannelList[i].contentId??)||(subChannelList[i].type=='list'))>
+	                	<li> ·
+		                   <#if i==0>
+		                       <#if subChannelList[0].type=='list'>
+		                          <script type="text/javascript">
+		                         setTimeout(function(){
+		                         	showDiv("info_list_div","w700",'${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);
+		                         },300);
+		                         </script>
+		                       <#elseif subChannelList[0].type=='single'>
+		                        <script type="text/javascript">
+		                         setTimeout(function(){
+		                         	getPageLevelHtml('pathUrl_${subChannelList[0].contentId}','${subChannelList[i].pathUrl}','>>',false);
+		                         },300);
+		                      </script>
+		                    </#if>
+		                </#if>
+		                <#if subChannelList[i].type=='single'>
+		                     <a onclick="showDiv(${subChannelList[i].contentId?string},'w700','','${subChannelList[i].pathUrl}',false);" target="_self">${subChannelList[i].channelName}</a>
+		                </#if>
+		                 <#if subChannelList[i].type=='list'>
+		                     <a onclick="showDiv('info_list_div','w700','${subChannelList[i].tableUrl}','${subChannelList[i].pathUrl}',true);" target="_self">${subChannelList[i].channelName}</a>
+		                </#if>
+		            </li>
+		        </#if>
+		    </#list>
+	      </ul>
+       </div>
+ </#if>
+</#if>

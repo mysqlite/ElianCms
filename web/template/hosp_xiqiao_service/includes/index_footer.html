@@ -1,0 +1,54 @@
+<script src="${resScriptPubl}/base.js"></script>
+<script src="${resScriptPubl}/tab_doctor.js"></script>
+<script type="text/javascript">
+            $(function() {
+                $('#carousel').carouFredSel({
+                    //width: 990,
+                    items: 1,
+                    scroll: 1,
+                    scroll: {
+                        duration: 800,
+                        fx: 'slide',
+                        timeoutDuration: 2500,
+                        pauseOnHover:"resume"
+                    },
+                    //prev: '#prev',
+                    //next: '#next',
+                    pagination: '#pager'
+                });
+            });
+        </script>
+<script type="text/javascript" src="${resScriptPubl}/myfocus-1.2.4.full.js"></script>
+<script type="text/javascript" src="${resScriptPubl}/mF_tb.js"></script>
+<script>
+myFocus.set({path:0,id:'index_Focus',pattern:'mF_tb',time:3,trigger:'mouseover',width:270,height:340,txtHeight:30,duration:350,direction:'left',easing:'easeOut',wrap:false});
+//宽度为图片容器实际宽度,主程序注释了自动添加皮肤，脚本。20110711
+</script>
+<script>
+ztab("tab1_hd","h3","tab1_bd","div","tab_con","cur");
+ztab("tab2_hd","h4","tab2_bd","div","tab_con","cur");
+ztab_gd("tab3_hd","h4","tab3_bd","div","tab_con","cur");
+</script>
+<script>
+//医生滚动
+    $('#tab3_bd').find(".iframe_intro_doc").carouFredSel(
+    {   auto: true,
+        scroll: 1,
+        auto: { 
+            pauseOnHover: 'resume',
+            delay:2000,
+            timeoutDuration:2200
+        },
+        items:{
+            visible:4//不用框架必须指定显示数目
+        }
+    }
+    );
+</script>
+<SCRIPT src="${resScriptPubl}/ad_drift.js"></SCRIPT>
+<SCRIPT type=text/javascript>
+ var ad1=new AdMove("ad_drift_01",true);
+   ad1.Run();
+</SCRIPT>
+</body>
+</html>

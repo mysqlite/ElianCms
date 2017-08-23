@@ -1,0 +1,336 @@
+<#--康复科父栏目-->
+<#include "../includes/content_header.html"/>
+<#--头部begin--><!--#include virtual="${headUrl}"--><#--头部end-->
+<#--导航begin--><!--#include virtual="${navUrl}"--><#--导航end-->
+<link rel="stylesheet" href="${resStyle}/hosp/webbuild/hqyy/style/skin_default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="${resStyle}/hosp/webbuild/hqyy/style/skin_brown.css" type="text/css" media="screen" />
+<script type="text/javascript" src="${resScript}/hosp/hqyy/tszk_tab.js"></script>
+<script type="text/javascript" src="${resScript}/hosp/hqyy/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="${resScript}/hosp/hqyy/go2top.js"></script>
+<input id="siteId" value="${siteId}" type="hidden"/>
+<!--位置盒子begin-->
+<div class="crumbs ui_crumbs" >
+    <b>位置：</b>
+    <span id="pathUrl">
+        <script type="text/javascript" src="${resScriptPubl}/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript">
+            getPageLevelHtml('pathUrl','${pathUrl}','>>',false);
+        </script>
+    </span>
+</div>
+<!--位置盒子end-->
+<#if dataMap['1'].imgContentList??>
+<#if dataMap['1'].imgContentList[0]??>
+<div id="banner">
+    <img alt="" src="${dataMap['1'].imgContentList[0].imgPath}" width="960" height="210"/>
+</div>
+</#if>
+</#if>
+<div class="section ui_skin clearfix">
+    <div class="section_m_710">
+        <#if dataMap['2'].imgContentList??>
+        <#if dataMap['2'].imgContentList[0]??>
+        <div class="aside">
+            <div class="tszk_focus">
+                <img src="${dataMap['2'].imgContentList[0].imgPath}" />
+                <div class="tit">${dataMap['2'].imgContentList[0].title}</div>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <#if dataMap['3'].imgContentList??>
+        <#if dataMap['3'].imgContentList[0]??>
+        <div class="section_s_460">
+            <div class="mod_hd">
+                <h3>
+                    <a class="ico_tit_01" href="${dataMap['3'].path!'#'}">${dataMap['3'].channelName!''}</a>
+                </h3>
+            </div>
+            <div class="mod_bd">
+                <div class="list_pt04 about_ks clearfix">
+                    <div class="pic pic_a">
+                        <a href="${dataMap['3'].imgContentList[0].path!'#'}">
+                            <img src="${dataMap['3'].imgContentList[0].imgPath}" alt="${dataMap['3'].imgContentList[0].title}" />
+                        </a>
+                    </div>
+                    <p class="txt txt_ks">
+                        ${dataMap['3'].imgContentList[0].entity.shortDesc!''}
+                        <a class="more" href="{dataMap['3'].imgContentList[0].path!'#'}">[详细内容]</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <div class="ui_bottom_line"></div>
+        
+        <div class="sidebar">
+            <div class="aside">
+                <#if dataMap['4'].contentList??>
+                <div class="mod_hd ui_hd_gray">
+                    <h3 class="mod_tit">
+                        <a href="${dataMap['4'].path!'#'}">${dataMap['4'].channelName}</a>
+                    </h3>
+                </div>
+                </#if>
+                <div class="mod_bd clearfix">
+                    <#if dataMap['4'].contentList??>
+                    <ul class="list06">
+                        <#list 1..dataMap['4'].contentList?size as i>
+                        <#if i lte 8>
+                        <li>
+                            <a href="${dataMap['4'].contentList['${i}'].path!'#'}">
+                                 ${dataMap['4'].contentList['${i}'].title!''}
+                            </a>
+                        </li>
+                        </#if>
+                        </#list>
+                    </ul>
+                    </#if>
+                    <#if dataMap['5'].imgContentList??>
+                    <#if dataMap['5'].imgContentList[0]??>
+                    <div class="address_tel_num">
+                        <a class="address" href="${dataMap['5'].imgContentList[0].path!''}">
+                            <img src="${dataMap['5'].imgContentList[0].imgPath!''}" width="80" height="100" />
+                        </a>
+                        <b class="tel_num">
+                            ${dataMap['5'].imgContentList[0].imgPath!''}
+                        </b>
+                    </div>
+                    </#if>
+                    </#if>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section_s_460 doctor_outcall">
+            <#if dataMap['6'].contentList??>
+            <div id="tab1">
+                <div class="mod_hd">
+                    <h3>
+                        <a class="ico_tit_01" href="#"></a>
+                    </h3>
+                    <div class="tab_hd" style="overflow: hidden;">
+                        <#list 1..dataMap['6'].contentList?size as i>
+                        <#if i lte 7>
+                        <h4 class="<#if i==1>on</#if>" onMouseOver="showTab(1,${i});">${dataMap['6'].contentList['${i}'].title!''}</h4>
+                        </#if>
+                        <#list>
+                    </div>
+                </div>
+                <div class="mod_bd clearfix">
+                    <#list 1..dataMap['6'].contentList?size as i>
+                    <#if i lt 7>
+                    <ul class="list03" style="display: block;">
+                        <li>
+                            <p class="txt">${dataMap['6'].contentList['${i}'].entity.content!''}</p>
+                        </li>
+                    </ul>
+                    </#if>
+                    <#list>
+                </div>
+            </div>
+            <script type="text/javascript">
+                showTab(1, 1);
+            </script>
+            </#if>
+            
+            <#if dataMap['7'].contentList??>
+            <div class="mod_bd clearfix">
+                <h4>
+                    <a class="ico_tit_01" href="${dataMap['7'].path!'#'}">${dataMap['7'].channelName!''}</a>
+                </h4>
+                <ul class="list_pt02 clearfix" id="mycarousel">
+                    <#list 1..dataMap['7'].contentList?size as i>
+                    <#if  i lte 50>
+                    <li>
+                        <a class="pic" href="${dataMap['7'].contentList['${i}'].path!'#'}">
+                            <img src="${dataMap['7'].contentList['${i}'].entity.doctImg}" width="80"
+                            height="114" alt="${dataMap['7'].contentList['${i}'].entity.doctName}" title="医生" />
+                        </a>
+                        <span class="txt">
+                            <a href="${dataMap['7'].path!'#'}" class="name">
+                               ${dataMap['7'].contentList['${i}'].entity.doctName}
+                            </a>
+                            <p>${dataMap['7'].contentList['${i}'].entity.jobTitle}</p>
+                            <a href="${dataMap['7'].path!'#'}" class="tit">
+                                ${dataMap['7'].contentList['${i}'].entity.dept.deptName}
+                            </a>
+                        </span>
+                    </li>
+                    </#if>
+                    <#list>
+                </ul>
+            </div>
+            <script type="text/javascript">
+            function initCallback(c) {
+                c.buttonNext.bind('click',unction() {c.startAuto();});
+                c.buttonPrev.bind('click',unction() {c.startAuto();});
+                c.clip.hover(function() {c.stopAuto();},
+                function() {c.startAuto();});
+            };
+            $(function() {$('#mycarousel').jcarousel({auto: 2.5,scroll: 1,wrap: 'last',animation: 700,initCallback: initCallback});});
+            </script>
+            </#if>
+        </div>
+    </div>
+    
+    <#if dataMap['8'].contentList??>
+    <div class="sidebar">
+        <div class="aside">
+            <div class="mod_hd ui_hd_gray_2">
+                <h3>
+                    <a class="ico_tit_01" href="${dataMap['8'].path!'#'}">
+                        ${dataMap['8'].channelName!''}
+                    </a>
+                </h3>
+            </div>
+            <div class="mod_bd">
+                <#list 1..dataMap['8'].contentList?size as i>
+                <#if  i lte 2>
+                <h4>${dataMap['8'].contentList['${i}'].title}</h4>
+                <p>
+                    ${dataMap['8'].contentList['${i}'].detial}
+                </p>
+                <br/>
+                </#if>
+                <#list>
+            </div>
+        </div>
+    </div>
+    <#if>
+</div>
+<div class="ui_bottom_line960"></div>
+<div class="section ui_skin ui_skin_bg2 clearfix">
+    <div class="section_m_710">
+        <#if dataMap['9']??>
+        <div class="mod_hd">
+            <h3>
+                <a class="ico_tit_01" href="${dataMap['9'][0].path!'#'}">${dataMap['9'][0].channelName!''}</a>
+            </h3>
+            <span class="more">
+                <#list 1..dataMap['9']?size as i>
+                <#if  i lte 5>
+                <a href="${dataMap['9']['${i}'].contentList[0].path!'#'}">
+                    ${dataMap['9']['${i}'].contentList[0].title!''}
+                </a>
+                </#if>
+                </#list>
+            </span>
+        </div>
+        </#if>
+        <#if dataMap['10'].imgContentList??>
+        <#if dataMap['10'].imgContentList[0]??>
+        <div class="mod_bd">
+            <div class="list_pt04 clearfix">
+                <div class="pic pic_a">
+                    <a href="${dataMap['10'].imgContentList[0].path!'#'}">
+                        <img src="${dataMap['10'].imgContentList[0].imgPath}" alt="${dataMap['10'].imgContentList[0].title}" />
+                    </a>
+                </div>
+                <p class="txt txt_a">
+                    ${dataMap['10'].imgContentList[0].detial}
+                    <a class="more" href="${dataMap['10'].imgContentList[0].path!'#'}">
+                        [详细内容]
+                    </a>
+                </p>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <div class="gutter"></div>
+        <div class="mod_bd  clearfix">
+            <#if dataMap['11'].imgContentList??>
+            <#if dataMap['11'].imgContentList[0]??>
+            <div class="list_pt04 clearfix">
+                <div class="pic pic_b1">
+                    <a href="${dataMap['11'].imgContentList[0].path!'#'}">
+                        <img src="${dataMap['11'].imgContentList[0].imgPath}" alt="" />
+                    </a>
+                </div>
+                <h4>
+                    <a class="ico_tit_03" href="${dataMap['11'].path!'#'}">
+                        ${dataMap['11'].channelName}
+                    </a>
+                </h4>
+                <p class="txt">
+                    ${dataMap['11'].imgContentList[0].detial}
+                    <a class="more" href="${dataMap['11'].imgContentList[0].path!'#'}">[详细内容]</a>
+                </p>
+            </div>
+            </#if>
+            </#if>
+        </div>
+        <div class="gutter"></div>
+        <div class="mod_bd">
+            <#if dataMap['13'].imgContentList??>
+            <#if dataMap['13'].imgContentList[0]??>
+            <div class="list_pt04 clearfix">
+                <div class="pic pic_a">
+                    <a href="${dataMap['13'].imgContentList[0].path!'#'}">
+                        <img src="${dataMap['13'].imgContentList[0].imgPath}" alt="地点：1号楼六、七、八楼" />
+                    </a>
+                </div>
+                <h4>
+                    <a class="ico_tit_03" href="${dataMap['13'].path!'#'}">
+                        ${dataMap['13'].channelName}
+                    </a>
+                </h4>
+                <p class="txt txt_a">
+                    ${dataMap['13'].imgContentList[0].detial}
+                    <a class="more" href="${dataMap['13'].imgContentList[0].path!'#'}">
+                        [详细内容]
+                    </a>
+                </p>
+            </div>
+            </#if>
+            </#if>
+        </div>
+    </div>
+    <div class="sidebar">
+        <#if dataMap['12'].imgContentList??>
+        <#if dataMap['12'].imgContentList[0]??>
+        <div class="aside">
+            <div class="mod_hd ui_hd_gray_2">
+                <h3>
+                    <a class="ico_tit_02" href="${dataMap['12'].parentPath!'#'}">
+                        ${dataMap['12'].channelName!''}
+                    </a>
+                </h3>
+            </div>
+            <div class="mod_bd">
+                <a href="${dataMap['12'].imgContentList[0].path!'#'}">
+                    <img class="aside_banner" src="${dataMap['12'].imgContentList[0].imgPath}"
+                    alt="${dataMap['12'].imgContentList[0].title}" />
+                </a>
+                <p class="txt">
+                    ${dataMap['13'].imgContentList[0].detial}
+                </p>
+            </div>
+        </div>
+        </#if>
+        </#if>
+        <div class="ui_bottom_line"></div>
+        <#if dataMap['14'].contentList??>
+        <#if dataMap['14'].contentList[0]??>
+        <div class="aside">
+            <div class="mod_hd ui_hd_gray_2">
+                <h3>
+                    <a class="ico_tit_02" href="${dataMap['14'].contentList[0].path!'#'}">
+                        ${dataMap['14'].contentList[0].title}
+                    </a>
+                </h3>
+            </div>
+            <div class="mod_bd">
+                <p class="txt">
+                    ${dataMap['14'].contentList[0].detial}
+                </p>
+            </div>
+        </div>
+        </#if>
+        </#if>
+    </div>
+</div>
+<div class="ui_bottom_line960_2"></div>
+<!--#include virtual="${footUrl}"-->
+<#include "../includes/content_footer.html">

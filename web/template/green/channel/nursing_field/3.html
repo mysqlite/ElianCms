@@ -1,0 +1,77 @@
+
+<#import '../../freemakerInclude/global.html' as global/>
+<#--macro1开始-->
+<#macro macro1 mapKey>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	<#if data.contentList??>
+    		<#if data.contentList[0]??>
+    			<h2 class="tit"><a href="${data.contentList[0].path!'#'}">${data.contentList[0].title!''}</a></h2>
+		        <p class="txt">
+		        	<@global.showTitle title=data.contentList[0].detial!'' titleNum=90></@global.showTitle>
+		            <a class="more" href="${data.contentList[0].path!'#'}">[详细]</a>
+		        </p>
+    		</#if>
+    		<#if (data.contentList?size>1)>
+    			<div class="dot_line"></div>
+    			<@global.showNumList ulClass='list' liClass='' begin=1 end=data.contentList?size-1 data=data.contentList;i,item>
+    				<a href="${item.path!'#'}">${item.title!''}</a>
+    			</@global.showNumList>	
+    		</#if>
+    	</#if>
+    </#if>
+</#macro>   
+<#--macro2开始-->
+<#macro macro2 mapKey>
+ 	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>	
+    	<div class="mod_hd mod_hd04">
+            <h3>${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt;更多</a>
+        </div>
+        <div class="mod_bd mod_bd04">
+       		<#if data.contentList??>
+        		<@global.showList3 ulClass='list03b' liClass='' data=data.contentList;item>
+        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+        			<@global.showTime time=item.time!''/></span>
+        		</@global.showList3>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<#--macro3开始-->
+<#macro macro3 mapKey>
+ 	<#if dataMap[mapKey]??>
+    	<#local localData=dataMap[mapKey]/>
+		<div class="guide_line_hd">就医指南</div>
+		<#if (localData?size>0)>
+			<ul class='guide_line_bd'>
+				<#list 1..localData?size as i>
+					<li>
+						<b class="ico ico0${i}"></b>
+						<a href="${localData['${i}'].path!'#'}">${localData['${i}'].channelName!''}</a>
+					</li>
+				</#list>
+			</ul>
+		</#if>
+    </#if>
+</#macro>
+<#--macro5开始-->
+<#macro macro5 mapKey headClass bodyClass>
+	<#if dataMap[mapKey]??>
+    	<#local data=dataMap[mapKey]/>
+    	 <div class="${headClass}">
+            <h3 class="tit">${data.channelName!''}</h3>
+            <a class="more" href="${data.path!'#'}">&gt;&gt; 更多</a>
+        </div>
+        <div class="${bodyClass}">
+        	<#if data.contentList??>
+        		<@global.showList3 ulClass='list03b' liClass='' data=data.contentList;item>
+        			<div class="txt"><a href="${item.path!'#'}">${item.title!''}</a></div><span class="date">
+        			<@global.showTime time=item.time!''/></span>
+        		</@global.showList3>
+        	</#if>
+        </div>
+    </#if>
+</#macro>
+<@macro3 mapKey='3'></@macro3>

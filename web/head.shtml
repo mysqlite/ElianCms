@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="http://style.elian.cc/public/header/topbar.css" type="text/css">
+<link href="http://cms.elian.cc/plugin/jqueryUI/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="http://script.elian.cc/public/jquery-1.8.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="http://script.elian.cc/public/public_cart.js"></script>
+<input type="hidden" id="siteId" value="288"></input>
+<div class="wrap_topbar">
+	<div class="topbar">
+		<div class="login_link">
+			<a href="http://www.elian.cc/" class="home_ico" target="_blank">医联网</a>
+			<a id="userLogin" href="#" class="link">登录</a>
+			<a id="userName" href="#" class="link" style="display: none;"></a>
+			<a id="userLoginOut" href="#" class="link" style="display: none;">退出</a>
+			<span id="goCms" style="display: none;">
+				|
+				<a id="goCms" href="http://cms.elian.cc/admin/login!main.action" class="link" target="_blank">进入后台管理</a>
+			</span>
+			<span id="goReg" style="display: none;">
+				|
+				<a id="goReg" href="http://www.191580.com/reg/regUserManager!myData.action" class="link" style="display: none;" target="_blank">进入挂号用户中心</a>
+			</span>
+			|
+			<a id="userRegister" href="#" class="link">注册</a>			
+		</div>
+		<ul class="top_link">
+			<!--
+		       <li><a href="#">我要买</a></li>
+		       -->
+			<li>
+				<a href="#">我的医家</a>
+			</li>
+			<li>
+				<div id="j_top_shop_cart" class="top_shop_cart">
+					<div class="wrap_tit">
+						<span class="tit">购物车 (<span class="num">0</span>) </span>
+						<b class="triangle_ico"></b>
+					</div>
+					<div class="top_shop_cart_list"></div>
+				</div>
+			</li>
+			<li>
+				<a href="#">联系客服</a>
+			</li>
+			<li>
+				<a href="#">帮助</a>
+			</li>
+			<li class="last">
+				<a onclick="AddFavorite(window.location,document.title)"
+					href="javascript:void(0);">加入收藏</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="header">
+	<h1>
+		<a href="http://www.elian.cc" target="_blank"><img alt="医联网中国频道" class="logo" src="http://images.elian.cc/design/main/logo.jpg" width="182" height="100">医联网中国频道</a>
+	</h1>
+	<div class="searchBar">
+		<script type="text/javascript">
+		function changeType(cur, url) {
+			var childs = document.getElementById("_modelDiv").childNodes;
+			for ( var i = 0; i < childs.length; i++) {
+				childs[i].className = "";
+			}
+			cur.className = "cur";
+			document.frm_search.action = url;
+		}
+		
+		function submitSearch(form) {
+			var value = document.getElementById("valuePar").value;
+			if (value == '请输入关键词') {
+				document.getElementById("valuePar").value = "";
+			}
+			document.getElementById(form).submit();
+		}
+     </script>
+		<form name="frm_search" id="frm_search" target="_blank"
+			action="http://cms.elian.cc/front/searchInformation!search.action"
+			method="post">
+			<input type="hidden" id="value">
+			<div id="_modelDiv" class="hd clearfix">
+				<h3 onclick="changeType(this, 'http://cms.elian.cc/front/searchInformation!search.action');" class="cur">
+					资讯
+				</h3>
+				<h3 onclick="changeType(this, 'http://cms.elian.cc/front/searchHospital!search.action');">
+					医院
+				</h3>
+				<h3 onclick="changeType(this, 'http://cms.elian.cc/front/searchDoctor!search.action');">
+					医生
+				</h3>
+				<h3 onclick="changeType(this, 'http://cms.elian.cc/front/searchDrugCommon!search.action?type=name');">
+                    药品
+                </h3>
+			</div>
+			<div class="bd">
+				<div class="search_ip ui_iptBar clearfix">
+					<input name="keyword" id="valuePar" onclick="this.value=''" value="请输入关键词" class="ipt" type="text">
+					<input class="btn" onclick="submitSearch('frm_search')" value="找一下" target="_blank">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="province">
+		<a class="hot" href="http://hn.elian.cc/" target="_blank">海南</a><a
+			href="http://sh.elian.cc" target="_blank">上海</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">天津</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">重庆</a>
+			<a href="http://an.elian.cc" target="_blank">安徽</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">辽宁</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">河北</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">吉林</a>
+			<a href="http://sd.elian.cc" target="_blank">山东</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">新疆</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">山西</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">浙江</a>
+			<a href="http://software.elian.cc/agent-join.asp" target="_blank">江苏</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">江西</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">广东</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">福建</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">北京</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">河南</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">湖北</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">湖南</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">香港</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">四川</a>
+			<a  href="http://yn.elian.cc" target="_blank">云南</a>
+			<a  href="http://gz.elian.cc" target="_blank">贵州</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">陕西</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">甘肃</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">青海</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">宁夏</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">广西</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">西藏</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">澳门</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">黑龙江</a>
+			<a  href="http://software.elian.cc/agent-join.asp" target="_blank">内蒙古</a>
+			<a class="last_link"  href="http://software.elian.cc/agent-join.asp" target="_blank">代理商入口</a>
+	</div>
+</div>

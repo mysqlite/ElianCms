@@ -1,0 +1,238 @@
+<#--可以使用-->
+<#macro showList ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.imgPath item.title item.detial/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用     可以显示时间-->
+<#macro showList2 ulClass liClass data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list data as item>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested item.path item.title item.detial item.time/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#macro showDoctorList data divClass="con" aClass="pic" imgClass="" spanClass="name">
+    <#if data??> 
+        <#list data as item>
+            <div class="con">
+                <a href="${item.path}" class="${aClass}">
+                <img src="${item.imgPath}" alt="${item.title}" height="120px;" width="100px;"/></a>
+                <span class="name">${item.title}</span>
+            </div>
+        </#list>
+    </#if>
+</#macro>
+
+
+<#--可以使用-->
+<#macro showNumList ulClass liClass begin end data>	
+	<#if data??>
+	  	  <ul class="${ulClass}">
+	  	  	<#list begin..end as i>
+	       	  <li class="${liClass}"> 
+	       	  	<#nested i data[i]/>	       	  	
+	       	  </li>
+	  	  	</#list>	
+	  	  </ul>
+     </#if>    
+</#macro>
+
+<#--可以使用-->
+<#macro showTitle title titleNum>
+	<#if showTitle??>
+		<#if (title?length>titleNum)>
+			${title[0..titleNum]}...
+		<#else>
+			${title}
+		</#if>
+	</#if>
+</#macro>
+
+<#--换灯片-->
+<#macro PowerPoint ulClass liClass>
+	<#if (dataMap['powerPoint'].imgContentList)??>
+		<#local data=dataMap['powerPoint'].imgContentList/>
+		<#if data??>
+			<ul class="${ulClass!''}">
+				<#list data as item>
+					<li class="${liClass!''}">
+						<#nested item.title item.path item.imgPath/>
+					</li>				
+				</#list>
+			</ul>
+		</#if>
+	 <#else>
+	   <ul class="${ulClass}">
+	       暂无数据
+	   </ul>
+	</#if>
+</#macro>
+<#--换灯片-->
+<#macro PowerPoint mapKey ulClass liClass>
+    <#if (dataMap[mapKey].imgContentList)??>
+        <#local data=dataMap[mapKey].imgContentList/>
+        <#if data??>
+            <ul class="${ulClass!''}">
+                <#list data as item>
+                    <li class="${liClass!''}">
+                        <#nested item.title item.path item.imgPath/>
+                    </li>               
+                </#list>
+            </ul>
+        </#if>
+    </#if>
+</#macro>
+<#-- 导航换行显示 -->
+<#macro nav showNum data>  
+    <#local showNum=showNum-1/>
+    <#if data??>
+        <#if (data?size>showNum)>
+             <div class="nav">
+                 <ul class="list">
+                   <#list 0..showNum as i> 
+                     <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                     </#if>
+                   </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+             </div>
+             
+              <#if (data?size>showNum+1)>
+              <div class="nav2">
+                <ul class="list">
+                 <#list (showNum+1)..data?size as i>
+                  <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                  </#if>
+                 </#list>
+                </ul>
+              </div>
+              </#if>
+             <#else>
+              <div class="nav">
+                 <ul class="list">
+                  <#list 0..data?size as i> 
+                    <#if data[i]??>
+                     <@navLi data=data[i]></@navLi>
+                    </#if>
+                  </#list>
+                 </ul>
+                <b class="nav_lbg"></b>
+                <b class="nav_rbg"></b>
+               </div>
+        </#if>
+     </#if>    
+</#macro>
+
+<#macro navLi data>
+ <#if data??>
+   <li><a href="${data.path}" target="_self">${data.channelName}</a></li>
+  </#if>
+</#macro>
+
+<#macro showSingle data maxSize liClass="pt01" div1Class="hd" div2Class="bd" a1Class="pic" pClass="txt" a2Class="more">
+   <#if data??>
+      <#local length=data?size/>
+         <#if (length<maxSize)>
+            <#local maxSize=length/>
+      </#if>
+      <#if (length>0)>
+         <#list 1..maxSize as item>
+           <li class="${liClass}">
+               <div class="${div1Class}">${(data['${item}'].channelName)!''}</div>
+               <div class="${div2Class}">
+                     <a class="${a1Class}" href="${(data['${item}'].contentList[0].path)!'#'}">
+                     <img width="240" height="125" src="${(data['${item}'].contentList[0].imgPath)!'#'}" alt="${(data['${item}'].channelName)!''}"/></a>
+                     <p class="${pClass}"><@global.showTitle title=(data['${item}'].contentList[0].detial)!'' titleNum=50/>
+                     <a class="${a2Class}" href="${(data['${item}'].contentList[0].path)!'#'}">[详细]</a></p>
+                </div>
+           </li>
+          </#list>
+       <#else>
+          <#list 1..2 as item2>
+           <li class="${liClass}">
+             <div class="${div1Class}">尚未配置数据</div>
+             <div class="${div2Class}">
+                 <a class="${a1Class}" href="javascript:void(0);">
+                 <div width="240" height="125">图片区</div> 
+                 </a>
+                  <p class="${pClass}">文章概要区
+                 <a class="${a2Class}" href="javascript:void(0);">[详细]</a></p>
+             </div>
+            </li>
+           </#list>
+      </#if>
+    <#else>
+       <li class="${liClass}">
+         <div class="${div1Class}">未配置数据</div>
+         <div class="${div2Class}">未配置数据</div>
+        </li>
+   </#if>
+</#macro>
+
+<#macro showDepartPlate data headDivClass="mod_hd ui_hd_03" span1Class="ui_tit ui_tit_01" span2Class="more">
+  <div class="${headDivClass}">
+    <h3 class="tit">
+    <span class="${span1Class}">
+     <#if (data['1'].parentChannelName)??>
+       ${(data['1'].parentChannelName)!'暂无数据'}
+     <#else>
+        暂无数据
+     </#if>
+    </span>
+    </h3>
+    <span class="${span2Class}"><a href="${(data['1'].parentPath)!'#'}">&gt;&gt;更多</a></span>
+  </div>
+</#macro>
+
+<#macro showDepartChird data thisId tabCon="tab_con" divTabClass="tab2_hd clearfix" div1Class="mod_bd clearfix" div2Class="section_details">
+  <div class="${div1Class}">
+            <div class="${div2Class}">
+                <div class="${divTabClass}" id="tab${thisId}_hd">
+                    <#if (data)??>
+                      <#list 1..data?size as i>
+                        <h4 <#if i==1> class="cur"</#if> onmouseover="overTab(${thisId},${i},'h4','div')" onmouseout="outTab()">
+                          <a href="${(data['${i}'].path)!"#"}">${(data['${i}'].channelName)!""}</a>
+                        </h4>
+                      </#list>
+                      <#else>
+                        暂无数据
+                    </#if>
+                </div>
+                <div class="tab${thisId}_bd" id="tab${thisId}_bd">
+                  <#if (data)??>
+                    <#list 1..data?size as i>
+                        <div class="${tabCon}" <#if i==1>style="display: block;"</#if>>
+                            <h5>${(data['${i}'].contentList[0].title)!''}</h5>
+                            <p class="txt"><@showTitle title=(data['${i}'].contentList[0].detial)!'' titleNum=200/>
+                            <a class="more" href="${(data['${i}'].contentList[0].path)!'#'}">【详细】</a></p>
+                            <span class="section_pic">
+                            <img src="${(data['${i}'].contentList[0].imgPath)!'${resStyle}/cmsbuild/pink/img/pic/pic240x250.jpg'}" width="240" height="250"/>
+                            </span> 
+                        </div>
+                    </#list>
+                     <#else>
+                        暂无数据
+                  </#if>
+                </div>
+            </div>
+        </div>
+  </div>
+</#macro>
+
+

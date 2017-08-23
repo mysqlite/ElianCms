@@ -1,0 +1,91 @@
+<#--页面开始-->
+<#include "../tempInclude/list_header.html"/>
+<body>
+<div class="wrap_body">
+<!--#include virtual="${headUrl}"-->
+<!--#include virtual="${navUrl}"-->
+<div class="section">
+    <div class="w720">
+        <div class="breadcrumbs">
+            <span class="ico">位置：</span>
+            <span id="pathUrl">
+                <script type="text/javascript">
+                    getPageLevelHtml('pathUrl','${pathUrl}','>>',true);
+                </script>
+            </span>
+            <span class="cur">>> 正文</span>
+        </div>
+        <div class="mod_con article">
+            <div class="article_hd">
+                <h1>${(invi.projectName)!''}</h1>
+            </div>
+            <div class="tagInfo">
+        	    <span class="i">联系人：${(invi.contacter)!''}</span>
+                <span class="i newsource">电话：${(invi.contacterPhone)!'暂无信息'}</span>
+                <span class="i">发布时间：${(invi.publishTime?string('yyyy-MM-dd'))!''}</span>
+            </div>
+            <div class="article_bd">              
+         		 ${(invi.invitDesc)!''}
+	     		<div id="friendDiv" class="article_ft">
+					<script type="text/javascript">
+						getFriendHtml('friendDiv','${tableUrl}','${contentId}');
+					</script>
+				</div>        
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+		<!--#macro-->
+<#import '../global/global.html' as global/>
+
+<#macro sideBar mapKey>
+	<div class="mod_aside_hd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<h3 class="tit"><a href="${data.path!'#'}">${data.channelName!''}</a></h3>
+			<a class="more" href="${data.path!'#'}">更多</a>
+		</#if>
+	</div>
+	<div class="mod_aside_bd">
+		<#if dataMap[mapKey]??>
+			<#local data=dataMap[mapKey]/>
+			<#if data.imgContentList??>	
+				<#local item=data.imgContentList[0]/>				
+				<div class="pt03">
+					<a class="pic" href="${item.path}"><img width="100" height="80" alt="${item.title}" src="${item.imgPath}"></a>
+					<h4 class="tit"><a href="${item.path}">${item.title}</a></h4>
+					<p class="txt"><@global.showTitle title=item.detial titleNum=23 hasDot=true/></p>
+				</div>
+			</#if>
+			<#if data.contentList??>
+				<@global.showList ulClass='list01_lico' liClass='' data=data.contentList;path,imgPath,title,detial>
+		            <a href="${path}" target="_blank">${title}</a>
+		        </@global.showList>	
+			</#if>
+		</#if>
+	</div>
+</#macro>
+<!--#macro-->
+<!--#--><!--#1-->
+<div class="hos_intro">
+    <div class="hd2">${(dataMap["1"].channelName)!''}</div>
+    <div class="bd">
+    	<#if dataMap["1"]??>
+        	<@global.showTitle title=(dataMap["1"].contentList[0].detial)!'' titleNum=90 hasDot=true></@global.showTitle>
+        	<a href="${dataMap["1"].path!'#'}" class="more">[详细]</a>
+        </#if>
+    </div>
+</div>
+<!--#-->
+<div class="aside">
+	<!--#--><!--#2--><@sideBar mapKey="2"/><!--#-->
+</div>
+<div class="aside">
+	<!--#--><!--#3--><@sideBar mapKey="3"/><!--#-->
+</div>        
+    </div>
+</div>
+<#include "../tempInclude/friend_link.html"/>
+<!--#include virtual="${footUrl}"-->
+</body>
+</html>

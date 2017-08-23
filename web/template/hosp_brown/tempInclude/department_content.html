@@ -1,0 +1,58 @@
+<!--此处为被循环内容-->
+    <!--列表界面-->
+        <div class="w740" id="info_list_div" style="display:none">
+            <div class="breadcrumbs">
+                <span class="ico">您的位置：</span>
+                <span id="pathUrl_info_list_div"></span>
+            </div>
+            <div class="mod_con article_list" id="table"></div>
+            <input type="hidden" id="tableUrl" value=""/>
+    	</div> 
+     <!--列表界面结束-->
+     <!-- 内容界面-->
+     <#if subContentList??>
+        <#if subContentList?size!=0>
+         <#list 0..(subContentList?size-1) as i>
+              <div class="w740" id="${subContentList[i].contentId?string}" <#if i!=0> style="display:none" </#if>>
+                <div class="breadcrumbs">
+                    <span class="ico"> 您的位置:</span>
+                    <span id="pathUrl_${subContentList[i].contentId?string}"></span>
+                </div>
+                <div class="mod_con article">
+                    <div class="article_hd">
+                        <h1>${(subContentList[i].title)!''}</h1>
+                    </div>
+                    <div class="line"></div>
+                    <div class="article_bd">
+                        ${(subContentList[i].content)!''}
+                    </div>
+                 </div>
+                 <#if (specialContentList[i])??>
+                 	<#if (specialContentList[i]?size>0)>
+                 	<div class="neiye-doc-show">
+			            <div class="mod_hd">
+			                <h3>科室专家推荐</h3>
+			                <b class="ui_hd_left"></b><b class="ui_hd_right"></b>
+			            </div>
+			            <div class="mod_bd">
+			                <div class="expert_show">
+			                    <ul id="marquee-keshi${subContentList[i].contentId?string}" class="marquee">
+			                        <li style="left: -200px;">
+			                        	<#list specialContentList[i] as item>
+			                        		<div class="con"><a href="${(item.path)!'#'}">
+			                        			<img alt="" src="${(item.imgPath)!'#'}"></a>
+			                        			<span class="name">${(item.title)!''}</span></div>
+			                        	</#list>
+			                        </li>
+			                    </ul>
+			                 </div>
+			            </div>
+	       	 	   </div>	
+	       	 	   </#if>
+	       		</#if>
+             </div>
+        </#list>
+      </#if>
+     </#if>
+    <!--内容界面结束-->
+    <!--此处为被循环内容-->
