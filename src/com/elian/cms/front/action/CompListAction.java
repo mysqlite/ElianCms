@@ -149,7 +149,7 @@ public class CompListAction {
 		this.paginationMedicine.setRowSize(this.rowSize);
 		this.paginationMedicine.setPageNo(this.pageNo);
 		
-		List<Medicine> medicneList = medicineService.findByAll(null, null, paginationMedicine);
+		List<Medicine> medicneList = medicineService.findByAll(null, typeId, paginationMedicine);
 
 		if (!CollectionUtils.isEmpty(medicneList)) {
 			for (Medicine med : medicneList) {
