@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.elian.cms.syst.model.BaseContent;
 import com.elian.cms.syst.model.PersistentLogInterface;
 import com.elian.cms.syst.model.SeoInterface;
@@ -94,6 +96,8 @@ public class Company extends BaseContent implements PersistentLogInterface,SeoIn
 	private String empiricaMode;
 	/**版本号*/
 	private Integer version;
+	/**展示到前端的公司描述**/
+	private String frontIntroduce;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -412,7 +416,13 @@ public class Company extends BaseContent implements PersistentLogInterface,SeoIn
 
 	@Transient
 	public String getFrontIntroduce() {
+		if (StringUtils.isNotBlank(this.frontIntroduce))
+			return this.frontIntroduce;
 		return FilePathUtils.setEditorOutPath(introduce);
+	}
+	
+	public void setFrontIntroduce(String frontIntroduce) {
+		this.frontIntroduce = frontIntroduce;
 	}
 
 	@Transient

@@ -1,5 +1,6 @@
 package com.elian.cms.front.action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import com.elian.cms.admin.model.Instrument;
 import com.elian.cms.admin.model.Medicine;
 import com.elian.cms.admin.model.Site;
 import com.elian.cms.admin.model.Type;
+import com.elian.cms.admin.model.User;
 import com.elian.cms.admin.service.CompanyService;
 import com.elian.cms.admin.service.ContentService;
 import com.elian.cms.admin.service.DeptTypeService;
@@ -155,8 +157,8 @@ public class CompListAction {
 				Site site = null;
 				String paths = "";
 				if ( null != comp && null != comp.getId()) {
-					comp = companyService.get(comp.getId());
-					site = (Site) this.siteService.findByByComp(comp.getType(), comp.getId());
+					Company tempComp = companyService.get(comp.getId());
+					site = (Site) this.siteService.findByByComp(tempComp.getType(), tempComp.getId());
 				}
 				if (null != site && null != site.getId()) {
 					List<Content> contentList = contentService.findByIdAndAction(med.getId(), StringUtils.getENL(med) + "_c", site.getId());
@@ -167,10 +169,51 @@ public class CompListAction {
 						}
 					}
 					med.setStaticPath(paths);
+					
+					ApplicationUtils.setSite(site);
+					med.setFrontDesc(med.getFrontDesc());
+
+					Company company = new Company();
+					comp.setFrontIntroduce(comp.getFrontIntroduce());
+					try {
+						org.apache.commons.beanutils.BeanUtils.copyProperties(company, comp);
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					company.setFrontIntroduce(company.getFrontIntroduce());
+					med.setCompany(company);
+					
+					User user = new User();
+					try {
+						org.apache.commons.beanutils.BeanUtils.copyProperties(user, med.getUser());
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					med.setUser(user);
+					
+					Type type = new Type();
+					try {
+						org.apache.commons.beanutils.BeanUtils.copyProperties(type, med.getType());
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					med.setType(type);
 				}
-				med.setCompany(null);
+				/*med.setCompany(null);
 				med.setUser(null);
-				med.setType(null);
+				med.setType(null);*/
 			}
 		}
 		

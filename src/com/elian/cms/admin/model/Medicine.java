@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.elian.cms.syst.model.BaseContent;
 import com.elian.cms.syst.model.EagerLoading;
@@ -404,6 +405,8 @@ public class Medicine extends BaseContent implements Serializable,
 
 	@Transient
 	public String getFrontDesc() {
+		if (StringUtils.isNotBlank(this.frontDesc))
+			return this.frontDesc;
 		return FilePathUtils.setEditorOutPath(description);
 	}
 
